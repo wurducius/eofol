@@ -1,0 +1,20 @@
+{
+  "name": "eofol-app",
+  "version": "0.2.0",
+  "description": "All inclusive web framework with zero configuration, batteries included!",
+  "main": "index.js",
+  "scripts": {
+    "start": "eofol-scripts start",
+    "build": "eofol-scripts build",
+    "clean": "eofol-scripts clean",
+    "serve": "eofol-scripts serve"
+  },
+  "dependencies": {
+    "eofol": "file:../eofol"
+  },
+  "devDependencies": {
+    "eofol-scripts": "file:../eofol-scripts"
+  },
+  "author": "wurducius@gmail.com",
+  "license": "MIT"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "eofol",
+  "version": "0.2.0",
+  "description": "Eofol web framework",
+  "files": [
+    "index.ts"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "5.3.3"
+  },
+  "author": "wurducius@gmail.com",
+  "license": "MIT"
+}

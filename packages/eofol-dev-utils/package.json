@@ -1,0 +1,14 @@
+{
+  "name": "eofol-dev-utils",
+  "version": "0.2.0",
+  "description": "Eofol development utils used for eofol-scripts",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cross-spawn": "7.0.3"
+  },
+  "author": "wurducius@gmail.com",
+  "license": "MIT"
+}
