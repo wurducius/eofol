@@ -11,7 +11,7 @@ const {
   VIEWS_FOLDER,
 } = require("./eofol");
 
-const { resolve } = require("eofol-dev-utils");
+const { resolve } = require("@eofol/eofol-dev-utils");
 
 module.exports = {
   BUILD_PATH: resolve(BUILD_FOLDER),

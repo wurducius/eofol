@@ -1,5 +1,5 @@
-const { clean } = require("eofol-dev-utils");
-const { primary, success } = require("eofol-dev-utils");
+const { clean } = require("@eofol/eofol-dev-utils");
+const { primary, success } = require("@eofol/eofol-dev-utils");
 const { BUILD_PATH } = require("../config/paths");
 
 console.log(primary("Cleaning build folder.."));

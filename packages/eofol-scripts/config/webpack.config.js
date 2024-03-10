@@ -13,7 +13,7 @@ const {
   ASSET_SVG_INLINE_SIZE_LIMIT,
   ASSET_IMG_INLINE_SIZE_LIMIT,
 } = require("./eofol");
-const { collectViews } = require("eofol-dev-utils");
+const { collectViews } = require("@eofol/eofol-dev-utils");
 
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;

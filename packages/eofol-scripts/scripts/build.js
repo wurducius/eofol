@@ -1,10 +1,10 @@
 const webpack = require("webpack");
 
-const { clean } = require("eofol-dev-utils");
-const { copyPublicFolder } = require("eofol-dev-utils");
-const { prettySize } = require("eofol-dev-utils");
-const { prettyTime } = require("eofol-dev-utils");
-const { primary, error, success } = require("eofol-dev-utils");
+const { clean } = require("@eofol/eofol-dev-utils");
+const { copyPublicFolder } = require("@eofol/eofol-dev-utils");
+const { prettySize } = require("@eofol/eofol-dev-utils");
+const { prettyTime } = require("@eofol/eofol-dev-utils");
+const { primary, error, success } = require("@eofol/eofol-dev-utils");
 
 const { BUILD_PATH, PUBLIC_PATH } = require("../config/paths");
 

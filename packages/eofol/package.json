@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "files": [
     "index.ts"

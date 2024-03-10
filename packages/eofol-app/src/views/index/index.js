@@ -9,7 +9,7 @@ import {
   defineCustomElement,
   renderTarget,
   sx,
-} from "eofol";
+} from "@eofol/eofol";
 
 document.body.style = `background-image: url(.${imgPath});`;
 

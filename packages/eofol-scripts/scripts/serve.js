@@ -1,6 +1,6 @@
 const fs = require("fs");
-const { spawn } = require("eofol-dev-utils");
-const { primary, error } = require("eofol-dev-utils");
+const { spawn } = require("@eofol/eofol-dev-utils");
+const { primary, error } = require("@eofol/eofol-dev-utils");
 const { PORT } = require("../config/eofol");
 const { BUILD_PATH } = require("../config/paths");
 

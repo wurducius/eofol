@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 
-const { primary } = require("eofol-dev-utils");
+const { primary } = require("@eofol/eofol-dev-utils");
 
 const createConfig = require("../config/webpack.config");
 
