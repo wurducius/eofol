@@ -1,5 +1,5 @@
 {
-  "name": "eofol-dev-utils",
+  "name": "@eofol/eofol-dev-utils",
   "version": "0.2.1",
   "description": "Eofol development utils used for eofol-scripts",
   "files": [

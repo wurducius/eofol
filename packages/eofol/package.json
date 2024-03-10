@@ -1,5 +1,5 @@
 {
-  "name": "eofol",
+  "name": "@eofol/eofol",
   "version": "0.2.1",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "files": [
