@@ -1,11 +1,20 @@
 {
   "name": "eofol",
-  "private": true,
+  "version": "0.2.1",
+  "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {},
   "devDependencies": {
     "lerna": "^8.1.2"
-  }
+  },
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/eofol"
+  },
+  "author": "wurducius@gmail.com"
 }

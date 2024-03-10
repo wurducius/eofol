@@ -1,7 +1,6 @@
-# Eofol
+# eofol-app
 
-All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!
-Create a reactive app from template with zero configuration with `eofol-app`.
+Create a reactive app from template with zero configuration!
 
 ## Installation
 

@@ -1,6 +1,6 @@
 {
   "name": "eofol-scripts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Eofol build and development scripts",
   "files": [
     "bin",
@@ -11,8 +11,8 @@
     "eofol-scripts": "./bin/eofol-scripts.js"
   },
   "dependencies": {
+    "@eofol/eofol-dev-utils": "0.2.0",
     "css-loader": "6.10.0",
-    "eofol-dev-utils": "file:../eofol-dev-utils",
     "http-server": "14.1.1",
     "mini-css-extract-plugin": "2.8.1",
     "terser-webpack-plugin": "5.3.10",
@@ -22,5 +22,11 @@
     "webpack-bundle-analyzer": "^4.10.1"
   },
   "author": "wurducius@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/eofol-scripts"
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "eofol-dev-utils",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Eofol development utils used for eofol-scripts",
   "files": [
     "index.js"
@@ -10,5 +10,11 @@
     "cross-spawn": "7.0.3"
   },
   "author": "wurducius@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/eofol-dev-utils"
+  }
 }

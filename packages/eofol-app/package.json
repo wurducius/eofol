@@ -1,7 +1,7 @@
 {
   "name": "eofol-app",
-  "version": "0.2.0",
-  "description": "All inclusive web framework with zero configuration, batteries included!",
+  "version": "0.2.1",
+  "description": "Create a reactive app from template with zero configuration!",
   "main": "index.js",
   "scripts": {
     "start": "eofol-scripts start",
@@ -10,11 +10,17 @@
     "serve": "eofol-scripts serve"
   },
   "dependencies": {
-    "eofol": "file:../eofol"
+    "@eofol/eofol": "0.2.0"
   },
   "devDependencies": {
-    "eofol-scripts": "file:../eofol-scripts"
+    "@eofol/eofol-scripts": "0.2.0"
   },
   "author": "wurducius@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/eofol-app"
+  }
 }
