@@ -1,9 +1,10 @@
 {
   "name": "@eofol/eofol-dev-utils",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Eofol development utils used for eofol-scripts",
   "files": [
-    "index.js"
+    "index.js",
+    "src"
   ],
   "dependencies": {
     "chalk": "^4.1.2",

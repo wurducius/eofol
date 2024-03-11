@@ -21,10 +21,8 @@ if (svgElement) {
   svgElement.src = svgPath;
 }
 
-type CountState = { count: number };
-
-renderTarget<CountState>("eofol-target", {
-  render: (state: CountState, setState: (nextState: CountState) => void) => [
+renderTarget("eofol-target", {
+  render: (state, setState) => [
     createElement(
       "div",
       sx({ color: "blue" }),
@@ -42,7 +40,7 @@ renderTarget<CountState>("eofol-target", {
 
 defineCustomElement({
   tagName: "eofol-custom-single",
-  render: (state: CountState, setState: (nextState: CountState) => void) => {
+  render: (state, setState) => {
     const clickHandler = () => {
       setState({ count: (state.count ?? 0) + 1 });
     };
@@ -65,9 +63,7 @@ defineCustomElement({
   initialState: { count: 0 },
 });
 
-type WeatherState = { temperature: undefined | "LOADING" | "ERROR" | number };
-
-const getState = (state: WeatherState) => {
+const getState = (state) => {
   if (state.temperature === undefined) {
     return "";
   } else if (state.temperature === "LOADING") {
@@ -81,16 +77,16 @@ const getState = (state: WeatherState) => {
 
 defineCustomElement({
   tagName: "eofol-weather",
-  render: (state: WeatherState) => createElement("div", "", getState(state)),
+  render: (state) => createElement("div", "", getState(state)),
   initialState: { temperature: undefined },
   effect: [
-    (state: WeatherState) => {
+    (state) => {
       console.log("hello", state, new Date().getMilliseconds());
       return () => {
         console.log("cleanup", state, new Date().getMilliseconds());
       };
     },
-    (state: WeatherState, setState: (nextState: WeatherState) => void) => {
+    (state, setState) => {
       if (state.temperature === undefined) {
         setState({ temperature: "LOADING" });
         fetch(
