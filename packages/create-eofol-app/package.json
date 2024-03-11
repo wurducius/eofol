@@ -9,7 +9,7 @@
     "create-eofol-app": "./bin/create-eofol-app.js"
   },
   "dependencies": {
-    "chalk": "5.3.0",
+    "chalk": "^4.1.2",
     "cross-spawn": "7.0.3"
   },
   "author": "wurducius@gmail.com",
@@ -19,5 +19,6 @@
     "type": "git",
     "url": "https://github.com/wurducius/eofol.git",
     "directory": "packages/create-eofol-app"
-  }
+  },
+  "type": "commonjs"
 }
