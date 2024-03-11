@@ -4,7 +4,11 @@
 
 const path = require("path");
 const fs = require("fs");
-const { spawn, primary, error } = require("@eofol/eofol-dev-utils");
+const spawn = require("cross-spawn");
+const chalk = require("chalk");
+const primary = chalk.cyan;
+const success = chalk.green;
+const error = chalk.red;
 
 console.log(primary("Create eofol app"));
 
@@ -59,4 +63,4 @@ spawn.sync("git", ["checkout"]);
 process.chdir("packages/eofol-app");
 spawn.sync("npm", ["install"]);
 
-console.log(primary(`Your project is ready at ${projectPath}`));
+console.log(success(`Your project is ready at ${projectPath}`));

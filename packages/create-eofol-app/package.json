@@ -1,6 +1,6 @@
 {
   "name": "@eofol/create-eofol-app",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Create a reactive app from template with zero configuration!",
   "files": [
     "bin"
@@ -9,7 +9,8 @@
     "create-eofol-app": "./bin/create-eofol-app.js"
   },
   "dependencies": {
-    "@eofol/eofol-dev-utils": "0.2.4"
+    "chalk": "5.3.0",
+    "cross-spawn": "7.0.3"
   },
   "author": "wurducius@gmail.com",
   "license": "MIT",
