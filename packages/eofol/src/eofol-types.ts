@@ -20,3 +20,7 @@ export interface StatefulElement<StateType> {
 export type EffectType<T> = MultiOptional<
   StatefulArg<T, void | StatefulArg<T, void>>
 >;
+
+export interface ControlledElement {
+  root: ShadowRoot | null;
+}

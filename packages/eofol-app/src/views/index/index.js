@@ -11,27 +11,26 @@ import {
   sx,
 } from "@eofol/eofol";
 
-// @ts-ignore
 document.body.style = `background-image: url(.${imgPath});`;
 
 const svgElement = document.getElementById("eofol-svg");
 
 if (svgElement) {
-  // @ts-ignore
   svgElement.src = svgPath;
 }
 
 renderTarget("eofol-target", {
   render: (state, setState) => [
-    createElement(
-      "div",
-      sx({ color: "blue" }),
-      "HELLO FUCKIN WORLD!!!!!! UwU Eoфol"
-    ),
-    createElement("div", undefined, "Count = " + state.count),
+    createElement("div", sx({ color: "blue" }), "Targeted element example"),
+    createElement("div", undefined, `Click count: ${state.count}`),
     createElement("button", "eofol-button", "Click!", undefined, {
       onclick: () => {
         setState({ count: state.count + 1 });
+      },
+    }),
+    createElement("button", "eofol-button", "Reset", undefined, {
+      onclick: () => {
+        setState({ count: 0 });
       },
     }),
   ],
@@ -49,7 +48,8 @@ defineCustomElement({
     };
 
     return [
-      createElement("div", sx({ color: "red" }), `Click count: ${state.count}`),
+      createElement("div", sx({ color: "blue" }), "Custom tag element example"),
+      createElement("div", undefined, `Click count: ${state.count}`),
       createElement("div", "", [
         createElement("button", "eofol-button", "Click!", undefined, {
           onclick: clickHandler,
@@ -77,13 +77,16 @@ const getState = (state) => {
 
 defineCustomElement({
   tagName: "eofol-weather",
-  render: (state) => createElement("div", "", getState(state)),
+  render: (state) => [
+    createElement("div", sx({ color: "blue" }), "Effect example"),
+    createElement("div", undefined, getState(state)),
+  ],
   initialState: { temperature: undefined },
   effect: [
     (state) => {
-      console.log("hello", state, new Date().getMilliseconds());
+      console.log("effect invocation");
       return () => {
-        console.log("cleanup", state, new Date().getMilliseconds());
+        console.log("effect cleanup");
       };
     },
     (state, setState) => {

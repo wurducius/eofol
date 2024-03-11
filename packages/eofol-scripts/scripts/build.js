@@ -8,10 +8,9 @@ const { primary, error, success } = require("@eofol/eofol-dev-utils");
 
 const { BUILD_PATH, PUBLIC_PATH } = require("../config/paths");
 
-const createConfig = require("../config/webpack.config");
-
 console.log(primary("Starting build..."));
 
+const createConfig = require("../config/webpack.config");
 const config = createConfig("production", false);
 const compiler = webpack(config);
 

@@ -1,5 +1,6 @@
 import { appendChild, arrayCombinator } from "./util";
 import {
+  ControlledElement,
   EffectType,
   ElementNode,
   StateSetter,
@@ -34,9 +35,11 @@ function defineCustomElement<StateType>({
     tagName,
     class CustomElement
       extends HTMLElement
-      implements StatefulElement<StateType>
+      implements StatefulElement<StateType>, ControlledElement
     {
       initialized: boolean;
+
+      root: ShadowRoot | null;
 
       state: StateTypeImpl<StateType>;
       setState: StateSetter<StateTypeImpl<StateType>>;
@@ -58,6 +61,8 @@ function defineCustomElement<StateType>({
 
         this.renderOffset = 0;
 
+        this.root = null;
+
         this.effect = effect;
       }
 
@@ -66,7 +71,8 @@ function defineCustomElement<StateType>({
           this.initialized = true;
           this.attachShadow({ mode: "open" });
           if (this.shadowRoot) {
-            customElementRegistry.push(this.shadowRoot);
+            this.root = this.shadowRoot;
+            customElementRegistry.push(this);
           }
           this.injectStyles();
           this.render();
@@ -165,6 +171,10 @@ function defineCustomElement<StateType>({
           this.shadowRoot.appendChild(styles);
           this.renderOffset += 1;
         }
+      }
+
+      getShadowRoot() {
+        return this.root;
       }
     }
   );

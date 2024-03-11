@@ -5,6 +5,8 @@ const { primary } = require("@eofol/eofol-dev-utils");
 
 const createConfig = require("../config/webpack.config");
 
+console.log(primary("Starting the development server..."));
+
 const args = process.argv.slice(2);
 const isAnalyze = args.includes("analyze");
 
@@ -22,7 +24,6 @@ const server = new WebpackDevServer(devServerOptions, compiler);
 });
 
 const runServer = async () => {
-  console.log(primary("Starting the development server..."));
   await server.start();
 };
 
