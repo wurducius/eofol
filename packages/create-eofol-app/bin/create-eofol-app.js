@@ -66,21 +66,20 @@ spawn.sync("git", ["checkout"]);
 // install
 console.log(primary("Installing dependencies... [3/3]"));
 const installChild = spawn("npm", ["install"]);
-installChild.stdout.setEncoding("utf8");
-installChild.stdout.on("data", function (data) {
-  console.log(data);
-});
 installChild.stderr.setEncoding("utf8");
 installChild.stderr.on("data", function (data) {
   console.log(error(data));
   process.exit(1);
 });
 installChild.on("close", function (closingCode) {
-  console.log(closingCode);
-  console.log(success(`Your project is ready at ${projectPath}`));
-  console.log(
-    primary(
-      "Run `cd packages/eofol-app` and then `npm start` to start development."
-    )
-  );
+  if (closingCode === 0) {
+    console.log(success(`Your project is ready at ${projectPath}`));
+    console.log(
+      primary(
+        "Run `cd packages/eofol-app` and then `npm start` to start development."
+      )
+    );
+  } else {
+    console.log(error("Install failed."));
+  }
 });
