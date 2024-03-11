@@ -1,6 +1,6 @@
 {
   "name": "eofol",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "workspaces": [
     "packages/*"
@@ -8,6 +8,9 @@
   "dependencies": {},
   "devDependencies": {
     "lerna": "^8.1.2"
+  },
+  "peerDependencies": {
+    "chalk": "^4.1.2"
   },
   "license": "MIT",
   "bugs": "https://github.com/wurducius/eofol/issues",

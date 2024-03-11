@@ -60,7 +60,7 @@ spawn.sync("git", ["sparse-checkout", "add", "packages/eofol-app"]);
 spawn.sync("git", ["checkout"]);
 
 // install
-process.chdir("packages/eofol-app");
+// process.chdir("packages/eofol-app");
 spawn.sync("npm", ["install"]);
 
 console.log(success(`Your project is ready at ${projectPath}`));

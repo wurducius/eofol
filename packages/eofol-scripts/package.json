@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-scripts",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Eofol build and development scripts",
   "files": [
     "bin",

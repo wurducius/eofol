@@ -1,6 +1,6 @@
 {
   "name": "@eofol/create-eofol-app",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "description": "Create a reactive app from template with zero configuration!",
   "files": [
     "bin"
