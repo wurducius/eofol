@@ -4,7 +4,7 @@ Create a reactive app from template with zero configuration!
 
 ## Usage
 
-npx @eofol/create-eofol-app <project-name>
+`npx @eofol/create-eofol-app <project-name>`
 
 ## Author
 
