@@ -5,7 +5,7 @@ const renderTargetI = require("./src/core/render-target");
 
 const sxI = require("./src/styles/sx");
 
-const registerServiceWorkerI = require("./src/util/service-worker");
+const registerServiceWorkerI = require("./src/runtime/service-worker");
 
 const commonTypesI = require("./src/types/common-types");
 const eofolTypesI = require("./src/types/eofol-types");
