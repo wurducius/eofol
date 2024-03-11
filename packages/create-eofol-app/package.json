@@ -1,0 +1,22 @@
+{
+  "name": "@eofol/create-eofol-app",
+  "version": "0.2.5",
+  "description": "Create a reactive app from template with zero configuration!",
+  "files": [
+    "bin"
+  ],
+  "bin": {
+    "create-eofol-app": "./bin/create-eofol-app.js"
+  },
+  "dependencies": {
+    "@eofol/eofol-dev-utils": "0.2.4"
+  },
+  "author": "wurducius@gmail.com",
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/create-eofol-app"
+  }
+}
