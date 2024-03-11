@@ -1,4 +1,4 @@
-import { ControlledElement } from "./eofol-types";
+import { ControlledElement } from "../types/eofol-types";
 
 export const customElementRegistry: ControlledElement[] = [];
 

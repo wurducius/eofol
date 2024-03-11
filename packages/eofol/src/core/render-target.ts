@@ -1,5 +1,5 @@
-import { arrayCombinator, appendChild } from "./util";
-import { ElementNode } from "./eofol-types";
+import { arrayCombinator, appendChild } from "../util/util";
+import { ElementNode } from "../types/eofol-types";
 import { targetElementRegistry } from "./registry";
 
 const renderTarget = (

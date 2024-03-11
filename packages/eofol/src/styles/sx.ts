@@ -1,4 +1,4 @@
-import { customElementRegistry } from "./registry";
+import { customElementRegistry } from "../core/registry";
 
 // source: https://github.com/garycourt/murmurhash-js/blob/master/murmurhash2_gc.js
 function murmurhash2_32_gc(str: string, seed: number) {

@@ -1,4 +1,4 @@
-import { MultiOptional } from "./common-types";
+import { MultiOptional } from "../types/common-types";
 
 export const appendChild = (parent: ParentNode) => (child: Element) => {
   parent.append(child);

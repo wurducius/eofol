@@ -1,4 +1,4 @@
-import { appendChild, arrayCombinator } from "./util";
+import { appendChild, arrayCombinator } from "../util/util";
 import {
   ControlledElement,
   EffectType,
@@ -7,8 +7,8 @@ import {
   StateTypeImpl,
   StatefulArg,
   StatefulElement,
-} from "./eofol-types";
-import { MultiOptional } from "./common-types";
+} from "../types/eofol-types";
+import { MultiOptional } from "../types/common-types";
 import { customElementRegistry } from "./registry";
 
 function stateSetter<StateType>(
