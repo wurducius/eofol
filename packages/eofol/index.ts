@@ -13,8 +13,11 @@ const eofolTypesI = require("./src/types/eofol-types");
 module.exports = {
   createElement: createElementI,
 
-  defineCustomElement: defineCustomElementI,
-  renderTarget: renderTargetI,
+  defineCustomElement: defineCustomElementI.defineCustomElement,
+  updateCustom: defineCustomElementI.updateCustom,
+
+  renderTarget: renderTargetI.renderTarget,
+  updateTarget: renderTargetI.updateStateTarget,
 
   sx: sxI,
 

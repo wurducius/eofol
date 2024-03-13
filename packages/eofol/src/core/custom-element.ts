@@ -1,8 +1,9 @@
-import { appendChild, arrayCombinator } from "../util/util";
+import { appendChild, arrayCombinator, generateId } from "../util/util";
 import {
-  ControlledElement,
+  ControlledCustomElement,
   EffectType,
   ElementNode,
+  RenderType,
   StateSetter,
   StateTypeImpl,
   StatefulArg,
@@ -27,7 +28,7 @@ function defineCustomElement<StateType>({
   effect,
 }: {
   tagName: string;
-  render: StatefulArg<StateType, ElementNode>;
+  render: RenderType<StateType>;
   initialState?: StateTypeImpl<StateType>;
   effect?: EffectType<StateType>;
 }) {
@@ -35,7 +36,7 @@ function defineCustomElement<StateType>({
     tagName,
     class CustomElement
       extends HTMLElement
-      implements StatefulElement<StateType>, ControlledElement
+      implements StatefulElement<StateType>, ControlledCustomElement<StateType>
     {
       initialized: boolean;
 
@@ -72,7 +73,8 @@ function defineCustomElement<StateType>({
           this.attachShadow({ mode: "open" });
           if (this.shadowRoot) {
             this.root = this.shadowRoot;
-            customElementRegistry.push(this);
+            const id = this.getAttribute("id") ?? generateId();
+            customElementRegistry[id] = this;
           }
           this.injectStyles();
           this.render();
@@ -180,4 +182,14 @@ function defineCustomElement<StateType>({
   );
 }
 
-module.exports = defineCustomElement;
+function updateCustom<StateType>(
+  targetId: string,
+  nextState: StateTypeImpl<StateType>
+) {
+  const target = customElementRegistry[targetId];
+  if (target) {
+    target.setState(nextState);
+  }
+}
+
+module.exports = { defineCustomElement, updateCustom };

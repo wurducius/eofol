@@ -1,5 +1,16 @@
-import { ControlledElement } from "../types/eofol-types";
+import {
+  ControlledCustomElement,
+  ControlledTargetElement,
+} from "../types/eofol-types";
 
-export const customElementRegistry: ControlledElement[] = [];
+// @TODO typing any
+export const customElementRegistry: Record<
+  string,
+  ControlledCustomElement<any>
+> = {};
 
-export const targetElementRegistry: Record<string, any> = {};
+// @TODO typing any
+export const targetElementRegistry: Record<
+  string,
+  ControlledTargetElement<any>
+> = {};

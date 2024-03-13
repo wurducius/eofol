@@ -83,7 +83,7 @@ defineCustomElement({
   ],
   initialState: { temperature: undefined },
   effect: [
-    (state) => {
+    () => {
       console.log("effect invocation");
       return () => {
         console.log("effect cleanup");

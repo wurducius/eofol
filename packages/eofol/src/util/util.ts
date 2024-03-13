@@ -16,3 +16,7 @@ export function arrayCombinator<T>(
     }
   }
 }
+
+export function generateId() {
+  return crypto.randomUUID();
+}

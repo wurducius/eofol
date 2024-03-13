@@ -80,7 +80,8 @@ function sx(style: CSSObject): string {
     const last = document.styleSheets[document.styleSheets.length - 1];
     const rule = `.${hash} { ${cssStyle} }`;
     last.insertRule(rule);
-    customElementRegistry.forEach((instance) => {
+    Object.keys(customElementRegistry).forEach((id) => {
+      const instance = customElementRegistry[id];
       const styleElement = instance.root?.querySelector("style");
       if (styleElement) {
         styleElement.innerHTML += " " + rule;
