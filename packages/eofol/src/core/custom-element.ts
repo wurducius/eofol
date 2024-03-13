@@ -1,4 +1,9 @@
-import { appendChild, arrayCombinator, generateId } from "../util/util";
+import {
+  appendChild,
+  arrayCombinator,
+  generateId,
+  removeChildren,
+} from "../util/util";
 import {
   ControlledCustomElement,
   EffectType,
@@ -145,19 +150,7 @@ function defineCustomElement<StateType>({
 
       removeChildren() {
         if (this.shadowRoot) {
-          const nodesToRemove = [];
-          for (
-            let c = 0 + this.renderOffset;
-            c < this.shadowRoot.childNodes.length;
-            c++
-          ) {
-            nodesToRemove.push(this.shadowRoot.childNodes.item(c));
-          }
-          nodesToRemove.forEach((child) => {
-            if (this.shadowRoot) {
-              this.shadowRoot.removeChild(child);
-            }
-          });
+          removeChildren(this.shadowRoot, this.renderOffset);
         }
       }
 

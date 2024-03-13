@@ -1,4 +1,4 @@
-import { arrayCombinator, appendChild } from "../util/util";
+import { arrayCombinator, appendChild, removeChildren } from "../util/util";
 import { RenderType, StateTypeImpl } from "../types/eofol-types";
 import { targetElementRegistry } from "./registry";
 
@@ -21,28 +21,22 @@ function registerTargetElement<StateType>(
 
   targetElementRegistry[targetId] = {
     element: target,
+    render,
     state: initialState ?? {},
     setState: (next: StateTypeImpl<StateType>) => {
       targetElementRegistry[targetId] = {
         ...targetElementRegistry[targetId],
         state: next,
       };
-      const nodesToRemove = [];
-      for (let i = 0; i < target.children.length; i++) {
-        nodesToRemove.push(target.children.item(i));
-      }
-      nodesToRemove.forEach((child) => {
-        if (child) {
-          target.removeChild(child);
-        }
-      });
+
+      removeChildren(target);
+
       const rendered = render(
         targetElementRegistry[targetId].state,
         targetElementRegistry[targetId].setState
       );
       arrayCombinator(appendChild(target), rendered);
     },
-    render,
   };
 }
 
