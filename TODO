@@ -1,21 +1,11 @@
-- extract combinators
-- beautify eofol-app index.html example
 - allow configure src-maps, minify, cors
 - extract base/global styles and such and allow import to every view
-- implement custom element lifecycle
-- fix eofol package module structure import/export
 
-* babel
-* chunking
-* render target
-* global state and selectors
-* force rerender
-* sx
-* collect styles for view and inject inline as style tag instead of external stylesheet link
-* allow views in typescript like index.ts in eofol-app
-* custom element effect cleanup, effect deps
+* finish chunking
+* state batching/queue (pipe/reduce state through effects)
 * jsx compatibility
-* memo, should component update, memoize handlers and values
-* ?attribute changing messaging between custom elements as props
 
-!!! pipe/reduce state through effects
+??? memo, should component update, memoize handlers and values
+??? effect deps
+??? attribute changing messaging between custom elements as props
+??? collect styles for view and inject inline as style tag instead of external stylesheet link
