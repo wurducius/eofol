@@ -21,13 +21,14 @@ const BundleAnalyzerPlugin =
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const ChunksWebpackPlugin = require("chunks-webpack-plugin");
 
 const entry = collectViews(ENTRYPOINT_ROOT_PATH);
 
 const config = (mode, analyze) => {
-  const isDev = mode === "development";
+  const isDev = !analyze && mode === "development";
 
   return {
     mode: isDev ? "development" : "production",
@@ -47,7 +48,10 @@ const config = (mode, analyze) => {
     ].filter(Boolean),
     optimization: {
       minimize: !isDev,
-      minimizer: [!isDev && new TerserPlugin()].filter(Boolean),
+      minimizer: [
+        !isDev && new TerserPlugin(),
+        !isDev && new CssMinimizerPlugin(),
+      ].filter(Boolean),
       splitChunks: {
         chunks: "all",
       },
