@@ -59,11 +59,9 @@ const config = (mode, analyze) => {
     module: {
       rules: [
         {
-          test: /(\.jsx|\.js|\.ts|\.tsx)$/i,
-          use: {
-            loader: "babel-loader",
-          },
-          exclude: /(node_modules)/,
+          test: /\.(js|jsx|tsx|ts)$/,
+          exclude: /node_modules/,
+          loader: "babel-loader",
         },
         {
           test: /\.css$/i,
@@ -111,7 +109,7 @@ const config = (mode, analyze) => {
     devtool: isDev && "source-map",
     stats: "errors-only",
     resolve: {
-      extensions: [".css", ".json", ".js", ".ts", ".tsx", ".jsx"],
+      extensions: ["*", ".js", ".jsx", ".ts", ".tsx", ".css", ".json"],
       extensionAlias: {
         ".js": [".js", ".ts"],
         ".cjs": [".cjs", ".cts"],
