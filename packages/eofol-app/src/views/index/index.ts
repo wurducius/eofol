@@ -10,17 +10,24 @@ import {
   renderTarget,
   sx,
 } from "@eofol/eofol";
+import { StateSetter } from "@eofol/eofol-types";
 
-document.body.style = `background-image: url(.${imgPath});`;
+document.body.setAttribute("style", `background-image: url(.${imgPath});`);
 
-const svgElement = document.getElementById("eofol-svg");
+const svgElement: HTMLImageElement | null = <HTMLImageElement>(
+  document.getElementById("eofol-svg")
+);
 
 if (svgElement) {
   svgElement.src = svgPath;
 }
 
+interface CountState {
+  count: number;
+}
+
 renderTarget("eofol-target", {
-  render: (state, setState) => [
+  render: (state: CountState, setState: StateSetter<CountState>) => [
     createElement("div", sx({ color: "blue" }), "Targeted element example"),
     createElement("div", undefined, `Click count: ${state.count}`),
     createElement("button", "eofol-button", "Click!", undefined, {
@@ -39,7 +46,7 @@ renderTarget("eofol-target", {
 
 defineCustomElement({
   tagName: "eofol-custom-single",
-  render: (state, setState) => {
+  render: (state: CountState, setState: StateSetter<CountState>) => {
     const clickHandler = () => {
       setState({ count: (state.count ?? 0) + 1 });
     };
@@ -63,7 +70,11 @@ defineCustomElement({
   initialState: { count: 0 },
 });
 
-const getState = (state) => {
+type WeatherState = {
+  temperature: number | "LOADING" | "ERROR" | undefined;
+};
+
+const getState = (state: WeatherState) => {
   if (state.temperature === undefined) {
     return "";
   } else if (state.temperature === "LOADING") {
@@ -77,7 +88,7 @@ const getState = (state) => {
 
 defineCustomElement({
   tagName: "eofol-weather",
-  render: (state) => [
+  render: (state: WeatherState) => [
     createElement("div", sx({ color: "blue" }), "Effect example"),
     createElement("div", undefined, getState(state)),
   ],
@@ -89,7 +100,7 @@ defineCustomElement({
         console.log("effect cleanup");
       };
     },
-    (state, setState) => {
+    (state: WeatherState, setState: StateSetter<WeatherState>) => {
       if (state.temperature === undefined) {
         setState({ temperature: "LOADING" });
         fetch(

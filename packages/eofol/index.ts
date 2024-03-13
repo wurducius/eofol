@@ -7,16 +7,14 @@ const sxI = require("./src/styles/sx");
 
 const registerServiceWorkerI = require("./src/runtime/service-worker");
 
-module.exports = {
-  createElement: createElementI,
+export const createElement = createElementI;
 
-  defineCustomElement: defineCustomElementI.defineCustomElement,
-  updateCustom: defineCustomElementI.updateCustom,
+export const defineCustomElement = defineCustomElementI.defineCustomElement;
+export const updateCustom = defineCustomElementI.updateCustom;
 
-  renderTarget: renderTargetI.renderTarget,
-  updateTarget: renderTargetI.updateStateTarget,
+export const renderTarget = renderTargetI.renderTarget;
+export const updateTarget = renderTargetI.updateStateTarget;
 
-  sx: sxI,
+export const sx = sxI;
 
-  registerServiceWorker: registerServiceWorkerI,
-};
+export const registerServiceWorker = registerServiceWorkerI;
