@@ -1,20 +1,16 @@
 import {
-  appendChild,
-  arrayCombinator,
-  generateId,
-  removeChildren,
-} from "../util/util";
-import {
   ControlledCustomElement,
   EffectType,
-  ElementNode,
+  MultiOptional,
   RenderType,
   StateSetter,
   StateTypeImpl,
   StatefulArg,
   StatefulElement,
-} from "../types/eofol-types";
-import { MultiOptional } from "../types/common-types";
+} from "@eofol/eofol-types";
+import { arrayCombinator } from "../util/util";
+import { generateId } from "../util/crypto";
+import { appendChild, removeChildren } from "../util/dom";
 import { customElementRegistry } from "./registry";
 
 function stateSetter<StateType>(

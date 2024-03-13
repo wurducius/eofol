@@ -1,5 +1,6 @@
-import { ElementNode } from "../types/eofol-types";
-import { arrayCombinator, appendChild } from "../util/util";
+import { arrayCombinator } from "../util/util";
+import { appendChild } from "../util/dom";
+import { ElementNode } from "@eofol/eofol-types";
 
 // @TODO TYPING
 function createElement(

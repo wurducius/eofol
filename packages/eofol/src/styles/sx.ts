@@ -1,6 +1,6 @@
+import { CSSObject } from "@eofol/eofol-types";
 import { customElementRegistry } from "../core/registry";
-import { CSSObject } from "../types/common-types";
-import { murmurhash2_32_gc } from "../util/util";
+import { murmurhash2_32_gc } from "../util/crypto";
 
 const seed = new Date().getMilliseconds();
 

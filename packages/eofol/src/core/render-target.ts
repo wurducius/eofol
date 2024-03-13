@@ -1,5 +1,6 @@
-import { arrayCombinator, appendChild, removeChildren } from "../util/util";
-import { RenderType, StateTypeImpl } from "../types/eofol-types";
+import { StateTypeImpl, RenderType } from "@eofol/eofol-types";
+import { arrayCombinator } from "../util/util";
+import { appendChild, removeChildren } from "../util/dom";
 import { targetElementRegistry } from "./registry";
 
 function registerTargetElement<StateType>(

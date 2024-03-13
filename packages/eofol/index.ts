@@ -7,9 +7,6 @@ const sxI = require("./src/styles/sx");
 
 const registerServiceWorkerI = require("./src/runtime/service-worker");
 
-const commonTypesI = require("./src/types/common-types");
-const eofolTypesI = require("./src/types/eofol-types");
-
 module.exports = {
   createElement: createElementI,
 
@@ -22,7 +19,4 @@ module.exports = {
   sx: sxI,
 
   registerServiceWorker: registerServiceWorkerI,
-
-  commonTypes: commonTypesI,
-  eofolTypes: eofolTypesI,
 };
