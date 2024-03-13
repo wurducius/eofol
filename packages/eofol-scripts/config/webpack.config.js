@@ -37,8 +37,8 @@ const config = (mode, analyze) => {
       path: ASSETS_BUILD_PATH,
       publicPath: ASSETS_INNER_PATH,
       chunkFilename: isDev
-        ? "assets/js/[name].chunk.js"
-        : "assets/js/[name].[contenthash:8].chunk.js",
+        ? ASSETS_JS_PATH + "/[name].chunk.js"
+        : ASSETS_JS_PATH + "/[name].[contenthash:8].chunk.js",
     },
     plugins: [
       analyze && new BundleAnalyzerPlugin(),
