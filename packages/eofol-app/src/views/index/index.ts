@@ -9,8 +9,13 @@ import {
   defineCustomElement,
   renderTarget,
   sx,
+  createStore,
+  setStore,
+  selectStore,
 } from "@eofol/eofol";
 import { StateSetter } from "@eofol/eofol-types";
+
+createStore("global", { count: 0 });
 
 document.body.setAttribute("style", `background-image: url(.${imgPath});`);
 
@@ -27,21 +32,27 @@ interface CountState {
 }
 
 renderTarget("eofol-target", {
-  render: (state: CountState, setState: StateSetter<CountState>) => [
-    createElement("div", sx({ color: "blue" }), "Targeted element example"),
-    createElement("div", undefined, `Click count: ${state.count}`),
-    createElement("button", "eofol-button", "Click!", undefined, {
-      onclick: () => {
-        setState({ count: state.count + 1 });
-      },
-    }),
-    createElement("button", "eofol-button", "Reset", undefined, {
-      onclick: () => {
-        setState({ count: 0 });
-      },
-    }),
-  ],
+  render: () => {
+    const store = selectStore("global");
+    const count = store.count;
+
+    return [
+      createElement("div", sx({ color: "blue" }), "Targeted element example"),
+      createElement("div", undefined, `Click count: ${count}`),
+      createElement("button", "eofol-button", "Click!", undefined, {
+        onclick: () => {
+          setStore("global", { count: count + 1 });
+        },
+      }),
+      createElement("button", "eofol-button", "Reset", undefined, {
+        onclick: () => {
+          setStore("global", { count: 0 });
+        },
+      }),
+    ];
+  },
   initialState: { count: 0 },
+  subscribe: ["global"],
 });
 
 defineCustomElement({
@@ -74,7 +85,7 @@ type WeatherState = {
   temperature: number | "LOADING" | "ERROR" | undefined;
 };
 
-const getState = (state: WeatherState) => {
+const getWeatherState = (state: WeatherState) => {
   if (state.temperature === undefined) {
     return "";
   } else if (state.temperature === "LOADING") {
@@ -90,7 +101,7 @@ defineCustomElement({
   tagName: "eofol-weather",
   render: (state: WeatherState) => [
     createElement("div", sx({ color: "blue" }), "Effect example"),
-    createElement("div", undefined, getState(state)),
+    createElement("div", undefined, getWeatherState(state)),
   ],
   initialState: { temperature: undefined },
   effect: [

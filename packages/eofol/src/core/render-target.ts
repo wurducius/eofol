@@ -9,9 +9,11 @@ function registerTargetElement<StateType>(
   {
     initialState,
     render,
+    subscribe,
   }: {
     initialState?: StateTypeImpl<StateType>;
     render: RenderType<StateType>;
+    subscribe?: string[];
   }
 ) {
   if (targetElementRegistry[targetId]) {
@@ -38,6 +40,7 @@ function registerTargetElement<StateType>(
       );
       arrayCombinator(appendChild(target), rendered);
     },
+    subscribe,
   };
 }
 
@@ -63,14 +66,19 @@ function renderTarget<StateType>(
   }
 }
 
-function updateStateTarget<StateType>(
+export function updateTarget<StateType>(
   targetId: string,
-  nextState: StateTypeImpl<StateType>
+  nextState?: StateTypeImpl<StateType>
 ) {
   const target = targetElementRegistry[targetId];
   if (target) {
-    target.setState(nextState);
+    if (nextState) {
+      target.setState(nextState);
+    } else {
+      // @TODO use render instead
+      target.setState(target.state);
+    }
   }
 }
 
-module.exports = { renderTarget, updateStateTarget };
+module.exports = { renderTarget, updateTarget };

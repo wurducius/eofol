@@ -26,6 +26,7 @@ export type RenderType<StateType> = StatefulArg<StateType, ElementNode>;
 export type ControlledCustomElement<StateType> = {
   root: ShadowRoot | null;
   setState: StateSetter<StateType>;
+  subscribe?: string[];
 };
 
 export type ControlledTargetElement<StateType> = {
@@ -33,4 +34,5 @@ export type ControlledTargetElement<StateType> = {
   state: StateTypeImpl<StateType>;
   setState: StateSetter<StateType>;
   render: RenderType<StateType>;
+  subscribe?: string[];
 };

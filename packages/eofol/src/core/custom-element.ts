@@ -27,11 +27,13 @@ function defineCustomElement<StateType>({
   render,
   initialState,
   effect,
+  subscribe,
 }: {
   tagName: string;
   render: RenderType<StateType>;
   initialState?: StateTypeImpl<StateType>;
   effect?: EffectType<StateType>;
+  subscribe?: string[];
 }) {
   customElements.define(
     tagName,
@@ -51,6 +53,8 @@ function defineCustomElement<StateType>({
       effect: EffectType<StateType>;
       effectCleanup: MultiOptional<StatefulArg<StateType, void>>;
 
+      subscribe: string[] | undefined;
+
       // @TODO
       static observedAttributes = [];
 
@@ -66,6 +70,8 @@ function defineCustomElement<StateType>({
         this.root = null;
 
         this.effect = effect;
+
+        this.subscribe = subscribe;
       }
 
       connectedCallback() {
@@ -173,11 +179,16 @@ function defineCustomElement<StateType>({
 
 function updateCustom<StateType>(
   targetId: string,
-  nextState: StateTypeImpl<StateType>
+  nextState?: StateTypeImpl<StateType>
 ) {
   const target = customElementRegistry[targetId];
   if (target) {
-    target.setState(nextState);
+    if (nextState) {
+      target.setState(nextState);
+    } else {
+      // @TODO call render instead
+      target.setState(target.state);
+    }
   }
 }
 
