@@ -17,9 +17,12 @@ const { collectViews } = require("@eofol/eofol-dev-utils");
 
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const TerserPlugin = require("terser-webpack-plugin");
+
+const ChunksWebpackPlugin = require("chunks-webpack-plugin");
 
 const entry = collectViews(ENTRYPOINT_ROOT_PATH);
 
@@ -33,14 +36,21 @@ const config = (mode, analyze) => {
       filename: ASSETS_JS_PATH + "/[name].js",
       path: ASSETS_BUILD_PATH,
       publicPath: ASSETS_INNER_PATH,
+      chunkFilename: isDev
+        ? "assets/js/[name].chunk.js"
+        : "assets/js/[name].[contenthash:8].chunk.js",
     },
     plugins: [
       analyze && new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({ filename: ASSETS_CSS_PATH + "/[name].css" }),
+      new ChunksWebpackPlugin({ generateChunksManifest: false }),
     ].filter(Boolean),
     optimization: {
       minimize: !isDev,
       minimizer: [!isDev && new TerserPlugin()].filter(Boolean),
+      splitChunks: {
+        chunks: "all",
+      },
     },
     module: {
       rules: [
