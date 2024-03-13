@@ -4,12 +4,8 @@
 
 const path = require("path");
 const fs = require("fs");
-const spawn = require("cross-spawn");
-const chalk = require("chalk");
 
-const primary = chalk.cyan;
-const success = chalk.green;
-const error = chalk.red;
+const { spawn, primary, success, error } = require("@eofol/eofol-dev-utils");
 
 console.log(primary("Create eofol app"));
 

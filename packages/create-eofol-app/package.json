@@ -9,8 +9,7 @@
     "create-eofol-app": "./bin/create-eofol-app.js"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
-    "cross-spawn": "7.0.3"
+    "@eofol/eofol-dev-utils": "^0.2.12"
   },
   "author": "wurducius@gmail.com",
   "license": "MIT",
