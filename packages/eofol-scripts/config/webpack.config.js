@@ -44,15 +44,13 @@ const config = (mode, analyze) => {
     },
     module: {
       rules: [
-        /*
-                {
-                    test: /(\.jsx|\.js|\.ts|\.tsx)$/i,
-                    use: {
-                        loader: 'babel-loader',
-                    },
-                    exclude: /(node_modules)/,
-                },
-                */
+        {
+          test: /(\.jsx|\.js|\.ts|\.tsx)$/i,
+          use: {
+            loader: "babel-loader",
+          },
+          exclude: /(node_modules)/,
+        },
         {
           test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader"],
