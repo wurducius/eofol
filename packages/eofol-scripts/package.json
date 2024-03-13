@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-scripts",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "Eofol build and development scripts",
   "files": [
     "bin",
@@ -11,7 +11,7 @@
     "eofol-scripts": "./bin/eofol-scripts.js"
   },
   "dependencies": {
-    "@eofol/eofol-dev-utils": "^0.2.10",
+    "@eofol/eofol-dev-utils": "^0.2.13",
     "babel-loader": "9.1.3",
     "css-loader": "6.10.0",
     "css-minimizer-webpack-plugin": "6.0.0",
