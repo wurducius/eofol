@@ -18,7 +18,7 @@ export const renderTarget = renderTargetI.renderTarget;
 export const updateTarget = renderTargetI.updateStateTarget;
 
 export const createStore = storeI.createStore;
-export const selectStore = storeI.selectStore;
+export const select = storeI.select;
 export const setStore = storeI.setStore;
 export const mergeStore = storeI.mergeStore;
 

@@ -11,7 +11,8 @@ import {
   sx,
   createStore,
   setStore,
-  selectStore,
+  select,
+  mergeStore,
 } from "@eofol/eofol";
 import { StateSetter } from "@eofol/eofol-types";
 
@@ -33,7 +34,7 @@ interface CountState {
 
 renderTarget("eofol-target", {
   render: () => {
-    const store = selectStore("global");
+    const store = select("global");
     const count = store.count;
 
     return [
@@ -46,7 +47,7 @@ renderTarget("eofol-target", {
       }),
       createElement("button", "eofol-button", "Reset", undefined, {
         onclick: () => {
-          setStore("global", { count: 0 });
+          mergeStore("global", { count: 0 });
         },
       }),
     ];

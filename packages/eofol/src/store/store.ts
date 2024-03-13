@@ -1,6 +1,7 @@
 import { updateTarget } from "../core/render-target";
 import { customElementRegistry, targetElementRegistry } from "../core/registry";
 import { updateCustom } from "../..";
+import { merge } from "../util/util";
 
 type StoreState = any;
 
@@ -18,7 +19,7 @@ export function createStore(name: string, initialState: StoreState) {
   storeRegistry[name] = { state: initialState };
 }
 
-export function selectStore(name: string) {
+export function select(name: string) {
   return storeRegistry[name]?.state;
 }
 
@@ -49,13 +50,11 @@ export function setStore(name: string, nextState: StoreState) {
 }
 
 export function mergeStore(name: string, nextState: StoreState) {
-  const prevState = selectStore(name);
+  const store = storeRegistry[name];
 
-  if (prevState) {
-    setStore(name, { ...prevState, nextState });
+  if (store) {
+    setStore(name, merge(store.state, nextState));
   } else {
-    console.log(
-      `Cannot access store ${name} state. Check if the store exists and if its state doesn't equal undefined.`
-    );
+    console.log(`Cannot access store "${name}". Check if the store exists.`);
   }
 }
