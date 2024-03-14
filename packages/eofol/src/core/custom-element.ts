@@ -177,7 +177,7 @@ function defineCustomElement<StateType>({
   );
 }
 
-function updateCustom<StateType>(
+export function updateCustom<StateType>(
   targetId: string,
   nextState?: StateTypeImpl<StateType>
 ) {
@@ -192,4 +192,4 @@ function updateCustom<StateType>(
   }
 }
 
-module.exports = { defineCustomElement, updateCustom };
+export default { defineCustomElement, updateCustom };

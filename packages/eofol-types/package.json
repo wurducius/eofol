@@ -2,9 +2,10 @@
   "name": "@eofol/eofol-types",
   "version": "0.2.14",
   "description": "Typescript types for eofol",
+  "types": "index.d.ts",
   "files": [
     "src",
-    "index.ts",
+    "index.d.ts",
     "tsconfig.json"
   ],
   "dependencies": {},
@@ -19,6 +20,5 @@
     "type": "git",
     "url": "https://github.com/wurducius/eofol.git",
     "directory": "packages/eofol-types"
-  },
-  "type": "commonjs"
+  }
 }

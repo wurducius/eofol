@@ -33,53 +33,57 @@ interface CountState {
 }
 
 renderTarget("eofol-target", {
-  render: () => {
-    const store = select("global");
-    const count = store.count;
-
+  render: (state: CountState, setState: StateSetter<CountState>) => {
     return [
       createElement("div", sx({ color: "blue" }), "Targeted element example"),
-      createElement("div", undefined, `Click count: ${count}`),
+      createElement("div", undefined, `Click count: ${state.count}`),
       createElement("button", "eofol-button", "Click!", undefined, {
+        // @ts-ignore
         onclick: () => {
-          setStore("global", { count: count + 1 });
+          setState({ count: state.count + 1 });
         },
       }),
       createElement("button", "eofol-button", "Reset", undefined, {
+        // @ts-ignore
         onclick: () => {
-          mergeStore("global", { count: 0 });
+          setState({ count: 0 });
         },
       }),
     ];
   },
   initialState: { count: 0 },
-  subscribe: ["global"],
 });
 
 defineCustomElement({
   tagName: "eofol-custom-single",
   render: (state: CountState, setState: StateSetter<CountState>) => {
+    const store = select("global");
+    const count = store.count;
+
     const clickHandler = () => {
-      setState({ count: (state.count ?? 0) + 1 });
+      setStore("global", { count: count + 1 });
     };
     const resetHandler = () => {
-      setState({ count: 0 });
+      setStore("global", { count: 0 });
     };
 
     return [
       createElement("div", sx({ color: "blue" }), "Custom tag element example"),
-      createElement("div", undefined, `Click count: ${state.count}`),
+      createElement("div", undefined, `Click count: ${count}`),
       createElement("div", "", [
         createElement("button", "eofol-button", "Click!", undefined, {
+          // @ts-ignore
           onclick: clickHandler,
         }),
         createElement("button", "eofol-button", "Reset", undefined, {
+          // @ts-ignore
           onclick: resetHandler,
         }),
       ]),
     ];
   },
   initialState: { count: 0 },
+  subscribe: ["global"],
 });
 
 type WeatherState = {

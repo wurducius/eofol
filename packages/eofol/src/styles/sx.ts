@@ -14,7 +14,7 @@ const objectNotationToCSSNotation = (label: string) =>
     )
     .join("");
 
-function sx(style: CSSObject, excludeCustomElements: boolean): string {
+function sx(style: CSSObject, excludeCustomElements?: boolean): string {
   const hash = "e" + murmurhash2_32_gc(JSON.stringify(style), seed).toString();
 
   if (!styleCache.includes(hash)) {
@@ -48,4 +48,4 @@ function sx(style: CSSObject, excludeCustomElements: boolean): string {
   return hash;
 }
 
-module.exports = sx;
+export default sx;

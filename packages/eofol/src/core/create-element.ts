@@ -34,4 +34,4 @@ function createElement(
   return element;
 }
 
-module.exports = createElement;
+export default createElement;

@@ -1,6 +1,6 @@
 import { updateTarget } from "../core/render-target";
+import { updateCustom } from "../core/custom-element";
 import { customElementRegistry, targetElementRegistry } from "../core/registry";
-import { updateCustom } from "../..";
 import { merge } from "../util/util";
 
 type StoreState = any;
@@ -9,7 +9,7 @@ type Store = { state: StoreState };
 
 const storeRegistry: Record<string, Store> = {};
 
-export function createStore(name: string, initialState: StoreState) {
+function createStore(name: string, initialState: StoreState) {
   if (storeRegistry[name]) {
     console.log(
       `Store "${name}" already registered. This is probably caused by a programming error.`
@@ -19,11 +19,11 @@ export function createStore(name: string, initialState: StoreState) {
   storeRegistry[name] = { state: initialState };
 }
 
-export function select(name: string) {
+function select(name: string) {
   return storeRegistry[name]?.state;
 }
 
-export function setStore(name: string, nextState: StoreState) {
+function setStore(name: string, nextState: StoreState) {
   const store = storeRegistry[name];
 
   if (store) {
@@ -49,7 +49,7 @@ export function setStore(name: string, nextState: StoreState) {
   }
 }
 
-export function mergeStore(name: string, nextState: StoreState) {
+function mergeStore(name: string, nextState: StoreState) {
   const store = storeRegistry[name];
 
   if (store) {
@@ -58,3 +58,5 @@ export function mergeStore(name: string, nextState: StoreState) {
     console.log(`Cannot access store "${name}". Check if the store exists.`);
   }
 }
+
+export default { createStore, select, setStore, mergeStore };

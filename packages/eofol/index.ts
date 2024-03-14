@@ -1,13 +1,13 @@
-const createElementI = require("./src/core/create-element");
+import createElementI from "./src/core/create-element";
 
-const defineCustomElementI = require("./src/core/custom-element");
-const renderTargetI = require("./src/core/render-target");
+import defineCustomElementI from "./src/core/custom-element";
+import renderTargetI from "./src/core/render-target";
 
-const storeI = require("./src/store/store");
+import storeI from "./src/store/store";
 
-const sxI = require("./src/styles/sx");
+import sxI from "./src/styles/sx";
 
-const registerServiceWorkerI = require("./src/runtime/service-worker");
+import registerServiceWorkerI from "./src/runtime/service-worker";
 
 export const createElement = createElementI;
 
@@ -15,7 +15,7 @@ export const defineCustomElement = defineCustomElementI.defineCustomElement;
 export const updateCustom = defineCustomElementI.updateCustom;
 
 export const renderTarget = renderTargetI.renderTarget;
-export const updateTarget = renderTargetI.updateStateTarget;
+export const updateTarget = renderTargetI.updateTarget;
 
 export const createStore = storeI.createStore;
 export const select = storeI.select;

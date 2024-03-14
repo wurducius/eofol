@@ -4,4 +4,4 @@ const registerServiceWorker = () => {
   }
 };
 
-module.exports = registerServiceWorker;
+export default registerServiceWorker;

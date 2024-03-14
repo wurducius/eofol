@@ -1,7 +1,17 @@
 # Eofol
 
 All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!
-Create a reactive app from template with zero configuration with `eofol-app`.
+Create a reactive app from template out-of-the-box with `eofol-app`.
+
+## Features
+
+- Declaratively define custom tag html elements or render to DOM element
+- Multiple entrypoints
+- Global state management
+- Dynamic styling in JS
+- Typescript support
+- Bundle and asset optimization and chunking
+- PWA support
 
 ## Create-eofol-app
 

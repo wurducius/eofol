@@ -81,4 +81,4 @@ export function updateTarget<StateType>(
   }
 }
 
-module.exports = { renderTarget, updateTarget };
+export default { renderTarget, updateTarget };

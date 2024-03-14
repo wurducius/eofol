@@ -1,6 +1,6 @@
-const commonTypesI = require("./src/types/common-types");
-const eofolTypesI = require("./src/types/eofol-types");
-const styleTypesI = require("./src/types/style-types");
+import commonTypesI from "./src/types/common-types";
+import eofolTypesI from "./src/types/eofol-types";
+import styleTypesI from "./src/types/style-types";
 
 export type Multi<T> = commonTypesI.Multi;
 export type Optional<T> = commonTypesI.Optional;
