@@ -59,23 +59,25 @@ renderTarget("eofol-target", {
 defineCustomElement({
   tagName: "eofol-custom-single",
   // @TODO typing
-  render: (state: CountState, setState: StateSetter<CountState>, memo: any) => [
-    createElement("div", sx({ color: "blue" }), "Custom tag element example"),
-    createElement("div", undefined, `Click count: ${state.count}`),
-    createElement("div", undefined, [
-      createElement("button", "eofol-button", "Click!", undefined, {
-        onclick: memo.clickHandler,
-      }),
-      createElement("button", "eofol-button", "Reset", undefined, {
-        onclick: memo.resetHandler,
-      }),
-    ]),
-  ],
+  render: (state: CountState, setState: StateSetter<CountState>, memo: any) => {
+    const clickHandler = () => {
+      setState({ count: state.count + 1 });
+    };
+    return [
+      createElement("div", sx({ color: "blue" }), "Custom tag element example"),
+      createElement("div", undefined, `Click count: ${state.count}`),
+      createElement("div", undefined, [
+        createElement("button", "eofol-button", "Click!", undefined, {
+          onclick: clickHandler,
+        }),
+        createElement("button", "eofol-button", "Reset", undefined, {
+          onclick: memo.resetHandler,
+        }),
+      ]),
+    ];
+  },
   initialState: { count: 0 },
   memo: (state: CountState, setState: StateSetter<CountState>) => ({
-    clickHandler: () => {
-      setState({ count: state.count + 1 });
-    },
     resetHandler: () => {
       setState({ count: 0 });
     },

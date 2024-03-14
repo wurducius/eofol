@@ -17,8 +17,9 @@ function stateSetter<StateType>(
   customElementClass: StatefulElement<StateType>
 ) {
   return function (newState: StateType) {
+    const prevState = customElementClass.state;
     customElementClass.state = newState;
-    customElementClass.renderUpdate();
+    customElementClass.renderUpdate(prevState);
   };
 }
 
@@ -29,6 +30,7 @@ function defineCustomElement<StateType>({
   effect,
   subscribe,
   memo,
+  shouldUpdate,
 }: {
   tagName: string;
   render: RenderType<StateType>;
@@ -39,6 +41,10 @@ function defineCustomElement<StateType>({
     state: StateTypeImpl<StateType>,
     setState: StateSetter<StateType>
   ) => Object;
+  shouldUpdate?: (
+    prevState: StateTypeImpl<StateType>,
+    nextState: StateTypeImpl<StateType>
+  ) => boolean;
 }) {
   customElements.define(
     tagName,
@@ -60,8 +66,20 @@ function defineCustomElement<StateType>({
 
       subscribe: string[] | undefined;
 
-      memo: undefined | (() => Object);
+      memo:
+        | undefined
+        | ((
+            state: StateTypeImpl<StateType>,
+            setState: StateSetter<StateType>
+          ) => Object);
       memoCache: Object | undefined;
+
+      shouldUpdate:
+        | undefined
+        | ((
+            prevState: StateTypeImpl<StateType>,
+            nextState: StateTypeImpl<StateType>
+          ) => boolean);
 
       // @TODO
       static observedAttributes = [];
@@ -83,6 +101,8 @@ function defineCustomElement<StateType>({
 
         this.memo = memo;
         this.memoCache = undefined;
+
+        this.shouldUpdate = shouldUpdate;
       }
 
       connectedCallback() {
@@ -96,17 +116,19 @@ function defineCustomElement<StateType>({
           }
           this.injectStyles();
           if (this.memo) {
-            this.memoCache = this.memo();
+            this.memoCache = this.memo(this.state, this.setState);
           }
           this.render();
           this.afterRender();
         }
       }
 
-      renderUpdate() {
+      renderUpdate(prevState: StateTypeImpl<StateType>) {
         this.cleanup();
-        this.removeChildren();
-        this.render();
+        if (!this.shouldUpdate || this.shouldUpdate(prevState, this.state)) {
+          this.removeChildren();
+          this.render();
+        }
         this.afterRender();
       }
 
