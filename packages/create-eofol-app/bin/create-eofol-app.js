@@ -65,6 +65,7 @@ const installChild = spawn("npm", ["install"]);
 installChild.stderr.setEncoding("utf8");
 installChild.stderr.on("data", function (data) {
   console.log(error(data));
+  console.log(error("Install failed."));
   process.exit(1);
 });
 installChild.on("close", function (closingCode) {
@@ -72,7 +73,7 @@ installChild.on("close", function (closingCode) {
     console.log(success(`Your project is ready at ${projectPath}`));
     console.log(
       primary(
-        "Run `cd packages/eofol-app` and then `npm start` to start development."
+        `Run "cd ${projectName}/packages/eofol-app" and then "npm start" to start development.`
       )
     );
   } else {
