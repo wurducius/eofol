@@ -28,12 +28,17 @@ function defineCustomElement<StateType>({
   initialState,
   effect,
   subscribe,
+  memo,
 }: {
   tagName: string;
   render: RenderType<StateType>;
   initialState?: StateTypeImpl<StateType>;
   effect?: EffectType<StateType>;
   subscribe?: string[];
+  memo?: (
+    state: StateTypeImpl<StateType>,
+    setState: StateSetter<StateType>
+  ) => Object;
 }) {
   customElements.define(
     tagName,
@@ -55,6 +60,9 @@ function defineCustomElement<StateType>({
 
       subscribe: string[] | undefined;
 
+      memo: undefined | (() => Object);
+      memoCache: Object | undefined;
+
       // @TODO
       static observedAttributes = [];
 
@@ -72,6 +80,9 @@ function defineCustomElement<StateType>({
         this.effect = effect;
 
         this.subscribe = subscribe;
+
+        this.memo = memo;
+        this.memoCache = undefined;
       }
 
       connectedCallback() {
@@ -84,6 +95,9 @@ function defineCustomElement<StateType>({
             customElementRegistry[id] = this;
           }
           this.injectStyles();
+          if (this.memo) {
+            this.memoCache = this.memo();
+          }
           this.render();
           this.afterRender();
         }
@@ -97,7 +111,7 @@ function defineCustomElement<StateType>({
       }
 
       render() {
-        const rendered = render(this.state, this.setState);
+        const rendered = render(this.state, this.setState, this.memoCache);
 
         if (this.shadowRoot) {
           arrayCombinator(appendChild(this.shadowRoot), rendered);
