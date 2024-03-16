@@ -1,6 +1,7 @@
-export const appendChild = (parent: ParentNode) => (child: Element) => {
-  parent.append(child);
-};
+export const appendChild =
+  (parent: ParentNode) => (child: Element | string) => {
+    parent.append(child);
+  };
 
 export const removeChildren = (element: ParentNode, renderOffset?: number) => {
   const nodesToRemove = [];

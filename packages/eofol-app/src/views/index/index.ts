@@ -14,7 +14,7 @@ import {
   select,
   mergeStore,
 } from "@eofol/eofol";
-import { StateSetter } from "@eofol/eofol-types";
+import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
 createStore("global", { count: 0 });
 
@@ -32,21 +32,29 @@ interface CountState {
   count: number;
 }
 
-renderTarget("eofol-target", {
-  render: (state: CountState, setState: StateSetter<CountState>) => {
+renderTarget<CountState>("eofol-target", {
+  render: (
+    state: StateTypeImpl<CountState> | undefined,
+    setState: StateSetter<CountState> | undefined
+  ) => {
+    // wrong typing
+    const s = state as CountState;
+
     return [
       createElement("div", sx({ color: "blue" }), "Targeted element example"),
-      createElement("div", undefined, `Click count: ${state.count}`),
+      createElement("div", undefined, `Click count: ${s.count}`),
       createElement("button", "eofol-button", "Click!", undefined, {
         // @ts-ignore
         onclick: () => {
-          setState({ count: state.count + 1 });
+          // wrong setState typing
+          setState && setState({ count: s.count + 1 });
         },
       }),
       createElement("button", "eofol-button", "Reset", undefined, {
         // @ts-ignore
         onclick: () => {
-          setState({ count: 0 });
+          // wrong setState typing
+          setState && setState({ count: 0 });
         },
       }),
     ];
@@ -54,9 +62,9 @@ renderTarget("eofol-target", {
   initialState: { count: 0 },
 });
 
-defineCustomElement({
+defineCustomElement<CountState>({
   tagName: "eofol-custom-single",
-  render: (state: CountState, setState: StateSetter<CountState>) => {
+  render: () => {
     const store = select("global");
     const count = store.count;
 
@@ -102,11 +110,11 @@ const getWeatherState = (state: WeatherState) => {
   }
 };
 
-defineCustomElement({
+defineCustomElement<WeatherState>({
   tagName: "eofol-weather",
-  render: (state: WeatherState) => [
+  render: (state: StateTypeImpl<WeatherState>) => [
     createElement("div", sx({ color: "blue" }), "Effect example"),
-    createElement("div", undefined, getWeatherState(state)),
+    createElement("div", undefined, getWeatherState(state as WeatherState)),
   ],
   initialState: { temperature: undefined },
   effect: [
@@ -116,9 +124,14 @@ defineCustomElement({
         console.log("effect cleanup");
       };
     },
-    (state: WeatherState, setState: StateSetter<WeatherState>) => {
-      if (state.temperature === undefined) {
-        setState({ temperature: "LOADING" });
+    (
+      state: StateTypeImpl<WeatherState> | undefined,
+      setState: StateSetter<WeatherState> | undefined
+    ) => {
+      const s = state as WeatherState;
+      if (s.temperature === undefined) {
+        // wrong effect setState typing
+        setState && setState({ temperature: "LOADING" });
         fetch(
           "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=50.32&lon=16.63"
         )
@@ -127,10 +140,10 @@ defineCustomElement({
             const temperature =
               data.properties.timeseries[0].data.instant.details
                 .air_temperature;
-            setState({ temperature });
+            setState && setState({ temperature });
           })
           .catch((e) => {
-            setState({ temperature: "ERROR" });
+            setState && setState({ temperature: "ERROR" });
           });
       }
     },

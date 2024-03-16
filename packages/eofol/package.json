@@ -2,11 +2,12 @@
   "name": "@eofol/eofol",
   "version": "0.2.15",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
-    "src",
-    "index.ts",
-    "tsconfig.json"
+    "dist"
   ],
+  "types": "dist/index.d.js",
   "dependencies": {},
   "devDependencies": {
     "@eofol/eofol-types": "0.2.15",

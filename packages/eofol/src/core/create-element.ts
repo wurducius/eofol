@@ -6,7 +6,7 @@ import { ElementNode } from "@eofol/eofol-types";
 function createElement(
   tagName: string,
   className?: string,
-  children?: ElementNode,
+  children?: ElementNode | string,
   attributes?: Record<string, string>,
   properties?: Record<string, string>
 ): HTMLElement {

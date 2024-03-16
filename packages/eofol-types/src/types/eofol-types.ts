@@ -5,7 +5,8 @@ export type ElementNode = MultiOptional<Element>;
 export type StateSetter<StateType> = (newState: StateType) => void;
 
 // @TODO typing how the hell do we type {}?
-export type StateTypeImpl<StateType> = StateType | Object;
+export type StateTypeImpl<StateType> = StateType | undefined | {};
+// | Object
 
 export type StatefulArg<StateType, T> = (
   state?: StateTypeImpl<StateType>,
@@ -25,6 +26,7 @@ export type RenderType<StateType> = StatefulArg<StateType, ElementNode>;
 
 export type ControlledCustomElement<StateType> = {
   root: ShadowRoot | null;
+  state: StateTypeImpl<StateType>;
   setState: StateSetter<StateType>;
   subscribe?: string[];
 };
