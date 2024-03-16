@@ -12,7 +12,7 @@ import {
   createStore,
   setStore,
   select,
-  mergeStore,
+  get,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
@@ -132,17 +132,16 @@ defineCustomElement<WeatherState>({
       if (s.temperature === undefined) {
         // wrong effect setState typing
         setState && setState({ temperature: "LOADING" });
-        fetch(
+        get(
           "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=50.32&lon=16.63"
         )
-          .then((res) => res.json())
           .then((data) => {
             const temperature =
               data.properties.timeseries[0].data.instant.details
                 .air_temperature;
             setState && setState({ temperature });
           })
-          .catch((e) => {
+          .catch(() => {
             setState && setState({ temperature: "ERROR" });
           });
       }

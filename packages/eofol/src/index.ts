@@ -20,3 +20,7 @@ export const sx = sxX;
 
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
+
+import fetchX from "./runtime/fetch";
+export const get = fetchX.get;
+export const post = fetchX.post;
