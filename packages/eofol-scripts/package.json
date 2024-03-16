@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-scripts",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "Eofol build and development scripts",
   "files": [
     "bin",
@@ -11,7 +11,7 @@
     "eofol-scripts": "./bin/eofol-scripts.js"
   },
   "dependencies": {
-    "@eofol/eofol-dev-utils": "0.2.17",
+    "@eofol/eofol-dev-utils": "0.2.18",
     "css-loader": "6.10.0",
     "http-server": "14.1.1",
     "mini-css-extract-plugin": "2.8.1",
