@@ -1,4 +1,5 @@
-import "./index.css";
+import "./base.css";
+import "../../styles/base.css";
 
 import imgPath from "./rainbow-mountains-peru.jpg";
 import svgPath from "./phi.svg";
