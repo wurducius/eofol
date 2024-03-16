@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-scripts",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "description": "Eofol build and development scripts",
   "files": [
     "bin",
@@ -11,7 +11,7 @@
     "eofol-scripts": "./bin/eofol-scripts.js"
   },
   "dependencies": {
-    "@eofol/eofol-dev-utils": "0.2.19",
+    "@eofol/eofol-dev-utils": "0.2.20",
     "@babel/core": "7.24.0",
     "@babel/preset-env": "7.24.0",
     "@babel/preset-typescript": "7.23.3",
