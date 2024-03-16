@@ -1,6 +1,6 @@
 {
   "name": "eofol",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "workspaces": [
     "packages/*"
