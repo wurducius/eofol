@@ -24,3 +24,6 @@ export const registerServiceWorker = serviceWorker;
 import fetchX from "./runtime/fetch";
 export const get = fetchX.get;
 export const post = fetchX.post;
+
+import debounceX from "./runtime/debounce";
+export const debounce = debounceX;
