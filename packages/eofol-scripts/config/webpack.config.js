@@ -19,12 +19,15 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const ChunksWebpackPlugin = require("chunks-webpack-plugin");
+
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const entry = collectViews(ENTRYPOINT_ROOT_PATH);
 
 const config = (mode, analyze) => {
-  const isDev = mode === "development";
+  const isDev = !analyze && mode === "development";
 
   return {
     mode: isDev ? "development" : "production",
@@ -33,26 +36,32 @@ const config = (mode, analyze) => {
       filename: ASSETS_JS_PATH + "/[name].js",
       path: ASSETS_BUILD_PATH,
       publicPath: ASSETS_INNER_PATH,
+      chunkFilename: isDev
+        ? ASSETS_JS_PATH + "/[name].chunk.js"
+        : ASSETS_JS_PATH + "/[name].[contenthash:8].chunk.js",
     },
     plugins: [
       analyze && new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({ filename: ASSETS_CSS_PATH + "/[name].css" }),
+      new ChunksWebpackPlugin({ generateChunksManifest: false }),
     ].filter(Boolean),
     optimization: {
       minimize: !isDev,
-      minimizer: [!isDev && new TerserPlugin()].filter(Boolean),
+      minimizer: [
+        !isDev && new TerserPlugin(),
+        !isDev && new CssMinimizerPlugin(),
+      ].filter(Boolean),
+      splitChunks: {
+        chunks: "all",
+      },
     },
     module: {
       rules: [
-        /*
-                {
-                    test: /(\.jsx|\.js|\.ts|\.tsx)$/i,
-                    use: {
-                        loader: 'babel-loader',
-                    },
-                    exclude: /(node_modules)/,
-                },
-                */
+        {
+          test: /\.(js|jsx|tsx|ts)$/,
+          exclude: /node_modules/,
+          loader: "babel-loader",
+        },
         {
           test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader"],
@@ -99,7 +108,7 @@ const config = (mode, analyze) => {
     devtool: isDev && "source-map",
     stats: "errors-only",
     resolve: {
-      extensions: [".css", ".json", ".js", ".ts", ".tsx", ".jsx"],
+      extensions: ["*", ".js", ".jsx", ".ts", ".tsx", ".css", ".json"],
       extensionAlias: {
         ".js": [".js", ".ts"],
         ".cjs": [".cjs", ".cts"],
