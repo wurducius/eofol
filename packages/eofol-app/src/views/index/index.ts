@@ -26,7 +26,7 @@ const svgElement: HTMLImageElement | null = <HTMLImageElement>(
 );
 
 if (svgElement) {
-  svgElement.src = "." + svgPath;
+  svgElement.src = svgPath;
 }
 
 interface CountState {
