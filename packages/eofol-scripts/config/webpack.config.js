@@ -19,7 +19,7 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const ChunksWebpackPlugin = require("chunks-webpack-plugin");
+// const ChunksWebpackPlugin = require("chunks-webpack-plugin");
 
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -36,14 +36,16 @@ const config = (mode, analyze) => {
       filename: ASSETS_JS_PATH + "/[name].js",
       path: ASSETS_BUILD_PATH,
       publicPath: ASSETS_INNER_PATH,
+      /*
       chunkFilename: isDev
         ? ASSETS_JS_PATH + "/[name].chunk.js"
         : ASSETS_JS_PATH + "/[name].[contenthash:8].chunk.js",
+        */
     },
     plugins: [
       analyze && new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({ filename: ASSETS_CSS_PATH + "/[name].css" }),
-      new ChunksWebpackPlugin({ generateChunksManifest: false }),
+      // new ChunksWebpackPlugin({ generateChunksManifest: false }),
     ].filter(Boolean),
     optimization: {
       minimize: !isDev,
@@ -51,9 +53,9 @@ const config = (mode, analyze) => {
         !isDev && new TerserPlugin(),
         !isDev && new CssMinimizerPlugin(),
       ].filter(Boolean),
-      splitChunks: {
-        chunks: "all",
-      },
+      //  splitChunks: {
+      //    chunks: "all",
+      //  },
     },
     module: {
       rules: [
