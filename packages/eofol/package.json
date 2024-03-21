@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -10,7 +10,7 @@
   "types": "dist/index.d.js",
   "dependencies": {},
   "devDependencies": {
-    "@eofol/eofol-types": "0.2.20",
+    "@eofol/eofol-types": "0.2.21",
     "typescript": "5.3.3"
   },
   "author": "wurducius@gmail.com",

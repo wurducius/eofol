@@ -9,7 +9,7 @@ module.exports = {
   ASSETS_SVG: "icons",
   ASSETS_FONT: "fonts",
   VIEWS_FOLDER: "views",
-  PORT: 3001,
+  PORT: 3000,
   ASSET_SVG_INLINE_SIZE_LIMIT: 8 * 1024,
   ASSET_IMG_INLINE_SIZE_LIMIT: 8 * 1024,
 };
