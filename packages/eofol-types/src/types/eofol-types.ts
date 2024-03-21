@@ -1,6 +1,6 @@
 import { MultiOptional } from "./common-types";
 
-export type ElementNode = MultiOptional<Element>;
+export type ElementNode = MultiOptional<Element | string>;
 
 export type StateSetter<StateType> = (newState: StateType) => void;
 

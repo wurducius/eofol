@@ -12,8 +12,10 @@ import {
   sx,
   createStore,
   setStore,
-  select,
+  selectStore,
   get,
+  a,
+  select,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
@@ -66,7 +68,7 @@ renderTarget<CountState>("eofol-target", {
 defineCustomElement<CountState>({
   tagName: "eofol-custom-single",
   render: () => {
-    const store = select("global");
+    const store = selectStore("global");
     const count = store.count;
 
     const clickHandler = () => {
@@ -116,6 +118,19 @@ defineCustomElement<WeatherState>({
   render: (state: StateTypeImpl<WeatherState>) => [
     createElement("div", sx({ color: "blue" }), "Effect example"),
     createElement("div", undefined, getWeatherState(state as WeatherState)),
+    a({ link: "https://eofol.com", external: true, children: "EOFOL.COM" }),
+    select({
+      name: "eofol-select",
+      options: [
+        { id: "a", title: "First" },
+        { id: "b", title: "Second" },
+        { id: "c", title: "Third" },
+      ],
+      onChange: () => {
+        console.log("select changed");
+      },
+      placeholder: "Placeholder",
+    }),
   ],
   initialState: { temperature: undefined },
   effect: [
