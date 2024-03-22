@@ -15,7 +15,7 @@ const select = ({
 }: {
   options: { title: string; id: string }[];
   placeholder?: string;
-} & EInput & ESizable & EComponentWithoutChildren) => {
+} & EInput<string> & ESizable & EComponentWithoutChildren) => {
   const element = createElement(
     "select",
     cx(

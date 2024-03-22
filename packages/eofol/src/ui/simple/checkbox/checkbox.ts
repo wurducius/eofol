@@ -11,7 +11,7 @@ const checkbox = ({
   size,
   styles,
   children,
-}: EInput & ESizable & EComponent) => {
+}: EInput<boolean> & ESizable & EComponent) => {
   const element = createElement(
     "input",
     cx(

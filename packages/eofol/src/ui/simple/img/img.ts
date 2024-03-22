@@ -1,6 +1,7 @@
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
 import { EComponent } from "../../types";
+// @ts-ignore
 import defaultFallback from "./default-fallback.png"
 
 const img = ({

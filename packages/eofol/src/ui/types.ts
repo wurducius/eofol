@@ -19,10 +19,10 @@ export interface EComponentWithoutChildren  {
   styles?: string | boolean | undefined;
 }
 
-export interface EInput {
-  onChange: (nextValue: { target: { value: boolean } }) => void;
-  onBlur: (nextValue: { target: { value: boolean } }) => void;
-  value?: boolean;
+export interface EInput<T> {
+  onChange?: (nextValue: { target: { value: T } }) => void;
+  onBlur?: (nextValue: { target: { value: T } }) => void;
+  value?: T;
   disabled?: boolean;
   name: string;
 }
