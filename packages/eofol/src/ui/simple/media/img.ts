@@ -1,6 +1,6 @@
-import { ElementNode } from "@eofol/eofol-types";
 import createElement from "../../../core/create-element";
-import { ax } from "../../../util/simple";
+import { ax, cx } from "../../../util/simple";
+import { EComponent } from "../../types";
 
 // @TODO
 const fallbackImg = "/logo512.png";
@@ -17,12 +17,10 @@ const img = ({
   alt: string;
   height?: number | string;
   width?: number | string;
-  styles?: string;
-  children?: ElementNode;
-}) =>
+} & EComponent) =>
   createElement(
     "img",
-    styles,
+    cx(styles),
     children,
     ax(
       { alt, onerror: `this.onerror = null; this.src = "${fallbackImg}";` },

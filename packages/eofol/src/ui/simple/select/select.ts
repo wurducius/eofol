@@ -1,6 +1,6 @@
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
-import { SIZE, getSize } from "../../types";
+import { EComponentWithoutChildren, SIZE, getSize } from "../../types";
 
 const select = ({
   options,
@@ -21,8 +21,7 @@ const select = ({
   disabled?: boolean;
   placeholder?: string;
   size?: SIZE;
-  styles?: string;
-}) => {
+} & EComponentWithoutChildren) => {
   const element = createElement(
     "select",
     cx(
