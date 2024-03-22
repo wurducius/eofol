@@ -1,0 +1,20 @@
+.checkbox-base {
+    font-weight: 500;
+  }
+  
+  .checkbox-sm {
+    height: 20px;
+  }
+  
+  .checkbox-md {
+    height: 32px;
+  }
+  
+  .checkbox-lg {
+    height: 40px;
+  }
+  
+  .checkbox-disabled {
+    background-color: grey;
+  }
+  

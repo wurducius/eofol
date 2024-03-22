@@ -1,4 +1,4 @@
-import "../../styles/base.css";
+import "../../styles/eofol.css";
 import "./index.css";
 
 import imgPath from "./rainbow-mountains-peru.jpg";
