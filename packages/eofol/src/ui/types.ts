@@ -18,3 +18,21 @@ export interface EComponent  {
 export interface EComponentWithoutChildren  {
   styles?: string | boolean | undefined;
 }
+
+export interface EInput {
+  onChange: (nextValue: { target: { value: boolean } }) => void;
+  onBlur: (nextValue: { target: { value: boolean } }) => void;
+  value?: boolean;
+  disabled?: boolean;
+  name: string;
+}
+
+export interface ESizable {
+  size?: SIZE;
+}
+
+export interface EButton {
+  onClick?: () => void;
+  onBlur?: () => void;
+  disabled?: boolean;
+}

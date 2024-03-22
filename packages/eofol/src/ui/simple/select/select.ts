@@ -1,6 +1,6 @@
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
-import { EComponentWithoutChildren, SIZE, getSize } from "../../types";
+import { EComponentWithoutChildren, EInput, ESizable, getSize } from "../../types";
 
 const select = ({
   options,
@@ -14,14 +14,8 @@ const select = ({
   styles,
 }: {
   options: { title: string; id: string }[];
-  name: string;
-  onChange?: (nextValue: string) => void;
-  onBlur?: (nextValue: string) => void;
-  value?: string;
-  disabled?: boolean;
   placeholder?: string;
-  size?: SIZE;
-} & EComponentWithoutChildren) => {
+} & EInput & ESizable & EComponentWithoutChildren) => {
   const element = createElement(
     "select",
     cx(

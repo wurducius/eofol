@@ -1,6 +1,6 @@
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
-import { EComponent, getSize, SIZE } from "../../types";
+import { EButton, EComponent, ESizable, getSize } from "../../types";
 
 const button = ({
   onClick,
@@ -11,12 +11,8 @@ const button = ({
   styles,
   children,
 }: {
-  onClick?: () => void;
-  onBlur?: () => void;
-  size?: SIZE;
   full?: boolean;
-  disabled?: boolean;
-} & EComponent) => {
+} & EButton & ESizable & EComponent) => {
   const element = createElement(
     "button-base",
     cx(

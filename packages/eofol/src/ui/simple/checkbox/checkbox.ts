@@ -1,6 +1,6 @@
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
-import { EComponent, getSize, SIZE } from "../../types";
+import { EComponent, EInput, ESizable, getSize } from "../../types";
 
 const checkbox = ({
   onChange,
@@ -11,14 +11,7 @@ const checkbox = ({
   size,
   styles,
   children,
-}: {
-  onChange: (nextValue: { target: { value: boolean } }) => void;
-  onBlur: (nextValue: { target: { value: boolean } }) => void;
-  value?: boolean;
-  disabled?: boolean;
-  name: string;
-  size?: SIZE;
-} & EComponent) => {
+}: EInput & ESizable & EComponent) => {
   const element = createElement(
     "input",
     cx(
