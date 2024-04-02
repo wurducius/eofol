@@ -14,8 +14,6 @@ import {
   setStore,
   selectStore,
   get,
-  a,
-  select,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
@@ -118,19 +116,6 @@ defineCustomElement<WeatherState>({
   render: (state: StateTypeImpl<WeatherState>) => [
     createElement("div", sx({ color: "blue" }), "Effect example"),
     createElement("div", undefined, getWeatherState(state as WeatherState)),
-    a({ link: "https://eofol.com", external: true, children: "EOFOL.COM" }),
-    select({
-      name: "eofol-select",
-      options: [
-        { id: "a", title: "First" },
-        { id: "b", title: "Second" },
-        { id: "c", title: "Third" },
-      ],
-      onChange: () => {
-        console.log("select changed");
-      },
-      placeholder: "Placeholder",
-    }),
   ],
   initialState: { temperature: undefined },
   effect: [

@@ -21,9 +21,9 @@ const button = ({
   children?: ElementNode;
 }) => {
   const element = createElement(
-    "button-base",
+    "button",
     cx(
-      "button",
+      "button-base",
       getSize("button")(size),
       full && "button-full",
       disabled && "button-disabled",
