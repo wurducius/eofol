@@ -38,7 +38,7 @@ export const h6 = typography.h6;
 export const p = typography.p;
 export const code = typography.code;
 
-import aX from "./ui/simple/navigation/link";
+import aX from "./ui/simple/link/link";
 export const a = aX;
 
 import buttonX from "./ui/simple/button/button";

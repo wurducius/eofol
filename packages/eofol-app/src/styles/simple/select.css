@@ -1,0 +1,20 @@
+.select-base {
+    border: 1px solid green;
+}
+  
+.select-sm {
+    height: 20px;
+}
+  
+  .select-md {
+    height: 32px;
+  }
+  
+  .select-lg {
+    height: 40px;
+  }
+  
+  .select-disabled {
+    background-color: grey;
+  }
+  

@@ -1,6 +1,6 @@
-import { ElementNode } from "@eofol/eofol-types";
 import createElement from "../../../core/create-element";
-import { ax } from "../../../util/simple";
+import { ax, cx } from "../../../util/simple";
+import { EComponent } from "../../types";
 
 const a = ({
   link,
@@ -12,12 +12,10 @@ const a = ({
   link: string;
   external?: boolean;
   download?: string;
-  styles?: string;
-  children?: ElementNode;
-}) =>
+} & EComponent) =>
   createElement(
     "a",
-    styles,
+    cx(styles),
     children,
     ax({ href: link }, ["target", external && "_blank"], ["download", download])
   );

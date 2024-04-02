@@ -1,7 +1,6 @@
-import { ElementNode } from "@eofol/eofol-types";
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
-import { getSize, SIZE } from "../../types";
+import { EButton, EComponent, ESizable, getSize } from "../../types";
 
 const button = ({
   onClick,
@@ -12,14 +11,8 @@ const button = ({
   styles,
   children,
 }: {
-  onClick?: () => void;
-  onBlur?: () => void;
-  size?: SIZE;
   full?: boolean;
-  disabled?: boolean;
-  styles?: string;
-  children?: ElementNode;
-}) => {
+} & EButton & ESizable & EComponent) => {
   const element = createElement(
     "button",
     cx(

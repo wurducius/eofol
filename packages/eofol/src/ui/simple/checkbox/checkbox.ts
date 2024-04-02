@@ -1,7 +1,6 @@
-import { ElementNode } from "@eofol/eofol-types";
 import createElement from "../../../core/create-element";
 import { ax, cx } from "../../../util/simple";
-import { getSize, SIZE } from "../../types";
+import { EComponent, EInput, ESizable, getSize } from "../../types";
 
 const checkbox = ({
   onChange,
@@ -12,16 +11,7 @@ const checkbox = ({
   size,
   styles,
   children,
-}: {
-  onChange: (nextValue: { target: { value: boolean } }) => void;
-  onBlur: (nextValue: { target: { value: boolean } }) => void;
-  value?: boolean;
-  disabled?: boolean;
-  name: string;
-  size?: SIZE;
-  styles?: string;
-  children?: ElementNode;
-}) => {
+}: EInput<boolean> & ESizable & EComponent) => {
   const element = createElement(
     "input",
     cx(
