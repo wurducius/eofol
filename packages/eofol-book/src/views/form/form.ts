@@ -8,7 +8,7 @@ import {
   defineCustomElement,
   sx,
   select,
-  checbox,
+  checkbox,
   button,
 } from "@eofol/eofol";
 
@@ -31,7 +31,7 @@ defineCustomElement({
         justifyContent: "center",
       }),
       [
-        checbox({
+        checkbox({
           name: "eofol-checkbox",
           onChange: () => {
             console.log("checkbox changed");

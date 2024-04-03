@@ -45,7 +45,7 @@ import buttonX from "./ui/simple/button/button";
 export const button = buttonX;
 
 import checkboxX from "./ui/simple/checkbox/checkbox";
-export const checbox = checkboxX;
+export const checkbox = checkboxX;
 
 import selectX from "./ui/simple/select/select";
 export const select = selectX;
