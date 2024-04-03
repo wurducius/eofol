@@ -18,6 +18,9 @@ export const mergeStore = store.mergeStore;
 import sxX from "./styles/sx";
 export const sx = sxX;
 
+import syX from "./styles/sy";
+export const sy = syX;
+
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
 
