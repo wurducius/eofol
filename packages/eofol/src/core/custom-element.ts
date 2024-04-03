@@ -12,7 +12,7 @@ function defineAutonomousElement<StateType>({
   effect?: EffectType<StateType>;
   subscribe?: string[];
 }) {
-  customElements.define(tagName, customStatefulClass(props));
+  customElements.define(tagName, customStatefulClass(props, undefined));
 }
 
 function defineBuiltinElement<StateType>({
@@ -25,7 +25,7 @@ function defineBuiltinElement<StateType>({
   effect?: EffectType<StateType>;
   subscribe?: string[];
 }) {
-  customElements.define(tagName, customStatefulClass(props, true), {
+  customElements.define(tagName, customStatefulClass(props, "div"), {
     extends: "div",
   });
 }

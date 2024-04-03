@@ -13,11 +13,50 @@ import { appendChild, removeChildren } from "../util/dom";
 import { arrayCombinator } from "../util/util";
 import { customElementRegistry } from "./registry";
 
-function namedNodeMapToObject(namednodemap: NamedNodeMap) {
-  return Object.fromEntries(
-    // @ts-ignore
-    Array.from(namednodemap.map((item) => [item.name, item.value]))
-  );
+function getHTMLElementClass(tagName: string | undefined) {
+  if (!tagName) {
+    return HTMLElement;
+  }
+  if (tagName === "div") {
+    return HTMLDivElement;
+  }
+  if (tagName === "a") {
+    return HTMLLinkElement;
+  }
+  if (tagName === "button") {
+    return HTMLButtonElement;
+  }
+  if (tagName === "input") {
+    return HTMLInputElement;
+  }
+  if (tagName === "span") {
+    return HTMLSpanElement;
+  }
+  if (tagName === "p") {
+    return HTMLParagraphElement;
+  }
+  if (
+    tagName === "h1" ||
+    tagName === "h2" ||
+    tagName === "h3" ||
+    tagName === "h4" ||
+    tagName === "h5"
+  ) {
+    return HTMLHeadingElement;
+  }
+
+  return HTMLElement;
+}
+
+function attributesToObject(namedNodeMap: NamedNodeMap) {
+  const attributes: any = {};
+  for (let i = 0; i < namedNodeMap.length; i++) {
+    const item = namedNodeMap.item(i);
+    if (item) {
+      attributes[item.name] = item.value;
+    }
+  }
+  return attributes;
 }
 
 function stateSetter<StateType>(
@@ -41,9 +80,9 @@ export function customStatefulClass<StateType>(
     effect?: EffectType<StateType>;
     subscribe?: string[];
   },
-  isBuiltin?: boolean
+  extendsTag?: string
 ) {
-  const extendsClass = isBuiltin ? HTMLDivElement : HTMLElement;
+  const extendsClass = getHTMLElementClass(extendsTag);
 
   return class CustomElement
     extends extendsClass
@@ -85,7 +124,7 @@ export function customStatefulClass<StateType>(
     connectedCallback() {
       if (!this.initialized) {
         this.initialized = true;
-        if (isBuiltin) {
+        if (extendsClass) {
           this.root = this;
           // this._internals = this.attachInternals();
         } else {
@@ -113,7 +152,7 @@ export function customStatefulClass<StateType>(
       const rendered = render(
         this.state,
         this.setState,
-        namedNodeMapToObject(this.attributes)
+        attributesToObject(this.attributes)
       );
 
       if (this.root) {
