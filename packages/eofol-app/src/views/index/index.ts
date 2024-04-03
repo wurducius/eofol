@@ -43,7 +43,11 @@ renderTarget<CountState>("eofol-target", {
     const s = state as CountState;
 
     return [
-      createElement("div", sx({ color: "blue" }), "Targeted element example"),
+      createElement(
+        "div",
+        [sx({ color: "blue" }), sx({ color: "red" }, "hover")],
+        "Targeted element example"
+      ),
       createElement("div", undefined, `Click count: ${s.count}`),
       createElement("button", "eofol-button", "Click!", undefined, {
         // @ts-ignore

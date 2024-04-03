@@ -5,7 +5,7 @@ import { ElementNode } from "@eofol/eofol-types";
 // @TODO TYPING
 function createElement(
   tagName: string,
-  className?: string,
+  className?: string | string[],
   children?: ElementNode | string,
   attributes?: Record<string, string>,
   properties?: Record<string, string>
@@ -13,7 +13,11 @@ function createElement(
   const element = document.createElement(tagName);
 
   if (className) {
-    element.className = className;
+    if (Array.isArray(className)) {
+      element.className = className.reduce((acc, next) => `${acc} ${next}`, "");
+    } else {
+      element.className = className;
+    }
   }
 
   arrayCombinator(appendChild(element), children);

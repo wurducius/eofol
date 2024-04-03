@@ -7,6 +7,7 @@ const sy = (
   style: CSSObject,
   classname: string,
   excludeCustomElements?: boolean
-) => injectStyle(style, classname, syStyleCache, excludeCustomElements);
+) =>
+  injectStyle(style, classname, syStyleCache, undefined, excludeCustomElements);
 
 export default sy;

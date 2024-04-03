@@ -11,6 +11,11 @@ const getFullClassname = (classname: string) => {
   }
 };
 
+const getFullClassnameWithPseudoSelector = (
+  classname: string,
+  pseudoSelector?: string
+) => (pseudoSelector ? `${classname}:${pseudoSelector}` : classname);
+
 const objectNotationToCSSNotation = (label: string) =>
   label
     .split("")
@@ -23,6 +28,7 @@ export const injectStyle = (
   style: CSSObject,
   classname: string,
   styleCache: string[],
+  pseudoSelector?: string,
   excludeCustomElements?: boolean
 ) => {
   if (!styleCache.includes(classname)) {
@@ -40,7 +46,10 @@ export const injectStyle = (
     );
 
     const last = document.styleSheets[document.styleSheets.length - 1];
-    const rule = `${getFullClassname(classname)} {${cssStyle} }`;
+    const rule = `${getFullClassnameWithPseudoSelector(
+      getFullClassname(classname),
+      pseudoSelector
+    )} {${cssStyle} }`;
     last.insertRule(rule);
 
     if (!excludeCustomElements) {
