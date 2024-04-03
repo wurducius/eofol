@@ -1,6 +1,16 @@
 import { CSSObject } from "@eofol/eofol-types";
 import { customElementRegistry } from "../core/registry";
 
+const getFullClassname = (classname: string) => {
+  if (classname.startsWith("#")) {
+    return classname;
+  } else if (classname.startsWith("<") && classname.endsWith(">")) {
+    return classname.substring(1, classname.length - 1);
+  } else {
+    return `.${classname}`;
+  }
+};
+
 const objectNotationToCSSNotation = (label: string) =>
   label
     .split("")
@@ -24,13 +34,13 @@ export const injectStyle = (
         objectNotationToCSSNotation(next) +
         ": " +
         // @ts-ignore
-        objectNotationToCSSNotation(style[next]) +
+        style[next] +
         ";",
       ""
     );
 
     const last = document.styleSheets[document.styleSheets.length - 1];
-    const rule = `.${classname} { ${cssStyle} }`;
+    const rule = `${getFullClassname(classname)} {${cssStyle} }`;
     last.insertRule(rule);
 
     if (!excludeCustomElements) {

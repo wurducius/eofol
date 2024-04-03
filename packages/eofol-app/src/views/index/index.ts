@@ -14,12 +14,13 @@ import {
   setStore,
   selectStore,
   get,
+  sy,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
 createStore("global", { count: 0 });
 
-document.body.setAttribute("style", `background-image: url(.${imgPath});`);
+sy({ backgroundImage: `url(${imgPath})` }, "<body>");
 
 const svgElement: HTMLImageElement | null = <HTMLImageElement>(
   document.getElementById("eofol-svg")
