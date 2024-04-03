@@ -13,6 +13,13 @@ import { appendChild, removeChildren } from "../util/dom";
 import { arrayCombinator } from "../util/util";
 import { customElementRegistry } from "./registry";
 
+function namedNodeMapToObject(namednodemap: NamedNodeMap) {
+  return Object.fromEntries(
+    // @ts-ignore
+    Array.from(namednodemap.map((item) => [item.name, item.value]))
+  );
+}
+
 function stateSetter<StateType>(
   customElementClass: StatefulElement<StateType>
 ) {
@@ -80,6 +87,7 @@ export function customStatefulClass<StateType>(
         this.initialized = true;
         if (isBuiltin) {
           this.root = this;
+          // this._internals = this.attachInternals();
         } else {
           this.attachShadow({ mode: "open" });
           if (this.shadowRoot) {
@@ -102,7 +110,11 @@ export function customStatefulClass<StateType>(
     }
 
     render() {
-      const rendered = render(this.state, this.setState);
+      const rendered = render(
+        this.state,
+        this.setState,
+        namedNodeMapToObject(this.attributes)
+      );
 
       if (this.root) {
         arrayCombinator(appendChild(this.root), rendered);

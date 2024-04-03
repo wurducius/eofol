@@ -10,7 +10,8 @@ export type StateTypeImpl<StateType> = StateType | undefined | {};
 
 export type StatefulArg<StateType, T> = (
   state?: StateTypeImpl<StateType>,
-  setState?: StateSetter<StateTypeImpl<StateType>>
+  setState?: StateSetter<StateTypeImpl<StateType>>,
+  attributes?: Object
 ) => T;
 
 export interface StatefulElement<StateType> {

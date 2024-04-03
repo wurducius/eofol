@@ -195,3 +195,11 @@ defineBuiltinElement<CountState>({
 });
 
 registerServiceWorker();
+
+defineBuiltinElement({
+  tagName: "eofol-primitive",
+  render: (state, setState, attributes) => {
+    // @ts-ignore
+    return attributes?.customattribute === "1" ? "custom attribute" : "trrrr";
+  },
+});
