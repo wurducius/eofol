@@ -10,7 +10,7 @@ Create a reactive app from template out-of-the-box with `eofol-app`.
 - Global state management
 - Dynamic styling in JS
 - Typescript support
-- Bundle and asset optimization and chunking
+- Bundle and asset optimization
 - PWA support
 
 ## Create-eofol-app
