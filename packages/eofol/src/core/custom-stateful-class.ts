@@ -74,11 +74,13 @@ export function customStatefulClass<StateType>(
     initialState,
     effect,
     subscribe,
+    classname,
   }: {
     render: RenderType<StateType>;
     initialState?: StateTypeImpl<StateType>;
     effect?: EffectType<StateType>;
     subscribe?: string[];
+    classname?: string | string[];
   },
   extendsTag?: string
 ) {
@@ -126,6 +128,16 @@ export function customStatefulClass<StateType>(
         this.initialized = true;
         if (extendsClass) {
           this.root = this;
+          if (classname) {
+            if (Array.isArray(classname)) {
+              this.className = classname.reduce(
+                (acc, next) => `${acc} ${next}`,
+                ""
+              );
+            } else {
+              this.className = classname;
+            }
+          }
           // this._internals = this.attachInternals();
         } else {
           this.attachShadow({ mode: "open" });

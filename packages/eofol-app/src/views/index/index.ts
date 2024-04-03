@@ -198,8 +198,11 @@ registerServiceWorker();
 
 defineBuiltinElement({
   tagName: "eofol-primitive",
+  classname: sx({ marginTop: "8px" }),
   render: (state, setState, attributes) => {
     // @ts-ignore
-    return attributes?.customattribute === "1" ? "custom attribute" : "trrrr";
+    return attributes?.customattribute === "1"
+      ? "custom attribute present"
+      : "custom attribute not present";
   },
 });

@@ -24,6 +24,7 @@ function defineBuiltinElement<StateType>({
   initialState?: StateTypeImpl<StateType>;
   effect?: EffectType<StateType>;
   subscribe?: string[];
+  classname?: string | string[];
 }) {
   customElements.define(tagName, customStatefulClass(props, "div"), {
     extends: "div",
