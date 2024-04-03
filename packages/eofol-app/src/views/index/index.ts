@@ -206,3 +206,192 @@ defineBuiltinElement({
       : "custom attribute not present";
   },
 });
+
+const defineTabs = (
+  tagName: string,
+  data: { label: string; render: () => Element }[]
+) =>
+  defineBuiltinElement({
+    tagName,
+    classname: sx({ marginTop: "8px" }),
+    initialState: { index: 0 },
+    render: (state, setState) =>
+      createElement("div", undefined, [
+        createElement(
+          "div",
+          undefined,
+          data.map(({ label }, index) =>
+            createElement("button", "eofol-button", label, undefined, {
+              // @ts-ignore
+              onclick: () => {
+                // @ts-ignore
+                setState({ index });
+              },
+            })
+          )
+        ),
+        // @ts-ignore
+        createElement("div", undefined, data[state.index].render()),
+      ]),
+  });
+
+defineTabs("eofol-tabs", [
+  {
+    label: "First",
+    render: () => createElement("div", undefined, "Content 1"),
+  },
+  {
+    label: "Second",
+    render: () => createElement("div", undefined, "Content 2"),
+  },
+  {
+    label: "Third",
+    render: () => createElement("div", undefined, "Content 3"),
+  },
+]);
+
+const renderCollapse =
+  (
+    label: string,
+    render: undefined | (() => Element | string),
+    onClick?: () => void
+  ) =>
+  (state: any, setState: any) =>
+    createElement("div", undefined, [
+      createElement(
+        "div",
+        sx({
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+        }),
+        [
+          createElement(
+            "img",
+            sx({
+              height: "24px",
+              width: "24px",
+              backgroundColor: "#278da6",
+              marginRight: "8px",
+            }),
+            undefined,
+            {
+              src: svgPath,
+              alt: "Arrow",
+            }
+          ),
+          createElement("p", undefined, label),
+        ],
+        undefined,
+        {
+          // @ts-ignore
+          onclick: () => {
+            // @ts-ignore
+            setState({ open: !state.open });
+            if (onClick) {
+              onClick();
+            }
+          },
+        }
+      ),
+      // @ts-ignore
+      createElement(
+        "div",
+        undefined,
+        state.open && render ? render() : undefined
+      ),
+    ]);
+
+const defineCollapse = (
+  tagName: string,
+  label: string,
+  render: undefined | (() => Element | string),
+  open?: boolean,
+  onClick?: () => void
+) =>
+  defineBuiltinElement({
+    tagName,
+    initialState: { open },
+    render: (state, setState) =>
+      renderCollapse(label, render, onClick)(state, setState),
+  });
+
+defineCollapse("eofol-collapse", "Collapse", () => "Collapse content");
+
+const defineAccordion = (
+  tagName: string,
+  data: { label: string; render: () => Element | string }[]
+) => {
+  defineBuiltinElement({
+    tagName,
+    initialState: { index: undefined },
+    render: (state, setState) => {
+      return data.map((item, index) =>
+        createElement(
+          "div",
+          undefined,
+          renderCollapse(
+            item.label,
+            // @ts-ignore
+            () => item.render(),
+            () => {
+              setState && // @ts-ignore
+                setState({ index: index !== state.index ? index : undefined });
+            }
+            // @ts-ignore
+          )({ open: state.index === index }, () => {})
+        )
+      );
+    },
+  });
+};
+
+defineAccordion("eofol-accordion", [
+  { label: "First", render: () => "Content 1" },
+  { label: "Second", render: () => "Content 2" },
+  { label: "Third", render: () => "Content 3" },
+]);
+
+const dashboardData = [
+  { label: "Facebook", link: "https://facebook.com" },
+  { label: "Youtube", link: "https://youtube.com" },
+  { label: "Eofol", link: "https://eofol.com" },
+  { label: "Eofol", link: "https://eofol.com" },
+  { label: "Eofol", link: "https://eofol.com" },
+  { label: "Eofol", link: "https://eofol.com" },
+  { label: "Eofol", link: "https://eofol.com" },
+  { label: "Eofol", link: "https://eofol.com" },
+];
+
+defineBuiltinElement({
+  tagName: "eofol-dashboard",
+  render: () =>
+    createElement(
+      "div",
+      sx({ display: "flex" }),
+      dashboardData.map((item) =>
+        createElement(
+          "a",
+          [
+            sx({ textDecoration: "none" }),
+            sx({ transform: "scale(1.1)" }, "hover"),
+          ],
+          createElement("div", sx({ height: "100px", width: "100px" }), [
+            createElement("img", sx({ backgroundColor: "grey" }), undefined, {
+              src: svgPath,
+              alt: `${item.label} icon`,
+              height: "48px",
+              width: "48px",
+            }),
+            createElement(
+              "div",
+              sx({ fontSize: "18px", color: "#90cdf4" }),
+              item.label
+            ),
+          ]),
+          { href: item.link }
+        )
+      )
+    ),
+});
