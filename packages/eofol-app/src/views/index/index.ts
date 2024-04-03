@@ -7,7 +7,7 @@ import svgPath from "./phi.svg";
 import {
   createElement,
   registerServiceWorker,
-  defineCustomElement,
+  defineAutonomousElement,
   renderTarget,
   sx,
   createStore,
@@ -15,6 +15,7 @@ import {
   selectStore,
   get,
   sy,
+  defineBuiltinElement,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
@@ -68,7 +69,7 @@ renderTarget<CountState>("eofol-target", {
   initialState: { count: 0 },
 });
 
-defineCustomElement<CountState>({
+defineAutonomousElement<CountState>({
   tagName: "eofol-custom-single",
   render: () => {
     const store = selectStore("global");
@@ -84,8 +85,8 @@ defineCustomElement<CountState>({
     return [
       createElement(
         "div",
-        sx({ color: "blue" }, undefined, true),
-        "Custom tag element example"
+        sx({ color: "blue", marginTop: "8px" }, undefined, true),
+        "Custom autonomous element using global store example"
       ),
       createElement("div", undefined, `Click count: ${count}`),
       createElement("div", "", [
@@ -120,12 +121,12 @@ const getWeatherState = (state: WeatherState) => {
   }
 };
 
-defineCustomElement<WeatherState>({
+defineAutonomousElement<WeatherState>({
   tagName: "eofol-weather",
   render: (state: StateTypeImpl<WeatherState>) => [
     createElement(
       "div",
-      sx({ color: "blue" }, undefined, true),
+      sx({ color: "blue", marginTop: "8px" }, undefined, true),
       "Effect example"
     ),
     createElement("div", undefined, getWeatherState(state as WeatherState)),
@@ -160,6 +161,36 @@ defineCustomElement<WeatherState>({
           });
       }
     },
+  ],
+});
+
+defineBuiltinElement<CountState>({
+  tagName: "eofol-builtin",
+  initialState: { count: 0 },
+  render: (state, setState) => [
+    createElement(
+      "div",
+      sx({ color: "blue", marginTop: "8px" }, undefined, true),
+      "Custom built-in element example"
+    ),
+    // @ts-ignore
+    createElement("div", undefined, `Click count: ${state.count}`),
+    createElement("div", "", [
+      createElement("button", "eofol-button", "Click!", undefined, {
+        // @ts-ignore
+        onclick: () => {
+          // @ts-ignore
+          setState({ count: state.count + 1 });
+        },
+      }),
+      createElement("button", "eofol-button", "Reset", undefined, {
+        // @ts-ignore
+        onclick: () => {
+          // @ts-ignore
+          setState({ count: 0 });
+        },
+      }),
+    ]),
   ],
 });
 

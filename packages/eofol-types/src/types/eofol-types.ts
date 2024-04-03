@@ -25,7 +25,7 @@ export type EffectType<T> = MultiOptional<
 export type RenderType<StateType> = StatefulArg<StateType, ElementNode>;
 
 export type ControlledCustomElement<StateType> = {
-  root: ShadowRoot | null;
+  root: Element | ShadowRoot | null;
   state: StateTypeImpl<StateType>;
   setState: StateSetter<StateType>;
   subscribe?: string[];
