@@ -9,17 +9,13 @@ const sxHash = (style: CSSObject, seed: number) =>
 
 const sxStyleCache: string[] = [];
 
-const sx = (
-  style: CSSObject,
-  pseudoSelector?: string,
-  excludeCustomElements?: boolean
-) =>
+const sx = (style: CSSObject, pseudoSelector?: string, forceInject?: boolean) =>
   injectStyle(
     style,
     sxHash(style, seed),
     sxStyleCache,
     pseudoSelector,
-    excludeCustomElements
+    forceInject
   );
 
 export default sx;

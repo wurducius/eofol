@@ -29,7 +29,7 @@ export const injectStyle = (
   classname: string,
   styleCache: string[],
   pseudoSelector?: string,
-  excludeCustomElements?: boolean
+  forceInject?: boolean
 ) => {
   if (!styleCache.includes(classname)) {
     // @ts-ignore
@@ -52,15 +52,33 @@ export const injectStyle = (
     )} {${cssStyle} }`;
     last.insertRule(rule);
 
-    if (!excludeCustomElements) {
-      Object.keys(customElementRegistry).forEach((id) => {
-        const instance = customElementRegistry[id];
-        const styleElement = instance.root?.querySelector("style");
-        if (styleElement) {
-          styleElement.innerHTML += " " + rule;
-        }
-      });
-    }
+    styleCache.push(classname);
+  }
+
+  if (forceInject) {
+    const cssStyle = Object.keys(style).reduce(
+      (acc, next) =>
+        acc +
+        " " +
+        objectNotationToCSSNotation(next) +
+        ": " +
+        // @ts-ignore
+        style[next] +
+        ";",
+      ""
+    );
+    const rule = `${getFullClassnameWithPseudoSelector(
+      getFullClassname(classname),
+      pseudoSelector
+    )} {${cssStyle} }`;
+
+    Object.keys(customElementRegistry).forEach((id) => {
+      const instance = customElementRegistry[id];
+      const styleElement = instance.root?.querySelector("style");
+      if (styleElement) {
+        styleElement.innerHTML += " " + rule;
+      }
+    });
   }
 
   return classname;

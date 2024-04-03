@@ -82,7 +82,11 @@ defineCustomElement<CountState>({
     };
 
     return [
-      createElement("div", sx({ color: "blue" }), "Custom tag element example"),
+      createElement(
+        "div",
+        sx({ color: "blue" }, undefined, true),
+        "Custom tag element example"
+      ),
       createElement("div", undefined, `Click count: ${count}`),
       createElement("div", "", [
         createElement("button", "eofol-button", "Click!", undefined, {
@@ -119,7 +123,11 @@ const getWeatherState = (state: WeatherState) => {
 defineCustomElement<WeatherState>({
   tagName: "eofol-weather",
   render: (state: StateTypeImpl<WeatherState>) => [
-    createElement("div", sx({ color: "blue" }), "Effect example"),
+    createElement(
+      "div",
+      sx({ color: "blue" }, undefined, true),
+      "Effect example"
+    ),
     createElement("div", undefined, getWeatherState(state as WeatherState)),
   ],
   initialState: { temperature: undefined },
