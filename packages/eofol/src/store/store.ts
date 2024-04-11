@@ -19,7 +19,7 @@ function createStore(name: string, initialState: StoreState) {
   storeRegistry[name] = { state: initialState };
 }
 
-function select(name: string) {
+function selector(name: string) {
   return storeRegistry[name]?.state;
 }
 
@@ -59,4 +59,4 @@ function mergeStore(name: string, nextState: StoreState) {
   }
 }
 
-export default { createStore, select, setStore, mergeStore };
+export default { createStore, selector, setStore, mergeStore };

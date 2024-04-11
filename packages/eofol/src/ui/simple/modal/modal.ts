@@ -13,7 +13,7 @@ const modal = (
   return createElement(
     "div",
     sx({
-      display: "none",
+      display: open ? "block" : "none",
       position: "fixed",
       zIndex: "1",
       paddingTop: "100px",

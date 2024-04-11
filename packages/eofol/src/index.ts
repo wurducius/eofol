@@ -14,7 +14,7 @@ export const updateTarget = target.updateTarget;
 
 import store from "./store/store";
 export const createStore = store.createStore;
-export const selectStore = store.select;
+export const selector = store.selector;
 export const setStore = store.setStore;
 export const mergeStore = store.mergeStore;
 
