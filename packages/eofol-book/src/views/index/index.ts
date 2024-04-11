@@ -3,7 +3,7 @@ import "./index.css";
 
 import svgPath from "../phi.svg";
 
-import { createElement, defineCustomElement, sx, a } from "@eofol/eofol";
+import { createElement, defineBuiltinElement, sx, a } from "@eofol/eofol";
 
 const svgElement: HTMLImageElement | null = <HTMLImageElement>(
   document.getElementById("eofol-svg")
@@ -13,7 +13,7 @@ if (svgElement) {
   svgElement.src = svgPath;
 }
 
-defineCustomElement({
+defineBuiltinElement({
   tagName: "eofol-ui",
   render: () =>
     createElement(

@@ -1,4 +1,4 @@
-import createElement from "../../../core/create-element";
+import { createElement } from "../../../core/render-element";
 import { ax, cx } from "../../../util/simple";
 import { EButton, EComponent, ESizable, getSize } from "../../types";
 
@@ -12,7 +12,9 @@ const button = ({
   children,
 }: {
   full?: boolean;
-} & EButton & ESizable & EComponent) => {
+} & EButton &
+  ESizable &
+  EComponent) => {
   const element = createElement(
     "button",
     cx(

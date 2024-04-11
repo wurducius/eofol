@@ -1,5 +1,7 @@
-import createElementX from "./core/create-element";
-export const createElement = createElementX;
+import renderElement from "./core/render-element";
+export const createElement = renderElement.createElement;
+export const createCustomElement = renderElement.createCustomElement;
+export const e = renderElement.e;
 
 import customElement from "./core/custom-element";
 export const defineAutonomousElement = customElement.defineAutonomousElement;

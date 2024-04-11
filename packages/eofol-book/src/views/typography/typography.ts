@@ -5,7 +5,7 @@ import svgPath from "../phi.svg";
 
 import {
   createElement,
-  defineCustomElement,
+  defineBuiltinElement,
   sx,
   h1,
   code,
@@ -25,7 +25,7 @@ if (svgElement) {
   svgElement.src = svgPath;
 }
 
-defineCustomElement({
+defineBuiltinElement({
   tagName: "eofol-typography",
   render: () =>
     createElement(

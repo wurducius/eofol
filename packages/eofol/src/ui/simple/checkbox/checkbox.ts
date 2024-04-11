@@ -1,4 +1,4 @@
-import createElement from "../../../core/create-element";
+import { createElement } from "../../../core/render-element";
 import { ax, cx } from "../../../util/simple";
 import { EComponent, EInput, ESizable, getSize } from "../../types";
 

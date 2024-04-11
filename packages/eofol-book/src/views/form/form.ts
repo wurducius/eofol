@@ -5,7 +5,7 @@ import svgPath from "../phi.svg";
 
 import {
   createElement,
-  defineCustomElement,
+  defineBuiltinElement,
   sx,
   select,
   checkbox,
@@ -20,7 +20,7 @@ if (svgElement) {
   svgElement.src = svgPath;
 }
 
-defineCustomElement({
+defineBuiltinElement({
   tagName: "eofol-form",
   render: () =>
     createElement(

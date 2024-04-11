@@ -1,6 +1,11 @@
-import createElement from "../../../core/create-element";
+import { createElement } from "../../../core/render-element";
 import { ax, cx } from "../../../util/simple";
-import { EComponentWithoutChildren, EInput, ESizable, getSize } from "../../types";
+import {
+  EComponentWithoutChildren,
+  EInput,
+  ESizable,
+  getSize,
+} from "../../types";
 
 const select = ({
   options,
@@ -15,7 +20,9 @@ const select = ({
 }: {
   options: { title: string; id: string }[];
   placeholder?: string;
-} & EInput<string> & ESizable & EComponentWithoutChildren) => {
+} & EInput<string> &
+  ESizable &
+  EComponentWithoutChildren) => {
   const element = createElement(
     "select",
     cx(
