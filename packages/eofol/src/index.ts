@@ -53,5 +53,12 @@ export const button = buttonX;
 import checkboxX from "./ui/simple/checkbox/checkbox";
 export const checkbox = checkboxX;
 
+import dropdownX from "./ui/simple/dropdown/dropdown";
+export const dropdown = dropdownX.dropdown;
+export const dropdownContent = dropdownX.dropdownContent;
+
+import modalX from "./ui/simple/modal/modal";
+export const modal = modalX;
+
 import selectX from "./ui/simple/select/select";
 export const select = selectX;
