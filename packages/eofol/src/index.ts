@@ -57,6 +57,9 @@ import dropdownX from "./ui/simple/dropdown/dropdown";
 export const dropdown = dropdownX.dropdown;
 export const dropdownContent = dropdownX.dropdownContent;
 
+import inputX from "./ui/simple/input/input";
+export const input = inputX;
+
 import modalX from "./ui/simple/modal/modal";
 export const modal = modalX;
 
