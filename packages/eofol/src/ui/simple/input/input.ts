@@ -9,6 +9,9 @@ const input = ({
   classname,
   name,
   type,
+  max,
+  min,
+  step,
 }: {
   value: string;
   onChange: (nextValue: string) => void;
@@ -17,12 +20,23 @@ const input = ({
   classname?: string;
   name?: string;
   type?: string;
+  min?: number;
+  max?: number;
+  step?: number;
 }) => {
   return createElement(
     "input",
     classname,
     undefined,
-    ax({ value }, ["name", name], ["id", name], ["type", type]),
+    ax(
+      { value },
+      ["name", name],
+      ["id", name],
+      ["type", type],
+      ["min", min],
+      ["max", max],
+      ["step", step]
+    ),
     {
       // @ts-ignore
       onchange: (e) => {
