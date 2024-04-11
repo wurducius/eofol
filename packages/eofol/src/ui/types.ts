@@ -10,18 +10,18 @@ export const getSize = (tagName: string) => (size: SIZE | undefined) => {
   return `${tagName}-${size ?? SIZE_MD}`;
 };
 
-export interface EComponent  {
+export interface EComponent {
   styles?: string | boolean | undefined;
-  children?: ElementNode
+  children?: ElementNode;
 }
 
-export interface EComponentWithoutChildren  {
+export interface EComponentWithoutChildren {
   styles?: string | boolean | undefined;
 }
 
 export interface EInput<T> {
-  onChange?: (nextValue: { target: { value: T } }) => void;
-  onBlur?: (nextValue: { target: { value: T } }) => void;
+  onChange?: (nextValue: T) => void;
+  onBlur?: (nextValue: T) => void;
   value?: T;
   disabled?: boolean;
   name: string;

@@ -50,9 +50,17 @@ const select = ({
     )
   );
   // @ts-ignore
-  element.onchange = onChange;
+  element.onchange = (e) => {
+    // @ts-ignore
+    onChange(e.target.value);
+  };
   // @ts-ignore
-  element.onblur = onBlur;
+  element.onblur = (e) => {
+    if (onBlur) {
+      // @ts-ignore
+      onBlur(e.target.value);
+    }
+  };
   return element;
 };
 export default select;
