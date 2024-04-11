@@ -11,7 +11,7 @@ const injectElementProps = (
 ): HTMLElement => {
   if (classname) {
     if (Array.isArray(classname)) {
-      element.className = classname.reduce((acc, next) => `${acc} ${next}`, "");
+      element.className = classname.join(" ");
     } else {
       element.className = classname;
     }
