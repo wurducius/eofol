@@ -5,7 +5,10 @@ import { merge } from "../util/util";
 
 type StoreState = any;
 
-type Store = { state: StoreState };
+type Store = {
+  state: StoreState;
+  projections: { name: string; projection: (state: StoreState) => any }[];
+};
 
 const storeRegistry: Record<string, Store> = {};
 
@@ -16,11 +19,24 @@ function createStore(name: string, initialState: StoreState) {
     );
   }
 
-  storeRegistry[name] = { state: initialState };
+  storeRegistry[name] = { state: initialState, projections: [] };
 }
 
 function selector(name: string) {
   return storeRegistry[name]?.state;
+}
+
+function createProjection(
+  name: string,
+  projectionSource: string,
+  projectionMap: (state: StoreState) => any
+) {
+  const initialState = selector(projectionSource);
+  createStore(name, projectionMap(initialState));
+  storeRegistry[projectionSource].projections.push({
+    name,
+    projection: projectionMap,
+  });
 }
 
 function setStore(name: string, nextState: StoreState) {
@@ -36,11 +52,17 @@ function setStore(name: string, nextState: StoreState) {
       }
     });
 
+    console.log(customElementRegistry);
+
     Object.keys(customElementRegistry).forEach((id) => {
       const element = customElementRegistry[id];
       if (element.subscribe && element.subscribe.includes(name)) {
         updateCustom(id);
       }
+    });
+
+    store.projections.forEach(({ name: projectionName, projection }) => {
+      setStore(projectionName, projection(store.state));
     });
   } else {
     console.log(
@@ -59,4 +81,10 @@ function mergeStore(name: string, nextState: StoreState) {
   }
 }
 
-export default { createStore, selector, setStore, mergeStore };
+export default {
+  createStore,
+  selector,
+  setStore,
+  mergeStore,
+  createProjection,
+};

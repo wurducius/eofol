@@ -12,7 +12,7 @@ import {
   sx,
   createStore,
   setStore,
-  selectStore,
+  selector,
   get,
   sy,
   defineBuiltinElement,
@@ -72,7 +72,7 @@ renderTarget<CountState>("eofol-target", {
 defineAutonomousElement<CountState>({
   tagName: "eofol-custom-single",
   render: () => {
-    const store = selectStore("global");
+    const store = selector("global");
     const count = store.count;
 
     const clickHandler = () => {

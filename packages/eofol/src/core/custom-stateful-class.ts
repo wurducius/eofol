@@ -143,11 +143,14 @@ export function customStatefulClass<StateType>(
           this.attachShadow({ mode: "open" });
           if (this.shadowRoot) {
             this.root = this.shadowRoot;
-            const id = this.getAttribute("id") ?? generateId();
-            customElementRegistry[id] = this;
           }
+
           this.injectStyles();
         }
+
+        const id = this.getAttribute("id") ?? generateId();
+        customElementRegistry[id] = this;
+
         this.render();
         this.afterRender();
       }

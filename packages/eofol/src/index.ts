@@ -17,6 +17,7 @@ export const createStore = store.createStore;
 export const selector = store.selector;
 export const setStore = store.setStore;
 export const mergeStore = store.mergeStore;
+export const createProjection = store.createProjection;
 
 import sxX from "./styles/sx";
 export const sx = sxX;
