@@ -16,6 +16,8 @@ import {
   get,
   sy,
   defineBuiltinElement,
+  mergeStore,
+  createProjection,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 
@@ -394,4 +396,49 @@ defineBuiltinElement({
         )
       )
     ),
+});
+
+createStore("selector-base", { data: "Initial state", moreData: "foobar" });
+
+createProjection("selector-projection", "selector-base", (state) => ({
+  derivedData: state.data,
+}));
+
+defineBuiltinElement({
+  tagName: "eofol-selector-1",
+  render: () => {
+    return createElement(
+      "button",
+      "eofol-button",
+      "Click to message projection",
+      {},
+      {
+        // @ts-ignore
+        onclick: () => {
+          mergeStore("selector-base", { data: "Projection updated" });
+        },
+      }
+    );
+  },
+});
+
+defineBuiltinElement({
+  tagName: "eofol-selector-2",
+  subscribe: ["selector-projection"],
+  render: () => {
+    const projectionState = selector("selector-projection");
+
+    return createElement(
+      "p",
+      undefined,
+      projectionState.derivedData,
+      {},
+      {
+        // @ts-ignore
+        onclick: () => {
+          mergeStore("selector-example", { data: "Projection updated" });
+        },
+      }
+    );
+  },
 });
