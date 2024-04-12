@@ -1,5 +1,4 @@
-import { createElement } from "../../../core/render-element";
-import { cx } from "../../../util/simple";
+import { createElement, cx } from "@eofol/eofol";
 import { EComponent } from "../../types";
 
 const h1 = ({ styles, children }: EComponent) =>

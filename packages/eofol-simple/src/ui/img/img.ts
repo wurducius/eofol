@@ -1,5 +1,4 @@
-import { createElement } from "../../../core/render-element";
-import { ax, cx } from "../../../util/simple";
+import { createElement, cx, ax } from "@eofol/eofol";
 import { EComponent } from "../../types";
 // @ts-ignore
 import defaultFallback from "./default-fallback.png";

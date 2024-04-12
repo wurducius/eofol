@@ -1,6 +1,5 @@
-import { createElement } from "../../../core/render-element";
-import { ax, cx } from "../../../util/simple";
-import { EComponent, EInput, ESizable, getSize } from "../../types";
+import { createElement, cx, ax } from "@eofol/eofol";
+import { EInput, ESizable, EComponent, getSize } from "../../types";
 
 const checkbox = ({
   onChange,

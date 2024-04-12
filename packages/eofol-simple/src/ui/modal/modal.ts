@@ -1,5 +1,5 @@
 import { ElementNode } from "@eofol/eofol-types";
-import { createElement, sx } from "../../..";
+import { createElement, sx } from "@eofol/eofol";
 
 const modal = (
   id: string,

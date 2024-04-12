@@ -34,34 +34,6 @@ export const post = fetchX.post;
 import debounceX from "./runtime/debounce";
 export const debounce = debounceX;
 
-import typography from "./ui/simple/typography/typography";
-export const h1 = typography.h1;
-export const h2 = typography.h2;
-export const h3 = typography.h3;
-export const h4 = typography.h4;
-export const h5 = typography.h5;
-export const h6 = typography.h6;
-export const p = typography.p;
-export const code = typography.code;
-
-import aX from "./ui/simple/link/link";
-export const a = aX;
-
-import buttonX from "./ui/simple/button/button";
-export const button = buttonX;
-
-import checkboxX from "./ui/simple/checkbox/checkbox";
-export const checkbox = checkboxX;
-
-import dropdownX from "./ui/simple/dropdown/dropdown";
-export const dropdown = dropdownX.dropdown;
-export const dropdownContent = dropdownX.dropdownContent;
-
-import inputX from "./ui/simple/input/input";
-export const input = inputX;
-
-import modalX from "./ui/simple/modal/modal";
-export const modal = modalX;
-
-import selectX from "./ui/simple/select/select";
-export const select = selectX;
+import simpleUtils from "./util/simple";
+export const ax = simpleUtils.ax;
+export const cx = simpleUtils.cx;

@@ -1,4 +1,4 @@
-import { createElement, sx } from "../../..";
+import { createElement, sx } from "@eofol/eofol";
 
 const dropdown = (
   id: string,

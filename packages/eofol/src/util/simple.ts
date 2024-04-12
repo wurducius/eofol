@@ -11,3 +11,5 @@ export const ax = (
 
 export const cx = (...styles: (string | boolean | undefined)[]) =>
   styles.filter(Boolean).join(" ");
+
+export default { ax, cx };

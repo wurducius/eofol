@@ -1,5 +1,4 @@
-import { createElement } from "../../../core/render-element";
-import { ax } from "../../../util/simple";
+import { ax, createElement } from "@eofol/eofol";
 
 const input = ({
   value,
