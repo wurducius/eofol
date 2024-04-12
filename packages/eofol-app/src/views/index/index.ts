@@ -20,6 +20,11 @@ import {
   createProjection,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
+import {
+  defineTabs,
+  defineCollapse,
+  defineAccordion,
+} from "@eofol/eofol-simple";
 
 createStore("global", { count: 0 });
 
@@ -209,34 +214,6 @@ defineBuiltinElement({
   },
 });
 
-const defineTabs = (
-  tagName: string,
-  data: { label: string; render: () => Element }[]
-) =>
-  defineBuiltinElement({
-    tagName,
-    classname: sx({ marginTop: "8px" }),
-    initialState: { index: 0 },
-    render: (state, setState) =>
-      createElement("div", undefined, [
-        createElement(
-          "div",
-          undefined,
-          data.map(({ label }, index) =>
-            createElement("button", "eofol-button", label, undefined, {
-              // @ts-ignore
-              onclick: () => {
-                // @ts-ignore
-                setState({ index });
-              },
-            })
-          )
-        ),
-        // @ts-ignore
-        createElement("div", undefined, data[state.index].render()),
-      ]),
-  });
-
 defineTabs("eofol-tabs", [
   {
     label: "First",
@@ -252,102 +229,7 @@ defineTabs("eofol-tabs", [
   },
 ]);
 
-const renderCollapse =
-  (
-    label: string,
-    render: undefined | (() => Element | string),
-    onClick?: () => void
-  ) =>
-  (state: any, setState: any) =>
-    createElement("div", undefined, [
-      createElement(
-        "div",
-        sx({
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-        }),
-        [
-          createElement(
-            "img",
-            sx({
-              height: "24px",
-              width: "24px",
-              backgroundColor: "#278da6",
-              marginRight: "8px",
-            }),
-            undefined,
-            {
-              src: svgPath,
-              alt: "Arrow",
-            }
-          ),
-          createElement("p", undefined, label),
-        ],
-        undefined,
-        {
-          // @ts-ignore
-          onclick: () => {
-            // @ts-ignore
-            setState({ open: !state.open });
-            if (onClick) {
-              onClick();
-            }
-          },
-        }
-      ),
-      // @ts-ignore
-      createElement(
-        "div",
-        undefined,
-        state.open && render ? render() : undefined
-      ),
-    ]);
-
-const defineCollapse = (
-  tagName: string,
-  label: string,
-  render: undefined | (() => Element | string),
-  open?: boolean,
-  onClick?: () => void
-) =>
-  defineBuiltinElement({
-    tagName,
-    initialState: { open },
-    render: (state, setState) =>
-      renderCollapse(label, render, onClick)(state, setState),
-  });
-
 defineCollapse("eofol-collapse", "Collapse", () => "Collapse content");
-
-const defineAccordion = (
-  tagName: string,
-  data: { label: string; render: () => Element | string }[]
-) => {
-  defineBuiltinElement({
-    tagName,
-    initialState: { index: undefined },
-    render: (state, setState) => {
-      return data.map((item, index) =>
-        createElement(
-          "div",
-          undefined,
-          renderCollapse(
-            item.label,
-            // @ts-ignore
-            () => item.render(),
-            () => {
-              setState && // @ts-ignore
-                setState({ index: index !== state.index ? index : undefined });
-            }
-            // @ts-ignore
-          )({ open: state.index === index }, () => {})
-        )
-      );
-    },
-  });
-};
 
 defineAccordion("eofol-accordion", [
   { label: "First", render: () => "Content 1" },
@@ -365,38 +247,6 @@ const dashboardData = [
   { label: "Eofol", link: "https://eofol.com" },
   { label: "Eofol", link: "https://eofol.com" },
 ];
-
-defineBuiltinElement({
-  tagName: "eofol-dashboard",
-  render: () =>
-    createElement(
-      "div",
-      sx({ display: "flex" }),
-      dashboardData.map((item) =>
-        createElement(
-          "a",
-          [
-            sx({ textDecoration: "none" }),
-            sx({ transform: "scale(1.1)" }, "hover"),
-          ],
-          createElement("div", sx({ height: "100px", width: "100px" }), [
-            createElement("img", sx({ backgroundColor: "grey" }), undefined, {
-              src: svgPath,
-              alt: `${item.label} icon`,
-              height: "48px",
-              width: "48px",
-            }),
-            createElement(
-              "div",
-              sx({ fontSize: "18px", color: "#90cdf4" }),
-              item.label
-            ),
-          ]),
-          { href: item.link }
-        )
-      )
-    ),
-});
 
 createStore("selector-base", { data: "Initial state", moreData: "foobar" });
 

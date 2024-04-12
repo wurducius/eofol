@@ -29,3 +29,12 @@ export const modal = modalX;
 
 import selectX from "./ui/select/select";
 export const select = selectX;
+
+import defineAccordionX from "./custom/accordion/accordion";
+export const defineAccordion = defineAccordionX;
+
+import defineCollapseX from "./custom/collapse/collapse";
+export const defineCollapse = defineCollapseX;
+
+import defineTabsX from "./custom/tabs/tabs";
+export const defineTabs = defineTabsX;
