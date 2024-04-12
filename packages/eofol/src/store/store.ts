@@ -52,8 +52,6 @@ function setStore(name: string, nextState: StoreState) {
       }
     });
 
-    console.log(customElementRegistry);
-
     Object.keys(customElementRegistry).forEach((id) => {
       const element = customElementRegistry[id];
       if (element.subscribe && element.subscribe.includes(name)) {
