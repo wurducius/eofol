@@ -24,7 +24,7 @@ const checkbox = ({
     ax(
       { name, id: name, type: "checkbox" },
       ["disabled", disabled],
-      ["value", value]
+      ["checked", value]
     )
   );
   // @ts-ignore
