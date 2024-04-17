@@ -216,6 +216,7 @@ defineBuiltinElement({
 
 defineTabs({
   tagName: "eofol-tabs",
+  icon: svgPath,
   data: [
     {
       title: "First",
@@ -236,10 +237,14 @@ defineCollapse({
   tagName: "eofol-collapse",
   title: "Collapse",
   render: () => "Collapse content",
+  iconOpen: svgPath,
+  iconClosed: svgPath,
 });
 
 defineAccordion({
   tagName: "eofol-accordion",
+  iconOpen: svgPath,
+  iconClosed: svgPath,
   data: [
     { title: "First", render: () => "Content 1" },
     { title: "Second", render: () => "Content 2" },

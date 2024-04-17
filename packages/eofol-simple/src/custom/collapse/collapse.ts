@@ -72,18 +72,25 @@ const defineCollapse = ({
   render,
   open,
   onClick,
+  iconOpen,
+  iconClosed,
 }: {
   tagName: string;
   title: string;
   render: undefined | (() => Element | string);
   open?: boolean;
   onClick?: () => void;
+  iconOpen?: string;
+  iconClosed?: string;
 }) =>
   defineBuiltinElement({
     tagName,
     initialState: { open },
     render: (state, setState) =>
-      renderCollapse({ title, render, onClick })(state, setState),
+      renderCollapse({ title, render, onClick, iconOpen, iconClosed })(
+        state,
+        setState
+      ),
   });
 
 export default defineCollapse;

@@ -4,9 +4,13 @@ import { renderCollapse } from "../collapse/collapse";
 const defineAccordion = ({
   tagName,
   data,
+  iconOpen,
+  iconClosed,
 }: {
   tagName: string;
   data: { title: string; render: () => Element | string }[];
+  iconOpen?: string;
+  iconClosed?: string;
 }) => {
   defineBuiltinElement({
     tagName,
@@ -24,6 +28,8 @@ const defineAccordion = ({
               setState && // @ts-ignore
                 setState({ index: index !== state.index ? index : undefined });
             },
+            iconOpen,
+            iconClosed,
             // @ts-ignore
           })({ open: state.index === index }, () => {})
         )

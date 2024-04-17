@@ -1,11 +1,15 @@
-import { defineBuiltinElement, sx, createElement } from "@eofol/eofol";
+import { defineBuiltinElement, sx, createElement, sy } from "@eofol/eofol";
+
+const DEFAULT_ICON = "";
 
 const defineTabs = ({
   tagName,
   data,
+  icon,
 }: {
   tagName: string;
   data: { title: string; render: () => Element }[];
+  icon?: string;
 }) =>
   defineBuiltinElement({
     tagName,
@@ -15,15 +19,40 @@ const defineTabs = ({
       createElement("div", undefined, [
         createElement(
           "div",
-          undefined,
+          sy({ display: "flex", justifyContent: "center" }, "tabs-header"),
           data.map(({ title }, index) =>
-            createElement("button", "eofol-button", title, undefined, {
-              // @ts-ignore
-              onclick: () => {
+            createElement(
+              "button",
+              [
+                "eofol-button",
+                sy({ display: "flex", alignItems: "center" }, "tabs-button"),
+              ],
+              [
+                createElement(
+                  "img",
+                  sx({
+                    height: "24px",
+                    width: "24px",
+                    backgroundColor: "#278da6",
+                    marginRight: "8px",
+                  }),
+                  undefined,
+                  {
+                    src: icon ?? DEFAULT_ICON,
+                    alt: "Open tab",
+                  }
+                ),
+                title,
+              ],
+              undefined,
+              {
                 // @ts-ignore
-                setState({ index });
-              },
-            })
+                onclick: () => {
+                  // @ts-ignore
+                  setState({ index });
+                },
+              }
+            )
           )
         ),
         // @ts-ignore
