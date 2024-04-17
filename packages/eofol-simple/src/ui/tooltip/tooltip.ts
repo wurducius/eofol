@@ -1,4 +1,4 @@
-import { createElement, createStyle, sy } from "@eofol/eofol/dist";
+import { createElement, createStyle, sy } from "@eofol/eofol";
 
 createStyle(".tooltip-base { display: inline-block; }");
 createStyle(
