@@ -18,6 +18,7 @@ import {
   defineBuiltinElement,
   mergeStore,
   createProjection,
+  createSelector,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 import {
@@ -237,20 +238,9 @@ defineAccordion("eofol-accordion", [
   { label: "Third", render: () => "Content 3" },
 ]);
 
-const dashboardData = [
-  { label: "Facebook", link: "https://facebook.com" },
-  { label: "Youtube", link: "https://youtube.com" },
-  { label: "Eofol", link: "https://eofol.com" },
-  { label: "Eofol", link: "https://eofol.com" },
-  { label: "Eofol", link: "https://eofol.com" },
-  { label: "Eofol", link: "https://eofol.com" },
-  { label: "Eofol", link: "https://eofol.com" },
-  { label: "Eofol", link: "https://eofol.com" },
-];
-
 createStore("selector-base", { data: "Initial state", moreData: "foobar" });
 
-createProjection("selector-projection", "selector-base", (state) => ({
+const derivedData = createSelector("selector-base", (state) => ({
   derivedData: state.data,
 }));
 
@@ -274,9 +264,9 @@ defineBuiltinElement({
 
 defineBuiltinElement({
   tagName: "eofol-selector-2",
-  subscribe: ["selector-projection"],
+  subscribe: [derivedData.name],
   render: () => {
-    const projectionState = selector("selector-projection");
+    const projectionState = derivedData.selector();
 
     return createElement(
       "p",

@@ -2,6 +2,7 @@ import { updateTarget } from "../core/render-target";
 import { updateCustom } from "../core/custom-element";
 import { customElementRegistry, targetElementRegistry } from "../core/registry";
 import { merge } from "../util/util";
+import { generateId } from "../util/crypto";
 
 type StoreState = any;
 
@@ -37,6 +38,15 @@ function createProjection(
     name,
     projection: projectionMap,
   });
+}
+
+function createSelector(
+  projectionSource: string,
+  projectionMap: (state: StoreState) => any
+) {
+  const name = `${projectionSource}-${generateId()}`;
+  createProjection(name, projectionSource, projectionMap);
+  return { name, selector: () => selector(name) };
 }
 
 function setStore(name: string, nextState: StoreState) {
@@ -85,4 +95,5 @@ export default {
   setStore,
   mergeStore,
   createProjection,
+  createSelector,
 };
