@@ -33,6 +33,9 @@ export const notify = notifyX;
 import selectX from "./ui/select/select";
 export const select = selectX;
 
+import spinnerX from "./ui/spinner/spinner";
+export const spinner = spinnerX;
+
 import tooltipX from "./ui/tooltip/tooltip";
 export const tooltip = tooltipX;
 
