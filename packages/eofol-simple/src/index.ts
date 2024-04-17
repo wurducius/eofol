@@ -30,6 +30,9 @@ export const modal = modalX;
 import selectX from "./ui/select/select";
 export const select = selectX;
 
+import tooltipX from "./ui/tooltip/tooltip";
+export const tooltip = tooltipX;
+
 import defineAccordionX from "./custom/accordion/accordion";
 export const defineAccordion = defineAccordionX;
 

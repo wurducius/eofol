@@ -19,11 +19,12 @@ import {
   mergeStore,
   createSelector,
 } from "@eofol/eofol";
-import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
+import { ElementNode, StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 import {
   defineTabs,
   defineCollapse,
   defineAccordion,
+  tooltip,
 } from "@eofol/eofol-simple";
 
 createStore("global", { count: 0 });
@@ -261,17 +262,20 @@ const derivedData = createSelector("selector-base", (state) => ({
 defineBuiltinElement({
   tagName: "eofol-selector-1",
   render: () => {
-    return createElement(
-      "button",
-      "eofol-button",
-      "Click to message projection",
-      {},
-      {
-        // @ts-ignore
-        onclick: () => {
-          mergeStore("selector-base", { data: "Projection updated" });
-        },
-      }
+    return tooltip(
+      "Uses eofol store projection",
+      createElement(
+        "button",
+        "eofol-button",
+        "Click to message projection",
+        {},
+        {
+          // @ts-ignore
+          onclick: () => {
+            mergeStore("selector-base", { data: "Projection updated" });
+          },
+        }
+      )
     );
   },
 });
