@@ -24,6 +24,11 @@ const objectNotationToCSSNotation = (label: string) =>
     )
     .join("");
 
+export const injectCSS = (css: string) => {
+  const last = document.styleSheets[document.styleSheets.length - 1];
+  last.insertRule(css);
+};
+
 export const injectStyle = (
   style: CSSObject,
   classname: string,
@@ -45,12 +50,12 @@ export const injectStyle = (
       ""
     );
 
-    const last = document.styleSheets[document.styleSheets.length - 1];
-    const rule = `${getFullClassnameWithPseudoSelector(
-      getFullClassname(classname),
-      pseudoSelector
-    )} {${cssStyle} }`;
-    last.insertRule(rule);
+    injectCSS(
+      `${getFullClassnameWithPseudoSelector(
+        getFullClassname(classname),
+        pseudoSelector
+      )} {${cssStyle} }`
+    );
 
     styleCache.push(classname);
   }

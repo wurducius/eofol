@@ -1,4 +1,10 @@
-import { createElement, sy } from "@eofol/eofol/dist";
+import { createElement, createStyle, sy } from "@eofol/eofol/dist";
+
+createStyle(".tooltip-base { display: inline-block; }");
+createStyle(
+  ".tooltip-base .tooltip-content { display: none; position: absolute; z-index: 10; }"
+);
+createStyle(".tooltip-base:hover .tooltip-content { display: block; }");
 
 const tooltip = (title: string, children: Element) => {
   return createElement("div", "tooltip-base", [

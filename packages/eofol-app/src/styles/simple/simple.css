@@ -1,17 +1,3 @@
 @import "button.css";
 @import "checkbox.css";
 @import "select.css";
-
-.tooltip-base {
-  display: inline-block;
-}
-
-.tooltip-base .tooltip-content {
-  display: none;
-  position: absolute;
-  z-index: 10;
-}
-
-.tooltip-base:hover .tooltip-content {
-  display: block;
-}

@@ -26,6 +26,9 @@ export const sx = sxX;
 import syX from "./styles/sy";
 export const sy = syX;
 
+import createStyleX from "./styles/create-style";
+export const createStyle = createStyleX;
+
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
 
