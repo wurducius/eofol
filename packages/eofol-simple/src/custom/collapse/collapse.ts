@@ -1,11 +1,22 @@
 import { createElement, sx, defineBuiltinElement } from "@eofol/eofol";
 
+const DEFAULT_ICON_OPEN = "";
+const DEFAULT_ICON_CLOSED = "";
+
 export const renderCollapse =
-  (
-    label: string,
-    render: undefined | (() => Element | string),
-    onClick?: () => void
-  ) =>
+  ({
+    title,
+    render,
+    onClick,
+    iconOpen,
+    iconClosed,
+  }: {
+    title: string;
+    render: undefined | (() => Element | string);
+    onClick?: () => void;
+    iconOpen?: string;
+    iconClosed?: string;
+  }) =>
   (state: any, setState: any) =>
     createElement("div", undefined, [
       createElement(
@@ -27,11 +38,13 @@ export const renderCollapse =
             }),
             undefined,
             {
-              src: "",
-              alt: "Arrow",
+              src: state.open
+                ? iconOpen ?? DEFAULT_ICON_OPEN
+                : iconClosed ?? DEFAULT_ICON_CLOSED,
+              alt: state.open ? "Close collapse" : "Open collapse",
             }
           ),
-          createElement("p", undefined, label),
+          createElement("p", undefined, title),
         ],
         undefined,
         {
@@ -53,18 +66,24 @@ export const renderCollapse =
       ),
     ]);
 
-const defineCollapse = (
-  tagName: string,
-  label: string,
-  render: undefined | (() => Element | string),
-  open?: boolean,
-  onClick?: () => void
-) =>
+const defineCollapse = ({
+  tagName,
+  title,
+  render,
+  open,
+  onClick,
+}: {
+  tagName: string;
+  title: string;
+  render: undefined | (() => Element | string);
+  open?: boolean;
+  onClick?: () => void;
+}) =>
   defineBuiltinElement({
     tagName,
     initialState: { open },
     render: (state, setState) =>
-      renderCollapse(label, render, onClick)(state, setState),
+      renderCollapse({ title, render, onClick })(state, setState),
   });
 
 export default defineCollapse;

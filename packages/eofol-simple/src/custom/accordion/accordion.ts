@@ -1,10 +1,13 @@
 import { defineBuiltinElement, createElement } from "@eofol/eofol";
 import { renderCollapse } from "../collapse/collapse";
 
-const defineAccordion = (
-  tagName: string,
-  data: { label: string; render: () => Element | string }[]
-) => {
+const defineAccordion = ({
+  tagName,
+  data,
+}: {
+  tagName: string;
+  data: { title: string; render: () => Element | string }[];
+}) => {
   defineBuiltinElement({
     tagName,
     initialState: { index: undefined },
@@ -13,16 +16,16 @@ const defineAccordion = (
         createElement(
           "div",
           undefined,
-          renderCollapse(
-            item.label,
+          renderCollapse({
+            title: item.title,
             // @ts-ignore
-            () => item.render(),
-            () => {
+            render: () => item.render(),
+            onClick: () => {
               setState && // @ts-ignore
                 setState({ index: index !== state.index ? index : undefined });
-            }
+            },
             // @ts-ignore
-          )({ open: state.index === index }, () => {})
+          })({ open: state.index === index }, () => {})
         )
       );
     },
