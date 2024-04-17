@@ -17,7 +17,6 @@ import {
   sy,
   defineBuiltinElement,
   mergeStore,
-  createProjection,
   createSelector,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
@@ -215,28 +214,38 @@ defineBuiltinElement({
   },
 });
 
-defineTabs("eofol-tabs", [
-  {
-    label: "First",
-    render: () => createElement("div", undefined, "Content 1"),
-  },
-  {
-    label: "Second",
-    render: () => createElement("div", undefined, "Content 2"),
-  },
-  {
-    label: "Third",
-    render: () => createElement("div", undefined, "Content 3"),
-  },
-]);
+defineTabs({
+  tagName: "eofol-tabs",
+  data: [
+    {
+      title: "First",
+      render: () => createElement("div", undefined, "Content 1"),
+    },
+    {
+      title: "Second",
+      render: () => createElement("div", undefined, "Content 2"),
+    },
+    {
+      title: "Third",
+      render: () => createElement("div", undefined, "Content 3"),
+    },
+  ],
+});
 
-defineCollapse("eofol-collapse", "Collapse", () => "Collapse content");
+defineCollapse({
+  tagName: "eofol-collapse",
+  title: "Collapse",
+  render: () => "Collapse content",
+});
 
-defineAccordion("eofol-accordion", [
-  { label: "First", render: () => "Content 1" },
-  { label: "Second", render: () => "Content 2" },
-  { label: "Third", render: () => "Content 3" },
-]);
+defineAccordion({
+  tagName: "eofol-accordion",
+  data: [
+    { title: "First", render: () => "Content 1" },
+    { title: "Second", render: () => "Content 2" },
+    { title: "Third", render: () => "Content 3" },
+  ],
+});
 
 createStore("selector-base", { data: "Initial state", moreData: "foobar" });
 

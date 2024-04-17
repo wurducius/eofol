@@ -110,7 +110,7 @@ const config = (mode, analyze) => {
     devtool: isDev && "source-map",
     stats: "errors-only",
     resolve: {
-      extensions: ["*", ".js", ".jsx", ".ts", ".tsx", ".css", ".json"],
+      extensions: [".*", ".js", ".jsx", ".ts", ".tsx", ".css", ".json", ".svg"],
       extensionAlias: {
         ".js": [".js", ".ts"],
         ".cjs": [".cjs", ".cts"],
