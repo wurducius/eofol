@@ -19,12 +19,13 @@ import {
   mergeStore,
   createSelector,
 } from "@eofol/eofol";
-import { ElementNode, StateSetter, StateTypeImpl } from "@eofol/eofol-types";
+import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 import {
   defineTabs,
   defineCollapse,
   defineAccordion,
   tooltip,
+  notify,
 } from "@eofol/eofol-simple";
 
 createStore("global", { count: 0 });
@@ -273,6 +274,7 @@ defineBuiltinElement({
           // @ts-ignore
           onclick: () => {
             mergeStore("selector-base", { data: "Projection updated" });
+            notify({ title: "Projection updated!", position: "top" });
           },
         }
       )
@@ -286,17 +288,6 @@ defineBuiltinElement({
   render: () => {
     const projectionState = derivedData.selector();
 
-    return createElement(
-      "p",
-      undefined,
-      projectionState.derivedData,
-      {},
-      {
-        // @ts-ignore
-        onclick: () => {
-          mergeStore("selector-example", { data: "Projection updated" });
-        },
-      }
-    );
+    return createElement("p", undefined, projectionState.derivedData);
   },
 });

@@ -27,6 +27,9 @@ export const input = inputX;
 import modalX from "./ui/modal/modal";
 export const modal = modalX;
 
+import notifyX from "./ui/notification/notification";
+export const notify = notifyX;
+
 import selectX from "./ui/select/select";
 export const select = selectX;
 
