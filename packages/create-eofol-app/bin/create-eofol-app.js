@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const { spawn, primary, success, error } = require("@eofol/eofol-dev-utils");
-const { exec, execSync } = require("child_process");
+const { execSync } = require("child_process");
 
 console.log(primary("Create eofol app"));
 
