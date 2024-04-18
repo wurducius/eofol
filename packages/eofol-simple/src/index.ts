@@ -27,6 +27,10 @@ export const dropdownContent = dropdownX.dropdownContent;
 import inputX from "./ui/input/input";
 export const input = inputX;
 
+import listX from "./ui/list/list";
+export const orderedList = listX.orderedList;
+export const unorderedList = listX.unorderedList;
+
 import modalX from "./ui/modal/modal";
 export const modal = modalX;
 
