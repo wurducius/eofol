@@ -24,6 +24,9 @@ import dropdownX from "./ui/dropdown/dropdown";
 export const dropdown = dropdownX.dropdown;
 export const dropdownContent = dropdownX.dropdownContent;
 
+import iconButtonX from "./ui/icon-button/icon-button";
+export const iconButton = iconButtonX;
+
 import inputX from "./ui/input/input";
 export const input = inputX;
 

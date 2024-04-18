@@ -26,7 +26,6 @@ import {
   defineAccordion,
   tooltip,
   notify,
-  divider,
 } from "@eofol/eofol-simple";
 
 createStore("global", { count: 0 });
