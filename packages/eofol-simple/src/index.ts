@@ -45,5 +45,8 @@ export const defineAccordion = defineAccordionX;
 import defineCollapseX from "./custom/collapse/collapse";
 export const defineCollapse = defineCollapseX;
 
+import infiniteScrollX from "./custom/infinite-scroll/infinite-scroll";
+export const defineInfiniteScroll = infiniteScrollX;
+
 import defineTabsX from "./custom/tabs/tabs";
 export const defineTabs = defineTabsX;
