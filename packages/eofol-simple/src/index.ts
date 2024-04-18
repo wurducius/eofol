@@ -17,6 +17,9 @@ export const button = buttonX;
 import checkboxX from "./ui/checkbox/checkbox";
 export const checkbox = checkboxX;
 
+import dividerX from "./ui/divider/divider";
+export const divider = dividerX;
+
 import dropdownX from "./ui/dropdown/dropdown";
 export const dropdown = dropdownX.dropdown;
 export const dropdownContent = dropdownX.dropdownContent;

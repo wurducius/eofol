@@ -26,6 +26,7 @@ import {
   defineAccordion,
   tooltip,
   notify,
+  divider,
 } from "@eofol/eofol-simple";
 
 createStore("global", { count: 0 });
@@ -287,7 +288,6 @@ defineBuiltinElement({
   subscribe: [derivedData.name],
   render: () => {
     const projectionState = derivedData.selector();
-
     return createElement("p", undefined, projectionState.derivedData);
   },
 });
