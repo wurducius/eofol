@@ -1,6 +1,6 @@
 import { MultiOptional } from "./common-types";
 
-export type ElementNode = MultiOptional<Element>;
+export type ElementNode = MultiOptional<Element | string>;
 
 export type StateSetter<StateType> = (newState: StateType) => void;
 
@@ -10,7 +10,8 @@ export type StateTypeImpl<StateType> = StateType | undefined | {};
 
 export type StatefulArg<StateType, T> = (
   state?: StateTypeImpl<StateType>,
-  setState?: StateSetter<StateTypeImpl<StateType>>
+  setState?: StateSetter<StateTypeImpl<StateType>>,
+  attributes?: Object
 ) => T;
 
 export interface StatefulElement<StateType> {
@@ -25,7 +26,7 @@ export type EffectType<T> = MultiOptional<
 export type RenderType<StateType> = StatefulArg<StateType, ElementNode>;
 
 export type ControlledCustomElement<StateType> = {
-  root: ShadowRoot | null;
+  root: Element | ShadowRoot | null;
   state: StateTypeImpl<StateType>;
   setState: StateSetter<StateType>;
   subscribe?: string[];

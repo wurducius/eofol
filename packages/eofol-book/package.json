@@ -1,0 +1,28 @@
+{
+  "name": "@eofol/eofol-book",
+  "version": "0.2.22",
+  "description": "Gallery of Eofol UI components",
+  "scripts": {
+    "start": "eofol-scripts start",
+    "build": "eofol-scripts build",
+    "clean": "eofol-scripts clean",
+    "serve": "eofol-scripts serve"
+  },
+  "dependencies": {
+    "@eofol/eofol": "0.2.22"
+  },
+  "devDependencies": {
+    "@eofol/eofol-scripts": "0.2.22",
+    "@eofol/eofol-types": "0.2.22",
+    "csstype": "3.1.3",
+    "typescript": "5.3.3"
+  },
+  "author": "wurducius@gmail.com",
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/eofol-app"
+  }
+}

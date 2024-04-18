@@ -7,8 +7,10 @@ function request(
   return fetch(url, {
     method,
     headers: {
-      Accept: data ? "application/json" : "*/*",
-      "Content-Type": data ? "application/json" : "*/*",
+      ...(data && {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }),
       ...options,
     },
     body: data ? JSON.stringify(data) : undefined,
@@ -21,7 +23,12 @@ function request(
 }
 
 function get(url: string, options?: Record<string, string>) {
-  return request("GET", url, options);
+  return fetch(url, options)
+    .then((res) => res.json())
+    .catch((ex) => {
+      console.log(ex);
+      throw ex;
+    });
 }
 
 function head(url: string, data?: Object, options?: Record<string, string>) {

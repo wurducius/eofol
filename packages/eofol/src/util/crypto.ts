@@ -45,3 +45,5 @@ export function murmurhash2_32_gc(str: string, seed: number) {
 
   return h >>> 0;
 }
+
+export default { generateId };

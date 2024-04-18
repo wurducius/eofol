@@ -12,7 +12,7 @@ const args = process.argv.slice(2);
 if (fs.existsSync(BUILD_PATH)) {
   const result = spawn.sync(
     "http-server",
-    ["./build", "-p", PORT, "-a", "localhost", "-g", "--cors", "-o", ...args],
+    ["./build", "-p", PORT, "-a", "0.0.0.0", "-g", "--cors", "-o", ...args],
     {
       stdio: "inherit",
     }

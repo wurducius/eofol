@@ -1,8 +1,11 @@
-import createElementX from "./core/create-element";
-export const createElement = createElementX;
+import renderElement from "./core/render-element";
+export const createElement = renderElement.createElement;
+export const createCustomElement = renderElement.createCustomElement;
+export const e = renderElement.e;
 
 import customElement from "./core/custom-element";
-export const defineCustomElement = customElement.defineCustomElement;
+export const defineAutonomousElement = customElement.defineAutonomousElement;
+export const defineBuiltinElement = customElement.defineBuiltinElement;
 export const updateCustom = customElement.updateCustom;
 
 import target from "./core/render-target";
@@ -11,12 +14,20 @@ export const updateTarget = target.updateTarget;
 
 import store from "./store/store";
 export const createStore = store.createStore;
-export const select = store.select;
+export const selector = store.selector;
 export const setStore = store.setStore;
 export const mergeStore = store.mergeStore;
+export const createProjection = store.createProjection;
+export const createSelector = store.createSelector;
 
 import sxX from "./styles/sx";
 export const sx = sxX;
+
+import syX from "./styles/sy";
+export const sy = syX;
+
+import createStyleX from "./styles/create-style";
+export const createStyle = createStyleX;
 
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
@@ -27,3 +38,10 @@ export const post = fetchX.post;
 
 import debounceX from "./runtime/debounce";
 export const debounce = debounceX;
+
+import simpleUtils from "./util/simple";
+export const ax = simpleUtils.ax;
+export const cx = simpleUtils.cx;
+
+import cryptoX from "./util/crypto";
+export const generateId = cryptoX.generateId;
