@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const { spawn, primary, success, error } = require("@eofol/eofol-dev-utils");
+const { exec, execSync } = require("child_process");
 
 console.log(primary("Create eofol app"));
 
@@ -61,22 +62,16 @@ spawn.sync("git", ["checkout"]);
 
 // install
 console.log(primary("Installing dependencies... [3/3]"));
-const installChild = spawn("npm", ["install"]);
-installChild.stderr.setEncoding("utf8");
-installChild.stderr.on("data", function (data) {
-  console.log(error(data));
+try {
+  execSync("npm install", { stdio: "inherit" });
+} catch (e) {
   console.log(error("Install failed."));
   process.exit(1);
-});
-installChild.on("close", function (closingCode) {
-  if (closingCode === 0) {
-    console.log(success(`Your project is ready at ${projectPath}`));
-    console.log(
-      primary(
-        `Run "cd ${projectName}/packages/eofol-app" and then "npm start" to start development.`
-      )
-    );
-  } else {
-    console.log(error("Install failed."));
-  }
-});
+}
+
+console.log(success(`Your project is ready at ${projectPath}`));
+console.log(
+  primary(
+    `Run "cd ${projectName}/packages/eofol-app" and then "npm start" to start development.`
+  )
+);
