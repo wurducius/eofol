@@ -1,5 +1,5 @@
 import { ElementNode } from "@eofol/eofol-types";
-import { createElement, sx } from "@eofol/eofol";
+import { createElement, cx, sx } from "@eofol/eofol";
 
 const modal = (
   id: string,
@@ -8,7 +8,8 @@ const modal = (
   open: boolean,
   onClose: () => void,
   onConfirm: () => void,
-  controls?: undefined | Element
+  controls?: undefined | Element,
+  classname?: string | undefined
 ) => {
   return createElement(
     "div",
@@ -27,14 +28,17 @@ const modal = (
     [
       createElement(
         "div",
-        sx({
-          position: "relative",
-          padding: "16px 16px 64px 16px",
-          width: "80%",
-          margin: "auto",
-          border: "2px solid grey",
-          backgroundColor: "#dddddd",
-        }),
+        cx(
+          sx({
+            position: "relative",
+            padding: "16px 16px 64px 16px",
+            width: "80%",
+            margin: "auto",
+            border: "2px solid grey",
+            backgroundColor: "#dddddd",
+          }),
+          classname
+        ),
         [
           createElement(
             "div",

@@ -12,6 +12,9 @@ import target from "./core/render-target";
 export const renderTarget = target.renderTarget;
 export const updateTarget = target.updateTarget;
 
+import forceRerenderX from "./core/force-rerender";
+export const forceRerender = forceRerenderX;
+
 import store from "./store/store";
 export const createStore = store.createStore;
 export const selector = store.selector;

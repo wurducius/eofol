@@ -23,7 +23,8 @@ const checkbox = ({
     ax(
       { name, id: name, type: "checkbox" },
       ["disabled", disabled],
-      ["checked", value]
+      ["checked", value],
+      ["aria-label", name]
     )
   );
   // @ts-ignore

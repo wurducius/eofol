@@ -34,7 +34,8 @@ const input = ({
       ["type", type],
       ["min", min],
       ["max", max],
-      ["step", step]
+      ["step", step],
+      ["aria-label", name]
     ),
     {
       // @ts-ignore
