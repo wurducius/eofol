@@ -20,7 +20,7 @@ const img = ({
 } & EComponent) =>
   createElement(
     "img",
-    cx(styles),
+    styles,
     children,
     ax(
       {

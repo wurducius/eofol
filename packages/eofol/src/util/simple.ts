@@ -1,3 +1,5 @@
+import { EofolClassnameSingle } from "@eofol/eofol-types";
+
 export const ax = (
   initialAttributes: Record<string, string>,
   ...attributes: [string, string | undefined | boolean | number][]
@@ -9,7 +11,7 @@ export const ax = (
     return acc;
   }, initialAttributes);
 
-export const cx = (...styles: (string | boolean | undefined)[]) =>
+export const cx = (...styles: EofolClassnameSingle[]) =>
   styles.filter(Boolean).join(" ");
 
 export default { ax, cx };

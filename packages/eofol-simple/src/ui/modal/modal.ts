@@ -1,10 +1,10 @@
-import { ElementNode } from "@eofol/eofol-types";
+import { EofolElementNode } from "@eofol/eofol-types";
 import { createElement, cx, sx } from "@eofol/eofol";
 
 const modal = (
   id: string,
   title: string,
-  children: ElementNode,
+  children: EofolElementNode,
   open: boolean,
   onClose: () => void,
   onConfirm: () => void,

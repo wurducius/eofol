@@ -1,4 +1,8 @@
-import { ElementNode } from "@eofol/eofol-types";
+import {
+  EofolClassnameSingle,
+  EofolElementNode,
+  Multi,
+} from "@eofol/eofol-types";
 
 export const SIZE_SM = "sm";
 export const SIZE_MD = "md";
@@ -11,12 +15,12 @@ export const getSize = (tagName: string) => (size: SIZE | undefined) => {
 };
 
 export interface EComponent {
-  styles?: string | boolean | undefined;
-  children?: ElementNode;
+  styles?: Multi<EofolClassnameSingle>;
+  children?: EofolElementNode;
 }
 
 export interface EComponentWithoutChildren {
-  styles?: string | boolean | undefined;
+  styles?: Multi<EofolClassnameSingle>;
 }
 
 export interface EInput<T> {

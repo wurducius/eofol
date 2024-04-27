@@ -16,13 +16,13 @@ const button = ({
   EComponent) => {
   const element = createElement(
     "button",
-    cx(
+    [
       "button-base",
       getSize("button")(size),
       full && "button-full",
       disabled && "button-disabled",
-      styles
-    ),
+      styles,
+    ],
     children,
     ax({}, ["disabled", disabled])
   );

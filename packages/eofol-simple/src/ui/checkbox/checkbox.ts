@@ -13,12 +13,12 @@ const checkbox = ({
 }: EInput<boolean> & ESizable & EComponent) => {
   const element = createElement(
     "input",
-    cx(
+    [
       "checkbox-size",
       getSize("checkbox")(size),
       disabled && "checkbox-disabled",
-      styles
-    ),
+      styles,
+    ],
     children,
     ax(
       { name, id: name, type: "checkbox" },

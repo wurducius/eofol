@@ -171,7 +171,10 @@ export function customStatefulClass<StateType>(
       );
 
       if (this.root) {
-        arrayCombinator(appendChild(this.root), rendered);
+        arrayCombinator(
+          appendChild(this.root),
+          Array.isArray(rendered) ? rendered.flat() : rendered
+        );
       }
     }
 

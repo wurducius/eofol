@@ -38,12 +38,12 @@ const select = ({
   EComponentWithoutChildren) => {
   const element = createElement(
     "select",
-    cx(
+    [
       "select-base",
       disabled && "select-disabled",
       getSize("select")(size),
-      styles
-    ),
+      styles,
+    ],
     options.map((option) => {
       if ("group" in option && "options" in option) {
         return createElement(

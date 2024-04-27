@@ -1,19 +1,20 @@
 import { arrayCombinator } from "../util/util";
 import { appendChild } from "../util/dom";
-import { ElementNode } from "@eofol/eofol-types";
+import { EofolElementNode, EofolClassname } from "@eofol/eofol-types";
+import { cx } from "../util/simple";
 
 const injectElementProps = (
   element: HTMLElement,
-  classname?: string | string[],
-  children?: ElementNode | string | string[],
+  classname?: EofolClassname,
+  children?: EofolElementNode | string | string[],
   attributes?: Record<string, string>,
   properties?: Record<string, string>
 ): HTMLElement => {
   if (classname) {
     if (Array.isArray(classname)) {
-      element.className = classname.join(" ");
+      element.className = cx(...classname.flat());
     } else {
-      element.className = classname;
+      element.className = cx(classname);
     }
   }
 
@@ -38,8 +39,8 @@ const injectElementProps = (
 // @TODO TYPING
 export const createElement = (
   tagName: string,
-  classname?: string | string[],
-  children?: ElementNode | string | string[],
+  classname?: EofolClassname,
+  children?: EofolElementNode | string | string[],
   attributes?: Record<string, string>,
   properties?: Record<string, string>
 ): HTMLElement =>
@@ -53,8 +54,8 @@ export const createElement = (
 
 const createCustomElementByClass = (
   CustomClass: CustomElementConstructor,
-  classname?: string,
-  children?: ElementNode | string | string[],
+  classname?: EofolClassname,
+  children?: EofolElementNode | string | string[],
   attributes?: Record<string, string>,
   properties?: Record<string, string>
 ) =>
@@ -68,8 +69,8 @@ const createCustomElementByClass = (
 
 const createCustomElement = (
   tagName: string,
-  classname?: string,
-  children?: ElementNode | string | string[],
+  classname?: EofolClassname,
+  children?: EofolElementNode | string | string[],
   attributes?: Record<string, string>,
   properties?: Record<string, string>
 ) => {
@@ -90,8 +91,8 @@ const createCustomElement = (
 
 const e = (
   tagName: string,
-  classname?: string,
-  children?: ElementNode | string | string[],
+  classname?: EofolClassname,
+  children?: EofolElementNode | string | string[],
   attributes?: Record<string, string>,
   properties?: Record<string, string>
 ) => {

@@ -14,7 +14,7 @@ const a = ({
 } & EComponent) =>
   createElement(
     "a",
-    cx(styles),
+    styles,
     children,
     ax({ href: link }, ["target", external && "_blank"], ["download", download])
   );

@@ -40,7 +40,7 @@ const input = ({
       ["max", max],
       ["step", step],
       ["aria-label", name],
-      ["spellcheck", spellcheck]
+      ["spellcheck", spellcheck || "false"]
     ),
     {
       // @ts-ignore
