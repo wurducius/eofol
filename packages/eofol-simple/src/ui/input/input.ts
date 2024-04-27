@@ -5,23 +5,27 @@ const input = ({
   onChange,
   onBlur,
   onInput,
+  onFocus,
   classname,
   name,
   type,
   max,
   min,
   step,
+  spellcheck,
 }: {
   value: string;
   onChange: (nextValue: string) => void;
   onBlur?: (nextValue: string) => void;
   onInput?: (nextValue: string) => void;
+  onFocus?: (nextValue: string) => void;
   classname?: string;
   name?: string;
   type?: string;
   min?: number;
   max?: number;
   step?: number;
+  spellcheck?: boolean;
 }) => {
   return createElement(
     "input",
@@ -35,7 +39,8 @@ const input = ({
       ["min", min],
       ["max", max],
       ["step", step],
-      ["aria-label", name]
+      ["aria-label", name],
+      ["spellcheck", spellcheck]
     ),
     {
       // @ts-ignore
@@ -52,6 +57,12 @@ const input = ({
       oninput: (e) => {
         if (onInput) {
           onInput(e.target.value);
+        }
+      },
+      // @ts-ignore
+      onfocus: (e) => {
+        if (onFocus) {
+          onFocus(e.target.value);
         }
       },
     }
