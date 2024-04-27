@@ -1,10 +1,11 @@
-import { createElement, createStyle, sy } from "@eofol/eofol";
+import { createElement, sy } from "@eofol/eofol";
 
-createStyle(".tooltip-base { display: inline-block; }");
-createStyle(
-  ".tooltip-base .tooltip-content { display: none; position: absolute; z-index: 10; }"
+sy({ display: "inline-block" }, "tooltip-base");
+sy(
+  { display: "none", position: "absolute", zIndex: 10 },
+  "tooltip-base.tooltip-content"
 );
-createStyle(".tooltip-base:hover .tooltip-content { display: block; }");
+sy({ display: "block" }, "tooltip-base:hover.tooltip-content");
 
 const tooltip = (title: string, children: Element) => {
   return createElement("div", "tooltip-base", [

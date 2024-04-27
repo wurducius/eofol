@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@eofol/eofol": "0.2.22",
-    "@eofol/eofol-simple": "0.2.22"
+    "@eofol/eofol-simple": "file:../eofol-simple"
   },
   "devDependencies": {
     "@eofol/eofol-scripts": "0.2.22",

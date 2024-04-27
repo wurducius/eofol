@@ -30,7 +30,9 @@ import syX from "./styles/sy";
 export const sy = syX;
 
 import createStyleX from "./styles/create-style";
-export const createStyle = createStyleX;
+export const createStyle = createStyleX.createStyle;
+export const createStyleObj = createStyleX.createStyleObj;
+export const clearStyle = createStyleX.clearStyle;
 
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
@@ -48,3 +50,21 @@ export const cx = simpleUtils.cx;
 
 import cryptoX from "./util/crypto";
 export const generateId = cryptoX.generateId;
+
+import utilX from "./util/util";
+export const mergeDeep = utilX.mergeDeep;
+
+import breakpointX from "./runtime/breakpoint";
+export const getBreakpoint = breakpointX.getBreakpoint;
+export const mediaQueryMaxWidth = breakpointX.mediaQueryMaxWidth;
+
+import translationX from "./runtime/translation";
+export const t = translationX.t;
+export const getLanguage = translationX.getLanguage;
+export const setLanguage = translationX.setLanguage;
+export const getLanguages = translationX.getLanguages;
+export const initTranslation = translationX.initTranslation;
+
+import themeX from "./styles/theme";
+export const getTheme = themeX.getTheme;
+export const setTheme = themeX.setTheme;

@@ -46,6 +46,9 @@ export const select = selectX;
 import spinnerX from "./ui/spinner/spinner";
 export const spinner = spinnerX;
 
+import textareaX from "./ui/textarea/textarea";
+export const textarea = textareaX.textarea;
+
 import tooltipX from "./ui/tooltip/tooltip";
 export const tooltip = tooltipX;
 
