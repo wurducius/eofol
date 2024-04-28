@@ -17,7 +17,7 @@ const modal = (
       display: open ? "block" : "none",
       position: "fixed",
       zIndex: "1",
-      paddingTop: "100px",
+      paddingTop: "32px",
       left: 0,
       top: 0,
       width: "100%",
@@ -31,7 +31,7 @@ const modal = (
         cx(
           sx({
             position: "relative",
-            padding: "16px 16px 64px 16px",
+            padding: "16px 16px 16px 16px",
             width: "80%",
             margin: "auto",
             border: "2px solid grey",

@@ -1,10 +1,13 @@
 import { createElement, sx } from "@eofol/eofol";
 
+const PADDING_INLINE_START_DEFAULT = "40px";
+
 type ListBaseProps<T> = {
   spacing?: number;
   data: T[];
-  render: (item: T) => Element;
+  render: (item: T, index?: number) => Element | Element[];
   position?: ListPosition;
+  paddingInline?: string;
 };
 
 type UnorderedListType = "circle" | "square" | "none" | "disc" | undefined;
@@ -76,7 +79,7 @@ const getOrderedListType = (type: OrderedListType) => {
   return "decimal";
 };
 
-function listItem(child: Element, spacing?: number) {
+function listItem(child: Element | Element[], spacing?: number) {
   return createElement("li", sx({ marginTop: `${spacing ?? 4}px` }), child);
 }
 
@@ -86,14 +89,16 @@ function unorderedList<T>({
   render,
   type,
   position,
+  paddingInline,
 }: UnorderedListProps<T>) {
   return createElement(
     "ul",
     sx({
       listStyleType: getUnorderedListType(type),
       listStylePosition: position ?? "outside",
+      paddingInlineStart: paddingInline ?? PADDING_INLINE_START_DEFAULT,
     }),
-    data.map((item) => listItem(render(item), spacing))
+    data.map((item, i) => listItem(render(item, i), spacing))
   );
 }
 
@@ -103,12 +108,14 @@ function orderedList<T>({
   render,
   type,
   position,
+  paddingInline,
 }: orderedListProps<T>) {
   return createElement(
     "ol",
     sx({
       listStyleType: getOrderedListType(type),
       listStylePosition: position ?? "outside",
+      paddingInlineStart: paddingInline ?? PADDING_INLINE_START_DEFAULT,
     }),
     data.map((item) => listItem(render(item), spacing))
   );
