@@ -28,7 +28,10 @@ import iconButtonX from "./ui/icon-button/icon-button";
 export const iconButton = iconButtonX;
 
 import inputX from "./ui/input/input";
-export const input = inputX;
+export const input = inputX.input;
+
+import inputBaseX from "./ui/input-base/input-base";
+export const inputBase = inputBaseX.inputBase;
 
 import listX from "./ui/list/list";
 export const orderedList = listX.orderedList;
@@ -39,6 +42,9 @@ export const modal = modalX;
 
 import notifyX from "./ui/notification/notification";
 export const notify = notifyX;
+
+import numberInputX from "./ui/number-input/number-input";
+export const numberInput = numberInputX.numberInput;
 
 import selectX from "./ui/select/select";
 export const select = selectX;
