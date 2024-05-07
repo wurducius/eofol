@@ -14,6 +14,9 @@ export const a = aX;
 import buttonX from "./ui/button/button";
 export const button = buttonX;
 
+import bubbleX from "./ui/bubble/bubble";
+export const bubble = bubbleX.bubble;
+
 import checkboxX from "./ui/checkbox/checkbox";
 export const checkbox = checkboxX;
 
@@ -46,8 +49,16 @@ export const notify = notifyX;
 import numberInputX from "./ui/number-input/number-input";
 export const numberInput = numberInputX.numberInput;
 
+import primitiveX from "./ui/primitive";
+export const center = primitiveX.center;
+export const div = primitiveX.div;
+export const flex = primitiveX.flex;
+
 import selectX from "./ui/select/select";
 export const select = selectX;
+
+import sliderInputX from "./ui/slider-input/slider-input";
+export const sliderInput = sliderInputX.sliderInput;
 
 import spinnerX from "./ui/spinner/spinner";
 export const spinner = spinnerX;
@@ -66,6 +77,9 @@ export const defineCollapse = defineCollapseX;
 
 import infiniteScrollX from "./custom/infinite-scroll/infinite-scroll";
 export const defineInfiniteScroll = infiniteScrollX;
+
+import selectSearchX from "./ui/select-search/select-search";
+export const defineSelectSearch = selectSearchX.defineSelectSearch;
 
 import defineTabsX from "./custom/tabs/tabs";
 export const defineTabs = defineTabsX;

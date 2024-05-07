@@ -2,7 +2,7 @@ import { InputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import { getTheme, cx, sx } from "@eofol/eofol";
 
-const input = (props: InputProps) => {
+export const input = (props: InputProps) => {
   const theme = getTheme();
 
   const baseStyle = sx({
