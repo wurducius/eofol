@@ -1,5 +1,5 @@
 import { EofolElementNode } from "@eofol/eofol-types";
-import { createElement, cx, sx } from "@eofol/eofol";
+import { createElement, cx, getTheme, sx } from "@eofol/eofol";
 
 const modal = (
   id: string,
@@ -11,12 +11,14 @@ const modal = (
   controls?: undefined | Element,
   classname?: string | undefined
 ) => {
+  const theme = getTheme();
+
   return createElement(
     "div",
     sx({
       display: open ? "block" : "none",
       position: "fixed",
-      zIndex: "1",
+      zIndex: theme.zIndex.modal,
       paddingTop: "32px",
       left: 0,
       top: 0,

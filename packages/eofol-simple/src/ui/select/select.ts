@@ -1,4 +1,4 @@
-import { createElement, cx, ax } from "@eofol/eofol";
+import { createElement, cx, ax, sx, getTheme } from "@eofol/eofol";
 import {
   EComponentWithoutChildren,
   EInput,
@@ -36,12 +36,32 @@ const select = ({
 } & EInput<string> &
   ESizable &
   EComponentWithoutChildren) => {
+  const theme = getTheme();
+
+  const baseStyle = sx({
+    padding: "6px 10px",
+    marginTop: "8px",
+    fontSize: theme.typography.text.fontSize,
+    height: "36px",
+    width: "256px",
+    backgroundColor: theme.color.background,
+    color: theme.color.secondary,
+    border: `1px solid ${theme.color.secondary}`,
+  });
+
+  const focusStyle = sx(
+    { outline: `2px solid ${theme.color.secondary}` },
+    ":focus"
+  );
+
   const element = createElement(
     "select",
     [
       "select-base",
       disabled && "select-disabled",
       getSize("select")(size),
+      baseStyle,
+      focusStyle,
       styles,
     ],
     options.map((option) => {

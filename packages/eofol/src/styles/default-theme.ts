@@ -1,4 +1,7 @@
-export const defaultTheme = {
+import { Theme } from "@eofol/eofol-types";
+
+export const defaultTheme: Theme = {
+  mode: "dark",
   color: {
     primary: "#03dac6",
     primaryLighter: "#35E1D1",
@@ -15,8 +18,13 @@ export const defaultTheme = {
     background: "#121212",
     backgroundElevation: "#333333",
     backgroundModal: "#2d3748",
+
+    error: "#fc8181",
   },
-  typography: {},
+  typography: {
+    default: { fontFamily: "sans-serif" },
+  },
+  size: {},
   spacing: {
     space1: "8px",
     space2: "16px",
@@ -29,12 +37,22 @@ export const defaultTheme = {
     space9: "72px",
     space10: "80px",
   },
+  shape: { borderRadius: "inherit" },
+  zIndex: {
+    hide: -1,
+    auto: "auto",
+    base: 0,
+    docked: 10,
+    dropdown: 100,
+    overlay: 150,
+    modal: 200,
+    notification: 250,
+    tooltip: 300,
+  },
   breakpoints: {
     values: [640, 1080, 1200, 1600, 2000, 2600],
     keys: ["xs", "sm", "md", "lg", "xl", "xxl"],
   },
-  shape: {},
-  zIndex: {},
-  config: {},
-  components: {},
+  config: { direction: "ltr" },
+  component: {},
 };

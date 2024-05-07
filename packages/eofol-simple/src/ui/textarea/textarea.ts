@@ -1,4 +1,4 @@
-import { createElement, sy, cx } from "@eofol/eofol";
+import { createElement, sy, cx, sx, getTheme } from "@eofol/eofol";
 
 const textAreaBaseClass = sy(
   {
@@ -53,10 +53,53 @@ export const textarea = ({
   onBlur?: (nextVal: string) => void;
   classname?: string;
   resize?: Resize;
-}) =>
-  createElement(
+}) => {
+  const theme = getTheme();
+
+  const isInvalid = classname?.split(" ").includes("input-invalid");
+
+  const validStyle = sx({
+    border: `1px solid ${
+      isInvalid ? theme.color.error : theme.color.secondary
+    }`,
+  });
+  const focusStyle = sx({ outline: `2px solid ${theme.color.secondary}` });
+  const invalidFocusStyle = sx({ outline: `2px solid #fc8181` });
+
+  const wrapperElement = createElement(
+    "div",
+    [
+      sx({
+        padding: "8px 8px 8px 8px",
+        backgroundColor: theme.color.backgroundElevation,
+        cursor: "text",
+      }),
+      validStyle,
+    ],
+    undefined,
+    { id: "textarea-wrapper-" + name }
+  );
+
+  const baseStyle = sx({
+    cursor: "text",
+    marginRight: 0,
+    padding: "0 0 0 0",
+    fontSize: theme.typography.text.fontSize,
+    width: "100%",
+    backgroundColor: theme.color.backgroundElevation,
+    color: theme.color.secondary,
+    border: "none",
+  });
+
+  const textareaElement = createElement(
     "textarea",
-    cx(getResizeClass(resize), textAreaBaseClass, classname),
+    cx(
+      baseStyle,
+      getResizeClass(resize),
+      textAreaBaseClass,
+      sx({ outline: "none" }, ":focus"),
+      classname
+    ),
     value,
     {
       "aria-label": name,
@@ -69,12 +112,37 @@ export const textarea = ({
         onChange(e.target.value);
       },
       // @ts-ignore
+      onfocus: () => {
+        const element = document.getElementById("textarea-wrapper-" + name);
+        if (element) {
+          element.className =
+            element.className +
+            " " +
+            (isInvalid ? invalidFocusStyle : focusStyle);
+        }
+      },
+      // @ts-ignore
       onblur: (e) => {
-        if (onBlur) {
-          onBlur(e.target.value);
+        const element = document.getElementById("textarea-wrapper-" + name);
+        if (element) {
+          element.className = element.className
+            .split(" ")
+            .filter(
+              (clazz) => clazz !== invalidFocusStyle && clazz !== focusStyle
+            )
+            .join(" ");
+
+          if (onBlur) {
+            onBlur(e.target.value);
+          }
         }
       },
     }
   );
+
+  wrapperElement.appendChild(textareaElement);
+
+  return wrapperElement;
+};
 
 export default { textarea };

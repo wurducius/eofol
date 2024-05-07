@@ -1,9 +1,5 @@
-import { ax, createElement, sx, sy } from "@eofol/eofol";
+import { ax, createElement, cx, getTheme, sx, sy } from "@eofol/eofol";
 import { InputBaseProps } from "@eofol/eofol-types";
-
-sy({ border: "1px solid #fc8181" }, "input-base-invalid");
-
-const inputBaseInvalidFocus = sx({ outline: "2px solid #fc8181" }, "focus");
 
 const checkValidity = (validation: any, nextVal: any) => {
   // @ts-ignore
@@ -42,6 +38,15 @@ export const inputBase = ({
   autocomplete,
   validation,
 }: InputBaseProps) => {
+  const theme = getTheme();
+
+  sy({ border: `1px solid ${theme.color.error}` }, "input-base-invalid");
+
+  const inputBaseInvalidFocus = sx(
+    { outline: `2px solid ${theme.color.error}` },
+    "focus"
+  );
+
   const validityElement = createElement(
     "div",
     sx({
@@ -53,13 +58,21 @@ export const inputBase = ({
       width: "calc(100% - 12px)",
       border: "1px solid #dddddd",
       padding: "6px 6px 6px 6px",
+      zIndex: theme.zIndex.dropdown,
     }),
     undefined
   );
 
   const inputElement = createElement(
     "input",
-    classname,
+    cx(
+      sx({
+        position: "relative",
+        width:
+          type === "text" || type === "number" ? "calc(100% - 22px)" : "100%",
+      }),
+      classname
+    ),
     undefined,
     ax(
       { value },
@@ -163,9 +176,9 @@ export const inputBase = ({
           .split(" ")
           .filter(
             (item) =>
-              item !== "input-base-invalid" || item !== inputBaseInvalidFocus
+              item !== "input-base-invalid" && item !== inputBaseInvalidFocus
           )
-          .join("\n");
+          .join(" ");
       } else {
         validityElement.setAttribute("style", "display: block;");
         validityElement.textContent = validity;
@@ -183,7 +196,7 @@ export const inputBase = ({
     }
   };
 
-  return createElement("div", sx({ position: "relative" }), [
+  return createElement("div", sx({ position: "relative", width: "100%" }), [
     inputElement,
     validityElement,
   ]);

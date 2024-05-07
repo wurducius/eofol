@@ -55,7 +55,7 @@ renderTarget<CountState>("eofol-target", {
     return [
       createElement(
         "div",
-        [sx({ color: "blue" }), sx({ color: "red" }, "hover")],
+        [sx({ color: "blue" }), sx({ color: "red" }, ":hover")],
         "Targeted element example"
       ),
       createElement("div", undefined, `Click count: ${s.count}`),

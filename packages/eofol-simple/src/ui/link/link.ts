@@ -1,4 +1,4 @@
-import { ax, createElement, cx } from "@eofol/eofol";
+import { ax, createElement, cx, getTheme, sx } from "@eofol/eofol";
 import { EComponent } from "../../types";
 
 const a = ({
@@ -11,12 +11,19 @@ const a = ({
   link: string;
   external?: boolean;
   download?: string;
-} & EComponent) =>
-  createElement(
+} & EComponent) => {
+  const theme = getTheme();
+
+  const baseStyle = sx({ color: theme.color.secondaryDark });
+
+  const hoverStyle = sx({ color: theme.color.secondaryLighter }, ":hover");
+
+  return createElement(
     "a",
-    styles,
+    cx(baseStyle, hoverStyle, styles),
     children,
     ax({ href: link }, ["target", external && "_blank"], ["download", download])
   );
+};
 
 export default a;

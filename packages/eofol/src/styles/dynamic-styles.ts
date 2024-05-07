@@ -14,7 +14,7 @@ const getFullClassname = (classname: string) => {
 const getFullClassnameWithPseudoSelector = (
   classname: string,
   pseudoSelector?: string
-) => (pseudoSelector ? `${classname}:${pseudoSelector}` : classname);
+) => (pseudoSelector ? `${classname}${pseudoSelector}` : classname);
 
 export const objectNotationToCSSNotation = (label: string) =>
   label
