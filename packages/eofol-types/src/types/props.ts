@@ -16,3 +16,5 @@ export type DefineSelectSearchProps = {
   tagName: string;
   inputElementId: string;
 };
+
+export type TypographyNodeContent = (string | Element)[] | (string | Element);
