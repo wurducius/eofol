@@ -1,21 +1,26 @@
 import { NumberInputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
-import { getTheme, sx, sy, cx } from "@eofol/eofol";
+import { getTheme, sx, cx, createStyle } from "@eofol/eofol";
+import div from "../primitive/div";
+
+const hideArrowsClassname = "number-input-hide-arrows";
 
 const numberInput = (props: NumberInputProps) => {
   const theme = getTheme();
 
-  const hideArrows = props.hideArrows;
+  const hideArrows = true;
   const arrowStyle = props.arrowStyle;
 
-  const styleObj = { "-webkit-appearance": "none", margin: "0 0 0 0" };
-  const innerSpinButtonStyle = sx(styleObj, "::-webkit-inner-spin-button");
-  const outerSpinButtonStyle = sx(styleObj, "::-webkit-outer-spin-button");
+  const renderArrows = !props.hideArrows;
 
-  const hideArrowsStyle = sy(
-    // @ts-ignore
-    { "-moz-appearance": "textfield" },
-    "number-input-hide-arrows"
+  // @TODO: hard hack, please refactor
+  createStyle(`.${hideArrowsClassname} { -moz-appearance: textfield; }`);
+  createStyle(
+    `.number-input-hide-arrows::-webkit-outer-spin-button,
+  .number-input-hide-arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  } { -webkit-appearance: none; margin: 0; }`
   );
 
   const baseStyle = sx({
@@ -36,6 +41,80 @@ const numberInput = (props: NumberInputProps) => {
     ":focus:not(.input-invalid)"
   );
 
+  const handleArrowSpin = (parity: number) => () => {
+    const defaultVal = props.min ?? 0;
+    const prevVal = Number(props.value);
+    const isPrevValValid = Number.isFinite(prevVal) && !Number.isNaN(prevVal);
+    const nextVal = isPrevValValid
+      ? prevVal + parity * (props.step ?? 1)
+      : defaultVal;
+    const clampedMinVal = props.min ? Math.max(nextVal, props.min) : nextVal;
+    const clampedMaxVal = props.max
+      ? Math.min(clampedMinVal, props.max)
+      : clampedMinVal;
+    props.onChange(clampedMaxVal);
+  };
+  const handleArrowUp = handleArrowSpin(1);
+  const handleArrowDown = handleArrowSpin(-1);
+
+  const arrowCustomStyle = sx({
+    height: "14px",
+    backgroundColor: theme.color.backgroundElevation,
+    border: `1px solid ${theme.color.primary}`,
+    color: theme.color.primary,
+    fontSize: "10px",
+    cursor: "pointer",
+  });
+  const arrowCustomHoverStyle = sx(
+    {
+      backgroundColor: theme.color.primary,
+      border: `1px solid #000000`,
+      color: "#000000",
+    },
+    ":hover"
+  );
+  const arrowCustomFocusStyle = sx(
+    {
+      backgroundColor: theme.color.primary,
+      border: `1px solid #000000`,
+      color: "#000000",
+    },
+    ":focus"
+  );
+  const upArrow = div(
+    [arrowCustomStyle, arrowCustomHoverStyle, arrowCustomFocusStyle],
+    "+",
+    undefined,
+    {
+      // @ts-ignore
+      onclick: handleArrowUp,
+    }
+  );
+  const downArrow = div(
+    [arrowCustomStyle, arrowCustomHoverStyle, arrowCustomFocusStyle],
+    "-",
+    undefined,
+    {
+      // @ts-ignore
+      onclick: handleArrowDown,
+    }
+  );
+  const afterArrows = div(
+    sx({
+      display: "flex",
+      flexDirection: "column",
+      position: "absolute",
+      top: "0px",
+      right: "0px",
+      margin: "8px 0 8px 0",
+      border: "1px solid transparent",
+      height: "28px",
+      zIndex: 1,
+      width: "24px",
+    }),
+    [upArrow, downArrow]
+  );
+
   // @TODO: typing
   // @ts-ignore
   return inputBase({
@@ -45,11 +124,10 @@ const numberInput = (props: NumberInputProps) => {
     classname: cx(
       baseStyle,
       focusStyle,
-      ...(hideArrows
-        ? [hideArrowsStyle, innerSpinButtonStyle, outerSpinButtonStyle]
-        : []),
+      hideArrows && hideArrowsClassname,
       props.classname
     ),
+    after: renderArrows && afterArrows,
   });
 };
 

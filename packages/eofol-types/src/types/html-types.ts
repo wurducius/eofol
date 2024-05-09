@@ -61,9 +61,14 @@ export type InputTypeProps = {
   type?: InputTypeAttribute;
 };
 
+export type InputBaseSpecificProps = {
+  after?: Element | false;
+};
+
 export type InputBaseProps = InputCommonProps<string> &
   InputTypeProps &
-  InputBaseNumericProps;
+  InputBaseNumericProps &
+  InputBaseSpecificProps;
 
 export type InputProps = InputCommonProps<string> & InputTypeProps;
 

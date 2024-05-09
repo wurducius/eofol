@@ -8,7 +8,8 @@ import {
   sx,
   sy,
 } from "@eofol/eofol";
-import { InputBaseProps } from "@eofol/eofol-types";
+import { EofolElementNode, InputBaseProps } from "@eofol/eofol-types";
+import div from "../primitive/div";
 
 const checkValidity = (validation: any, nextVal: any) => {
   // @ts-ignore
@@ -46,6 +47,7 @@ export const inputBase = ({
   spellcheck,
   autocomplete,
   validation,
+  after,
 }: InputBaseProps) => {
   const theme = getTheme();
 
@@ -54,6 +56,11 @@ export const inputBase = ({
   const inputBaseInvalidFocus = sx(
     { outline: `2px solid ${theme.color.error}` },
     "focus"
+  );
+
+  const inputBaseWrapperStyle = sy(
+    { position: "relative", width: "100%" },
+    "input-base-wrapper"
   );
 
   const validityElement = createElement(
@@ -196,10 +203,10 @@ export const inputBase = ({
     }
   };
 
-  return createElement("div", sx({ position: "relative", width: "100%" }), [
-    inputElement,
-    validityElement,
-  ]);
+  return div(
+    inputBaseWrapperStyle,
+    [inputElement, after, validityElement].filter(Boolean) as EofolElementNode
+  );
 };
 
 export default { inputBase };
