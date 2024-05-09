@@ -10,6 +10,7 @@ import {
 } from "@eofol/eofol";
 import { EofolElementNode, InputBaseProps } from "@eofol/eofol-types";
 import div from "../primitive/div";
+import { INPUT_INVALID } from "../../util/validation";
 
 const checkValidity = (validation: any, nextVal: any) => {
   // @ts-ignore
@@ -51,12 +52,7 @@ export const inputBase = ({
 }: InputBaseProps) => {
   const theme = getTheme();
 
-  sy({ border: `1px solid ${theme.color.error}` }, "input-base-invalid");
-
-  const inputBaseInvalidFocus = sx(
-    { outline: `2px solid ${theme.color.error}` },
-    "focus"
-  );
+  const isInvalid = (classname ?? "").split(" ").includes(INPUT_INVALID);
 
   const inputBaseWrapperStyle = sy(
     { position: "relative", width: "100%" },
@@ -188,11 +184,13 @@ export const inputBase = ({
 
       if (validity === true) {
         validityElement.setAttribute("style", "display: none;");
-        removeCx(inputElement, "input-base-invalid", inputBaseInvalidFocus);
+        removeCx(inputElement, INPUT_INVALID);
+        addCx(inputElement);
       } else {
         validityElement.setAttribute("style", "display: block;");
         validityElement.textContent = validity;
-        addCx(inputElement, "input-base-invalid", inputBaseInvalidFocus);
+        removeCx(inputElement);
+        addCx(inputElement, INPUT_INVALID);
       }
 
       return;

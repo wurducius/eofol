@@ -11,7 +11,7 @@ const sxStyleCache: string[] = [];
 
 const sx = (style: CSSObject, pseudoSelector?: string, forceInject?: boolean) =>
   injectStyle(
-    style,
+    { ...style, pseudoselector: pseudoSelector ?? "" },
     sxHash(style, seed),
     sxStyleCache,
     pseudoSelector,

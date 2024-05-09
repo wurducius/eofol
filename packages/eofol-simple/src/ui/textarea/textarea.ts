@@ -7,6 +7,7 @@ import {
   addCx,
   removeCx,
 } from "@eofol/eofol";
+import { INPUT_INVALID } from "../../util/validation";
 
 const textAreaBaseClass = sy(
   {
@@ -64,15 +65,19 @@ export const textarea = ({
 }) => {
   const theme = getTheme();
 
-  const isInvalid = classname?.split(" ").includes("input-invalid");
+  const isInvalid = classname?.split(" ").includes(INPUT_INVALID);
 
-  const validStyle = sx({
-    border: `1px solid ${
-      isInvalid ? theme.color.error : theme.color.secondary
-    }`,
+  const validBorderStyle = sx({
+    border: `1px solid ${theme.color.secondary}`,
   });
-  const focusStyle = sx({ outline: `2px solid ${theme.color.secondary}` });
-  const invalidFocusStyle = sx({ outline: `2px solid #fc8181` });
+  const invalidBorderStyle = sx({
+    border: `1px solid ${theme.color.error}`,
+  });
+  const validFocusStyle = sx({
+    outline: `2px solid ${theme.color.secondary}`,
+    border: "inherit",
+  });
+  const invalidFocusStyle = sx({ outline: `2px solid ${theme.color.error}` });
 
   const wrapperElement = createElement(
     "div",
@@ -82,7 +87,8 @@ export const textarea = ({
         backgroundColor: theme.color.backgroundElevation,
         cursor: "text",
       }),
-      validStyle,
+      isInvalid && INPUT_INVALID,
+      isInvalid ? invalidBorderStyle : validBorderStyle,
     ],
     undefined,
     { id: "textarea-wrapper-" + name }
@@ -122,12 +128,13 @@ export const textarea = ({
       // @ts-ignore
       onfocus: () => {
         const element = document.getElementById("textarea-wrapper-" + name);
-        addCx(element, isInvalid ? invalidFocusStyle : focusStyle);
+        removeCx(element, validFocusStyle, invalidFocusStyle);
+        addCx(element, isInvalid ? invalidFocusStyle : validFocusStyle);
       },
       // @ts-ignore
       onblur: (e) => {
         const element = document.getElementById("textarea-wrapper-" + name);
-        removeCx(element, invalidFocusStyle, focusStyle);
+        removeCx(element, validFocusStyle, invalidFocusStyle);
 
         if (onBlur) {
           onBlur(e.target.value);

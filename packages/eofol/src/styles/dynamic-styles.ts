@@ -30,7 +30,7 @@ export const injectCSS = (css: string) => {
 };
 
 export const injectStyle = (
-  style: CSSObject,
+  style: CSSObject & { pseudoselector?: string },
   classname: string,
   styleCache: string[],
   pseudoSelector?: string,

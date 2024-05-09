@@ -29,15 +29,6 @@ const button = ({
     fontWeight: 500,
   });
 
-  const hoverStyle = sx(
-    {
-      backgroundColor: theme.color.primaryDarker,
-      color: "#000000",
-      border: `1px solid ${theme.color.primaryLighter}`,
-    },
-    ":hover"
-  );
-
   const getButtonStyle = (isSecondary: boolean, isActive?: boolean) => ({
     fontSize: theme.typography.text.fontSize,
     backgroundColor: isActive ? theme.color.primary : "black",
@@ -76,7 +67,6 @@ const button = ({
       full && "button-full",
       disabled && "button-disabled",
       baseStyle,
-      hoverStyle,
       schemeStyle,
       schemeHoverStyle,
       styles,

@@ -2,6 +2,7 @@ import { NumberInputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import { getTheme, sx, cx, createStyle } from "@eofol/eofol";
 import div from "../primitive/div";
+import { INPUT_INVALID } from "../../util/validation";
 
 const hideArrowsClassname = "number-input-hide-arrows";
 
@@ -33,12 +34,25 @@ const numberInput = (props: NumberInputProps) => {
     height: "24px",
     backgroundColor: theme.color.backgroundElevation,
     color: theme.color.secondary,
-    border: `1px solid ${theme.color.secondary}`,
   });
 
-  const focusStyle = sx(
-    { outline: `2px solid ${theme.color.secondary}` },
-    ":focus:not(.input-invalid)"
+  const invalidStyle = sx(
+    { border: `1px solid ${theme.color.error}`, position: "relative" },
+    `.${INPUT_INVALID}`
+  );
+
+  const validStyle = sx(
+    { border: `1px solid ${theme.color.secondary}`, position: "relative" },
+    `:not(.${INPUT_INVALID})`
+  );
+
+  const inputBaseFocus = sx(
+    { outline: `2px solid ${theme.color.secondary}`, position: "relative" },
+    `:not(.${INPUT_INVALID}):focus`
+  );
+  const inputBaseInvalidFocus = sx(
+    { outline: `2px solid ${theme.color.error}`, position: "relative" },
+    `.${INPUT_INVALID}:focus`
   );
 
   const handleArrowSpin = (parity: number) => () => {
@@ -123,7 +137,10 @@ const numberInput = (props: NumberInputProps) => {
     // @ts-ignore
     classname: cx(
       baseStyle,
-      focusStyle,
+      validStyle,
+      invalidStyle,
+      inputBaseInvalidFocus,
+      inputBaseFocus,
       hideArrows && hideArrowsClassname,
       props.classname
     ),

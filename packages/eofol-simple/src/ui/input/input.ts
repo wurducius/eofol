@@ -1,6 +1,7 @@
 import { InputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import { getTheme, cx, sx } from "@eofol/eofol";
+import { INPUT_INVALID } from "../../util/validation";
 
 export const input = (props: InputProps) => {
   const theme = getTheme();
@@ -20,7 +21,7 @@ export const input = (props: InputProps) => {
 
   const focusStyle = sx(
     { outline: `2px solid ${theme.color.secondary}` },
-    ":focus:not(.input-invalid)"
+    `:focus:not(.${INPUT_INVALID})`
   );
 
   return inputBase({
