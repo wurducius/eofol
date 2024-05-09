@@ -1,4 +1,12 @@
-import { createElement, sy, cx, sx, getTheme } from "@eofol/eofol";
+import {
+  createElement,
+  sy,
+  cx,
+  sx,
+  getTheme,
+  addCx,
+  removeCx,
+} from "@eofol/eofol";
 
 const textAreaBaseClass = sy(
   {
@@ -114,27 +122,15 @@ export const textarea = ({
       // @ts-ignore
       onfocus: () => {
         const element = document.getElementById("textarea-wrapper-" + name);
-        if (element) {
-          element.className =
-            element.className +
-            " " +
-            (isInvalid ? invalidFocusStyle : focusStyle);
-        }
+        addCx(element, isInvalid ? invalidFocusStyle : focusStyle);
       },
       // @ts-ignore
       onblur: (e) => {
         const element = document.getElementById("textarea-wrapper-" + name);
-        if (element) {
-          element.className = element.className
-            .split(" ")
-            .filter(
-              (clazz) => clazz !== invalidFocusStyle && clazz !== focusStyle
-            )
-            .join(" ");
+        removeCx(element, invalidFocusStyle, focusStyle);
 
-          if (onBlur) {
-            onBlur(e.target.value);
-          }
+        if (onBlur) {
+          onBlur(e.target.value);
         }
       },
     }

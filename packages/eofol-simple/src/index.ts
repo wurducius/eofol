@@ -1,3 +1,5 @@
+// ----------------- TYPOGRAPHY -----------------
+
 import typography from "./ui/typography/typography";
 export const h1 = typography.h1;
 export const h2 = typography.h2;
@@ -7,6 +9,28 @@ export const h5 = typography.h5;
 export const h6 = typography.h6;
 export const p = typography.p;
 export const code = typography.code;
+export const pre = typography.pre;
+export const kbd = typography.kbd;
+export const blockquote = typography.blockquote;
+export const abbr = typography.abbr;
+export const small = typography.small;
+export const strong = typography.strong;
+export const mark = typography.mark;
+export const em = typography.em;
+export const del = typography.del;
+export const ins = typography.ins;
+export const sub = typography.sub;
+export const sup = typography.sup;
+export const address = typography.address;
+
+// ----------------- PRIMITIVE -----------------
+
+import primitiveX from "./ui/primitive";
+export const center = primitiveX.center;
+export const div = primitiveX.div;
+export const flex = primitiveX.flex;
+
+// ----------------- COMPONENTS -----------------
 
 import aX from "./ui/link/link";
 export const a = aX;
@@ -49,11 +73,6 @@ export const notify = notifyX;
 import numberInputX from "./ui/number-input/number-input";
 export const numberInput = numberInputX.numberInput;
 
-import primitiveX from "./ui/primitive";
-export const center = primitiveX.center;
-export const div = primitiveX.div;
-export const flex = primitiveX.flex;
-
 import selectX from "./ui/select/select";
 export const select = selectX;
 
@@ -69,6 +88,8 @@ export const textarea = textareaX.textarea;
 import tooltipX from "./ui/tooltip/tooltip";
 export const tooltip = tooltipX;
 
+// ----------------- CUSTOM -----------------
+
 import defineAccordionX from "./custom/accordion/accordion";
 export const defineAccordion = defineAccordionX;
 
@@ -83,3 +104,17 @@ export const defineSelectSearch = selectSearchX.defineSelectSearch;
 
 import defineTabsX from "./custom/tabs/tabs";
 export const defineTabs = defineTabsX;
+
+// ----------------- UTIL -----------------
+
+import validationX from "./util/validation";
+export const validateIsInteger = validationX.validateIsInteger;
+export const validateIsNumber = validationX.validateIsNumber;
+export const validateIsOverMin = validationX.validateIsOverMin;
+export const validateIsPositive = validationX.validateIsPositive;
+export const validateIsRequired = validationX.validateIsRequired;
+export const validateIsStrictlyOverMin = validationX.validateIsStrictlyOverMin;
+export const validateIsUnderMax = validationX.validateIsUnderMax;
+export const integerValidation = validationX.integerValidation;
+export const decimalValidation = validationX.decimalValidation;
+export const decimalPositiveValidation = validationX.decimalPositiveValidation;

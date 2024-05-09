@@ -14,4 +14,28 @@ export const ax = (
 export const cx = (...styles: EofolClassnameSingle[]) =>
   styles.filter(Boolean).join(" ");
 
-export default { ax, cx };
+export const addCx = (
+  element: Element | null,
+  ...styles: EofolClassnameSingle[]
+) => {
+  if (element) {
+    element.className += styles.reduce(
+      (acc, next) => (next ? `${acc} ${next}` : acc),
+      ""
+    );
+  }
+};
+
+export const removeCx = (
+  element: Element | null,
+  ...styles: EofolClassnameSingle[]
+) => {
+  if (element) {
+    element.className = element.className
+      .split(" ")
+      .filter((clazz) => !styles.includes(clazz))
+      .join(" ");
+  }
+};
+
+export default { ax, cx, addCx, removeCx };

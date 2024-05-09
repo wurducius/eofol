@@ -1,4 +1,13 @@
-import { ax, createElement, cx, getTheme, sx, sy } from "@eofol/eofol";
+import {
+  addCx,
+  ax,
+  createElement,
+  cx,
+  getTheme,
+  removeCx,
+  sx,
+  sy,
+} from "@eofol/eofol";
 import { InputBaseProps } from "@eofol/eofol-types";
 
 const checkValidity = (validation: any, nextVal: any) => {
@@ -172,20 +181,11 @@ export const inputBase = ({
 
       if (validity === true) {
         validityElement.setAttribute("style", "display: none;");
-        inputElement.className = inputElement.className
-          .split(" ")
-          .filter(
-            (item) =>
-              item !== "input-base-invalid" && item !== inputBaseInvalidFocus
-          )
-          .join(" ");
+        removeCx(inputElement, "input-base-invalid", inputBaseInvalidFocus);
       } else {
         validityElement.setAttribute("style", "display: block;");
         validityElement.textContent = validity;
-        inputElement.className =
-          inputElement.className +
-          " input-base-invalid " +
-          inputBaseInvalidFocus;
+        addCx(inputElement, "input-base-invalid", inputBaseInvalidFocus);
       }
 
       return;

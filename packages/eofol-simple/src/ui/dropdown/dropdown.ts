@@ -1,4 +1,4 @@
-import { createElement, cx, getTheme, sx } from "@eofol/eofol";
+import { addCx, createElement, cx, getTheme, removeCx, sx } from "@eofol/eofol";
 import button from "../button/button";
 
 const openMenu = (id: string) => {
@@ -59,15 +59,12 @@ const dropdown = ({
       // @ts-ignore
       onmouseover: () => {
         openMenu(id);
-        buttonElement.className = buttonElement.className + " " + hoverStyle;
+        addCx(buttonElement, hoverStyle);
       },
       // @ts-ignore
       onmouseleave: () => {
         closeMenu(id);
-        buttonElement.className = buttonElement.className
-          .split(" ")
-          .filter((clazz: string) => clazz !== hoverStyle)
-          .join(" ");
+        removeCx(buttonElement, hoverStyle);
       },
     }
   );

@@ -47,6 +47,8 @@ export const debounce = debounceX;
 import simpleUtils from "./util/simple";
 export const ax = simpleUtils.ax;
 export const cx = simpleUtils.cx;
+export const addCx = simpleUtils.addCx;
+export const removeCx = simpleUtils.removeCx;
 
 import cryptoX from "./util/crypto";
 export const generateId = cryptoX.generateId;
