@@ -62,11 +62,20 @@ const numberInput = (props: NumberInputProps) => {
     const nextVal = isPrevValValid
       ? prevVal + parity * (props.step ?? 1)
       : defaultVal;
-    const clampedMinVal = props.min ? Math.max(nextVal, props.min) : nextVal;
-    const clampedMaxVal = props.max
-      ? Math.min(clampedMinVal, props.max)
-      : clampedMinVal;
-    props.onChange(clampedMaxVal);
+    const clampedMinVal =
+      typeof props.min === "number" ? Math.max(nextVal, props.min) : nextVal;
+    const clampedMaxVal =
+      typeof props.max === "number"
+        ? Math.min(clampedMinVal, props.max)
+        : clampedMinVal;
+    if (
+      !props.validation ||
+      props.validation
+        .map((validationItem) => validationItem(clampedMaxVal))
+        .filter((x) => !x).length == 0
+    ) {
+      props.onChange(clampedMaxVal);
+    }
   };
   const handleArrowUp = handleArrowSpin(1);
   const handleArrowDown = handleArrowSpin(-1);
