@@ -1,5 +1,6 @@
 import { EofolElementNode } from "@eofol/eofol-types";
 import { createElement, cx, getTheme, sx } from "@eofol/eofol";
+import { button } from "../..";
 
 const modal = (
   id: string,
@@ -45,25 +46,19 @@ const modal = (
           createElement(
             "div",
             sx({ display: "flex", justifyContent: "flex-end" }),
-            createElement(
-              "button",
-              undefined,
-              "X",
-              {},
-              {
-                // @ts-ignore
-                onclick: () => {
-                  onClose();
-                },
-              }
-            )
+            button({
+              children: "X",
+              onClick: () => {
+                onClose();
+              },
+            })
           ),
           createElement("div", sx({ fontSize: "32px" }), title),
           createElement("div", undefined, children),
           controls ??
-            createElement("button", undefined, "Let's go", undefined, {
-              // @ts-ignore
-              onclick: () => {
+            button({
+              children: "Let's go",
+              onClick: () => {
                 onConfirm();
               },
             }),
