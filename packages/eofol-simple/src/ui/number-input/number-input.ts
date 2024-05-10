@@ -37,21 +37,21 @@ const numberInput = (props: NumberInputProps) => {
   });
 
   const invalidStyle = sx(
-    { border: `1px solid ${theme.color.error}`, position: "relative" },
+    { border: `1px solid ${theme.color.error}` },
     `.${INPUT_INVALID}`
   );
 
   const validStyle = sx(
-    { border: `1px solid ${theme.color.secondary}`, position: "relative" },
+    { border: `1px solid ${theme.color.secondary}` },
     `:not(.${INPUT_INVALID})`
   );
 
   const inputBaseFocus = sx(
-    { outline: `2px solid ${theme.color.secondary}`, position: "relative" },
+    { outline: `2px solid ${theme.color.secondary}` },
     `:not(.${INPUT_INVALID}):focus`
   );
   const inputBaseInvalidFocus = sx(
-    { outline: `2px solid ${theme.color.error}`, position: "relative" },
+    { outline: `2px solid ${theme.color.error}` },
     `.${INPUT_INVALID}:focus`
   );
 
@@ -74,29 +74,39 @@ const numberInput = (props: NumberInputProps) => {
   const arrowCustomStyle = sx({
     height: "14px",
     backgroundColor: theme.color.backgroundElevation,
-    border: `1px solid ${theme.color.primary}`,
-    color: theme.color.primary,
+    color: theme.color.secondary,
     fontSize: "10px",
     cursor: "pointer",
+    fontWeight: 700,
+  });
+  const arrowCustomUpStyle = sx({
+    borderLeft: `1px solid ${theme.color.secondary}`,
+  });
+  const arrowCustomDownStyle = sx({
+    borderLeft: `1px solid ${theme.color.secondary}`,
+    borderTop: `1px solid ${theme.color.secondary}`,
   });
   const arrowCustomHoverStyle = sx(
     {
-      backgroundColor: theme.color.primary,
-      border: `1px solid #000000`,
+      backgroundColor: theme.color.secondary,
       color: "#000000",
     },
     ":hover"
   );
   const arrowCustomFocusStyle = sx(
     {
-      backgroundColor: theme.color.primary,
-      border: `1px solid #000000`,
+      backgroundColor: theme.color.secondary,
       color: "#000000",
     },
     ":focus"
   );
   const upArrow = div(
-    [arrowCustomStyle, arrowCustomHoverStyle, arrowCustomFocusStyle],
+    [
+      arrowCustomStyle,
+      arrowCustomUpStyle,
+      arrowCustomHoverStyle,
+      arrowCustomFocusStyle,
+    ],
     "+",
     undefined,
     {
@@ -105,7 +115,12 @@ const numberInput = (props: NumberInputProps) => {
     }
   );
   const downArrow = div(
-    [arrowCustomStyle, arrowCustomHoverStyle, arrowCustomFocusStyle],
+    [
+      arrowCustomStyle,
+      arrowCustomDownStyle,
+      arrowCustomHoverStyle,
+      arrowCustomFocusStyle,
+    ],
     "-",
     undefined,
     {

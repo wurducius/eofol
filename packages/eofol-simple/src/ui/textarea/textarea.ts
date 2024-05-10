@@ -75,7 +75,6 @@ export const textarea = ({
   });
   const validFocusStyle = sx({
     outline: `2px solid ${theme.color.secondary}`,
-    border: "inherit",
   });
   const invalidFocusStyle = sx({ outline: `2px solid ${theme.color.error}` });
 
