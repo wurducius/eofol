@@ -1,7 +1,7 @@
 import { updateTarget } from "../core/render-target";
 import { updateCustom } from "../core/custom-element";
 import { customElementRegistry, targetElementRegistry } from "../core/registry";
-import { mergeDeep } from "../util/util";
+import { mergeDeep } from "../util/merge-deep";
 import { generateId } from "../util/crypto";
 
 type StoreState = any;

@@ -7,14 +7,14 @@ export type SelectSearchProps = {
   value: string;
   defaultOptions: SelectOptions;
   onChange: undefined | ((nextVal: string) => void);
-  inputElementId: string;
+  name: string;
 };
 
 export type DefineSelectSearchProps = {
   options: SelectOptions;
   storeName: string;
   tagName: string;
-  inputElementId: string;
+  name: string;
 };
 
 export type TypographyNodeContent = (string | Element)[] | (string | Element);

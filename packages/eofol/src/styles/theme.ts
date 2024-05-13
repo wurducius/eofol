@@ -1,6 +1,6 @@
 import { Theme } from "@eofol/eofol-types";
 import { defaultTheme } from "./default-theme";
-import { mergeDeep } from "../util/util";
+import { mergeDeep } from "../util/merge-deep";
 import { clearStyle, createStyleObj } from "./create-style";
 
 const createTheme = (styles: Partial<Theme>) => mergeDeep(defaultTheme, styles);

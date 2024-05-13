@@ -104,13 +104,7 @@ sy(
 );
 
 const searchSelect = (
-  {
-    options,
-    value,
-    defaultOptions,
-    onChange,
-    inputElementId,
-  }: SelectSearchProps,
+  { options, value, defaultOptions, onChange, name }: SelectSearchProps,
   setState: any
 ) => {
   const theme = getTheme();
@@ -180,7 +174,7 @@ const searchSelect = (
 
   const searchSelectInputElement = input({
     value,
-    name: inputElementId,
+    name,
     onInput: (nextVal: string) => {
       filterOptions(nextVal);
     },
@@ -279,7 +273,7 @@ const defineSelectSearch = ({
   options,
   storeName,
   tagName,
-  inputElementId,
+  name,
 }: DefineSelectSearchProps) => {
   defineBuiltinElement<SelectSearchProps>({
     tagName,
@@ -289,12 +283,12 @@ const defineSelectSearch = ({
       const data = selector(storeName);
       return searchSelect(
         // @ts-ignore
-        { ...state, onChange: data.onChange, inputElementId },
+        { ...state, onChange: data.onChange, name },
         setState
       );
     },
     effect: (state) => {
-      const inputElement = document.getElementById(inputElementId);
+      const inputElement = document.getElementById(name);
       if (inputElement) {
         inputElement.focus();
         // @ts-ignore

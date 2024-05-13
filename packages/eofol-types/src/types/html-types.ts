@@ -24,6 +24,8 @@ export type InputTypeAttribute =
   | undefined;
 
 export type InputCommonProps<T> = {
+  name: string;
+
   onChange: (nextValue: T) => void;
   onBlur?: (nextValue: T) => void;
   onInput?: (nextValue: T) => void;
@@ -33,14 +35,16 @@ export type InputCommonProps<T> = {
   onKeyUp?: (event: KeyboardEvent) => void;
   onKeyPress?: (event: KeyboardEvent) => void;
   onPaste?: (event: ClipboardEvent) => void;
+
   classname?: string;
-  name?: string;
+
   placeholder?: string;
   pattern?: string;
   required?: boolean;
   readonly?: boolean;
   minLength?: number;
   maxLength?: number;
+
   disabled?: boolean;
   spellcheck?: boolean;
   autocomplete?: boolean;
