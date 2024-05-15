@@ -1,3 +1,5 @@
+import { SIZE } from "./props";
+
 export type InputTypeAttribute =
   | "button"
   | "checkbox"
@@ -58,6 +60,8 @@ export type InputCommonProps<T> = {
   disabled?: boolean;
   spellcheck?: boolean;
   autocomplete?: boolean;
+
+  size?: SIZE;
 
   validation?: ((nextVal: T) => true | string)[];
   invalid?: string | boolean;

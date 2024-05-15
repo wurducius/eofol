@@ -23,8 +23,17 @@ export const defaultTheme: Theme = {
   },
   typography: {
     default: { fontFamily: "sans-serif" },
+    text: { fontSize: "16px" },
   },
-  size: {},
+  size: {
+    sm: "24px",
+    md: "32px",
+    lg: "40px",
+    xl: "48px",
+    miniSm: "12px",
+    miniMd: "16px",
+    miniLg: "20px",
+  },
   spacing: {
     space1: "8px",
     space2: "16px",

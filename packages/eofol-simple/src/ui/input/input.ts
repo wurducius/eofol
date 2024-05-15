@@ -1,25 +1,14 @@
 import { InputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
-import { getTheme, cx, sx, getThemeStyles } from "@eofol/eofol";
+import { cx, getThemeStyles } from "@eofol/eofol";
+import { getInputSizeStyle } from "../../util/inputs";
 
 export const input = (props: InputProps) => {
-  const theme = getTheme();
   const themeStyles = getThemeStyles();
 
-  const baseStyle = sx({
-    zIndex: 0,
-    cursor: "text",
-    padding: "2px 10px",
-    marginTop: "8px",
-    marginBottom: "8px",
-    fontSize: theme.typography.text.fontSize,
-    height: "24px",
-    backgroundColor: theme.color.backgroundElevation,
-    color: theme.color.secondary,
-    border: `1px solid ${theme.color.secondary}`,
-  });
+  const baseStyle = themeStyles.inputBase;
   const baseTransitionStyle = themeStyles.inputBaseOutlineTransition;
-
+  const sizeStyle = getInputSizeStyle(props.size);
   const focusStyle = themeStyles.inputFocus;
   const notFocusStyle = themeStyles.inputBaseOutline;
   const errorFocusStyle = themeStyles.inputErrorFocus;
@@ -32,6 +21,7 @@ export const input = (props: InputProps) => {
     classname: cx(
       baseStyle,
       baseTransitionStyle,
+      sizeStyle,
       notFocusStyle,
       focusStyle,
       errorFocusStyle,

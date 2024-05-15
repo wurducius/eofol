@@ -36,7 +36,7 @@ export type Theme = {
   color: Record<string, CSSString>;
   typography: Record<string | "default", TypographyTheme>;
   spacing: Record<string, CSSString>;
-  size: Record<string, CSSValue>;
+  size: Record<string, CSSString>;
   zIndex: Record<string, CSSValue>;
   shape: ShapeTheme;
   breakpoints: BreakpointTheme;

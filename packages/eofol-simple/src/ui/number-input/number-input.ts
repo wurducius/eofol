@@ -10,6 +10,7 @@ import {
   getThemeStyles,
 } from "@eofol/eofol";
 import div from "../primitive/div";
+import { getInputSizeStyle } from "../../util/inputs";
 
 const NUMBER_INPUT_SPINNER_DELAY_INTERVAL_MS = 300;
 
@@ -80,18 +81,9 @@ const numberInput = (props: NumberInputProps) => {
   } { -webkit-appearance: none; margin: 0; }`
   );
 
-  const baseStyle = sx({
-    zIndex: 0,
-    cursor: "text",
-    padding: "2px 10px",
-    marginTop: "8px",
-    marginBottom: "8px",
-    fontSize: theme.typography.text.fontSize,
-    height: "24px",
-    backgroundColor: theme.color.backgroundElevation,
-    color: theme.color.secondary,
-  });
+  const baseStyle = themeStyles.inputBase;
   const baseTransitionStyle = themeStyles.inputBaseOutlineTransition;
+  const sizeStyle = getInputSizeStyle(props.size);
   const invalidStyle = themeStyles.inputErrorBorder;
   const validStyle = themeStyles.inputBorder;
   const inputBaseNotFocus = themeStyles.inputBaseOutline;
@@ -320,6 +312,7 @@ const numberInput = (props: NumberInputProps) => {
     classname: cx(
       baseStyle,
       baseTransitionStyle,
+      sizeStyle,
       validStyle,
       invalidStyle,
       inputBaseNotFocus,

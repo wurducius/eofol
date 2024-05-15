@@ -1,4 +1,4 @@
-import { ax, createElement, sy } from "@eofol/eofol/dist";
+import { ax, createElement, sy } from "@eofol/eofol";
 
 const iconButton = ({
   icon,

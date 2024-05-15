@@ -5,6 +5,7 @@ import { defaultTheme } from "./default-theme";
 export const INPUT_INVALID = "input-invalid";
 
 let themeStyles = {
+  inputBase: "",
   inputBaseOutlineTransition: "",
   inputBaseOutline: "",
   inputBorder: "",
@@ -14,10 +15,36 @@ let themeStyles = {
   inputErrorFocusFlat: "",
   inputErrorBorderFlat: "",
   inputFocusFlat: "",
+  inputSizeSm: "",
+  inputSizeMd: "",
+  inputSizeLg: "",
+  inputSizeXl: "",
 };
 
 export const updateThemeStyles = (theme: Theme) => {
   themeStyles = {
+    inputBase: sx({
+      zIndex: 0,
+      cursor: "text",
+      padding: "2px 10px",
+      marginTop: "8px",
+      marginBottom: "8px",
+      fontSize: theme.typography.text.fontSize,
+      backgroundColor: theme.color.backgroundElevation,
+      color: theme.color.secondary,
+    }),
+    inputSizeSm: sx({
+      height: theme.size.sm,
+    }),
+    inputSizeMd: sx({
+      height: theme.size.md,
+    }),
+    inputSizeLg: sx({
+      height: theme.size.lg,
+    }),
+    inputSizeXl: sx({
+      height: theme.size.xl,
+    }),
     inputBaseOutlineTransition: sx({
       transition: `outline 200ms linear`,
     }),

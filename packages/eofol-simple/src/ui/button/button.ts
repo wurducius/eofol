@@ -1,6 +1,6 @@
 import { createElement, ax } from "@eofol/eofol";
 import { EButton, ESizable, EComponent, getSize } from "../../types";
-import { createStyleObj, getTheme, sx } from "@eofol/eofol";
+import { getTheme, sx } from "@eofol/eofol";
 
 const button = ({
   onClick,
