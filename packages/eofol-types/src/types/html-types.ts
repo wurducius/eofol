@@ -23,6 +23,16 @@ export type InputTypeAttribute =
   | "week"
   | undefined;
 
+export type InputMode =
+  | "search"
+  | "text"
+  | "none"
+  | "tel"
+  | "url"
+  | "email"
+  | "numeric"
+  | "decimal";
+
 export type InputCommonProps<T> = {
   name: string;
 
@@ -50,6 +60,8 @@ export type InputCommonProps<T> = {
   autocomplete?: boolean;
 
   validation?: ((nextVal: T) => true | string)[];
+  invalid?: string | boolean;
+
   value: T;
 };
 
@@ -57,8 +69,13 @@ export type InputBaseNumericProps = {
   min?: number;
   max?: number;
   step?: number;
-  hideArrows?: boolean;
-  arrowStyle?: any;
+  hideArrows?: boolean | "default";
+  // arrowStyle?: any;
+  inputMode?: InputMode;
+  precision?: number;
+  allowOutOfRange?: boolean;
+  format?: (nextVal: number) => string;
+  parse?: (nextStrVal: string) => number;
 };
 
 export type InputTypeProps = {

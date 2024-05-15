@@ -8,6 +8,14 @@ import {
   removeCx,
 } from "@eofol/eofol";
 import { INPUT_INVALID } from "../../util/validation";
+import {
+  INPUT_BORDER,
+  INPUT_ERROR_BORDER,
+  INPUT_ERROR_OUTLINE,
+  INPUT_FOCUS_OUTLINE,
+  INPUT_NO_FOCUS_OUTLINE,
+  INPUT_TRANSITION_STYLE,
+} from "../../styles/input-styles";
 
 const textAreaBaseClass = sy(
   {
@@ -68,15 +76,16 @@ export const textarea = ({
   const isInvalid = classname?.split(" ").includes(INPUT_INVALID);
 
   const validBorderStyle = sx({
-    border: `1px solid ${theme.color.secondary}`,
+    border: INPUT_BORDER(theme),
   });
   const invalidBorderStyle = sx({
-    border: `1px solid ${theme.color.error}`,
+    border: INPUT_ERROR_BORDER(theme),
   });
   const validFocusStyle = sx({
-    outline: `2px solid ${theme.color.secondary}`,
+    outline: INPUT_FOCUS_OUTLINE(theme),
   });
-  const invalidFocusStyle = sx({ outline: `2px solid ${theme.color.error}` });
+  const invalidFocusStyle = sx({ outline: INPUT_ERROR_OUTLINE(theme) });
+  const baseOutlineStyle = sx({ outline: INPUT_NO_FOCUS_OUTLINE });
 
   const wrapperElement = createElement(
     "div",
@@ -85,9 +94,11 @@ export const textarea = ({
         padding: "8px 8px 8px 8px",
         backgroundColor: theme.color.backgroundElevation,
         cursor: "text",
+        transition: INPUT_TRANSITION_STYLE,
       }),
       isInvalid && INPUT_INVALID,
       isInvalid ? invalidBorderStyle : validBorderStyle,
+      baseOutlineStyle,
     ],
     undefined,
     { id: "textarea-wrapper-" + name }
@@ -127,13 +138,14 @@ export const textarea = ({
       // @ts-ignore
       onfocus: () => {
         const element = document.getElementById("textarea-wrapper-" + name);
-        removeCx(element, validFocusStyle, invalidFocusStyle);
+        removeCx(element, validFocusStyle, invalidFocusStyle, baseOutlineStyle);
         addCx(element, isInvalid ? invalidFocusStyle : validFocusStyle);
       },
       // @ts-ignore
       onblur: (e) => {
         const element = document.getElementById("textarea-wrapper-" + name);
         removeCx(element, validFocusStyle, invalidFocusStyle);
+        addCx(element, baseOutlineStyle);
 
         if (onBlur) {
           onBlur(e.target.value);

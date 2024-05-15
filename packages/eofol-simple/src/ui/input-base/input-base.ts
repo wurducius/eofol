@@ -35,6 +35,7 @@ export const inputBase = ({
   classname,
   name,
   type,
+  inputMode,
   placeholder,
   max,
   min,
@@ -51,8 +52,6 @@ export const inputBase = ({
   after,
 }: InputBaseProps) => {
   const theme = getTheme();
-
-  const isInvalid = (classname ?? "").split(" ").includes(INPUT_INVALID);
 
   const inputBaseWrapperStyle = sy(
     { position: "relative", width: "100%" },
@@ -92,6 +91,7 @@ export const inputBase = ({
       ["id", name],
       ["aria-label", name],
       ["type", type],
+      ["inputmode", inputMode],
       ["placeholder", placeholder],
       ["min", min],
       ["max", max],
