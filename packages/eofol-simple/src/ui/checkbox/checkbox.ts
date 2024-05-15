@@ -1,6 +1,7 @@
 import { createElement, ax, sx, getTheme } from "@eofol/eofol";
 import { EInput, ESizable, EComponent, getSize } from "../../types";
 import div from "../primitive/div";
+import { getCheckboxSizeStyle } from "../../util/inputs";
 
 const checkbox = ({
   onChange,
@@ -34,13 +35,7 @@ const checkbox = ({
 
   const inputElement = createElement(
     "input",
-    [
-      "checkbox-size",
-      getSize("checkbox")(size),
-      disabled && "checkbox-disabled",
-      baseStyle,
-      styles,
-    ],
+    ["checkbox-size", disabled && "checkbox-disabled", baseStyle, styles],
     children,
     ax(
       { name, id: name, type: "checkbox" },
@@ -54,14 +49,14 @@ const checkbox = ({
   // @ts-ignore
   inputElement.onblur = onBlur;
 
+  const sizeStyle = getCheckboxSizeStyle(size);
+
   const frontElement = div(
     [
       sx({
         position: "absolute",
-        top: "0px",
-        right: "0px",
-        width: "24px",
-        height: "24px",
+        top: "auto",
+        right: "auto",
         margin: "8px 4px 8px 4px",
         border: `1px solid ${theme.color.backgroundElevation}`,
         cursor: "pointer",
@@ -75,6 +70,7 @@ const checkbox = ({
         justifyContent: "center",
         alignItems: "center",
       }),
+      sizeStyle,
       sx(
         {
           outline: `2px solid ${theme.color.secondary}`,
@@ -104,6 +100,7 @@ const checkbox = ({
   const wrapperElement = div(
     sx({
       position: "relative",
+      display: "flex",
       height: "32px",
       width: "32px",
       margin: "8px 4px 8px 4px",

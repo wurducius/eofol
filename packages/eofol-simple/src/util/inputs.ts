@@ -13,3 +13,16 @@ export const getInputSizeStyle = (size: SIZE) => {
   }
   return themeStyles.inputSizeMd;
 };
+
+export const getCheckboxSizeStyle = (size: SIZE) => {
+  const themeStyles = getThemeStyles();
+
+  if (size === "sm") {
+    return themeStyles.checkboxSizeSm;
+  } else if (size === "lg") {
+    return themeStyles.checkboxSizeLg;
+  } else if (size === "xl") {
+    return themeStyles.checkboxSizeXl;
+  }
+  return themeStyles.checkboxSizeMd;
+};

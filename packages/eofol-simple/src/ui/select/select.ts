@@ -5,6 +5,7 @@ import {
   ESizable,
   getSize,
 } from "../../types";
+import { getInputSizeStyle } from "../../util/inputs";
 
 const renderOption = (
   option: { title: string; id: string },
@@ -49,6 +50,8 @@ const select = ({
     border: `1px solid ${theme.color.secondary}`,
   });
 
+  const sizeStyle = getInputSizeStyle(size);
+
   const focusStyle = sx(
     { outline: `2px solid ${theme.color.secondary}` },
     ":focus"
@@ -59,7 +62,7 @@ const select = ({
     [
       "select-base",
       disabled && "select-disabled",
-      getSize("select")(size),
+      sizeStyle,
       baseStyle,
       focusStyle,
       styles,

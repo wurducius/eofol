@@ -30,9 +30,12 @@ export const defaultTheme: Theme = {
     md: "32px",
     lg: "40px",
     xl: "48px",
-    miniSm: "12px",
-    miniMd: "16px",
-    miniLg: "20px",
+    checkbox: {
+      sm: "12px",
+      md: "16px",
+      lg: "20px",
+      xl: "24px",
+    },
   },
   spacing: {
     space1: "8px",

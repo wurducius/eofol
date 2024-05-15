@@ -19,6 +19,10 @@ let themeStyles = {
   inputSizeMd: "",
   inputSizeLg: "",
   inputSizeXl: "",
+  checkboxSizeSm: "",
+  checkboxSizeMd: "",
+  checkboxSizeLg: "",
+  checkboxSizeXl: "",
 };
 
 export const updateThemeStyles = (theme: Theme) => {
@@ -73,6 +77,22 @@ export const updateThemeStyles = (theme: Theme) => {
     inputErrorFocusFlat: sx({ outline: `2px solid ${theme.color.error}` }),
     inputErrorBorderFlat: sx({ border: `1px solid ${theme.color.error}` }),
     inputFocusFlat: sx({ outline: `2px solid ${theme.color.secondary}` }),
+    checkboxSizeSm: sx({
+      height: theme.size.checkbox.sm,
+      width: theme.size.checkbox.sm,
+    }),
+    checkboxSizeMd: sx({
+      height: theme.size.checkbox.md,
+      width: theme.size.checkbox.md,
+    }),
+    checkboxSizeLg: sx({
+      height: theme.size.checkbox.lg,
+      width: theme.size.checkbox.lg,
+    }),
+    checkboxSizeXl: sx({
+      height: theme.size.checkbox.xl,
+      width: theme.size.checkbox.xl,
+    }),
   };
 };
 

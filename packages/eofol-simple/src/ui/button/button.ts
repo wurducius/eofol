@@ -1,6 +1,7 @@
 import { createElement, ax } from "@eofol/eofol";
 import { EButton, ESizable, EComponent, getSize } from "../../types";
 import { getTheme, sx } from "@eofol/eofol";
+import { getInputSizeStyle } from "../../util/inputs";
 
 const button = ({
   onClick,
@@ -23,11 +24,12 @@ const button = ({
 
   const baseStyle = sx({
     cursor: "pointer",
-    minHeight: "36px",
     padding: "0 16px",
     fontSize: theme.typography.text.fontSize,
     fontWeight: 500,
   });
+
+  const sizeStyle = getInputSizeStyle(size);
 
   const getButtonStyle = (isSecondary: boolean, isActive?: boolean) => ({
     fontSize: theme.typography.text.fontSize,
@@ -63,7 +65,7 @@ const button = ({
     "button",
     [
       "button-base",
-      getSize("button")(size),
+      sizeStyle,
       full && "button-full",
       disabled && "button-disabled",
       baseStyle,
