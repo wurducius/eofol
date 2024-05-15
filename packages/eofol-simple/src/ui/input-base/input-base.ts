@@ -1,4 +1,5 @@
 import {
+  INPUT_INVALID,
   addCx,
   ax,
   createElement,
@@ -10,7 +11,6 @@ import {
 } from "@eofol/eofol";
 import { EofolElementNode, InputBaseProps } from "@eofol/eofol-types";
 import div from "../primitive/div";
-import { INPUT_INVALID } from "../../util/validation";
 
 const checkValidity = (validation: any, nextVal: any) => {
   // @ts-ignore

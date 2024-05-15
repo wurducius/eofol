@@ -44,6 +44,11 @@ import themeX from "./styles/theme";
 export const getTheme = themeX.getTheme;
 export const setTheme = themeX.setTheme;
 
+import themeStylesX from "./styles/theme-styles";
+export const getThemeStyles = themeStylesX.getThemeStyles;
+export const updateThemeStyles = themeStylesX.updateThemeStyles;
+export const INPUT_INVALID = themeStylesX.INPUT_INVALID;
+
 // ----------------- RUNTIME -----------------
 
 import breakpointX from "./runtime/breakpoint";

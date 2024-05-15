@@ -6,16 +6,10 @@ import {
   getTheme,
   addCx,
   removeCx,
+  getThemeStyles,
+  ax,
+  INPUT_INVALID,
 } from "@eofol/eofol";
-import { INPUT_INVALID } from "../../util/validation";
-import {
-  INPUT_BORDER,
-  INPUT_ERROR_BORDER,
-  INPUT_ERROR_OUTLINE,
-  INPUT_FOCUS_OUTLINE,
-  INPUT_NO_FOCUS_OUTLINE,
-  INPUT_TRANSITION_STYLE,
-} from "../../styles/input-styles";
 
 const textAreaBaseClass = sy(
   {
@@ -63,6 +57,8 @@ export const textarea = ({
   onBlur,
   classname,
   resize,
+  readonly,
+  disabled,
 }: {
   name: string;
   value?: string;
@@ -70,22 +66,19 @@ export const textarea = ({
   onBlur?: (nextVal: string) => void;
   classname?: string;
   resize?: Resize;
+  readonly?: boolean;
+  disabled?: boolean;
 }) => {
   const theme = getTheme();
+  const themeStyles = getThemeStyles();
 
   const isInvalid = classname?.split(" ").includes(INPUT_INVALID);
 
-  const validBorderStyle = sx({
-    border: INPUT_BORDER(theme),
-  });
-  const invalidBorderStyle = sx({
-    border: INPUT_ERROR_BORDER(theme),
-  });
-  const validFocusStyle = sx({
-    outline: INPUT_FOCUS_OUTLINE(theme),
-  });
-  const invalidFocusStyle = sx({ outline: INPUT_ERROR_OUTLINE(theme) });
-  const baseOutlineStyle = sx({ outline: INPUT_NO_FOCUS_OUTLINE });
+  const validBorderStyle = themeStyles.inputBorder;
+  const invalidBorderStyle = themeStyles.inputErrorBorderFlat;
+  const validFocusStyle = themeStyles.inputFocusFlat;
+  const invalidFocusStyle = themeStyles.inputErrorFocusFlat;
+  const baseOutlineStyle = themeStyles.inputBaseOutline;
 
   const wrapperElement = createElement(
     "div",
@@ -94,8 +87,8 @@ export const textarea = ({
         padding: "8px 8px 8px 8px",
         backgroundColor: theme.color.backgroundElevation,
         cursor: "text",
-        transition: INPUT_TRANSITION_STYLE,
       }),
+      themeStyles.inputBaseOutlineTransition,
       isInvalid && INPUT_INVALID,
       isInvalid ? invalidBorderStyle : validBorderStyle,
       baseOutlineStyle,
@@ -125,11 +118,15 @@ export const textarea = ({
       classname
     ),
     value,
-    {
-      "aria-label": name,
-      id: name,
-      name,
-    },
+    ax(
+      {
+        "aria-label": name,
+        id: name,
+        name,
+      },
+      ["disabled", disabled],
+      ["readonly", readonly]
+    ),
     {
       // @ts-ignore
       onchange: (e) => {

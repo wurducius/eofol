@@ -1,16 +1,15 @@
 import { NumberInputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
-import { getTheme, sx, cx, createStyle, addCx, removeCx } from "@eofol/eofol";
-import div from "../primitive/div";
-import { INPUT_INVALID } from "../../util/validation";
 import {
-  INPUT_BORDER,
-  INPUT_ERROR_BORDER,
-  INPUT_ERROR_OUTLINE,
-  INPUT_FOCUS_OUTLINE,
-  INPUT_NO_FOCUS_OUTLINE,
-  INPUT_TRANSITION_STYLE,
-} from "../../styles/input-styles";
+  getTheme,
+  sx,
+  cx,
+  createStyle,
+  addCx,
+  removeCx,
+  getThemeStyles,
+} from "@eofol/eofol";
+import div from "../primitive/div";
 
 const NUMBER_INPUT_SPINNER_DELAY_INTERVAL_MS = 300;
 
@@ -51,6 +50,7 @@ const parseValue =
 
 const numberInput = (props: NumberInputProps) => {
   const theme = getTheme();
+  const themeStyles = getThemeStyles();
 
   const showDefaultArrows = props.hideArrows === "default";
   const showCustomArrows = !showDefaultArrows && !props.hideArrows;
@@ -90,31 +90,13 @@ const numberInput = (props: NumberInputProps) => {
     height: "24px",
     backgroundColor: theme.color.backgroundElevation,
     color: theme.color.secondary,
-    transition: INPUT_TRANSITION_STYLE,
   });
-
-  const invalidStyle = sx(
-    { border: INPUT_ERROR_BORDER(theme) },
-    `.${INPUT_INVALID}`
-  );
-
-  const validStyle = sx(
-    { border: INPUT_BORDER(theme) },
-    `:not(.${INPUT_INVALID})`
-  );
-
-  const inputBaseNotFocus = sx(
-    { outline: INPUT_NO_FOCUS_OUTLINE },
-    `:not(:focus)`
-  );
-  const inputBaseFocus = sx(
-    { outline: INPUT_FOCUS_OUTLINE(theme) },
-    `:not(.${INPUT_INVALID}):focus`
-  );
-  const inputBaseInvalidFocus = sx(
-    { outline: INPUT_ERROR_OUTLINE(theme) },
-    `.${INPUT_INVALID}:focus`
-  );
+  const baseTransitionStyle = themeStyles.inputBaseOutlineTransition;
+  const invalidStyle = themeStyles.inputErrorBorder;
+  const validStyle = themeStyles.inputBorder;
+  const inputBaseNotFocus = themeStyles.inputBaseOutline;
+  const inputBaseFocus = themeStyles.inputFocus;
+  const inputBaseInvalidFocus = themeStyles.inputErrorFocus;
 
   const numberInputSpinnerDisabled = sx({
     cursor: "not-allowed",
@@ -337,6 +319,7 @@ const numberInput = (props: NumberInputProps) => {
     // @ts-ignore
     classname: cx(
       baseStyle,
+      baseTransitionStyle,
       validStyle,
       invalidStyle,
       inputBaseNotFocus,

@@ -1,5 +1,3 @@
-export const INPUT_INVALID = "input-invalid";
-
 export const validateIsNumber = (val: number) => {
   const parsedVal = Number(val);
   if (!Number.isFinite(parsedVal) || Number.isNaN(parsedVal)) {

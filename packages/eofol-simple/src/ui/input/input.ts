@@ -1,15 +1,10 @@
 import { InputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
-import { getTheme, cx, sx } from "@eofol/eofol";
-import { INPUT_INVALID } from "../../util/validation";
-import {
-  INPUT_FOCUS_OUTLINE,
-  INPUT_NO_FOCUS_OUTLINE,
-  INPUT_TRANSITION_STYLE,
-} from "../../styles/input-styles";
+import { getTheme, cx, sx, getThemeStyles } from "@eofol/eofol";
 
 export const input = (props: InputProps) => {
   const theme = getTheme();
+  const themeStyles = getThemeStyles();
 
   const baseStyle = sx({
     zIndex: 0,
@@ -22,19 +17,28 @@ export const input = (props: InputProps) => {
     backgroundColor: theme.color.backgroundElevation,
     color: theme.color.secondary,
     border: `1px solid ${theme.color.secondary}`,
-    transition: INPUT_TRANSITION_STYLE,
   });
+  const baseTransitionStyle = themeStyles.inputBaseOutlineTransition;
 
-  const focusStyle = sx(
-    { outline: INPUT_FOCUS_OUTLINE(theme) },
-    `:focus:not(.${INPUT_INVALID})`
-  );
-  const notFocusStyle = sx({ outline: INPUT_NO_FOCUS_OUTLINE }, `:not(:focus)`);
+  const focusStyle = themeStyles.inputFocus;
+  const notFocusStyle = themeStyles.inputBaseOutline;
+  const errorFocusStyle = themeStyles.inputErrorFocus;
+  const borderStyle = themeStyles.inputBorder;
+  const errorBorderStyle = themeStyles.inputErrorBorder;
 
   return inputBase({
     ...props,
     type: "text",
-    classname: cx(baseStyle, notFocusStyle, focusStyle, props.classname),
+    classname: cx(
+      baseStyle,
+      baseTransitionStyle,
+      notFocusStyle,
+      focusStyle,
+      errorFocusStyle,
+      borderStyle,
+      errorBorderStyle,
+      props.classname
+    ),
   });
 };
 
