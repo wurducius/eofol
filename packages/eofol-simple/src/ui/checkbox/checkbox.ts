@@ -1,5 +1,5 @@
-import { createElement, ax, sx, getTheme } from "@eofol/eofol";
-import { EInput, ESizable, EComponent, getSize } from "../../types";
+import { createElement, ax, sx, getTheme, getThemeStyles } from "@eofol/eofol";
+import { EInput, ESizable, EComponent } from "../../types";
 import div from "../primitive/div";
 import { getCheckboxSizeStyle } from "../../util/inputs";
 
@@ -14,17 +14,7 @@ const checkbox = ({
   children,
 }: EInput<boolean> & ESizable & EComponent) => {
   const theme = getTheme();
-  /*
-  const baseStyle = sx({
-    width: "24px",
-    height: "24px",
-    accentColor: theme.color.secondary,
-    cursor: "pointer",
-    color: theme.color.backgroundElevation,
-  });
-
-  const hoverStyle = sx({ accentColor: theme.color.secondaryDarker }, `:hover`);
-*/
+  const themeStyles = getThemeStyles();
 
   const baseStyle = sx({
     height: 0,
@@ -32,10 +22,11 @@ const checkbox = ({
     position: "relative",
     margin: "0 0 0 0",
   });
+  const disabledStyle = themeStyles.inputDisabled;
 
   const inputElement = createElement(
     "input",
-    ["checkbox-size", disabled && "checkbox-disabled", baseStyle, styles],
+    [baseStyle, styles],
     children,
     ax(
       { name, id: name, type: "checkbox" },
@@ -71,6 +62,7 @@ const checkbox = ({
         alignItems: "center",
       }),
       sizeStyle,
+      disabled && disabledStyle,
       sx(
         {
           outline: `2px solid ${theme.color.secondary}`,

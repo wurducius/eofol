@@ -1,10 +1,5 @@
-import { createElement, cx, ax, sx, getTheme } from "@eofol/eofol";
-import {
-  EComponentWithoutChildren,
-  EInput,
-  ESizable,
-  getSize,
-} from "../../types";
+import { createElement, ax, sx, getTheme, getThemeStyles } from "@eofol/eofol";
+import { EComponentWithoutChildren, EInput, ESizable } from "../../types";
 import { getInputSizeStyle } from "../../util/inputs";
 
 const renderOption = (
@@ -38,35 +33,23 @@ const select = ({
   ESizable &
   EComponentWithoutChildren) => {
   const theme = getTheme();
+  const themeStyles = getThemeStyles();
 
   const baseStyle = sx({
     padding: "6px 10px",
     marginTop: "8px",
     fontSize: theme.typography.text.fontSize,
-    height: "36px",
-    width: "256px",
     backgroundColor: theme.color.background,
     color: theme.color.secondary,
-    border: `1px solid ${theme.color.secondary}`,
+    width: "100%",
   });
-
+  const borderStyle = themeStyles.inputBorder;
   const sizeStyle = getInputSizeStyle(size);
-
-  const focusStyle = sx(
-    { outline: `2px solid ${theme.color.secondary}` },
-    ":focus"
-  );
+  const focusStyle = themeStyles.inputFocus;
 
   const element = createElement(
     "select",
-    [
-      "select-base",
-      disabled && "select-disabled",
-      sizeStyle,
-      baseStyle,
-      focusStyle,
-      styles,
-    ],
+    [sizeStyle, baseStyle, borderStyle, focusStyle, styles],
     options.map((option) => {
       if ("group" in option && "options" in option) {
         return createElement(

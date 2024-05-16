@@ -1,5 +1,5 @@
-import { createElement, ax } from "@eofol/eofol";
-import { EButton, ESizable, EComponent, getSize } from "../../types";
+import { createElement, ax, getThemeStyles } from "@eofol/eofol";
+import { EButton, ESizable, EComponent } from "../../types";
 import { getTheme, sx } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
 
@@ -21,15 +21,12 @@ const button = ({
   ESizable &
   EComponent) => {
   const theme = getTheme();
+  const themeStyles = getThemeStyles();
 
-  const baseStyle = sx({
-    cursor: "pointer",
-    padding: "0 16px",
-    fontSize: theme.typography.text.fontSize,
-    fontWeight: 500,
-  });
-
+  const baseStyle = themeStyles.buttonBase;
+  const fullStyle = sx({ width: "100%" });
   const sizeStyle = getInputSizeStyle(size);
+  const disabledStyle = themeStyles.inputDisabled;
 
   const getButtonStyle = (isSecondary: boolean, isActive?: boolean) => ({
     fontSize: theme.typography.text.fontSize,
@@ -64,13 +61,12 @@ const button = ({
   const element = createElement(
     "button",
     [
-      "button-base",
       sizeStyle,
-      full && "button-full",
-      disabled && "button-disabled",
       baseStyle,
       schemeStyle,
       schemeHoverStyle,
+      disabled && disabledStyle,
+      full && fullStyle,
       styles,
     ],
     children,

@@ -23,6 +23,8 @@ let themeStyles = {
   checkboxSizeMd: "",
   checkboxSizeLg: "",
   checkboxSizeXl: "",
+  inputDisabled: "",
+  buttonBase: "",
 };
 
 export const updateThemeStyles = (theme: Theme) => {
@@ -92,6 +94,18 @@ export const updateThemeStyles = (theme: Theme) => {
     checkboxSizeXl: sx({
       height: theme.size.checkbox.xl,
       width: theme.size.checkbox.xl,
+    }),
+    inputDisabled: sx({
+      cursor: "not-allowed",
+      backgroundColor: "grey",
+      color: "black",
+      border: "1px solid darkgrey",
+    }),
+    buttonBase: sx({
+      cursor: "pointer",
+      padding: "0 16px",
+      fontSize: theme.typography.text.fontSize,
+      fontWeight: 500,
     }),
   };
 };

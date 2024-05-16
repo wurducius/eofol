@@ -1,5 +1,7 @@
-import { getTheme, sx, cx } from "@eofol/eofol";
+import { getTheme, sx, cx, getThemeStyles } from "@eofol/eofol";
 import { inputBase } from "../input-base/input-base";
+import { getInputSizeStyle } from "../../util/inputs";
+import { SIZE } from "@eofol/eofol-types";
 
 const sliderInput = ({
   value,
@@ -15,6 +17,7 @@ const sliderInput = ({
   disabled,
   readonly,
   scheme,
+  size,
 }: {
   value: string;
   name: string;
@@ -29,19 +32,14 @@ const sliderInput = ({
   readonly?: boolean;
   scheme?: "primary" | "secondary";
   classname?: string;
+  size?: SIZE;
 }) => {
   const theme = getTheme();
 
   const baseStyle = sx({
     color: scheme === "primary" ? theme.color.primary : theme.color.secondary,
   });
-
-  const parentStyle = sx({
-    display: "flex",
-    alignItems: "center",
-    gap: theme.spacing.space2,
-    justifyContent: "center",
-  });
+  const sizeStyle = getInputSizeStyle(size);
 
   return inputBase({
     name,
@@ -62,16 +60,16 @@ const sliderInput = ({
     readonly,
     classname: cx(
       baseStyle,
-      classname,
+      sizeStyle,
       sx({
         marginTop: theme.spacing.space1,
         padding: "0 0 0 0",
         width: "256px",
-        height: "24px",
         accentColor: theme.color.secondary,
         cursor: "pointer",
       }),
-      sx({ accentColor: theme.color.secondaryDarker }, ":hover")
+      sx({ accentColor: theme.color.secondaryDarker }, ":hover"),
+      classname
     ),
   });
 };
