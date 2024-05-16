@@ -32,7 +32,7 @@ export const flex = primitiveX.flex;
 
 // ----------------- COMPONENTS -----------------
 
-import aX from "./ui/link/link";
+import aX from "./ui/a";
 export const a = aX.a;
 export const linkButton = aX.linkButton;
 export const aBase = aX.aBase;

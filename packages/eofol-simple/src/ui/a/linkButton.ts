@@ -1,24 +1,5 @@
-import { ax, createElement, getTheme, sx } from "@eofol/eofol";
-import { EComponent } from "../../types";
-
-export const aBase = ({
-  link,
-  external,
-  download,
-  classname,
-  children,
-}: {
-  link: string;
-  external?: boolean;
-  download?: string;
-} & EComponent) => {
-  return createElement(
-    "a",
-    classname,
-    children,
-    ax({ href: link }, ["target", external && "_blank"], ["download", download])
-  );
-};
+import { getTheme, sx } from "@eofol/eofol";
+import { aBase } from "./aBase";
 
 const linkButton = (props: {
   children: Element | string;
@@ -70,39 +51,4 @@ const linkButton = (props: {
   });
 };
 
-const a = (
-  props: {
-    link: string;
-    external?: boolean;
-    download?: string;
-  } & EComponent
-) => {
-  const theme = getTheme();
-
-  const baseStyle = sx({
-    textDecoration: "none",
-    fontWeight: 700,
-    fontFamily: "inherit",
-  });
-
-  const themedBaseStyle = sx({
-    color: theme.color.secondaryDark,
-  });
-
-  const themedHoverStyle = sx(
-    { color: theme.color.secondaryLighter },
-    ":hover"
-  );
-
-  return aBase({
-    ...props,
-    classname: [
-      baseStyle,
-      themedBaseStyle,
-      themedHoverStyle,
-      ...props.classname,
-    ],
-  });
-};
-
-export default { a, linkButton, aBase };
+export default linkButton;

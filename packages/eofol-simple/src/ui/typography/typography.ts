@@ -56,341 +56,64 @@ const typographyNoGuttersStyle = sy(
   "typography-base-no-gutters"
 );
 
-export const p = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "p",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
+const text =
+  (tagName: string) =>
+  (
+    content: TypographyNodeContent,
+    classname?: string,
+    noGutters?: boolean,
+    attributes?: any,
+    properties?: any
+  ) =>
+    createTypographyTextElement(
+      tagName,
+      classname,
+      content,
+      attributes,
+      properties,
+      noGutters
+    );
 
-export const h1 = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "h1",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
+const heading =
+  (tagName: string) =>
+  (
+    content: TypographyNodeContent,
+    classname?: string,
+    noGutters?: boolean,
+    attributes?: any,
+    properties?: any
+  ) =>
+    createTypographyHeadingElement(
+      tagName,
+      classname,
+      content,
+      attributes,
+      properties,
+      noGutters
+    );
 
-export const h2 = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "h2",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
+export const h1 = heading("h1");
+export const h2 = heading("h2");
+export const h3 = heading("h3");
+export const h4 = heading("h4");
+export const h5 = heading("h5");
+export const h6 = heading("h6");
+export const blockquote = heading("blockquote");
 
-export const h3 = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "h3",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const h4 = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "h4",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const h5 = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "h5",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const h6 = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "h6",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const code = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "code",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const pre = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "pre",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const kbd = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "kbd",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const blockquote = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyHeadingElement(
-    "blockquote",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const abbr = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "abbr",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const small = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "small",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const strong = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "strong",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const mark = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "mark",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const em = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "em",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const del = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "del",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const ins = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "ins",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const sub = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "sub",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const sup = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "sup",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-export const address = (
-  content: TypographyNodeContent,
-  classname?: string,
-  noGutters?: boolean,
-  attributes?: any,
-  properties?: any
-) =>
-  createTypographyTextElement(
-    "address",
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
+export const p = text("p");
+export const code = text("code");
+export const pre = text("pre");
+export const kbd = text("kbd");
+export const abbr = text("abbr");
+export const small = text("small");
+export const strong = text("strong");
+export const mark = text("mark");
+export const em = text("em");
+export const del = text("del");
+export const ins = text("ins");
+export const sub = text("sub");
+export const sup = text("sup");
+export const address = text("address");
 
 export default {
   h1,
