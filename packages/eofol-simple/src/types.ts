@@ -21,12 +21,12 @@ export const getSize = (tagName: string) => (size: SIZE | undefined) => {
 };
 
 export interface EComponent {
-  styles?: Multi<EofolClassnameSingle>;
+  classname?: Multi<EofolClassnameSingle>;
   children?: EofolElementNode;
 }
 
 export interface EComponentWithoutChildren {
-  styles?: Multi<EofolClassnameSingle>;
+  classname?: Multi<EofolClassnameSingle>;
 }
 
 export interface EInput<T> {

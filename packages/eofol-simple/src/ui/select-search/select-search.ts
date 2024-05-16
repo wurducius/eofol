@@ -195,7 +195,7 @@ const searchSelect = (
             openMenu();
           },
           children: "Open",
-          styles: cx(
+          classname: cx(
             sx({
               height: "36px",
               color: theme.color.secondary,

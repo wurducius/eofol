@@ -1,4 +1,4 @@
-import { getTheme, sx, cx, getThemeStyles } from "@eofol/eofol";
+import { getTheme, sx, cx } from "@eofol/eofol";
 import { inputBase } from "../input-base/input-base";
 import { getInputSizeStyle } from "../../util/inputs";
 import { SIZE } from "@eofol/eofol-types";

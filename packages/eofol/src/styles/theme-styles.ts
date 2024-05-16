@@ -38,6 +38,7 @@ export const updateThemeStyles = (theme: Theme) => {
       fontSize: theme.typography.text.fontSize,
       backgroundColor: theme.color.backgroundElevation,
       color: theme.color.secondary,
+      fontFamily: "inherit",
     }),
     inputSizeSm: sx({
       height: theme.size.sm,
@@ -106,6 +107,7 @@ export const updateThemeStyles = (theme: Theme) => {
       padding: "0 16px",
       fontSize: theme.typography.text.fontSize,
       fontWeight: 500,
+      fontFamily: "inherit",
     }),
   };
 };

@@ -46,7 +46,7 @@ const dropdown = ({
 
   const buttonElement = button({
     children: title,
-    styles: cx(sx({ width: "100%" }), buttonClassname),
+    classname: cx(sx({ width: "100%" }), buttonClassname),
     scheme: "primary",
   });
 

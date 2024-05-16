@@ -1,4 +1,4 @@
-import { createElement, cx, ax } from "@eofol/eofol";
+import { createElement, ax } from "@eofol/eofol";
 import { EComponent } from "../../types";
 // @ts-ignore
 import defaultFallback from "./default-fallback.png";
@@ -9,7 +9,7 @@ const img = ({
   height,
   width,
   fallback,
-  styles,
+  classname,
   children,
 }: {
   src: string;
@@ -20,7 +20,7 @@ const img = ({
 } & EComponent) =>
   createElement(
     "img",
-    styles,
+    classname,
     children,
     ax(
       {

@@ -22,7 +22,7 @@ const select = ({
   disabled,
   placeholder,
   size,
-  styles,
+  classname,
 }: {
   options: (
     | { title: string; id: string }
@@ -42,6 +42,7 @@ const select = ({
     backgroundColor: theme.color.background,
     color: theme.color.secondary,
     width: "100%",
+    fontFamily: "inherit",
   });
   const borderStyle = themeStyles.inputBorder;
   const sizeStyle = getInputSizeStyle(size);
@@ -49,7 +50,7 @@ const select = ({
 
   const element = createElement(
     "select",
-    [sizeStyle, baseStyle, borderStyle, focusStyle, styles],
+    [sizeStyle, baseStyle, borderStyle, focusStyle, classname],
     options.map((option) => {
       if ("group" in option && "options" in option) {
         return createElement(

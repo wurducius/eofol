@@ -3,7 +3,7 @@ import { TypographyNodeContent } from "@eofol/eofol-types";
 
 const createTypographyElement = (
   tagName: string,
-  styles: string | undefined,
+  classname: string | undefined,
   content: TypographyNodeContent,
   attributes?: any,
   properties?: any,
@@ -11,7 +11,7 @@ const createTypographyElement = (
 ) =>
   createElement(
     tagName,
-    [noGuttersStyle && typographyNoGuttersStyle, styles],
+    [noGuttersStyle && typographyNoGuttersStyle, classname],
     content,
     attributes,
     properties
@@ -19,7 +19,7 @@ const createTypographyElement = (
 
 const createTypographyHeadingElement = (
   tagName: string,
-  styles: string | undefined,
+  classname: string | undefined,
   content: TypographyNodeContent,
   attributes?: any,
   properties?: any,
@@ -27,7 +27,7 @@ const createTypographyHeadingElement = (
 ) =>
   createTypographyElement(
     tagName,
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -36,7 +36,7 @@ const createTypographyHeadingElement = (
 
 const createTypographyTextElement = (
   tagName: string,
-  styles: string | undefined,
+  classname: string | undefined,
   content: TypographyNodeContent,
   attributes?: any,
   properties?: any,
@@ -44,7 +44,7 @@ const createTypographyTextElement = (
 ) =>
   createTypographyElement(
     tagName,
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -58,14 +58,14 @@ const typographyNoGuttersStyle = sy(
 
 export const p = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "p",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -74,14 +74,14 @@ export const p = (
 
 export const h1 = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "h1",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -90,14 +90,14 @@ export const h1 = (
 
 export const h2 = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "h2",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -106,14 +106,14 @@ export const h2 = (
 
 export const h3 = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "h3",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -122,14 +122,14 @@ export const h3 = (
 
 export const h4 = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "h4",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -138,14 +138,14 @@ export const h4 = (
 
 export const h5 = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "h5",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -154,14 +154,14 @@ export const h5 = (
 
 export const h6 = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "h6",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -170,14 +170,14 @@ export const h6 = (
 
 export const code = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "code",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -186,14 +186,14 @@ export const code = (
 
 export const pre = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "pre",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -202,14 +202,14 @@ export const pre = (
 
 export const kbd = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "kbd",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -218,14 +218,14 @@ export const kbd = (
 
 export const blockquote = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyHeadingElement(
     "blockquote",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -234,14 +234,14 @@ export const blockquote = (
 
 export const abbr = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "abbr",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -250,14 +250,14 @@ export const abbr = (
 
 export const small = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "small",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -266,14 +266,14 @@ export const small = (
 
 export const strong = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "strong",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -282,14 +282,14 @@ export const strong = (
 
 export const mark = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "mark",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -298,14 +298,14 @@ export const mark = (
 
 export const em = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "em",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -314,14 +314,14 @@ export const em = (
 
 export const del = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "del",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -330,14 +330,14 @@ export const del = (
 
 export const ins = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "ins",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -346,14 +346,14 @@ export const ins = (
 
 export const sub = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "sub",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -362,14 +362,14 @@ export const sub = (
 
 export const sup = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "sup",
-    styles,
+    classname,
     content,
     attributes,
     properties,
@@ -378,14 +378,14 @@ export const sup = (
 
 export const address = (
   content: TypographyNodeContent,
-  styles?: string,
+  classname?: string,
   noGutters?: boolean,
   attributes?: any,
   properties?: any
 ) =>
   createTypographyTextElement(
     "address",
-    styles,
+    classname,
     content,
     attributes,
     properties,

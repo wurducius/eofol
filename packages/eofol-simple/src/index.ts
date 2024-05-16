@@ -33,7 +33,9 @@ export const flex = primitiveX.flex;
 // ----------------- COMPONENTS -----------------
 
 import aX from "./ui/link/link";
-export const a = aX;
+export const a = aX.a;
+export const linkButton = aX.linkButton;
+export const aBase = aX.aBase;
 
 import buttonX from "./ui/button/button";
 export const button = buttonX;

@@ -102,6 +102,7 @@ export const textarea = ({
     marginRight: 0,
     padding: "0 0 0 0",
     fontSize: theme.typography.text.fontSize,
+    fontFamily: "inherit",
     width: "100%",
     backgroundColor: theme.color.backgroundElevation,
     color: theme.color.secondary,

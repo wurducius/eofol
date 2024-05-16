@@ -9,7 +9,7 @@ const button = ({
   size,
   full,
   disabled,
-  styles,
+  classname,
   children,
   scheme,
   active,
@@ -67,7 +67,7 @@ const button = ({
       schemeHoverStyle,
       disabled && disabledStyle,
       full && fullStyle,
-      styles,
+      classname,
     ],
     children,
     ax({}, ["disabled", disabled])

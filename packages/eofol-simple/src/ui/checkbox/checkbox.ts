@@ -10,7 +10,7 @@ const checkbox = ({
   disabled,
   name,
   size,
-  styles,
+  classname,
   children,
 }: EInput<boolean> & ESizable & EComponent) => {
   const theme = getTheme();
@@ -26,7 +26,7 @@ const checkbox = ({
 
   const inputElement = createElement(
     "input",
-    [baseStyle, styles],
+    [baseStyle, classname],
     children,
     ax(
       { name, id: name, type: "checkbox" },

@@ -22,7 +22,6 @@ export const defaultTheme: Theme = {
     error: "#fc8181",
   },
   typography: {
-    default: { fontFamily: "sans-serif" },
     text: { fontSize: "16px" },
   },
   size: {
