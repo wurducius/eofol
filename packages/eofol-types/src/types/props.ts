@@ -1,3 +1,5 @@
+import { ColorScheme } from "./style-types";
+
 export type Option = { title: string; id: string };
 
 export type SelectOptions = ({ group: string; options: Option[] } | Option)[];
@@ -30,3 +32,13 @@ export type SIZE =
   | typeof SIZE_LG
   | typeof SIZE_XL
   | undefined;
+
+export type Sizable = { size?: SIZE };
+
+export type Schemable = { scheme?: ColorScheme };
+
+export type AProps = {
+  link: string;
+  external?: boolean;
+  download?: string;
+};

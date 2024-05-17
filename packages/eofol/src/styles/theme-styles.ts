@@ -36,8 +36,8 @@ export const updateThemeStyles = (theme: Theme) => {
       marginTop: "8px",
       marginBottom: "8px",
       fontSize: theme.typography.text.fontSize,
-      backgroundColor: theme.color.backgroundElevation,
-      color: theme.color.secondary,
+      backgroundColor: theme.color.background.elevation,
+      color: theme.color.secondary.base,
       fontFamily: "inherit",
     }),
     inputSizeSm: sx({
@@ -62,11 +62,11 @@ export const updateThemeStyles = (theme: Theme) => {
       ":not(:focus)"
     ),
     inputFocus: sx(
-      { outline: `2px solid ${theme.color.secondary}` },
+      { outline: `2px solid ${theme.color.secondary.base}` },
       `:not(.${INPUT_INVALID}):focus`
     ),
     inputBorder: sx(
-      { border: `1px solid ${theme.color.secondary}` },
+      { border: `1px solid ${theme.color.secondary.base}` },
       `:not(.${INPUT_INVALID})`
     ),
     inputErrorFocus: sx(
@@ -79,7 +79,7 @@ export const updateThemeStyles = (theme: Theme) => {
     ),
     inputErrorFocusFlat: sx({ outline: `2px solid ${theme.color.error}` }),
     inputErrorBorderFlat: sx({ border: `1px solid ${theme.color.error}` }),
-    inputFocusFlat: sx({ outline: `2px solid ${theme.color.secondary}` }),
+    inputFocusFlat: sx({ outline: `2px solid ${theme.color.secondary.base}` }),
     checkboxSizeSm: sx({
       height: theme.size.checkbox.sm,
       width: theme.size.checkbox.sm,

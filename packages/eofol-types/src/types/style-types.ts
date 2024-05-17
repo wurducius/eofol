@@ -27,13 +27,28 @@ export type BreakpointTheme = {
   keys: string[];
 };
 
+export type ColorSchemePalette = {
+  base: CSSString;
+  dark: CSSString;
+  light: CSSString;
+};
+
+export type ColorTheme = {
+  primary: ColorSchemePalette;
+  secondary: ColorSchemePalette;
+  tertiary: ColorSchemePalette;
+  background: { base: CSSString; elevation: CSSString; card: CSSString };
+  font: CSSString;
+  error: CSSString;
+};
+
 export type ConfigTheme = { direction: DirectionTheme };
 
 export type ComponentTheme = {};
 
 export type Theme = {
   mode: ModeTheme;
-  color: Record<string, CSSString>;
+  color: ColorTheme;
   typography: Record<string | "default", TypographyTheme>;
   spacing: Record<string, CSSString>;
   size: {
@@ -49,3 +64,5 @@ export type Theme = {
   config: ConfigTheme;
   component: ComponentTheme;
 };
+
+export type ColorScheme = "primary" | "secondary" | "tertiary" | undefined;

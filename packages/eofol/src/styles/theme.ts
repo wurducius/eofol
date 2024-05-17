@@ -2,7 +2,6 @@ import { Theme } from "@eofol/eofol-types";
 import { defaultTheme } from "./default-theme";
 import { mergeDeep } from "../util/merge-deep";
 import { clearStyle, createStyleObj } from "./create-style";
-import sx from "./sx";
 
 const createTheme = (styles: Partial<Theme>) => mergeDeep(defaultTheme, styles);
 
@@ -18,7 +17,7 @@ const getTheme = () => theme;
 const setBaseStyles = (theme: Theme) => {
   clearStyle();
   createStyleObj(
-    { backgroundColor: theme.color.background, color: theme.color.font },
+    { backgroundColor: theme.color.background.base, color: theme.color.font },
     "body"
   );
 };

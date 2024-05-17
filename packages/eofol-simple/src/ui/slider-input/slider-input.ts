@@ -1,7 +1,8 @@
 import { getTheme, sx, cx } from "@eofol/eofol";
 import { inputBase } from "../input-base/input-base";
 import { getInputSizeStyle } from "../../util/inputs";
-import { SIZE } from "@eofol/eofol-types";
+import { SIZE, Schemable } from "@eofol/eofol-types";
+import { getColorScheme } from "../../util/scheme";
 
 const sliderInput = ({
   value,
@@ -30,14 +31,16 @@ const sliderInput = ({
   step?: number;
   disabled?: boolean;
   readonly?: boolean;
-  scheme?: "primary" | "secondary";
   classname?: string;
   size?: SIZE;
-}) => {
+} & Schemable) => {
   const theme = getTheme();
 
+  const accentColorScheme = getColorScheme(scheme, "secondary");
+  const baseColorScheme = getColorScheme(scheme);
+
   const baseStyle = sx({
-    color: scheme === "primary" ? theme.color.primary : theme.color.secondary,
+    color: baseColorScheme.base,
   });
   const sizeStyle = getInputSizeStyle(size);
 
@@ -65,10 +68,10 @@ const sliderInput = ({
         marginTop: theme.spacing.space1,
         padding: "0 0 0 0",
         width: "256px",
-        accentColor: theme.color.secondary,
+        accentColor: accentColorScheme.base,
         cursor: "pointer",
       }),
-      sx({ accentColor: theme.color.secondaryDarker }, ":hover"),
+      sx({ accentColor: accentColorScheme.dark }, ":hover"),
       classname
     ),
   });

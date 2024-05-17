@@ -50,13 +50,13 @@ const searchSelectMenuItem = (
   return div(
     [
       sx({
-        color: theme.color.secondary,
+        color: theme.color.secondary.base,
         cursor: "pointer",
         padding: `2px 0 2px ${theme.spacing.space4}`,
       }),
       sx(
         {
-          backgroundColor: theme.color.secondaryDarker,
+          backgroundColor: theme.color.secondary.dark,
           color: "#000000",
           fontWeight: 700,
         },
@@ -198,14 +198,14 @@ const searchSelect = (
           classname: cx(
             sx({
               height: "36px",
-              color: theme.color.secondary,
-              border: `1px solid ${theme.color.secondary}`,
+              color: theme.color.secondary.base,
+              border: `1px solid ${theme.color.secondary.base}`,
             }),
             sx(
               {
-                backgroundColor: theme.color.secondaryDark,
+                backgroundColor: theme.color.secondary.dark,
                 color: "#000000",
-                border: `1px solid ${theme.color.secondary}`,
+                border: `1px solid ${theme.color.secondary.base}`,
               },
               ":hover"
             )

@@ -34,12 +34,12 @@ const dropdown = ({
 
   const getButtonHoverStyle = (isSecondary: boolean) => ({
     backgroundColor:
-      (isSecondary ? theme.color.secondaryDark : theme.color.primaryDarker) +
+      (isSecondary ? theme.color.secondary.dark : theme.color.primary.dark) +
       " !important",
     color: "#000000" + " !important",
     border:
       `1px solid ${
-        isSecondary ? theme.color.secondaryLighter : theme.color.primaryLighter
+        isSecondary ? theme.color.secondary.light : theme.color.primary.light
       }` + " !important",
   });
   const hoverStyle = sx(getButtonHoverStyle(false));

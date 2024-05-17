@@ -49,11 +49,11 @@ const checkbox = ({
         top: "auto",
         right: "auto",
         margin: "8px 4px 8px 4px",
-        border: `1px solid ${theme.color.backgroundElevation}`,
+        border: `1px solid ${theme.color.background.elevation}`,
         cursor: "pointer",
         backgroundColor: value
-          ? theme.color.secondaryDark
-          : theme.color.backgroundColor,
+          ? theme.color.secondary.dark
+          : theme.color.background.base,
         color: "#000000",
         fontSize: "16px",
         fontWeight: 700,
@@ -65,8 +65,8 @@ const checkbox = ({
       disabled && disabledStyle,
       sx(
         {
-          outline: `2px solid ${theme.color.secondary}`,
-          color: theme.color.secondary,
+          outline: `2px solid ${theme.color.secondary.base}`,
+          color: theme.color.secondary.base,
         },
         ":hover"
       ),

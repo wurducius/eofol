@@ -1,5 +1,6 @@
 import { createElement, ax } from "@eofol/eofol";
 import { EComponent } from "../../types";
+import { AProps } from "@eofol/eofol-types";
 
 export const aBase = ({
   link,
@@ -7,11 +8,7 @@ export const aBase = ({
   download,
   classname,
   children,
-}: {
-  link: string;
-  external?: boolean;
-  download?: string;
-} & EComponent) => {
+}: AProps & EComponent) => {
   return createElement(
     "a",
     classname,

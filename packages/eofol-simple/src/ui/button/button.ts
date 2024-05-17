@@ -1,7 +1,29 @@
 import { createElement, ax, getThemeStyles } from "@eofol/eofol";
-import { EButton, ESizable, EComponent } from "../../types";
+import { EButton, EComponent } from "../../types";
 import { getTheme, sx } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
+import { ColorSchemePalette, Schemable, Sizable } from "@eofol/eofol-types";
+import { getColorScheme } from "../../util/scheme";
+
+const getButtonStyle = (
+  colorScheme: ColorSchemePalette,
+  isActive?: boolean
+) => {
+  const theme = getTheme();
+
+  return {
+    fontSize: theme.typography.text.fontSize,
+    backgroundColor: isActive ? colorScheme.base : "black",
+    color: isActive ? "black" : colorScheme.base,
+    border: `1px solid ${colorScheme.base}`,
+  };
+};
+
+const getButtonHoverStyle = (colorScheme: ColorSchemePalette) => ({
+  backgroundColor: colorScheme.dark,
+  color: "black",
+  border: `1px solid ${colorScheme.light}`,
+});
 
 const button = ({
   onClick,
@@ -15,48 +37,22 @@ const button = ({
   active,
 }: {
   full?: boolean;
-  scheme?: "primary" | "secondary";
   active?: boolean;
 } & EButton &
-  ESizable &
+  Schemable &
+  Sizable &
   EComponent) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
+
+  const colorScheme = getColorScheme(scheme);
 
   const baseStyle = themeStyles.buttonBase;
   const fullStyle = sx({ width: "100%" });
   const sizeStyle = getInputSizeStyle(size);
   const disabledStyle = themeStyles.inputDisabled;
-
-  const getButtonStyle = (isSecondary: boolean, isActive?: boolean) => ({
-    fontSize: theme.typography.text.fontSize,
-    backgroundColor: isActive ? theme.color.primary : "black",
-    color: isSecondary
-      ? theme.color.secondary
-      : isActive
-      ? "black"
-      : theme.color.primary,
-    border: `1px solid ${
-      isSecondary ? theme.color.secondary : theme.color.primary
-    }`,
-  });
-
-  const schemeStyle = sx(getButtonStyle(scheme === "secondary", active));
-
-  const getButtonHoverStyle = (isSecondary: boolean) => ({
-    backgroundColor: isSecondary
-      ? theme.color.secondaryDark
-      : theme.color.primaryDarker,
-    color: "#000000",
-    border: `1px solid ${
-      isSecondary ? theme.color.secondaryLighter : theme.color.primaryLighter
-    }`,
-  });
-
-  const schemeHoverStyle = sx(
-    getButtonHoverStyle(scheme === "secondary"),
-    ":hover"
-  );
+  const schemeStyle = sx(getButtonStyle(colorScheme, active));
+  const schemeHoverStyle = sx(getButtonHoverStyle(colorScheme), ":hover");
 
   const element = createElement(
     "button",

@@ -1,42 +1,38 @@
-import { getTheme, sx } from "@eofol/eofol";
+import { sx, sy } from "@eofol/eofol";
 import { aBase } from "./aBase";
+import { getColorScheme } from "../../util/scheme";
+import { AProps, Schemable, Sizable } from "@eofol/eofol-types";
+import { EComponent } from "../../types";
+import { getInputSizeStyle } from "../../util/inputs";
 
-const linkButton = (props: {
-  children: Element | string;
-  classname?: string;
-  link: string;
-  external?: boolean;
-  download?: string;
-  scheme?: "primary" | "secondary";
-}) => {
-  const theme = getTheme();
-
-  const schemeColor = theme.color[props.scheme ?? "primary"];
-  const schemeColorLighter = theme.color[`${props.scheme ?? "primary"}Lighter`];
-  const schemeColorDarker =
-    props.scheme === "secondary"
-      ? theme.color.secondaryDark
-      : theme.color.primaryDarker;
-
-  const linkButtonStyle = sx({
+const baseStyle = sy(
+  {
     textDecoration: "none",
     fontFamily: "inherit",
     padding: "0 16px",
     backgroundColor: "black",
-    color: schemeColor,
-    border: `1px solid ${schemeColor}`,
-    height: "31px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "500",
+  },
+  "link-button-base"
+);
+
+const linkButton = (props: AProps & EComponent & Schemable & Sizable) => {
+  const colorScheme = getColorScheme(props.scheme);
+  const sizeStyle = getInputSizeStyle(props.size);
+
+  const linkButtonStyle = sx({
+    color: colorScheme.base,
+    border: `1px solid ${colorScheme.base}`,
   });
 
   const linkButtonHoverStyle = sx(
     {
       color: "black",
-      backgroundColor: schemeColorDarker,
-      border: `1px solid ${schemeColorLighter}`,
+      backgroundColor: colorScheme.dark,
+      border: `1px solid ${colorScheme.light}`,
     },
     ":hover"
   );
@@ -44,6 +40,8 @@ const linkButton = (props: {
   return aBase({
     ...props,
     classname: [
+      baseStyle,
+      sizeStyle,
       linkButtonStyle,
       linkButtonHoverStyle,
       ...(props.classname ?? []),

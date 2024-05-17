@@ -85,7 +85,7 @@ export const textarea = ({
     [
       sx({
         padding: "8px 8px 8px 8px",
-        backgroundColor: theme.color.backgroundElevation,
+        backgroundColor: theme.color.background.elevation,
         cursor: "text",
       }),
       themeStyles.inputBaseOutlineTransition,
@@ -104,8 +104,8 @@ export const textarea = ({
     fontSize: theme.typography.text.fontSize,
     fontFamily: "inherit",
     width: "100%",
-    backgroundColor: theme.color.backgroundElevation,
-    color: theme.color.secondary,
+    backgroundColor: theme.color.background.elevation,
+    color: theme.color.secondary.base,
     border: "none",
   });
 

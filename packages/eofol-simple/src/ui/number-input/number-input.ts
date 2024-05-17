@@ -221,26 +221,26 @@ const numberInput = (props: NumberInputProps) => {
   });
   const arrowCustomNotDisabledStyle = sx({
     cursor: "pointer",
-    backgroundColor: theme.color.backgroundElevation,
-    color: theme.color.secondary,
+    backgroundColor: theme.color.background.elevation,
+    color: theme.color.secondary.base,
   });
   const arrowCustomUpStyle = sx({
-    borderLeft: `1px solid ${theme.color.secondary}`,
+    borderLeft: `1px solid ${theme.color.secondary.base}`,
   });
   const arrowCustomDownStyle = sx({
-    borderLeft: `1px solid ${theme.color.secondary}`,
-    borderTop: `1px solid ${theme.color.secondary}`,
+    borderLeft: `1px solid ${theme.color.secondary.base}`,
+    borderTop: `1px solid ${theme.color.secondary.base}`,
   });
   const arrowCustomHoverStyle = sx(
     {
-      backgroundColor: theme.color.secondary,
+      backgroundColor: theme.color.secondary.base,
       color: "#000000",
     },
     ":hover"
   );
   const arrowCustomFocusStyle = sx(
     {
-      backgroundColor: theme.color.secondary,
+      backgroundColor: theme.color.secondary.base,
       color: "#000000",
     },
     ":focus"

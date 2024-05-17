@@ -3,22 +3,19 @@ import { Theme } from "@eofol/eofol-types";
 export const defaultTheme: Theme = {
   mode: "dark",
   color: {
-    primary: "#03dac6",
-    primaryLighter: "#35E1D1",
-    primaryDarker: "#02AE9E",
-
-    secondary: "#86b1ff",
-    secondaryDarker: "#6B8DCC",
-    secondaryLighter: "#9EC0FF",
-
-    secondaryDark: "#6B8DCC",
-
+    primary: {
+      base: "#03dac6",
+      light: "#35e1d1",
+      dark: "#02ae9e",
+    },
+    secondary: { base: "#86b1ff", dark: "#6b8dcc", light: "#9ec0ff" },
+    tertiary: { base: "#4caf50", dark: "#357a38", light: "#6fbf73" },
+    background: {
+      base: "#121212",
+      elevation: "#333333",
+      card: "#2d3748",
+    },
     font: "#03dac6",
-
-    background: "#121212",
-    backgroundElevation: "#333333",
-    backgroundModal: "#2d3748",
-
     error: "#fc8181",
   },
   typography: {

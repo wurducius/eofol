@@ -39,8 +39,8 @@ const select = ({
     padding: "6px 10px",
     marginTop: "8px",
     fontSize: theme.typography.text.fontSize,
-    backgroundColor: theme.color.background,
-    color: theme.color.secondary,
+    backgroundColor: theme.color.background.base,
+    color: theme.color.secondary.base,
     width: "100%",
     fontFamily: "inherit",
   });
