@@ -6,6 +6,7 @@ import {
   cx,
   getTheme,
   removeCx,
+  staticStyles,
   sx,
   sy,
 } from "@eofol/eofol";
@@ -54,7 +55,7 @@ export const inputBase = ({
   const theme = getTheme();
 
   const inputBaseWrapperStyle = sy(
-    { position: "relative", width: "100%" },
+    { position: "relative" },
     "input-base-wrapper"
   );
 
@@ -202,7 +203,7 @@ export const inputBase = ({
   };
 
   return div(
-    inputBaseWrapperStyle,
+    [inputBaseWrapperStyle, staticStyles.full],
     [inputElement, after, validityElement].filter(Boolean) as EofolElementNode
   );
 };

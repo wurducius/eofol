@@ -9,7 +9,9 @@ import {
   getThemeStyles,
   ax,
   INPUT_INVALID,
+  staticStyles,
 } from "@eofol/eofol";
+import { Schemable } from "@eofol/eofol-types";
 
 const textAreaBaseClass = sy(
   {
@@ -59,6 +61,7 @@ export const textarea = ({
   resize,
   readonly,
   disabled,
+  scheme,
 }: {
   name: string;
   value?: string;
@@ -68,15 +71,16 @@ export const textarea = ({
   resize?: Resize;
   readonly?: boolean;
   disabled?: boolean;
-}) => {
+} & Schemable) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
+  const schemeImpl = scheme ?? "secondary";
 
   const isInvalid = classname?.split(" ").includes(INPUT_INVALID);
 
-  const validBorderStyle = themeStyles.inputBorder;
+  const validBorderStyle = themeStyles.inputBorder[schemeImpl];
   const invalidBorderStyle = themeStyles.inputErrorBorderFlat;
-  const validFocusStyle = themeStyles.inputFocusFlat;
+  const validFocusStyle = themeStyles.inputFocusFlat[schemeImpl];
   const invalidFocusStyle = themeStyles.inputErrorFocusFlat;
   const baseOutlineStyle = themeStyles.inputBaseOutline;
 
@@ -103,7 +107,6 @@ export const textarea = ({
     padding: "0 0 0 0",
     fontSize: theme.typography.text.fontSize,
     fontFamily: "inherit",
-    width: "100%",
     backgroundColor: theme.color.background.elevation,
     color: theme.color.secondary.base,
     border: "none",
@@ -113,6 +116,7 @@ export const textarea = ({
     "textarea",
     cx(
       baseStyle,
+      staticStyles.full,
       getResizeClass(resize),
       textAreaBaseClass,
       sx({ outline: "none" }, ":focus"),

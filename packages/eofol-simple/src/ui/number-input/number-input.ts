@@ -1,4 +1,4 @@
-import { NumberInputProps } from "@eofol/eofol-types";
+import { NumberInputProps, Schemable } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import {
   getTheme,
@@ -49,7 +49,7 @@ const parseValue =
     }
   };
 
-const numberInput = (props: NumberInputProps) => {
+const numberInput = (props: NumberInputProps & Schemable) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
 
@@ -81,20 +81,18 @@ const numberInput = (props: NumberInputProps) => {
   } { -webkit-appearance: none; margin: 0; }`
   );
 
+  const schemeImpl = props.scheme ?? "secondary";
+
   const baseStyle = themeStyles.inputBase;
+  const colorStyle = themeStyles.color[schemeImpl];
   const baseTransitionStyle = themeStyles.inputBaseOutlineTransition;
   const sizeStyle = getInputSizeStyle(props.size);
   const invalidStyle = themeStyles.inputErrorBorder;
-  const validStyle = themeStyles.inputBorder;
+  const validStyle = themeStyles.inputBorder[schemeImpl];
   const inputBaseNotFocus = themeStyles.inputBaseOutline;
-  const inputBaseFocus = themeStyles.inputFocus;
+  const inputBaseFocus = themeStyles.inputFocus[schemeImpl];
   const inputBaseInvalidFocus = themeStyles.inputErrorFocus;
-
-  const numberInputSpinnerDisabled = sx({
-    cursor: "not-allowed",
-    backgroundColor: "grey",
-    color: "black",
-  });
+  const numberInputSpinnerDisabled = themeStyles.inputDisabled;
 
   let currentValue = Number(props.value);
 
@@ -312,6 +310,7 @@ const numberInput = (props: NumberInputProps) => {
     classname: cx(
       baseStyle,
       baseTransitionStyle,
+      colorStyle,
       sizeStyle,
       validStyle,
       invalidStyle,

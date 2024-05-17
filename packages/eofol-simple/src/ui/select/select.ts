@@ -1,6 +1,14 @@
-import { createElement, ax, sx, getTheme, getThemeStyles } from "@eofol/eofol";
+import {
+  createElement,
+  ax,
+  sx,
+  getTheme,
+  getThemeStyles,
+  staticStyles,
+} from "@eofol/eofol";
 import { EComponentWithoutChildren, EInput, ESizable } from "../../types";
 import { getInputSizeStyle } from "../../util/inputs";
+import { Schemable } from "@eofol/eofol-types";
 
 const renderOption = (
   option: { title: string; id: string },
@@ -23,6 +31,7 @@ const select = ({
   placeholder,
   size,
   classname,
+  scheme,
 }: {
   options: (
     | { title: string; id: string }
@@ -31,26 +40,35 @@ const select = ({
   placeholder?: string;
 } & EInput<string> &
   ESizable &
+  Schemable &
   EComponentWithoutChildren) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
+  const schemeImpl = scheme ?? "secondary";
 
   const baseStyle = sx({
     padding: "6px 10px",
     marginTop: "8px",
     fontSize: theme.typography.text.fontSize,
     backgroundColor: theme.color.background.base,
-    color: theme.color.secondary.base,
-    width: "100%",
     fontFamily: "inherit",
   });
-  const borderStyle = themeStyles.inputBorder;
+  const colorStyle = themeStyles.color[schemeImpl];
+  const borderStyle = themeStyles.inputBorder[schemeImpl];
   const sizeStyle = getInputSizeStyle(size);
-  const focusStyle = themeStyles.inputFocus;
+  const focusStyle = themeStyles.inputFocus[schemeImpl];
 
   const element = createElement(
     "select",
-    [sizeStyle, baseStyle, borderStyle, focusStyle, classname],
+    [
+      sizeStyle,
+      baseStyle,
+      colorStyle,
+      staticStyles.full,
+      borderStyle,
+      focusStyle,
+      classname,
+    ],
     options.map((option) => {
       if ("group" in option && "options" in option) {
         return createElement(

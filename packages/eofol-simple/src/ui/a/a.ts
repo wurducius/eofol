@@ -28,8 +28,8 @@ const a = (props: AProps & EComponent & Schemable) => {
       baseStyle,
       themedBaseStyle,
       themedHoverStyle,
-      ...props.classname,
-    ],
+      ...(props.classname ?? []),
+    ].filter(Boolean),
   });
 };
 

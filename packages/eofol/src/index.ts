@@ -49,6 +49,9 @@ export const getThemeStyles = themeStylesX.getThemeStyles;
 export const updateThemeStyles = themeStylesX.updateThemeStyles;
 export const INPUT_INVALID = themeStylesX.INPUT_INVALID;
 
+import staticStylesX from "./styles/static-styles";
+export const staticStyles = staticStylesX;
+
 // ----------------- RUNTIME -----------------
 
 import breakpointX from "./runtime/breakpoint";

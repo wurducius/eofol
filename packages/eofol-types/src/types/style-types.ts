@@ -37,6 +37,7 @@ export type ColorTheme = {
   primary: ColorSchemePalette;
   secondary: ColorSchemePalette;
   tertiary: ColorSchemePalette;
+  disabled: ColorSchemePalette;
   background: { base: CSSString; elevation: CSSString; card: CSSString };
   font: CSSString;
   error: CSSString;

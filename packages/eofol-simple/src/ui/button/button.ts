@@ -1,4 +1,4 @@
-import { createElement, ax, getThemeStyles } from "@eofol/eofol";
+import { createElement, ax, getThemeStyles, staticStyles } from "@eofol/eofol";
 import { EButton, EComponent } from "../../types";
 import { getTheme, sx } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
@@ -42,17 +42,18 @@ const button = ({
   Schemable &
   Sizable &
   EComponent) => {
-  const theme = getTheme();
   const themeStyles = getThemeStyles();
 
   const colorScheme = getColorScheme(scheme);
 
   const baseStyle = themeStyles.buttonBase;
-  const fullStyle = sx({ width: "100%" });
   const sizeStyle = getInputSizeStyle(size);
   const disabledStyle = themeStyles.inputDisabled;
   const schemeStyle = sx(getButtonStyle(colorScheme, active));
-  const schemeHoverStyle = sx(getButtonHoverStyle(colorScheme), ":hover");
+  const schemeHoverStyle = sx(
+    getButtonHoverStyle(colorScheme),
+    ":not(:disabled):hover"
+  );
 
   const element = createElement(
     "button",
@@ -62,7 +63,7 @@ const button = ({
       schemeStyle,
       schemeHoverStyle,
       disabled && disabledStyle,
-      full && fullStyle,
+      full && staticStyles.full,
       classname,
     ],
     children,

@@ -15,6 +15,11 @@ export const defaultTheme: Theme = {
       elevation: "#333333",
       card: "#2d3748",
     },
+    disabled: {
+      base: "grey",
+      light: "lightgrey",
+      dark: "darkgrey",
+    },
     font: "#03dac6",
     error: "#fc8181",
   },

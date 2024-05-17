@@ -1,4 +1,12 @@
-import { addCx, createElement, cx, getTheme, removeCx, sx } from "@eofol/eofol";
+import {
+  addCx,
+  createElement,
+  cx,
+  getTheme,
+  removeCx,
+  staticStyles,
+  sx,
+} from "@eofol/eofol";
 import button from "../button/button";
 
 const openMenu = (id: string) => {
@@ -46,7 +54,7 @@ const dropdown = ({
 
   const buttonElement = button({
     children: title,
-    classname: cx(sx({ width: "100%" }), buttonClassname),
+    classname: cx(staticStyles.full, buttonClassname),
     scheme: "primary",
   });
 
