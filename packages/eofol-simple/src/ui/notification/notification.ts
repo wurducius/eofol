@@ -1,18 +1,7 @@
-import { sy, generateId } from "@eofol/eofol";
+import { sy, generateId, getTheme } from "@eofol/eofol";
 
 const NOTIFICATION_POSITION_MARGIN = "32px";
 
-sy(
-  {
-    position: "fixed",
-    zIndex: 10,
-    padding: "16px",
-    minWidth: "250px",
-    backgroundColor: "#222222",
-    color: "#dddddd",
-  },
-  "notification-base"
-);
 sy(
   {
     left: "50%",
@@ -65,6 +54,20 @@ const notify = ({
   color?: string;
   position?: NotifyPosition;
 }) => {
+  const theme = getTheme();
+
+  sy(
+    {
+      position: "fixed",
+      zIndex: theme.zIndex.notification,
+      padding: "16px",
+      minWidth: "250px",
+      backgroundColor: "#222222",
+      color: "#dddddd",
+    },
+    "notification-base"
+  );
+
   const verticalFromTop =
     position === "top" || position === "top-right" || position === "top-left";
   const horizontal = getHorizontal(position);

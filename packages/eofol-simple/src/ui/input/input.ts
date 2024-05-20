@@ -1,60 +1,38 @@
-import { ax, createElement } from "@eofol/eofol";
+import { InputProps, Schemable } from "@eofol/eofol-types";
+import { inputBase } from "../input-base/input-base";
+import { cx, getThemeStyles } from "@eofol/eofol";
+import { getInputSizeStyle } from "../../util/inputs";
 
-const input = ({
-  value,
-  onChange,
-  onBlur,
-  onInput,
-  classname,
-  name,
-  type,
-  max,
-  min,
-  step,
-}: {
-  value: string;
-  onChange: (nextValue: string) => void;
-  onBlur?: (nextValue: string) => void;
-  onInput?: (nextValue: string) => void;
-  classname?: string;
-  name?: string;
-  type?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-}) => {
-  return createElement(
-    "input",
-    classname,
-    undefined,
-    ax(
-      { value },
-      ["name", name],
-      ["id", name],
-      ["type", type],
-      ["min", min],
-      ["max", max],
-      ["step", step]
+export const input = (props: InputProps & Schemable) => {
+  const themeStyles = getThemeStyles();
+  const schemeImpl = props.scheme ?? "secondary";
+
+  const baseStyle = themeStyles.inputBase;
+  const baseTransitionStyle = themeStyles.inputBaseOutlineTransition;
+  const sizeStyle = getInputSizeStyle(props.size);
+  const colorStyle = themeStyles.color[schemeImpl];
+  const focusStyle = themeStyles.inputFocus[schemeImpl];
+  const notFocusStyle = themeStyles.inputBaseOutline;
+  const errorFocusStyle = themeStyles.inputErrorFocus;
+  const borderStyle = themeStyles.inputBorder[schemeImpl];
+  const errorBorderStyle = themeStyles.inputErrorBorder;
+
+  return inputBase({
+    ...props,
+    type: "text",
+    classname: cx(
+      baseStyle,
+      baseTransitionStyle,
+      colorStyle,
+      sizeStyle,
+      notFocusStyle,
+      focusStyle,
+      errorFocusStyle,
+      borderStyle,
+      errorBorderStyle,
+      props.classname
     ),
-    {
-      // @ts-ignore
-      onchange: (e) => {
-        onChange(e.target.value);
-      },
-      // @ts-ignore
-      onblur: (e) => {
-        if (onBlur) {
-          onBlur(e.target.value);
-        }
-      },
-      // @ts-ignore
-      oninput: (e) => {
-        if (onInput) {
-          onInput(e.target.value);
-        }
-      },
-    }
-  );
+  });
 };
 
-export default input;
+export default { input };

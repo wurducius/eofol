@@ -16,3 +16,5 @@ export function arrayCombinator<T>(
 export function merge(x: Object, y: Object) {
   return { ...x, ...y };
 }
+
+export default {};

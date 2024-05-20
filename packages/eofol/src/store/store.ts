@@ -1,7 +1,7 @@
 import { updateTarget } from "../core/render-target";
 import { updateCustom } from "../core/custom-element";
 import { customElementRegistry, targetElementRegistry } from "../core/registry";
-import { merge } from "../util/util";
+import { mergeDeep } from "../util/merge-deep";
 import { generateId } from "../util/crypto";
 
 type StoreState = any;
@@ -83,7 +83,7 @@ function mergeStore(name: string, nextState: StoreState) {
   const store = storeRegistry[name];
 
   if (store) {
-    setStore(name, merge(store.state, nextState));
+    setStore(name, mergeDeep(store.state, nextState));
   } else {
     console.log(`Cannot access store "${name}". Check if the store exists.`);
   }

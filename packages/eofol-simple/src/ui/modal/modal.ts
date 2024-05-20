@@ -1,22 +1,26 @@
-import { ElementNode } from "@eofol/eofol-types";
-import { createElement, sx } from "@eofol/eofol";
+import { EofolElementNode } from "@eofol/eofol-types";
+import { createElement, cx, getTheme, sx } from "@eofol/eofol";
+import { button } from "../..";
 
 const modal = (
   id: string,
   title: string,
-  children: ElementNode,
+  children: EofolElementNode,
   open: boolean,
   onClose: () => void,
   onConfirm: () => void,
-  controls?: undefined | Element
+  controls?: undefined | Element,
+  classname?: string | undefined
 ) => {
+  const theme = getTheme();
+
   return createElement(
     "div",
     sx({
       display: open ? "block" : "none",
       position: "fixed",
-      zIndex: "1",
-      paddingTop: "100px",
+      zIndex: theme.zIndex.modal,
+      paddingTop: "32px",
       left: 0,
       top: 0,
       width: "100%",
@@ -27,37 +31,34 @@ const modal = (
     [
       createElement(
         "div",
-        sx({
-          position: "relative",
-          padding: "16px 16px 64px 16px",
-          width: "80%",
-          margin: "auto",
-          border: "2px solid grey",
-          backgroundColor: "#dddddd",
-        }),
+        cx(
+          sx({
+            position: "relative",
+            padding: "16px 16px 16px 16px",
+            width: "80%",
+            margin: "auto",
+            border: "2px solid grey",
+            backgroundColor: "#dddddd",
+          }),
+          classname
+        ),
         [
           createElement(
             "div",
             sx({ display: "flex", justifyContent: "flex-end" }),
-            createElement(
-              "button",
-              undefined,
-              "X",
-              {},
-              {
-                // @ts-ignore
-                onclick: () => {
-                  onClose();
-                },
-              }
-            )
+            button({
+              children: "X",
+              onClick: () => {
+                onClose();
+              },
+            })
           ),
           createElement("div", sx({ fontSize: "32px" }), title),
           createElement("div", undefined, children),
           controls ??
-            createElement("button", undefined, "Let's go", undefined, {
-              // @ts-ignore
-              onclick: () => {
+            button({
+              children: "Let's go",
+              onClick: () => {
                 onConfirm();
               },
             }),

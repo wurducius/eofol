@@ -1,10 +1,25 @@
-import { createElement, cx, ax } from "@eofol/eofol";
 import {
-  EComponentWithoutChildren,
-  EInput,
-  ESizable,
-  getSize,
-} from "../../types";
+  createElement,
+  ax,
+  sx,
+  getTheme,
+  getThemeStyles,
+  staticStyles,
+} from "@eofol/eofol";
+import { EComponentWithoutChildren, EInput, ESizable } from "../../types";
+import { getInputSizeStyle } from "../../util/inputs";
+import { Schemable } from "@eofol/eofol-types";
+
+const renderOption = (
+  option: { title: string; id: string },
+  value: string | undefined
+) =>
+  createElement(
+    "option",
+    undefined,
+    option.title,
+    ax({ value: option.id }, ["selected", option.id === value && "selected"])
+  );
 
 const select = ({
   options,
@@ -15,37 +30,65 @@ const select = ({
   disabled,
   placeholder,
   size,
-  styles,
+  classname,
+  scheme,
 }: {
-  options: { title: string; id: string }[];
+  options: (
+    | { title: string; id: string }
+    | { group: string; options: { title: string; id: string }[] }
+  )[];
   placeholder?: string;
 } & EInput<string> &
   ESizable &
+  Schemable &
   EComponentWithoutChildren) => {
+  const theme = getTheme();
+  const themeStyles = getThemeStyles();
+  const schemeImpl = scheme ?? "secondary";
+
+  const baseStyle = sx({
+    padding: "6px 10px",
+    marginTop: "8px",
+    fontSize: theme.typography.text.fontSize,
+    backgroundColor: theme.color.background.base,
+    fontFamily: "inherit",
+  });
+  const colorStyle = themeStyles.color[schemeImpl];
+  const borderStyle = themeStyles.inputBorder[schemeImpl];
+  const sizeStyle = getInputSizeStyle(size);
+  const focusStyle = themeStyles.inputFocus[schemeImpl];
+
   const element = createElement(
     "select",
-    cx(
-      "select-base",
-      disabled && "select-disabled",
-      getSize("select")(size),
-      styles
-    ),
-    options.map((option) =>
-      createElement(
-        "option",
-        undefined,
-        option.title,
-        ax({ value: option.id }, [
-          "selected",
-          option.id === value && "selected",
-        ])
-      )
-    ),
+    [
+      sizeStyle,
+      baseStyle,
+      colorStyle,
+      staticStyles.full,
+      borderStyle,
+      focusStyle,
+      classname,
+    ],
+    options.map((option) => {
+      if ("group" in option && "options" in option) {
+        return createElement(
+          "optgroup",
+          undefined,
+          option.options.map((item) => renderOption(item, value)),
+          {
+            label: option.group,
+          }
+        );
+      } else {
+        return renderOption(option, value);
+      }
+    }),
     ax(
       { name, id: name },
       ["disabled", disabled && "disabled"],
       ["value", value],
-      ["placeholder", placeholder && "placeholder"]
+      ["placeholder", placeholder && "placeholder"],
+      ["aria-label", name]
     )
   );
   // @ts-ignore
