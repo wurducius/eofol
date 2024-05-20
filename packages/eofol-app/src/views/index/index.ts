@@ -5,7 +5,6 @@ import imgPath from "./rainbow-mountains-peru.jpg";
 import svgPath from "./phi.svg";
 
 import {
-  createElement,
   registerServiceWorker,
   defineAutonomousElement,
   renderTarget,
@@ -18,6 +17,7 @@ import {
   defineBuiltinElement,
   mergeStore,
   createSelector,
+  cx,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 import {
@@ -25,6 +25,10 @@ import {
   defineCollapse,
   defineAccordion,
   notify,
+  p,
+  div,
+  button,
+  h2,
 } from "@eofol/eofol-simple";
 
 createStore("global", { count: 0 });
@@ -52,22 +56,23 @@ renderTarget<CountState>("eofol-target", {
     const s = state as CountState;
 
     return [
-      createElement(
-        "div",
-        [sx({ color: "blue" }), sx({ color: "red" }, ":hover")],
-        "Targeted element example"
+      h2(
+        "Targeted element example",
+        cx(sx({ color: "blue" }), sx({ color: "red" }, ":hover"))
       ),
-      createElement("div", undefined, `Click count: ${s.count}`),
-      createElement("button", "eofol-button", "Click!", undefined, {
-        // @ts-ignore
-        onclick: () => {
+      p(`Click count: ${s.count}`),
+      button({
+        classname: "eofol-button",
+        children: "Click!",
+        onClick: () => {
           // wrong setState typing
           setState && setState({ count: s.count + 1 });
         },
       }),
-      createElement("button", "eofol-button", "Reset", undefined, {
-        // @ts-ignore
-        onclick: () => {
+      button({
+        classname: "eofol-button",
+        children: "Reset",
+        onClick: () => {
           // wrong setState typing
           setState && setState({ count: 0 });
         },
@@ -91,20 +96,21 @@ defineAutonomousElement<CountState>({
     };
 
     return [
-      createElement(
-        "div",
-        sx({ color: "blue", marginTop: "8px" }, undefined, true),
-        "Custom autonomous element using global store example"
+      h2(
+        "Custom autonomous element using global store example",
+        sx({ color: "blue", marginTop: "8px" })
       ),
-      createElement("div", undefined, `Click count: ${count}`),
-      createElement("div", "", [
-        createElement("button", "eofol-button", "Click!", undefined, {
-          // @ts-ignore
-          onclick: clickHandler,
+      p(`Click count: ${count}`),
+      div(undefined, [
+        button({
+          classname: "eofol-button",
+          children: "Click!",
+          onClick: clickHandler,
         }),
-        createElement("button", "eofol-button", "Reset", undefined, {
-          // @ts-ignore
-          onclick: resetHandler,
+        button({
+          classname: "eofol-button",
+          children: "Reset",
+          onClick: resetHandler,
         }),
       ]),
     ];
@@ -132,12 +138,8 @@ const getWeatherState = (state: WeatherState) => {
 defineAutonomousElement<WeatherState>({
   tagName: "eofol-weather",
   render: (state: StateTypeImpl<WeatherState>) => [
-    createElement(
-      "div",
-      sx({ color: "blue", marginTop: "8px" }, undefined, true),
-      "Effect example"
-    ),
-    createElement("div", undefined, getWeatherState(state as WeatherState)),
+    h2("Effect example", sx({ color: "blue", marginTop: "8px" })),
+    p(getWeatherState(state as WeatherState)),
   ],
   initialState: { temperature: undefined },
   effect: [
@@ -176,24 +178,25 @@ defineBuiltinElement<CountState>({
   tagName: "eofol-builtin",
   initialState: { count: 0 },
   render: (state, setState) => [
-    createElement(
-      "div",
-      sx({ color: "blue", marginTop: "8px" }, undefined, true),
-      "Custom built-in element example"
+    h2(
+      "Custom built-in element example",
+      sx({ color: "blue", marginTop: "8px" })
     ),
     // @ts-ignore
-    createElement("div", undefined, `Click count: ${state.count}`),
-    createElement("div", "", [
-      createElement("button", "eofol-button", "Click!", undefined, {
-        // @ts-ignore
-        onclick: () => {
+    p(`Click count: ${state.count}`),
+    div(undefined, [
+      button({
+        classname: "eofol-button",
+        children: "Click!",
+        onClick: () => {
           // @ts-ignore
           setState({ count: state.count + 1 });
         },
       }),
-      createElement("button", "eofol-button", "Reset", undefined, {
-        // @ts-ignore
-        onclick: () => {
+      button({
+        classname: "eofol-button",
+        children: "Reset",
+        onClick: () => {
           // @ts-ignore
           setState({ count: 0 });
         },
@@ -221,15 +224,15 @@ defineTabs({
   data: [
     {
       title: "First",
-      render: () => createElement("div", undefined, "Content 1"),
+      render: () => p("Content 1"),
     },
     {
       title: "Second",
-      render: () => createElement("div", undefined, "Content 2"),
+      render: () => p("Content 2"),
     },
     {
       title: "Third",
-      render: () => createElement("div", undefined, "Content 3"),
+      render: () => p("Content 3"),
     },
   ],
 });
@@ -262,19 +265,14 @@ const derivedData = createSelector("selector-base", (state) => ({
 defineBuiltinElement({
   tagName: "eofol-selector-1",
   render: () => {
-    return createElement(
-      "button",
-      "eofol-button",
-      "Click to message projection",
-      {},
-      {
-        // @ts-ignore
-        onclick: () => {
-          mergeStore("selector-base", { data: "Projection updated" });
-          notify({ title: "Projection updated!", position: "top" });
-        },
-      }
-    );
+    return button({
+      classname: "eofol-button",
+      children: "Click to message projection",
+      onClick: () => {
+        mergeStore("selector-base", { data: "Projection updated" });
+        notify({ title: "Projection updated!", position: "top" });
+      },
+    });
   },
 });
 
@@ -283,6 +281,6 @@ defineBuiltinElement({
   subscribe: [derivedData.name],
   render: () => {
     const projectionState = derivedData.selector();
-    return createElement("p", undefined, projectionState.derivedData);
+    return p(projectionState.derivedData);
   },
 });
