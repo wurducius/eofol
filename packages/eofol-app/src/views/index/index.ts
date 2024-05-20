@@ -24,7 +24,6 @@ import {
   defineTabs,
   defineCollapse,
   defineAccordion,
-  tooltip,
   notify,
 } from "@eofol/eofol-simple";
 
@@ -263,21 +262,18 @@ const derivedData = createSelector("selector-base", (state) => ({
 defineBuiltinElement({
   tagName: "eofol-selector-1",
   render: () => {
-    return tooltip(
-      "Uses eofol store projection",
-      createElement(
-        "button",
-        "eofol-button",
-        "Click to message projection",
-        {},
-        {
-          // @ts-ignore
-          onclick: () => {
-            mergeStore("selector-base", { data: "Projection updated" });
-            notify({ title: "Projection updated!", position: "top" });
-          },
-        }
-      )
+    return createElement(
+      "button",
+      "eofol-button",
+      "Click to message projection",
+      {},
+      {
+        // @ts-ignore
+        onclick: () => {
+          mergeStore("selector-base", { data: "Projection updated" });
+          notify({ title: "Projection updated!", position: "top" });
+        },
+      }
     );
   },
 });
