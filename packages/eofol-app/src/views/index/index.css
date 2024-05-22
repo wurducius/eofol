@@ -30,3 +30,21 @@
 .eofol-button:hover {
   background-color: rgb(100, 161, 199);
 }
+
+.m-md {
+  margin-top: 32px;
+}
+
+.m-sm {
+  margin-top: 16px;
+}
+
+.footer {
+  height: 64px;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
