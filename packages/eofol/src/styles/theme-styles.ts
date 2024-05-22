@@ -159,7 +159,7 @@ export const updateThemeStyles = (theme: Theme) => {
   };
 };
 
-updateThemeStyles(defaultTheme);
+// updateThemeStyles(defaultTheme);
 
 export const getThemeStyles = () => themeStyles;
 

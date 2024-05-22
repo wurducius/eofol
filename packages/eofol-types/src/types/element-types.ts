@@ -37,13 +37,6 @@ export interface EComponentWithoutChildren {
   classname?: Multi<EofolClassnameSingle>;
 }
 
-export type TypographyTextElement = (
-  content: TypographyNodeContent,
-  classname?: string,
-  attributes?: any,
-  properties?: any
-) => HTMLElement;
-
 export type TypographyElement = (
   content: TypographyNodeContent,
   classname?: string,

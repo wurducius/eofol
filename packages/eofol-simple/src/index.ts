@@ -26,6 +26,7 @@ export const address = typography.address;
 
 import primitiveX from "./primitive";
 export const center = primitiveX.center;
+export const container = primitiveX.container;
 export const div = primitiveX.div;
 export const flex = primitiveX.flex;
 
