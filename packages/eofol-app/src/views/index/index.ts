@@ -207,6 +207,8 @@ defineBuiltinElement<CountState>({
 
 registerServiceWorker();
 
+/*
+
 defineBuiltinElement({
   tagName: "eofol-primitive",
   classname: sx({ marginTop: "8px" }),
@@ -255,6 +257,8 @@ defineAccordion({
     { title: "Third", render: () => "Content 3" },
   ],
 });
+
+*/
 
 createStore("selector-base", { data: "Initial state", moreData: "foobar" });
 
