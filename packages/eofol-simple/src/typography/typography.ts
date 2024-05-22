@@ -107,7 +107,6 @@ export const kbd = text("kbd");
 export const abbr = text("abbr");
 export const small = text("small");
 export const strong = text("strong");
-export const mark = text("mark");
 export const em = text("em");
 export const del = text("del");
 export const ins = text("ins");
@@ -130,7 +129,6 @@ export default {
   abbr,
   small,
   strong,
-  mark,
   em,
   del,
   ins,

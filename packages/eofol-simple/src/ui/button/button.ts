@@ -13,7 +13,7 @@ const getButtonStyle = (
 
   return {
     fontSize: theme.typography.text.fontSize,
-    backgroundColor: isActive ? colorScheme.base : "black",
+    backgroundColor: isActive ? colorScheme.base : theme.color.background.base,
     color: isActive ? "black" : colorScheme.base,
     border: `1px solid ${colorScheme.base}`,
   };

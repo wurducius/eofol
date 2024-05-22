@@ -9,7 +9,7 @@ import {
   removeCx,
   getThemeStyles,
 } from "@eofol/eofol";
-import div from "../primitive/div";
+import div from "../../primitive/div";
 import { getInputSizeStyle } from "../../util/inputs";
 
 const NUMBER_INPUT_SPINNER_DELAY_INTERVAL_MS = 300;
@@ -328,4 +328,4 @@ const numberInput = (props: NumberInputProps & Schemable) => {
   return inputBaseElement;
 };
 
-export default { numberInput };
+export default numberInput;

@@ -1,4 +1,4 @@
-import { sx, sy } from "@eofol/eofol";
+import { cx, sx, sy } from "@eofol/eofol";
 import { EComponent } from "../../types";
 import aBase from "./aBase";
 import { AProps, Schemable } from "@eofol/eofol-types";
@@ -28,7 +28,7 @@ const a = (props: AProps & EComponent & Schemable) => {
       baseStyle,
       themedBaseStyle,
       themedHoverStyle,
-      ...(props.classname ?? []),
+      cx(props.classname),
     ].filter(Boolean),
   });
 };

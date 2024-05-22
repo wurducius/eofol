@@ -1,27 +1,25 @@
-import { sx, sy } from "@eofol/eofol";
+import { cx, getTheme, sx } from "@eofol/eofol";
 import { aBase } from "./aBase";
 import { getColorScheme } from "../../util/scheme";
 import { AProps, Schemable, Sizable } from "@eofol/eofol-types";
 import { EComponent } from "../../types";
 import { getInputSizeStyle } from "../../util/inputs";
 
-const baseStyle = sy(
-  {
+const linkButton = (props: AProps & EComponent & Schemable & Sizable) => {
+  const theme = getTheme();
+  const colorScheme = getColorScheme(props.scheme);
+  const sizeStyle = getInputSizeStyle(props.size);
+
+  const baseStyle = sx({
     textDecoration: "none",
     fontFamily: "inherit",
     padding: "0 16px",
-    backgroundColor: "black",
+    backgroundColor: theme.color.background.base,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "500",
-  },
-  "link-button-base"
-);
-
-const linkButton = (props: AProps & EComponent & Schemable & Sizable) => {
-  const colorScheme = getColorScheme(props.scheme);
-  const sizeStyle = getInputSizeStyle(props.size);
+  });
 
   const linkButtonStyle = sx({
     color: colorScheme.base,
@@ -44,7 +42,7 @@ const linkButton = (props: AProps & EComponent & Schemable & Sizable) => {
       sizeStyle,
       linkButtonStyle,
       linkButtonHoverStyle,
-      ...(props.classname ?? []),
+      cx(props.classname),
     ].filter(Boolean),
   });
 };

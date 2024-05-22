@@ -7,10 +7,10 @@ import {
   selector,
   createElement,
 } from "@eofol/eofol";
-import div from "../primitive/div";
-import flex from "../primitive/flex";
-import button from "../button/button";
-import { input } from "../input/input";
+import div from "../../primitive/div";
+import flex from "../../primitive/flex";
+import button from "../../ui/button/button";
+import { input } from "../../ui/input/input";
 import {
   SelectSearchProps,
   DefineSelectSearchProps,
@@ -300,4 +300,4 @@ const defineSelectSearch = ({
   });
 };
 
-export default { defineSelectSearch };
+export default defineSelectSearch;

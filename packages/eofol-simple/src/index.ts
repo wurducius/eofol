@@ -1,6 +1,6 @@
 // ----------------- TYPOGRAPHY -----------------
 
-import typography from "./ui/typography/typography";
+import typography from "./typography";
 export const h1 = typography.h1;
 export const h2 = typography.h2;
 export const h3 = typography.h3;
@@ -15,7 +15,6 @@ export const blockquote = typography.blockquote;
 export const abbr = typography.abbr;
 export const small = typography.small;
 export const strong = typography.strong;
-export const mark = typography.mark;
 export const em = typography.em;
 export const del = typography.del;
 export const ins = typography.ins;
@@ -25,10 +24,15 @@ export const address = typography.address;
 
 // ----------------- PRIMITIVE -----------------
 
-import primitiveX from "./ui/primitive";
+import primitiveX from "./primitive";
 export const center = primitiveX.center;
 export const div = primitiveX.div;
 export const flex = primitiveX.flex;
+
+// ------------------ SEMANTIC ------------------
+
+import semanticX from "./semantic";
+export const Semantic = semanticX.Semantic;
 
 // ----------------- COMPONENTS -----------------
 
@@ -37,79 +41,74 @@ export const a = aX.a;
 export const linkButton = aX.linkButton;
 export const aBase = aX.aBase;
 
-import buttonX from "./ui/button/button";
-export const button = buttonX;
-
-import bubbleX from "./ui/bubble/bubble";
+import bubbleX from "./ui/bubble";
 export const bubble = bubbleX.bubble;
 
-import checkboxX from "./ui/checkbox/checkbox";
-export const checkbox = checkboxX;
+import buttonX from "./ui/button";
+export const button = buttonX.button;
 
-import dividerX from "./ui/divider/divider";
-export const divider = dividerX;
+import checkboxX from "./ui/checkbox";
+export const checkbox = checkboxX.checkbox;
 
-import dropdownX from "./ui/dropdown/dropdown";
+import dividerX from "./ui/divider";
+export const divider = dividerX.divider;
+
+import dropdownX from "./ui/dropdown";
 export const dropdown = dropdownX.dropdown;
 export const dropdownContent = dropdownX.dropdownContent;
 
-import iconButtonX from "./ui/icon-button/icon-button";
-export const iconButton = iconButtonX;
+import iconButtonX from "./ui/icon-button";
+export const iconButton = iconButtonX.iconButton;
 
-import inputX from "./ui/input/input";
+import imgX from "./ui/img";
+export const img = imgX.img;
+
+import inputX from "./ui/input";
 export const input = inputX.input;
 
-import inputBaseX from "./ui/input-base/input-base";
+import inputBaseX from "./ui/input-base";
 export const inputBase = inputBaseX.inputBase;
 
-import listX from "./ui/list/list";
+import listX from "./ui/list";
 export const orderedList = listX.orderedList;
 export const unorderedList = listX.unorderedList;
 
-import modalX from "./ui/modal/modal";
-export const modal = modalX;
+import modalX from "./ui/modal";
+export const modal = modalX.modal;
 
-import notifyX from "./ui/notification/notification";
-export const notify = notifyX;
+import notificationX from "./ui/notification";
+export const notify = notificationX.notify;
 
-import numberInputX from "./ui/number-input/number-input";
+import numberInputX from "./ui/number-input";
 export const numberInput = numberInputX.numberInput;
 
-import selectX from "./ui/select/select";
-export const select = selectX;
+import selectX from "./ui/select";
+export const select = selectX.select;
 
-import sliderInputX from "./ui/slider-input/slider-input";
+import sliderInputX from "./ui/slider-input";
 export const sliderInput = sliderInputX.sliderInput;
 
-import spinnerX from "./ui/spinner/spinner";
-export const spinner = spinnerX;
+import spinnerX from "./ui/spinner";
+export const spinner = spinnerX.spinner;
 
-import textareaX from "./ui/textarea/textarea";
+import textareaX from "./ui/textarea";
 export const textarea = textareaX.textarea;
 
-import tooltipX from "./ui/tooltip/tooltip";
-export const tooltip = tooltipX;
+import tooltipX from "./ui/tooltip";
+export const tooltip = tooltipX.tooltip;
 
 // ----------------- CUSTOM -----------------
 
-import defineAccordionX from "./custom/accordion/accordion";
-export const defineAccordion = defineAccordionX;
-
-import defineCollapseX from "./custom/collapse/collapse";
-export const defineCollapse = defineCollapseX;
-
-import infiniteScrollX from "./custom/infinite-scroll/infinite-scroll";
-export const defineInfiniteScroll = infiniteScrollX;
-
-import selectSearchX from "./ui/select-search/select-search";
-export const defineSelectSearch = selectSearchX.defineSelectSearch;
-
-import defineTabsX from "./custom/tabs/tabs";
-export const defineTabs = defineTabsX;
+import customX from "./custom";
+export const defineAccordion = customX.defineAccordion;
+export const defineCollapse = customX.defineCollapse;
+export const defineInfiniteScroll = customX.defineInfiniteScroll;
+export const defineSelectSearch = customX.defineSelectSearch;
+export const defineTabs = customX.defineTabs;
 
 // ----------------- UTIL -----------------
 
-import validationX from "./util/validation";
+import validationX from "./util";
 export const validateIsInteger = validationX.validateIsInteger;
 export const validateIsNumber = validationX.validateIsNumber;
 export const validateIsOverMin = validationX.validateIsOverMin;

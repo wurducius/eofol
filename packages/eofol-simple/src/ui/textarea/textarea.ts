@@ -161,4 +161,4 @@ export const textarea = ({
   return wrapperElement;
 };
 
-export default { textarea };
+export default textarea;

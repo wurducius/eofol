@@ -1,6 +1,6 @@
 import { createElement, ax, sx, getTheme, getThemeStyles } from "@eofol/eofol";
 import { EInput, ESizable, EComponent } from "../../types";
-import div from "../primitive/div";
+import div from "../../primitive/div";
 import { getCheckboxSizeStyle } from "../../util/inputs";
 
 const checkbox = ({

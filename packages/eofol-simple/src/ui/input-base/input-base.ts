@@ -11,7 +11,7 @@ import {
   sy,
 } from "@eofol/eofol";
 import { EofolElementNode, InputBaseProps } from "@eofol/eofol-types";
-import div from "../primitive/div";
+import div from "../../primitive/div";
 
 const checkValidity = (validation: any, nextVal: any) => {
   // @ts-ignore
@@ -208,4 +208,4 @@ export const inputBase = ({
   );
 };
 
-export default { inputBase };
+export default inputBase;

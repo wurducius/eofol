@@ -35,4 +35,4 @@ export const input = (props: InputProps & Schemable) => {
   });
 };
 
-export default { input };
+export default input;

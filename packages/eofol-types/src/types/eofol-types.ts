@@ -1,11 +1,5 @@
-import { Multi, Optional, MultiOptional } from "./common-types";
-
-export type EofolElementNode = MultiOptional<Element | string>;
-
-// export type EofolClassnameSingle = Optional<string | false | null>;
-export type EofolClassnameSingle = any;
-
-export type EofolClassname = Multi<EofolClassnameSingle>;
+import { MultiOptional } from "./common-types";
+import { EofolElementNode } from "./element-types";
 
 export type StateSetter<StateType> = (newState: StateType) => void;
 
