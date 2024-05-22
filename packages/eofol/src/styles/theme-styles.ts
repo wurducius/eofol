@@ -1,6 +1,5 @@
 import { Theme } from "@eofol/eofol-types";
 import sx from "./sx";
-import { defaultTheme } from "./default-theme";
 
 export const INPUT_INVALID = "input-invalid";
 

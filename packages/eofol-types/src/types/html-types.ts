@@ -111,8 +111,11 @@ export interface ESizable {
   size?: SIZE;
 }
 
+export type ButtonVariant = "outline" | "solid" | "ghost" | undefined;
+
 export interface EButton {
   onClick?: () => void;
   onBlur?: () => void;
   disabled?: boolean;
+  variant?: ButtonVariant;
 }
