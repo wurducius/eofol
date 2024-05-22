@@ -1,4 +1,4 @@
-import { cx, getTheme, sx } from "@eofol/eofol";
+import { cxFlat, getTheme, sx } from "@eofol/eofol";
 import { aBase } from "./aBase";
 import { getColorScheme } from "../../util/scheme";
 import { AProps, Schemable, Sizable } from "@eofol/eofol-types";
@@ -42,8 +42,8 @@ const linkButton = (props: AProps & EComponent & Schemable & Sizable) => {
       sizeStyle,
       linkButtonStyle,
       linkButtonHoverStyle,
-      cx(props.classname),
-    ].filter(Boolean),
+      cxFlat(props.classname),
+    ],
   });
 };
 

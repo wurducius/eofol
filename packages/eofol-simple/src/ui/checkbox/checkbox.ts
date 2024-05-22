@@ -1,4 +1,11 @@
-import { createElement, ax, sx, getTheme, getThemeStyles } from "@eofol/eofol";
+import {
+  createElement,
+  ax,
+  sx,
+  getTheme,
+  getThemeStyles,
+  cxFlat,
+} from "@eofol/eofol";
 import { EInput, ESizable, EComponent } from "../../types";
 import div from "../../primitive/div";
 import { getCheckboxSizeStyle } from "../../util/inputs";
@@ -26,7 +33,7 @@ const checkbox = ({
 
   const inputElement = createElement(
     "input",
-    [baseStyle, classname],
+    [baseStyle, cxFlat(classname)],
     children,
     ax(
       { name, id: name, type: "checkbox" },

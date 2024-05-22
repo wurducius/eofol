@@ -86,6 +86,7 @@ export const initTranslation = translationX.initTranslation;
 import simpleUtils from "./util/simple";
 export const ax = simpleUtils.ax;
 export const cx = simpleUtils.cx;
+export const cxFlat = simpleUtils.cxFlat;
 export const addCx = simpleUtils.addCx;
 export const removeCx = simpleUtils.removeCx;
 

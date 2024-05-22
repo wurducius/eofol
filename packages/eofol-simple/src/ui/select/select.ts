@@ -5,6 +5,7 @@ import {
   getTheme,
   getThemeStyles,
   staticStyles,
+  cxFlat,
 } from "@eofol/eofol";
 import { EComponentWithoutChildren, EInput, ESizable } from "../../types";
 import { getInputSizeStyle } from "../../util/inputs";
@@ -67,7 +68,7 @@ const select = ({
       staticStyles.full,
       borderStyle,
       focusStyle,
-      classname,
+      cxFlat(classname),
     ],
     options.map((option) => {
       if ("group" in option && "options" in option) {

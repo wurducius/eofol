@@ -1,4 +1,4 @@
-import { cx, sx, sy } from "@eofol/eofol";
+import { cxFlat, sx, sy } from "@eofol/eofol";
 import { EComponent } from "../../types";
 import aBase from "./aBase";
 import { AProps, Schemable } from "@eofol/eofol-types";
@@ -28,8 +28,8 @@ const a = (props: AProps & EComponent & Schemable) => {
       baseStyle,
       themedBaseStyle,
       themedHoverStyle,
-      cx(props.classname),
-    ].filter(Boolean),
+      cxFlat(props.classname),
+    ],
   });
 };
 

@@ -1,4 +1,10 @@
-import { createElement, ax, getThemeStyles, staticStyles } from "@eofol/eofol";
+import {
+  createElement,
+  ax,
+  getThemeStyles,
+  staticStyles,
+  cxFlat,
+} from "@eofol/eofol";
 import { EButton, EComponent } from "../../types";
 import { getTheme, sx } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
@@ -64,7 +70,7 @@ const button = ({
       schemeHoverStyle,
       disabled && disabledStyle,
       full && staticStyles.full,
-      classname,
+      cxFlat(classname),
     ],
     children,
     ax({}, ["disabled", disabled])
