@@ -43,8 +43,7 @@
   height: 64px;
 }
 
-h1,
-h2 {
+.no-gutter {
   margin-top: 0;
   margin-bottom: 0;
 }

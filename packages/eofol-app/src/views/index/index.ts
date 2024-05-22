@@ -49,7 +49,10 @@ renderTarget<CountState>("eofol-target", {
     return [
       h2(
         "Targeted element example",
-        cx(sx({ color: "blue" }), sx({ color: "red" }, ":hover"))
+        cx(sx({ color: "blue" }), sx({ color: "red" }, ":hover")),
+        undefined,
+        undefined,
+        true
       ),
       p(`Click count: ${s.count}`),
       button({
@@ -89,7 +92,10 @@ defineAutonomousElement<CountState>({
     return [
       h2(
         "Custom autonomous element using global store example",
-        sx({ color: "blue", marginTop: "8px" })
+        sx({ color: "blue", marginTop: "8px" }),
+        undefined,
+        undefined,
+        true
       ),
       p(`Click count: ${count}`),
       div(undefined, [
@@ -129,7 +135,13 @@ const getWeatherState = (state: WeatherState) => {
 defineAutonomousElement<WeatherState>({
   tagName: "eofol-weather",
   render: (state: StateTypeImpl<WeatherState>) => [
-    h2("Effect example", sx({ color: "blue", marginTop: "8px" })),
+    h2(
+      "Effect example",
+      sx({ color: "blue", marginTop: "8px" }),
+      undefined,
+      undefined,
+      true
+    ),
     p(getWeatherState(state as WeatherState)),
   ],
   initialState: { temperature: undefined },
@@ -171,7 +183,10 @@ defineBuiltinElement<CountState>({
   render: (state, setState) => [
     h2(
       "Custom built-in element example",
-      sx({ color: "blue", marginTop: "8px" })
+      sx({ color: "blue", marginTop: "8px" }),
+      undefined,
+      undefined,
+      true
     ),
     // @ts-ignore
     p(`Click count: ${state.count}`),

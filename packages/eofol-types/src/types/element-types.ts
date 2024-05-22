@@ -1,4 +1,5 @@
 import { MultiOptional, Multi } from "./common-types";
+import { TypographyNodeContent } from "./props";
 
 export type EofolElementNode = MultiOptional<Element | string>;
 
@@ -35,3 +36,18 @@ export interface EComponent {
 export interface EComponentWithoutChildren {
   classname?: Multi<EofolClassnameSingle>;
 }
+
+export type TypographyTextElement = (
+  content: TypographyNodeContent,
+  classname?: string,
+  attributes?: any,
+  properties?: any
+) => HTMLElement;
+
+export type TypographyElement = (
+  content: TypographyNodeContent,
+  classname?: string,
+  attributes?: any,
+  properties?: any,
+  noGutters?: boolean
+) => HTMLElement;

@@ -1,95 +1,32 @@
 import { createElement, sy } from "@eofol/eofol";
-import { TypographyNodeContent } from "@eofol/eofol-types";
+import { TypographyElement } from "@eofol/eofol-types";
 
-const createTypographyElement = (
-  tagName: string,
-  classname: string | undefined,
-  content: TypographyNodeContent,
-  attributes?: any,
-  properties?: any,
-  noGuttersStyle?: boolean
-) =>
-  createElement(
-    tagName,
-    [noGuttersStyle && typographyNoGuttersStyle, classname],
-    content,
-    attributes,
-    properties
-  );
-
-const createTypographyHeadingElement = (
-  tagName: string,
-  classname: string | undefined,
-  content: TypographyNodeContent,
-  attributes?: any,
-  properties?: any,
-  noGutters?: boolean
-) =>
-  createTypographyElement(
-    tagName,
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters
-  );
-
-const createTypographyTextElement = (
-  tagName: string,
-  classname: string | undefined,
-  content: TypographyNodeContent,
-  attributes?: any,
-  properties?: any,
-  noGutters?: boolean
-) =>
-  createTypographyElement(
-    tagName,
-    classname,
-    content,
-    attributes,
-    properties,
-    noGutters !== false
-  );
-
+//  [noGuttersStyle && typographyNoGuttersStyle, classname]
 const typographyNoGuttersStyle = sy(
   { marginTop: 0, marginBottom: 0 },
   "typography-base-no-gutters"
 );
 
 const text =
-  (tagName: string) =>
-  (
-    content: TypographyNodeContent,
-    classname?: string,
-    noGutters?: boolean,
-    attributes?: any,
-    properties?: any
-  ) =>
-    createTypographyTextElement(
+  (tagName: string): TypographyElement =>
+  (content, classname, attributes, properties, noGutters) =>
+    createElement(
       tagName,
-      classname,
+      [noGutters !== false && typographyNoGuttersStyle, classname],
       content,
       attributes,
-      properties,
-      noGutters
+      properties
     );
 
 const heading =
-  (tagName: string) =>
-  (
-    content: TypographyNodeContent,
-    classname?: string,
-    noGutters?: boolean,
-    attributes?: any,
-    properties?: any
-  ) =>
-    createTypographyHeadingElement(
+  (tagName: string): TypographyElement =>
+  (content, classname, attributes, properties, noGutters) =>
+    createElement(
       tagName,
-      classname,
+      [noGutters && typographyNoGuttersStyle, classname],
       content,
       attributes,
-      properties,
-      noGutters
+      properties
     );
 
 export const h1 = heading("h1");
