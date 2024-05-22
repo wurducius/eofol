@@ -2,10 +2,14 @@ import { Theme } from "@eofol/eofol-types";
 import { defaultTheme } from "./default-theme";
 import { mergeDeep } from "../util/merge-deep";
 import { clearStyle, createStyleObj } from "./create-style";
+import { processColor } from "./color/process-color";
 
-const createTheme = (styles: Partial<Theme>) => mergeDeep(defaultTheme, styles);
+const createTheme = (styles: Partial<Theme>) => {
+  const parsedStyles = processColor(styles);
+  return mergeDeep(defaultTheme, parsedStyles);
+};
 
-export let theme: Theme = createTheme({});
+export let theme: Theme = createTheme(defaultTheme);
 
 export const setTheme = (styles: Partial<Theme>) => {
   theme = createTheme(styles);
