@@ -77,6 +77,9 @@ export const saveSessionStorage = sessionStorageX.saveSessionStorage;
 export const deleteSessionStorage = sessionStorageX.deleteSessionStorage;
 export const clearSessionStorage = sessionStorageX.clearSessionStorage;
 
+import getGeolocationX from "./runtime/geolocation";
+export const getGeolocation = getGeolocationX;
+
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
 
