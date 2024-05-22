@@ -65,11 +65,17 @@ import fetchX from "./runtime/fetch";
 export const get = fetchX.get;
 export const post = fetchX.post;
 
-import localStorageX from "./runtime/local-storage";
+import localStorageX from "./runtime/storage/local-storage";
 export const loadLocalStorage = localStorageX.loadLocalStorage;
 export const saveLocalStorage = localStorageX.saveLocalStorage;
 export const deleteLocalStorage = localStorageX.deleteLocalStorage;
 export const clearLocalStorage = localStorageX.clearLocalStorage;
+
+import sessionStorageX from "./runtime/storage/session-storage";
+export const loadSessionStorage = sessionStorageX.loadSessionStorage;
+export const saveSessionStorage = sessionStorageX.saveSessionStorage;
+export const deleteSessionStorage = sessionStorageX.deleteSessionStorage;
+export const clearSessionStorage = sessionStorageX.clearSessionStorage;
 
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
