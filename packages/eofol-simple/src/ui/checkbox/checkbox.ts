@@ -6,9 +6,9 @@ import {
   getThemeStyles,
   cxFlat,
 } from "@eofol/eofol";
-import { EInput, ESizable, EComponent } from "../../types";
 import div from "../../primitive/div";
 import { getCheckboxSizeStyle } from "../../util/inputs";
+import { EComponent, EInput, Sizable } from "@eofol/eofol-types";
 
 const checkbox = ({
   onChange,
@@ -19,7 +19,7 @@ const checkbox = ({
   size,
   classname,
   children,
-}: EInput<boolean> & ESizable & EComponent) => {
+}: EInput<boolean> & Sizable & EComponent) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
 

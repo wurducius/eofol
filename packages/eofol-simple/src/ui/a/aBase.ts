@@ -1,6 +1,5 @@
 import { createElement, ax } from "@eofol/eofol";
-import { EComponent } from "../../types";
-import { AProps } from "@eofol/eofol-types";
+import { AProps, EComponent } from "@eofol/eofol-types";
 
 export const aBase = ({
   link,

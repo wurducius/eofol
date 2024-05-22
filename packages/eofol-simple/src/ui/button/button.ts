@@ -5,10 +5,15 @@ import {
   staticStyles,
   cxFlat,
 } from "@eofol/eofol";
-import { EButton, EComponent } from "../../types";
 import { getTheme, sx } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
-import { ColorSchemePalette, Schemable, Sizable } from "@eofol/eofol-types";
+import {
+  ColorSchemePalette,
+  EButton,
+  EComponent,
+  Schemable,
+  Sizable,
+} from "@eofol/eofol-types";
 import { getColorScheme } from "../../util/scheme";
 
 const getButtonStyle = (

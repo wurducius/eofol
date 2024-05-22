@@ -7,9 +7,13 @@ import {
   staticStyles,
   cxFlat,
 } from "@eofol/eofol";
-import { EComponentWithoutChildren, EInput, ESizable } from "../../types";
 import { getInputSizeStyle } from "../../util/inputs";
-import { Schemable } from "@eofol/eofol-types";
+import {
+  EComponentWithoutChildren,
+  EInput,
+  Schemable,
+  Sizable,
+} from "@eofol/eofol-types";
 
 const renderOption = (
   option: { title: string; id: string },
@@ -40,7 +44,7 @@ const select = ({
   )[];
   placeholder?: string;
 } & EInput<string> &
-  ESizable &
+  Sizable &
   Schemable &
   EComponentWithoutChildren) => {
   const theme = getTheme();

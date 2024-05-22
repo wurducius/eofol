@@ -1,10 +1,7 @@
 import { createElement, sx } from "@eofol/eofol";
-import {
-  UnorderedListType,
-  UnorderedListProps,
-  PADDING_INLINE_START_DEFAULT,
-} from "./common";
+import { PADDING_INLINE_START_DEFAULT } from "./common";
 import { listItem } from "./list-item";
+import { UnorderedListType, UnorderedListProps } from "@eofol/eofol-types";
 
 const getUnorderedListType = (type: UnorderedListType) => {
   if (type === "none") {

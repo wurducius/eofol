@@ -26,3 +26,12 @@ export type EofolSimplifiedElementCreator = (
   attributes?: EofolAttributes,
   properties?: EofolProperties
 ) => HTMLElement;
+
+export interface EComponent {
+  classname?: Multi<EofolClassnameSingle>;
+  children?: EofolElementNode;
+}
+
+export interface EComponentWithoutChildren {
+  classname?: Multi<EofolClassnameSingle>;
+}

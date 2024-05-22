@@ -1,11 +1,7 @@
 import { createElement, sx } from "@eofol/eofol";
-import {
-  orderedListProps,
-  OrderedListType,
-  PADDING_INLINE_START_DEFAULT,
-} from "./common";
+import { PADDING_INLINE_START_DEFAULT } from "./common";
 import { listItem } from "./list-item";
-import { unorderedList } from "../..";
+import { OrderedListType, orderedListProps } from "@eofol/eofol-types";
 
 const getOrderedListType = (type: OrderedListType) => {
   if (type === "lowerRoman") {

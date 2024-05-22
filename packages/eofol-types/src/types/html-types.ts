@@ -98,3 +98,21 @@ export type InputBaseProps = InputCommonProps<string> &
 export type InputProps = InputCommonProps<string> & InputTypeProps;
 
 export type NumberInputProps = InputCommonProps<number> & InputBaseNumericProps;
+
+export interface EInput<T> {
+  onChange?: (nextValue: T) => void;
+  onBlur?: (nextValue: T) => void;
+  value?: T;
+  disabled?: boolean;
+  name: string;
+}
+
+export interface ESizable {
+  size?: SIZE;
+}
+
+export interface EButton {
+  onClick?: () => void;
+  onBlur?: () => void;
+  disabled?: boolean;
+}
