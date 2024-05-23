@@ -80,6 +80,10 @@ export const clearSessionStorage = sessionStorageX.clearSessionStorage;
 import getGeolocationX from "./runtime/geolocation";
 export const getGeolocation = getGeolocationX;
 
+import searchParamsX from "./runtime/search-params";
+export const getSearchParams = searchParamsX.getSearchParams;
+export const setSearchParams = searchParamsX.setSearchParams;
+
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
 
