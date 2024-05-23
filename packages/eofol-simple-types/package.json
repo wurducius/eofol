@@ -1,0 +1,24 @@
+{
+  "name": "@eofol/eofol-simple-types",
+  "version": "0.2.23",
+  "description": "Typescript types for eofol-simple",
+  "types": "index.d.ts",
+  "files": [
+    "src",
+    "index.d.ts",
+    "tsconfig.json"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "csstype": "3.1.3",
+    "typescript": "5.3.3"
+  },
+  "author": "wurducius@gmail.com",
+  "license": "MIT",
+  "bugs": "https://github.com/wurducius/eofol/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wurducius/eofol.git",
+    "directory": "packages/eofol-simple-types"
+  }
+}

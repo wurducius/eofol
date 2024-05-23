@@ -1,6 +1,7 @@
 import { cxFlat, sx, sy } from "@eofol/eofol";
 import aBase from "./aBase";
-import { AProps, EComponent, Schemable } from "@eofol/eofol-types";
+import { EComponent, Schemable } from "@eofol/eofol-types";
+import { AProps } from "@eofol/eofol-simple-types";
 import { getColorScheme } from "../../util/scheme";
 
 const baseStyle = sy(

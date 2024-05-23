@@ -1,8 +1,9 @@
 import { cxFlat, getTheme, sx } from "@eofol/eofol";
 import { aBase } from "./aBase";
 import { getColorScheme } from "../../util/scheme";
-import { AProps, EComponent, Schemable, Sizable } from "@eofol/eofol-types";
+import { EComponent, Schemable, Sizable } from "@eofol/eofol-types";
 import { getInputSizeStyle } from "../../util/inputs";
+import { AProps } from "@eofol/eofol-simple-types";
 
 const linkButton = (props: AProps & EComponent & Schemable & Sizable) => {
   const theme = getTheme();

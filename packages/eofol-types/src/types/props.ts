@@ -37,12 +37,6 @@ export type Sizable = { size?: SIZE };
 
 export type Schemable = { scheme?: ColorScheme };
 
-export type AProps = {
-  link: string;
-  external?: boolean;
-  download?: string;
-};
-
 export type ListBaseProps<T> = {
   spacing?: number;
   data: T[];
