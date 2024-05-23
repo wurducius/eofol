@@ -1,21 +1,8 @@
 import "../../styles/base.css";
 import "./typography.css";
-
 import svgPath from "../phi.svg";
-
-import {
-  createElement,
-  defineBuiltinElement,
-  sx,
-  h1,
-  code,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-} from "@eofol/eofol";
+import { createElement, defineBuiltinElement, sx } from "@eofol/eofol";
+import { h1, h2, h3, h4, h5, h6, p, code } from "@eofol/eofol-simple";
 
 const svgElement: HTMLImageElement | null = <HTMLImageElement>(
   document.getElementById("eofol-svg")
@@ -36,14 +23,14 @@ defineBuiltinElement({
         justifyContent: "center",
       }),
       [
-        h1(undefined, "H1"),
-        h2(undefined, "H2"),
-        h3(undefined, "H3"),
-        h4(undefined, "H4"),
-        h5(undefined, "H5"),
-        h6(undefined, "H6"),
-        p(undefined, "P"),
-        code(undefined, "Code"),
+        h1("H1"),
+        h2("H2"),
+        h3("H3"),
+        h4("H4"),
+        h5("H5"),
+        h6("H6"),
+        p("P"),
+        code("Code"),
       ]
     ),
 });

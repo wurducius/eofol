@@ -1,16 +1,8 @@
 import "../../styles/base.css";
 import "./form.css";
-
 import svgPath from "../phi.svg";
-
-import {
-  createElement,
-  defineBuiltinElement,
-  sx,
-  select,
-  checkbox,
-  button,
-} from "@eofol/eofol";
+import { createElement, defineBuiltinElement, sx } from "@eofol/eofol";
+import { checkbox, button, select } from "@eofol/eofol-simple";
 
 const svgElement: HTMLImageElement | null = <HTMLImageElement>(
   document.getElementById("eofol-svg")

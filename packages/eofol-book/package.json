@@ -9,7 +9,8 @@
     "serve": "eofol-scripts serve"
   },
   "dependencies": {
-    "@eofol/eofol": "0.2.23"
+    "@eofol/eofol": "0.2.23",
+    "@eofol/eofol-simple": "0.2.23"
   },
   "devDependencies": {
     "@eofol/eofol-scripts": "0.2.23",

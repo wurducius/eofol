@@ -1,4 +1,13 @@
 import { defineBuiltinElement, sx } from "@eofol/eofol";
+import {
+  defineTabs,
+  p,
+  defineCollapse,
+  defineAccordion,
+} from "@eofol/eofol-simple";
+
+/*
+const svgPath = "";
 
 defineBuiltinElement({
   tagName: "eofol-primitive",
@@ -48,3 +57,4 @@ defineAccordion({
     { title: "Third", render: () => "Content 3" },
   ],
 });
+*/
