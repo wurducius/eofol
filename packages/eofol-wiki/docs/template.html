@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="initial-scale=1" />
+    <meta
+      name="description"
+      content="Documentation for Scale fiddle app, chapter @@TITLE - create microtonal musical tunings and try them out practically on a synthetizer"
+    />
+    <meta
+      name="keywords"
+      content="Scale Fiddle, microtonal, scale, tuning, synthetizer, scala"
+    />
+    <meta name="author" content="Jakub Eli&#225;&#353;" />
+    <title>Scale fiddle documentation - @@TITLE</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #1a202c;
+        color: #edf2f7;
+        font-family: "Roboto", sans-serif;
+        padding: 0 0;
+        margin: 0 0 0 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+      }
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 28px;
+      }
+      h3 {
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 22px;
+      }
+      h5 {
+        font-size: 20px;
+      }
+      h6 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 16px;
+      }
+      a {
+        color: #319795;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      a:hover {
+        color: #6abcbb;
+      }
+      a:active {
+        color: #5c8080;
+      }
+      a:visited:not(.a-unstyled):not(.a-active):not(:active) {
+        color: #5c3197;
+      }
+      a:visited:not(.a-unstyled):not(.a-active):not(:active):hover {
+        color: #8961c0;
+      }
+      a:visited:not(.a-unstyled):not(.a-active):not(:active):active {
+        color: #675285;
+      }
+      .a-active {
+        color: #a725b1;
+      }
+      .a-active:hover {
+        color: #d977e0;
+      }
+      .a-active:active {
+        color: #8c5290;
+      }
+      .container {
+        max-width: 1920px;
+        margin: 0 auto 0 auto;
+        padding: 24px 48px;
+        flex: 1;
+      }
+      @media (max-width: 880px) {
+        .flex {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .flex-center {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .header-title {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 1;
+          text-align: center;
+          margin-top: 16px;
+        }
+      }
+      @media (min-width: 881px) {
+        .flex {
+          display: flex;
+          flex-direction: row;
+        }
+        .flex-center {
+          display: flex;
+          flex-direction: column;
+        }
+        .header-title {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 1;
+          text-align: center;
+        }
+      }
+      .header-item {
+        display: flex;
+        align-items: center;
+      }
+      .title-padding {
+        padding: 0 16px;
+      }
+      .table-of-contents {
+        width: @@PAGES_TABLE_OF_CONTENTS_WIDTH;
+        margin-top: 16px;
+      }
+      .pages-table-of-contents-item {
+        padding: 8px 0;
+      }
+      .article-table-of-contents-item {
+        padding: 8px 0;
+      }
+      .article-container {
+        flex: 1;
+        padding: 16px 16px;
+      }
+      .footer {
+        height: 128px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 32px;
+        border-top: 1px solid grey;
+      }
+      .no-gutter {
+        margin: 0 0 0 0;
+      }
+
+      @font-face {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(/Roboto-Regular.ttf) format("truetype");
+      }
+
+      ::-webkit-scrollbar {
+        width: 16px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        height: 56px;
+        border-radius: 8px;
+        border: 4px solid transparent;
+        background-color: hsl(0, 0%, 67%);
+        background-clip: content-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="article-top">
+      <div class="flex title-padding">
+        <div class="header-item">
+          <a href="../" class="a-unstyled">Back to Scale fiddle</a>
+        </div>
+        <div class="header-title">
+          <h1>Scale Fiddle documentation</h1>
+          <h1>@@TITLE</h1>
+        </div>
+        <div class="header-item"></div>
+      </div>
+      <div class="flex">
+        <div class="table-of-contents" id="table-of-contents">
+          @@TABLE_OF_CONTENTS
+        </div>
+          <div class="flex-center article-container">
+            @@ARTICLE_TABLE_OF_CONTENTS
+            <div>            
+              @@ARTICLE
+             </div>
+          </div>
+        </div>
+      </div>
+      @@FOOTER
+    </div>
+    <script>
+      const currentLocation = window.location.href;
+      const isIndex = !currentLocation.includes(".html");
+      const links = [];
+      const linkParents = document.getElementsByClassName(
+        "pages-table-of-contents-item"
+      );
+      for (let i = 0; i < linkParents.length; i++) {
+        links.push(linkParents.item(i).children.item(0));
+      }
+      let current;
+      for (let i = 0; i < links.length; i++) {
+        const link = links[i];
+        if (currentLocation.includes(link.href) || (i === 0 && isIndex)) {
+          current = link;
+          break;
+        }
+      }
+      if (current) {
+        current.className = "a-active";
+      }
+    </script>
+  </body>
+</html>
