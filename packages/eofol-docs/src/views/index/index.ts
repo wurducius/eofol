@@ -1,16 +1,8 @@
-import "./index.css";
+import "../base.css";
 import svgPath from "../../assets/phi.svg";
 import arrowRightPath from "../../assets/arrow-right.svg";
 import githubPath from "../../assets/github.svg";
-import {
-  createElement,
-  defineBuiltinElement,
-  getTheme,
-  mergeDeep,
-  registerServiceWorker,
-  setTheme,
-  sx,
-} from "@eofol/eofol";
+import { defineBuiltinElement, getTheme, sx } from "@eofol/eofol";
 import {
   p,
   div,
@@ -21,105 +13,17 @@ import {
   linkButton,
   code,
 } from "@eofol/eofol-simple";
-import { EofolElementNode } from "@eofol/eofol-types";
+import { init } from "../../util";
+import {
+  elevationContainer,
+  footer,
+  listItemTag,
+  loremIpsum,
+  sectionContainer,
+  unorderedListTag,
+} from "../../ui";
 
-const loremIpsum =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus consequat tempor. Sed vitae quam at libero molestie vehicula non vel sem. Integer tellus justo, sagittis sit amet diam id, maximus elementum orci. Praesent sodales facilisis tincidunt. Suspendisse sed pretium augue. Vivamus aliquam sodales risus. Donec condimentum lorem eget gravida congue. Curabitur at nulla a sapien malesuada bibendum. Maecenas cursus mattis mauris nec pharetra. Aliquam viverra quam non justo blandit tempus. Vestibulum sit amet faucibus leo, aliquam egestas purus.";
-
-/*
-initTranslation([
-  { title: "English", id: "en" },
-  { title: "Čeština", id: "cs" },
-]);
-*/
-
-const commonTheme = {
-  typography: {
-    text: {
-      fontSize: "16px",
-    },
-    title: {
-      fontSize: "20px",
-    },
-    heading: {
-      fontSize: "24px",
-    },
-    tableSmall: {
-      fontSize: "12px",
-    },
-  },
-  shape: { borderRadius: "8px" },
-  breakpoints: { values: [640, 1080, 1200, 1600, 2000, 2600] },
-};
-
-const cyanTheme = mergeDeep(commonTheme, {
-  color: {
-    primary: {
-      base: "#03dac6",
-    },
-    secondary: {
-      base: "#86b1ff",
-    },
-    tertiary: {
-      base: "#278da6",
-    },
-    background: {
-      base: "#121212",
-      elevation: "#333333",
-      card: "#2d3748",
-    },
-    font: "#03dac6",
-    error: "#fc8181",
-  },
-});
-
-setTheme(cyanTheme);
-// const theme = setTheme(initialTheme);
-// initStyles(theme);
-
-const generalContainer =
-  (maxWidth: string, minHeight: string, backgroundColor: string) =>
-  (children: EofolElementNode) => {
-    return div(
-      sx({
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight,
-        backgroundColor,
-        padding: "64px",
-      }),
-      div(sx({ margin: "0 auto 0 auto", maxWidth }), children)
-    );
-  };
-
-const sectionContainer = (children: EofolElementNode) => {
-  const theme = getTheme();
-  return generalContainer(
-    "560px",
-    "640px",
-    theme.color.background.base
-  )(children);
-};
-
-const elevationContainer = (children: EofolElementNode) => {
-  const theme = getTheme();
-  return generalContainer(
-    "560px",
-    "640px",
-    theme.color.background.elevation
-  )(children);
-};
-
-const footerContainer = (children: EofolElementNode) => {
-  const theme = getTheme();
-  return generalContainer(
-    "560px",
-    "240px",
-    theme.color.background.card
-  )(children);
-};
+init();
 
 interface IconLinkProps {
   link: string;
@@ -177,12 +81,6 @@ const externalLinkButton = (props: IconLinkProps) =>
 const internalLinkButton = (props: IconLinkProps) =>
   customLinkButton({ ...props, external: false });
 
-const unorderedListTag = (children: EofolElementNode) =>
-  createElement("ul", sx({ textAlign: "left" }), children);
-
-const listItemTag = (children: EofolElementNode) =>
-  createElement("li", sx({ marginTop: "8px" }), children);
-
 const landingSection = () => {
   const theme = getTheme();
 
@@ -209,7 +107,7 @@ const landingSection = () => {
         title: "Get started",
         alt: "Right arrow",
         iconPosition: "right",
-        link: "/get-started",
+        link: "/docs.html",
       }),
       externalLinkButton({
         icon: githubPath,
@@ -273,17 +171,6 @@ const featuresSection = () => {
   ]);
 };
 
-const footer = () => {
-  const theme = getTheme();
-
-  return footerContainer([
-    p("Made in Czech Republic by Jakub Eliáš"),
-    div(sx({ marginTop: "32px", display: "flex", justifyContent: "center" }), [
-      "TODO icons",
-    ]),
-  ]);
-};
-
 defineBuiltinElement({
   tagName: "eofol-docs",
   render: () => {
@@ -296,5 +183,3 @@ defineBuiltinElement({
     ]);
   },
 });
-
-registerServiceWorker();

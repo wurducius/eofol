@@ -7,7 +7,7 @@ const containerBaseStyle = sy(
   "container-base"
 );
 
-const container = (children: EofolElementNode) =>
-  div(containerBaseStyle, children);
+const container = (children: EofolElementNode, classname?: string) =>
+  div([containerBaseStyle, classname], children);
 
 export default container;

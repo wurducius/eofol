@@ -1,5 +1,5 @@
 import { ColorScheme } from "@eofol/eofol-types";
-import { getTheme } from "@eofol/eofol/dist";
+import { getTheme } from "@eofol/eofol";
 
 export const getColorScheme = (
   scheme: ColorScheme,

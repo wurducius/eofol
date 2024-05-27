@@ -2,7 +2,7 @@ import {
   EofolElementCreator,
   EofolSimplifiedElementCreator,
 } from "@eofol/eofol-types";
-import { createElement } from "@eofol/eofol/dist";
+import { createElement } from "@eofol/eofol";
 
 export const elementFactory =
   (tagName: string): EofolElementCreator =>

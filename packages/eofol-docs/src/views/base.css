@@ -11,6 +11,11 @@ body {
   background-attachment: fixed;
   font-family: "Roboto", sans-serif;
   text-align: center;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
 }
 
 ::-webkit-scrollbar {
