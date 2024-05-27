@@ -27,6 +27,7 @@ let themeStyles = {
   inputSizeMd: "",
   inputSizeLg: "",
   inputSizeXl: "",
+  inputSize2Xl: "",
   checkboxSizeSm: "",
   checkboxSizeMd: "",
   checkboxSizeLg: "",
@@ -73,6 +74,9 @@ export const updateThemeStyles = (theme: Theme) => {
     }),
     inputSizeXl: sx({
       height: theme.size.xl,
+    }),
+    inputSize2Xl: sx({
+      height: theme.size["2xl"],
     }),
     inputBaseOutlineTransition: sx({
       transition: `outline 200ms linear`,

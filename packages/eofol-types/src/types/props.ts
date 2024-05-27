@@ -25,12 +25,14 @@ export const SIZE_SM = "sm";
 export const SIZE_MD = "md";
 export const SIZE_LG = "lg";
 export const SIZE_XL = "xl";
+export const SIZE_2XL = "2xl";
 
 export type SIZE =
   | typeof SIZE_SM
   | typeof SIZE_MD
   | typeof SIZE_LG
   | typeof SIZE_XL
+  | typeof SIZE_2XL
   | undefined;
 
 export type Sizable = { size?: SIZE };
