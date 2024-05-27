@@ -22,6 +22,8 @@ import {
   sectionContainer,
   unorderedListTag,
 } from "../../ui";
+import { GITHUB_EOFOL_LINK } from "../../data/constants";
+import { ROUTER_DOCS } from "../../data/router";
 
 init();
 
@@ -107,13 +109,13 @@ const landingSection = () => {
         title: "Get started",
         alt: "Right arrow",
         iconPosition: "right",
-        link: "/docs.html",
+        link: ROUTER_DOCS,
       }),
       externalLinkButton({
         icon: githubPath,
         title: "Github",
         alt: "Github",
-        link: "https://github.com/wurducius/eofol",
+        link: GITHUB_EOFOL_LINK,
         iconPosition: "right",
         scheme: "secondary",
       }),

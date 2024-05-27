@@ -1,5 +1,7 @@
-import { div } from "@eofol/eofol-simple";
+import { div, p } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
+import { iconMenu } from "./icon-menu";
+import { themeToggle } from "./theme-toggle";
 
 export const APPBAR_CONTENT_HEIGHT_PX = 24;
 export const APPBAR_PADDING_PX = 8;
@@ -23,14 +25,22 @@ export const appbar = () => {
     }),
     [
       div(sx({ display: "flex", flex: 1, justifyContent: "flex-start" }), [
-        "Eofol landing page link",
-        "- Version",
-        "- ?Search",
+        p(
+          "All inclusive web framework with zero configuration, batteries included!"
+        ),
       ]),
-      div(sx({ display: "flex", flex: 1, justifyContent: "flex-end" }), [
-        "Todo icons",
-        "- Theme toggle",
-      ]),
+      div(
+        sx({
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }),
+        [
+          p("Version 0.2", sx({ marginRight: "24px" })),
+          iconMenu(),
+          themeToggle(),
+        ]
+      ),
     ]
   );
 };
