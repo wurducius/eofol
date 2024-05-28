@@ -5,6 +5,7 @@ import {
 
 export const ROUTER_INDEX = "/index.html";
 export const ROUTER_DOCS = "/docs.html";
+
 export const ROUTER_GETTING_STARTED = "/getting-started.html";
 export const ROUTER_COMPONENTS = "/components.html";
 export const ROUTER_CORE = "/core.html";
@@ -13,6 +14,12 @@ export const ROUTER_STATE_MANAGEMENT = "/state-management.html";
 export const ROUTER_RUNTIME = "/runtime.html";
 export const ROUTER_UTIL = "/util.html";
 export const ROUTER_SHOWCASES = "/showcases.html";
+
+const ROUTER_PREFIX_COMPONENT = "/components/";
+export const ROUTER_COMPONENT_BUTTON = `${ROUTER_PREFIX_COMPONENT}button.html`;
+export const ROUTER_COMPONENT_INPUT = `${ROUTER_PREFIX_COMPONENT}input.html`;
+export const ROUTER_COMPONENT_NUMBER_INPUT = `${ROUTER_PREFIX_COMPONENT}number-input.html`;
+export const ROUTER_COMPONENT_TYPOGRAPHY = `${ROUTER_PREFIX_COMPONENT}typography.html`;
 
 export interface RouterItemFlat {
   link?: string;
@@ -32,10 +39,10 @@ export const ROUTER_NAVBAR: RouterItem[] = [
     title: "Components",
     link: ROUTER_COMPONENTS,
     subtree: [
-      { title: "Button", link: ROUTER_DOCS },
-      { title: "Input", link: ROUTER_DOCS },
-      { title: "Number input", link: ROUTER_DOCS },
-      { title: "Typography", link: ROUTER_DOCS },
+      { title: "Button", link: ROUTER_COMPONENT_BUTTON },
+      { title: "Input", link: ROUTER_COMPONENT_INPUT },
+      { title: "Number input", link: ROUTER_COMPONENT_NUMBER_INPUT },
+      { title: "Typography", link: ROUTER_COMPONENT_TYPOGRAPHY },
     ],
   },
   { title: "State management", link: ROUTER_STATE_MANAGEMENT },

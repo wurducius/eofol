@@ -2,7 +2,7 @@ import { a, div, p } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
 import { ROUTER_INDEX, ROUTER_NAVBAR, RouterItem } from "../data";
 
-type LinkState = "active" | "subtree" | "nonactive";
+type LinkState = "active" | "subtree" | "nonactive" | "base";
 
 const isLinkActive = (link: string) => location.href.includes(link);
 
@@ -17,6 +17,8 @@ const getLinkStyle = (state: LinkState) => {
     return "primary";
   } else if (state === "subtree") {
     return "tertiary";
+  } else if (state === "base") {
+    return "primary";
   } else {
     return "secondary";
   }
@@ -43,12 +45,30 @@ const renderLink = (item: RouterItem, state: LinkState) =>
 
 const navbarRouterMenu = ROUTER_NAVBAR.map((item) => {
   const isActive = item.link && isLinkActive(item.link);
+  const isChildActive =
+    item.subtree &&
+    item.subtree.find((subitem) => subitem.link && isLinkActive(subitem.link));
 
-  return isActive
-    ? [
-        renderLink(item, "active"),
-        ...(item.subtree ?? []).map((item) => renderLink(item, "subtree")),
-      ]
+  return isActive || isChildActive !== undefined
+    ? div(
+        item.subtree
+          ? sx({
+              padding: "16px 0 16px 0",
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+            })
+          : undefined,
+        [
+          renderLink(item, isActive ? "active" : "base"),
+          ...(item.subtree ?? []).map((item) =>
+            renderLink(
+              item,
+              item.link && isLinkActive(item.link) ? "active" : "subtree"
+            )
+          ),
+        ]
+      )
     : renderLink(item, "nonactive");
 }).flat();
 
