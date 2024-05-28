@@ -18,6 +18,7 @@ export const appbar = () => {
       height: `${APPBAR_CONTENT_HEIGHT_PX}px`,
       padding: `${APPBAR_PADDING_PX}px 32px`,
       backgroundColor: theme.color.background.card,
+      zIndex: 100,
     }),
     [
       div(sx({ display: "flex", flex: 1, justifyContent: "flex-start" }), [
