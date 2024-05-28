@@ -22,7 +22,11 @@ import {
   sectionContainer,
   unorderedListTag,
 } from "../../ui";
-import { GITHUB_EOFOL_LINK } from "../../data/constants";
+import {
+  GITHUB_EOFOL_LINK,
+  SHOWCASE_EOFOL_APP_LINK,
+  SHOWCASE_SCALE_FIDDLE_LINK,
+} from "../../data/constants";
 import { ROUTER_GETTING_STARTED } from "../../data";
 
 init();
@@ -74,6 +78,7 @@ const customLinkButton = ({
     size: "2xl",
     external,
     scheme,
+    classname: sx({ minWidth: "128px" }),
   });
 };
 
@@ -96,7 +101,7 @@ const landingSection = () => {
       width: "128px",
       classname: sx({
         backgroundColor: theme.color.primary.base,
-        margin: "0 0 64px 0",
+        margin: "0 0 16px 0",
       }),
     }),
     h1("Create reactive websites with a single dependency."),
@@ -142,11 +147,18 @@ const showcaseSection = () => {
     p("Your project can look as good as these! Check them out, get inspired!"),
     div(sx({ marginTop: "32px", display: "flex", justifyContent: "center" }), [
       externalLinkButton({
-        link: "https://eofol.com/showcase",
-        title: "See showcase",
+        link: SHOWCASE_EOFOL_APP_LINK,
+        title: "See eofol-app showcase",
         icon: arrowRightPath,
         iconPosition: "right",
-        alt: "Showcase",
+        alt: "Showcase eofol-app",
+      }),
+      externalLinkButton({
+        link: SHOWCASE_SCALE_FIDDLE_LINK,
+        title: "See Scale Fiddle showcase",
+        icon: arrowRightPath,
+        iconPosition: "right",
+        alt: "Showcase Scale Fiddle",
       }),
     ]),
   ]);

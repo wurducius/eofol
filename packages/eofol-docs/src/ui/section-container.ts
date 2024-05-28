@@ -27,7 +27,7 @@ export const sectionContainer = (children: EofolElementNode) => {
   const theme = getTheme();
   return generalContainer(
     "560px",
-    "640px",
+    "560px",
     theme.color.background.base
   )(children);
 };
@@ -36,7 +36,7 @@ export const elevationContainer = (children: EofolElementNode) => {
   const theme = getTheme();
   return generalContainer(
     "560px",
-    "640px",
+    "560px",
     theme.color.background.elevation
   )(children);
 };
