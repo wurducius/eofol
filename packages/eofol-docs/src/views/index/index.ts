@@ -23,7 +23,7 @@ import {
   unorderedListTag,
 } from "../../ui";
 import { GITHUB_EOFOL_LINK } from "../../data/constants";
-import { ROUTER_DOCS } from "../../data/router";
+import { ROUTER_GETTING_STARTED } from "../../data";
 
 init();
 
@@ -109,7 +109,7 @@ const landingSection = () => {
         title: "Get started",
         alt: "Right arrow",
         iconPosition: "right",
-        link: ROUTER_DOCS,
+        link: ROUTER_GETTING_STARTED,
       }),
       externalLinkButton({
         icon: githubPath,

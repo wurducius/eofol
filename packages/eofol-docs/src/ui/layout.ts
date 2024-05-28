@@ -1,15 +1,15 @@
 import { div } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
-import { APPBAR_HEIGHT_PX } from "./appbar";
+import {
+  APPBAR_HEIGHT_PX,
+  NAVBAR_WIDTH_PX,
+  LAYOUT_CONTENT_PADDING_TOP_PX,
+  LAYOUT_CONTENT_PADDING_BOTTOM_PX,
+  FOOTER_HEIGHT_FULL_PX,
+} from "../data";
 import { content } from "./content";
 import { footer } from "./footer";
 import { navbar } from "./navbar";
-import { FOOTER_HEIGHT_FULL_PX } from "./section-container";
-
-export const NAVBAR_WIDTH_PX = 240;
-
-export const LAYOUT_CONTENT_PADDING_TOP_PX = 80;
-export const LAYOUT_CONTENT_PADDING_BOTTOM_PX = 128;
 
 export const layout = (navbarElement: Element, contentElement: Element) => {
   const theme = getTheme();

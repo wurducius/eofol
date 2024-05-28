@@ -1,8 +1,10 @@
 import { div } from "@eofol/eofol-simple";
 import { EofolElementNode } from "@eofol/eofol-types";
 import { sx, getTheme } from "@eofol/eofol";
-
-export const CONTAINER_PADDING_PX = 64;
+import {
+  CONTAINER_PADDING_PX,
+  FOOTER_HEIGHT_WITHOUT_PADDING_PX,
+} from "../data";
 
 const generalContainer =
   (maxWidth: string, minHeight: string, backgroundColor: string) =>
@@ -38,10 +40,6 @@ export const elevationContainer = (children: EofolElementNode) => {
     theme.color.background.elevation
   )(children);
 };
-
-export const FOOTER_HEIGHT_WITHOUT_PADDING_PX = 120;
-export const FOOTER_HEIGHT_FULL_PX =
-  FOOTER_HEIGHT_WITHOUT_PADDING_PX + 2 * CONTAINER_PADDING_PX;
 
 export const footerContainer = (children: EofolElementNode) => {
   const theme = getTheme();

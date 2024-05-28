@@ -28,7 +28,7 @@ export const cyanTheme = mergeDeep(commonTheme, {
       base: "#86b1ff",
     },
     tertiary: {
-      base: "#278da6",
+      base: "#bb86fc",
     },
     background: {
       base: "#121212",
