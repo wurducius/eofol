@@ -66,7 +66,7 @@ export type InputCommonProps<T> = {
   validation?: ((nextVal: T) => true | string)[];
   invalid?: string | boolean;
 
-  value: T;
+  value: T | undefined;
 };
 
 export type InputBaseNumericProps = {

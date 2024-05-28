@@ -321,7 +321,7 @@ const numberInput = (props: NumberInputProps & Schemable) => {
       props.classname
     ),
     after: showCustomArrows && afterArrows,
-    value: stringify(props.value),
+    value: props.value ? stringify(props.value) : undefined,
     inputMode: inputMode,
   });
 

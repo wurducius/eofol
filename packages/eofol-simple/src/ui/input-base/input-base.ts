@@ -87,7 +87,7 @@ export const inputBase = ({
     ),
     undefined,
     ax(
-      { value },
+      { value: value ?? "" },
       ["name", name],
       ["id", name],
       ["aria-label", name],
