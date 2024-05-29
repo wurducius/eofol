@@ -2,7 +2,11 @@ import { div, p } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
 import { iconMenu } from "./icon-menu";
 import { themeToggle } from "./theme-toggle";
-import { APPBAR_CONTENT_HEIGHT_PX, APPBAR_PADDING_PX } from "../data";
+import {
+  APPBAR_CONTENT_HEIGHT_PX,
+  APPBAR_PADDING_PX,
+  EOFOL_META_DESCRIPTION,
+} from "../data";
 
 export const appbar = () => {
   const theme = getTheme();
@@ -22,9 +26,7 @@ export const appbar = () => {
     }),
     [
       div(sx({ display: "flex", flex: 1, justifyContent: "flex-start" }), [
-        p(
-          "All inclusive web framework with zero configuration, batteries included!"
-        ),
+        p(EOFOL_META_DESCRIPTION),
       ]),
       div(
         sx({

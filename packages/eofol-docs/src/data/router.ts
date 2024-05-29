@@ -1,7 +1,9 @@
-import {
-  SHOWCASE_EOFOL_APP_LINK,
-  SHOWCASE_SCALE_FIDDLE_LINK,
-} from "./constants";
+export const SHOWCASE_EOFOL_APP_LINK = "https://eofol.com/showcase";
+export const SHOWCASE_SCALE_FIDDLE_LINK = "https://eofol.com/fiddle";
+export const GITHUB_EOFOL_LINK = "https://github.com/wurducius/eofol";
+export const NPM_EOFOL_LINK = "https://www.npmjs.com/package/eofol";
+export const LINKEDIN_LINK = "https://www.linkedin.com/in/jakubelias/";
+export const MAIL_MAILTO_LINK = "mailto:wurducius@gmail.com";
 
 export const ROUTER_INDEX = "/index.html";
 export const ROUTER_DOCS = "/docs.html";

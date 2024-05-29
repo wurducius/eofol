@@ -1,4 +1,11 @@
-import { mergeDeep } from "@eofol/eofol";
+import {
+  forceRerender,
+  loadLocalStorage,
+  mergeDeep,
+  saveLocalStorage,
+  setTheme,
+} from "@eofol/eofol";
+import { LOCAL_STORAGE_NAME } from "../data";
 
 const commonTheme = {
   typography: {
@@ -19,7 +26,7 @@ const commonTheme = {
   breakpoints: { values: [640, 1080, 1200, 1600, 2000, 2600] },
 };
 
-export const cyanTheme = mergeDeep(commonTheme, {
+export const darkTheme = mergeDeep(commonTheme, {
   color: {
     primary: {
       base: "#03dac6",
@@ -39,3 +46,38 @@ export const cyanTheme = mergeDeep(commonTheme, {
     error: "#fc8181",
   },
 });
+
+export const lightTheme = mergeDeep(commonTheme, {
+  color: {
+    primary: {
+      base: "#166abd",
+    },
+    secondary: {
+      base: "#9c27b0",
+    },
+    tertiary: {
+      base: "#bb86fc",
+    },
+    background: {
+      base: "#ffffff",
+      elevation: "#e6e6e6",
+      card: "#d4d4d4",
+    },
+    font: "black",
+    error: "#fc8181",
+  },
+});
+
+const storage = loadLocalStorage(LOCAL_STORAGE_NAME);
+// @ts-ignore
+let themeState = storage.theme === "light" ? "light" : "dark";
+
+export const getThemeState = () => themeState;
+
+export const toggleTheme = () => {
+  themeState = themeState === "dark" ? "light" : "dark";
+  const theme = themeState === "dark" ? darkTheme : lightTheme;
+  saveLocalStorage({ theme: themeState }, LOCAL_STORAGE_NAME);
+  setTheme(theme);
+  forceRerender();
+};

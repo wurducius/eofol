@@ -23,11 +23,13 @@ import {
   unorderedListTag,
 } from "../../ui";
 import {
+  EOFOL_META_DESCRIPTION,
+  EOFOL_NAME_PRETTY,
   GITHUB_EOFOL_LINK,
+  ROUTER_GETTING_STARTED,
   SHOWCASE_EOFOL_APP_LINK,
   SHOWCASE_SCALE_FIDDLE_LINK,
-} from "../../data/constants";
-import { ROUTER_GETTING_STARTED } from "../../data";
+} from "../../data";
 
 init();
 
@@ -105,9 +107,7 @@ const landingSection = () => {
       }),
     }),
     h1("Create reactive websites with a single dependency."),
-    h2(
-      "Eoфol - All inclusive web framework with zero configuration, batteries included!"
-    ),
+    h2(`${EOFOL_NAME_PRETTY} - ${EOFOL_META_DESCRIPTION}`),
     div(sx({ marginTop: "32px", display: "flex", justifyContent: "center" }), [
       internalLinkButton({
         icon: arrowRightPath,
@@ -166,9 +166,7 @@ const showcaseSection = () => {
 
 const featuresSection = () => {
   return elevationContainer([
-    h1(
-      "All inclusive web framework with zero configuration, batteries included!"
-    ),
+    h1(EOFOL_META_DESCRIPTION),
     unorderedListTag([
       listItemTag(
         p(

@@ -1,6 +1,11 @@
 import { a, div, p } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
-import { ROUTER_INDEX, ROUTER_NAVBAR, RouterItem } from "../data";
+import {
+  EOFOL_NAME_PRETTY,
+  ROUTER_INDEX,
+  ROUTER_NAVBAR,
+  RouterItem,
+} from "../data";
 
 type LinkState = "active" | "subtree" | "nonactive" | "base";
 
@@ -76,7 +81,7 @@ export const navbar = (navbarElement: Element) => {
   return div(sx({ display: "flex", flexDirection: "column", gap: "16px" }), [
     a({
       link: ROUTER_INDEX,
-      children: "Eofol",
+      children: EOFOL_NAME_PRETTY,
       classname: sx({ fontSize: "24px", paddingBottom: "8px" }),
     }),
     ...navbarRouterMenu,

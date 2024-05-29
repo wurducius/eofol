@@ -1,8 +1,9 @@
 import "../base.css";
 import { defineBuiltinElement, sx } from "@eofol/eofol";
 import { container, div, h1, h2, numberInput, p } from "@eofol/eofol-simple";
-import { init } from "../../util";
-import { appbar, layout, loremIpsum } from "../../ui";
+import { appbar, layout, loremIpsum, shortLoremIpsum } from "../../ui";
+import { EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG } from "../../data";
+import { capitalize, init, toKebab } from "../../util";
 
 init();
 
@@ -19,90 +20,152 @@ init();
   autocomplete?: boolean;
   */
 
+const COMPONENT = "number-input";
+
+const PROP_SCHEME = "scheme";
+const PROP_SIZE = "size";
+const PROP_PLACEHOLDER = "placeholder";
+const PROP_MIN = "min";
+const PROP_MAX = "max";
+const PROP_HIDE_ARROWS = "hide arrows";
+
+const COLOR_SCHEME_PRIMARY = "primary";
+const COLOR_SCHEME_SECONDARY = "secondary";
+const COLOR_SCHEME_TERTIARY = "tertiary";
+
+const SIZE_SM = "sm";
+const SIZE_MD = "md";
+const SIZE_LG = "lg";
+const SIZE_XL = "xl";
+
+const SIZE_SM_NAME = "Small";
+const SIZE_MD_NAME = "Middle";
+const SIZE_LG_NAME = "Large";
+const SIZE_XL_NAME = "Extra large";
+
+const noop = () => {};
+const NUMBER_INPUT_VALUE = 42;
+
+const toInputName = (
+  componentName: string,
+  propName: string,
+  propVal?: string
+) =>
+  [
+    toKebab(componentName),
+    toKebab(propName),
+    propVal ? toKebab(propVal) : undefined,
+  ]
+    .filter(Boolean)
+    .join("-");
+
+const defaultProps = { onChange: noop, value: NUMBER_INPUT_VALUE };
+
+// Partial<NumberInputProps>
+
+const props = (propsObj: any) => ({
+  ...defaultProps,
+  ...propsObj,
+});
+
 const inputField = (element: Element) =>
   div(sx({ width: "240px", margin: "32px auto 32px auto" }), element);
 
+const render = (propsObj: any) => inputField(numberInput(props(propsObj)));
+
 const scheme = [
-  h2("Scheme"),
-  p("Primary"),
-  inputField(
-    numberInput({
-      name: "number-input-scheme-primary",
-      onChange: () => {},
-      value: 42,
-      scheme: "primary",
-    })
-  ),
-  p("Secondary"),
-  inputField(
-    numberInput({
-      name: "number-input-scheme-secondary",
-      onChange: () => {},
-      value: 42,
-      scheme: "secondary",
-    })
-  ),
-  p("Tertiary"),
-  inputField(
-    numberInput({
-      name: "number-input-scheme-tertiary",
-      onChange: () => {},
-      value: 42,
-      scheme: "tertiary",
-    })
-  ),
+  h2(capitalize(PROP_SCHEME)),
+  p(shortLoremIpsum),
+  p(capitalize(COLOR_SCHEME_PRIMARY)),
+  render({
+    name: toInputName(COMPONENT, PROP_SCHEME, COLOR_SCHEME_PRIMARY),
+    scheme: COLOR_SCHEME_PRIMARY,
+  }),
+  p(capitalize(COLOR_SCHEME_SECONDARY)),
+  render({
+    name: toInputName(COMPONENT, PROP_SCHEME, COLOR_SCHEME_SECONDARY),
+    scheme: COLOR_SCHEME_SECONDARY,
+  }),
+  p(capitalize(COLOR_SCHEME_TERTIARY)),
+  render({
+    name: toInputName(COMPONENT, PROP_SCHEME, COLOR_SCHEME_TERTIARY),
+    scheme: COLOR_SCHEME_TERTIARY,
+  }),
 ];
 
 const size = [
-  h2("Size"),
-  p("Small"),
-  inputField(
-    numberInput({
-      name: "number-input-size-sm",
-      onChange: () => {},
-      value: 42,
-      size: "sm",
-    })
-  ),
-  p("Middle"),
-  inputField(
-    numberInput({
-      name: "number-input-size-md",
-      onChange: () => {},
-      value: 42,
-      size: "md",
-    })
-  ),
-  p("Large"),
-  inputField(
-    numberInput({
-      name: "number-input-size-lg",
-      onChange: () => {},
-      value: 42,
-      size: "lg",
-    })
-  ),
-  p("Extra large"),
-  inputField(
-    numberInput({
-      name: "number-input-size-xl",
-      onChange: () => {},
-      value: 42,
-      size: "xl",
-    })
-  ),
+  h2(capitalize(PROP_SIZE)),
+  p(shortLoremIpsum),
+  p(capitalize(SIZE_SM_NAME)),
+  render({
+    name: toInputName(COMPONENT, PROP_SIZE, SIZE_SM_NAME),
+    size: SIZE_SM,
+  }),
+  p(capitalize(SIZE_MD_NAME)),
+  render({
+    name: toInputName(COMPONENT, PROP_SIZE, SIZE_MD_NAME),
+    size: SIZE_MD,
+  }),
+  p(capitalize(SIZE_LG_NAME)),
+  render({
+    name: toInputName(COMPONENT, PROP_SIZE, SIZE_LG_NAME),
+    size: SIZE_LG,
+  }),
+  p(capitalize(SIZE_XL_NAME)),
+  render({
+    name: toInputName(COMPONENT, PROP_SIZE, SIZE_XL_NAME),
+    size: SIZE_XL,
+  }),
+];
+
+type PropValue = { value: any; title?: string };
+
+const renderPropValues = (
+  propName: string,
+  propValues: PropValue[] | PropValue,
+  additionalProps?: (propName: string, value: string) => any
+) => {
+  if (Array.isArray(propValues)) {
+    return propValues
+      .map((propValue) => [
+        p(capitalize(propValue.title ?? propValue.value)),
+        render({
+          [propName]: propValue.value,
+          ...(additionalProps
+            ? additionalProps(propName, propValue.value)
+            : {}),
+        }),
+      ])
+      .flat();
+  } else {
+    return [
+      render({
+        [propName]: propValues.value,
+        ...(additionalProps ? additionalProps(propName, propValues.value) : {}),
+      }),
+    ];
+  }
+};
+
+const renderProp = (
+  propName: string,
+  description: string,
+  propValues: PropValue[] | PropValue,
+  additionalProps?: (propName: string, value: string) => any
+) => [
+  h2(capitalize(propName)),
+  p(description),
+  ...renderPropValues(propName, propValues, additionalProps),
 ];
 
 const placeholder = [
-  h2("Placeholder"),
-  inputField(
-    numberInput({
-      name: "number-input-placeholder",
-      onChange: () => {},
-      placeholder: "Placeholder",
-      value: undefined,
-    })
-  ),
+  h2(capitalize(PROP_PLACEHOLDER)),
+  p(shortLoremIpsum),
+  render({
+    name: toInputName(COMPONENT, PROP_PLACEHOLDER, undefined),
+    placeholder: "Placeholder",
+    value: undefined,
+  }),
 ];
 
 const min = [
@@ -110,9 +173,9 @@ const min = [
   inputField(
     numberInput({
       name: "number-input-min",
-      onChange: () => {},
-      value: 42,
-      min: 42,
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
+      min: NUMBER_INPUT_VALUE,
     })
   ),
 ];
@@ -122,9 +185,9 @@ const max = [
   inputField(
     numberInput({
       name: "number-input-max",
-      onChange: () => {},
-      value: 42,
-      max: 42,
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
+      max: NUMBER_INPUT_VALUE,
     })
   ),
 ];
@@ -134,8 +197,8 @@ const step = [
   inputField(
     numberInput({
       name: "number-input-step",
-      onChange: () => {},
-      value: 42,
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
       step: 10,
     })
   ),
@@ -147,8 +210,8 @@ const hideArrows = [
   inputField(
     numberInput({
       name: "number-input-hide-arrows-visible",
-      onChange: () => {},
-      value: 42,
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
       hideArrows: false,
     })
   ),
@@ -156,8 +219,8 @@ const hideArrows = [
   inputField(
     numberInput({
       name: "number-input-hide-arrows-default",
-      onChange: () => {},
-      value: 42,
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
       hideArrows: "default",
     })
   ),
@@ -165,8 +228,8 @@ const hideArrows = [
   inputField(
     numberInput({
       name: "number-input-hide-arrows-hidden",
-      onChange: () => {},
-      value: 42,
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
       hideArrows: true,
     })
   ),
@@ -175,10 +238,14 @@ const hideArrows = [
 const navbarElement = div(undefined, []);
 
 const contentElement = div(undefined, [
-  h1("Number input"),
+  h1(capitalize(COMPONENT)),
   p(loremIpsum),
   inputField(
-    numberInput({ name: "number-input-base", onChange: () => {}, value: 42 })
+    numberInput({
+      name: "number-input-base",
+      onChange: noop,
+      value: NUMBER_INPUT_VALUE,
+    })
   ),
   ...scheme,
   ...size,
@@ -190,7 +257,7 @@ const contentElement = div(undefined, [
 ]);
 
 defineBuiltinElement({
-  tagName: "eofol-docs",
+  tagName: EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG,
   render: () => {
     return container(
       [appbar(), layout(navbarElement, contentElement)],
