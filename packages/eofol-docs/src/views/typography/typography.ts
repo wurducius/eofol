@@ -28,81 +28,158 @@ import {
   page,
   shortLoremIpsum,
 } from "../../ui";
-import { sx } from "@eofol/eofol";
+import { getTheme, sx } from "@eofol/eofol";
+import { EofolElementNode } from "@eofol/eofol-types";
 
-const headings = [
-  h2("Headings"),
-  p(shortLoremIpsum),
-  h1("H1 - " + foxJumpsOverLazyDog),
-  h2("H2 - " + foxJumpsOverLazyDog),
-  h3("H3 - " + foxJumpsOverLazyDog),
-  h4("H4 - " + foxJumpsOverLazyDog),
-  h5("H5 - " + foxJumpsOverLazyDog),
-  h6("H6 - " + foxJumpsOverLazyDog),
+const theme = getTheme();
+
+const typographyWrapperStyle = sx({
+  display: "flex",
+  flexDirection: "column",
+  margin: "16px 0 16px 0",
+});
+
+const typographyLineWrapperStyle = sx({
+  display: "flex",
+  justifyContent: "center",
+  margin: "8px 0 8px 0",
+});
+
+const typographyEndWrapperStyle = sx({
+  display: "flex",
+  whiteSpace: "pre-wrap",
+});
+
+const typographyTitleStyle = sx({ color: theme.color.secondary.base });
+
+const typographyElementNameStyle = sx({ color: "#536dfe" });
+
+const typographyWrapper = (children: EofolElementNode) =>
+  div(typographyWrapperStyle, children);
+
+const typographyLineWrapper = (children: EofolElementNode) =>
+  div(typographyLineWrapperStyle, children);
+
+const renderGenericTypographyGroup = (
+  groupName: string,
+  description: string,
+  content: Element[]
+) => [
+  h2(groupName, typographyElementNameStyle),
+  p(description),
+  typographyWrapper(content),
 ];
 
-const paragraph = [
-  h2("Paragraph"),
-  p(shortLoremIpsum),
-  p("P - " + foxJumpsOverLazyDog),
-];
+const renderTextTypography = (
+  elementName: string,
+  render: (content: string, classname?: string) => Element
+) =>
+  typographyLineWrapper(
+    div(typographyEndWrapperStyle, [
+      render(elementName, typographyTitleStyle),
+      render(` - ${foxJumpsOverLazyDog}`),
+    ])
+  );
 
-const computerCode = [
-  h2("Computer code"),
-  p(shortLoremIpsum),
-  code("Code - " + foxJumpsOverLazyDog),
-  pre("Pre - " + foxJumpsOverLazyDog),
-  kbd("Kbd - " + foxJumpsOverLazyDog),
-];
-
-const semanticText = [
-  h2("Semantic text"),
-  p(shortLoremIpsum),
-  abbr("Abbr - " + foxJumpsOverLazyDog),
-  em("Em - " + foxJumpsOverLazyDog),
-  address("Address - " + foxJumpsOverLazyDog),
-  blockquote("Blockquote - " + foxJumpsOverLazyDog),
-];
-
-const revision = [
-  h2("Revisions"),
-  p(shortLoremIpsum),
-  del("Del - " + foxJumpsOverLazyDog),
-  ins("Ins - " + foxJumpsOverLazyDog),
-];
+const renderTextTypographyGroup = (
+  groupName: string,
+  description: string,
+  props: { name: string; render: (content: string) => Element }[]
+) =>
+  renderGenericTypographyGroup(
+    groupName,
+    description,
+    props.map(({ name, render }) => renderTextTypography(name, render))
+  );
 
 const renderMathTypography = (
   elementName: string,
   render: (content: string) => Element
 ) =>
-  div(
-    sx({
-      display: "inline-flex",
-    }),
-    [
-      p(`${elementName} - `),
-      p(mathLoremIpsum[0]),
-      render(mathLoremIpsum[1]),
-      p(mathLoremIpsum[2]),
-      render(mathLoremIpsum[3]),
-      p(mathLoremIpsum[4]),
-      render(mathLoremIpsum[5]),
-    ]
-  );
+  typographyLineWrapper([
+    p(`${elementName} - `, typographyTitleStyle),
+    p(mathLoremIpsum[0]),
+    render(mathLoremIpsum[1]),
+    p(mathLoremIpsum[2]),
+    render(mathLoremIpsum[3]),
+    p(mathLoremIpsum[4]),
+    render(mathLoremIpsum[5]),
+  ]);
 
-const math = [
-  h2("Math"),
-  p(shortLoremIpsum),
-  renderMathTypography("Sub", sub),
-  renderMathTypography("Sup", sup),
+const headingsData = [
+  { name: "H1", render: h1 },
+  { name: "H2", render: h2 },
+  { name: "H3", render: h3 },
+  { name: "H4", render: h4 },
+  { name: "H5", render: h5 },
+  { name: "H6", render: h6 },
 ];
 
-const styledText = [
-  h2("Styled text"),
-  p(shortLoremIpsum),
-  small("Small - " + foxJumpsOverLazyDog),
-  strong("Strong - " + foxJumpsOverLazyDog),
+const paragraphData = [{ name: "P", render: p }];
+
+const computerCodeData = [
+  { name: "Code", render: code },
+  { name: "Pre", render: pre },
+  { name: "Kbd", render: kbd },
 ];
+
+const semanticTextData = [
+  { name: "Abbr", render: abbr },
+  { name: "Em", render: em },
+  { name: "Address", render: address },
+  { name: "Blockquote", render: blockquote },
+];
+
+const revisionData = [
+  { name: "Del", render: del },
+  { name: "Ins", render: ins },
+];
+
+const styledTextData = [
+  { name: "Small", render: small },
+  { name: "Strong", render: strong },
+];
+
+const mathData = [
+  { name: "Sub", render: sub },
+  { name: "Sup", render: sup },
+];
+
+const headings = renderTextTypographyGroup(
+  "Headings",
+  shortLoremIpsum,
+  headingsData
+);
+const paragraph = renderTextTypographyGroup(
+  "Paragraph",
+  shortLoremIpsum,
+  paragraphData
+);
+const computerCode = renderTextTypographyGroup(
+  "Computer code",
+  shortLoremIpsum,
+  computerCodeData
+);
+const revision = renderTextTypographyGroup(
+  "Revisions",
+  shortLoremIpsum,
+  revisionData
+);
+const semanticText = renderTextTypographyGroup(
+  "Semantic text",
+  shortLoremIpsum,
+  semanticTextData
+);
+const styledText = renderTextTypographyGroup(
+  "Styled text",
+  shortLoremIpsum,
+  styledTextData
+);
+const math = renderGenericTypographyGroup(
+  "Math",
+  shortLoremIpsum,
+  mathData.map(({ name, render }) => renderMathTypography(name, render))
+);
 
 const contentElement = [
   h1("Typography"),
