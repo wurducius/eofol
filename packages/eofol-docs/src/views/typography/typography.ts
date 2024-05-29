@@ -1,39 +1,34 @@
-import "../base.css";
-import { defineBuiltinElement, sx } from "@eofol/eofol";
 import {
-  abbr,
-  address,
-  blockquote,
-  code,
-  container,
-  del,
-  div,
-  em,
-  h1,
   h2,
+  p,
+  h1,
   h3,
   h4,
   h5,
   h6,
-  ins,
-  kbd,
-  p,
+  code,
   pre,
-  small,
-  strong,
+  kbd,
+  abbr,
+  em,
+  address,
+  blockquote,
+  del,
+  ins,
   sub,
   sup,
+  small,
+  strong,
+  div,
 } from "@eofol/eofol-simple";
-import { init } from "../../util";
 import {
-  appbar,
   foxJumpsOverLazyDog,
-  layout,
   loremIpsum,
+  mathLoremIpsum,
+  page,
   shortLoremIpsum,
 } from "../../ui";
-
-init();
+import { sx } from "@eofol/eofol";
 
 const headings = [
   h2("Headings"),
@@ -76,11 +71,30 @@ const revision = [
   ins("Ins - " + foxJumpsOverLazyDog),
 ];
 
+const renderMathTypography = (
+  elementName: string,
+  render: (content: string) => Element
+) =>
+  div(
+    sx({
+      display: "inline-flex",
+    }),
+    [
+      p(`${elementName} - `),
+      p(mathLoremIpsum[0]),
+      render(mathLoremIpsum[1]),
+      p(mathLoremIpsum[2]),
+      render(mathLoremIpsum[3]),
+      p(mathLoremIpsum[4]),
+      render(mathLoremIpsum[5]),
+    ]
+  );
+
 const math = [
   h2("Math"),
   p(shortLoremIpsum),
-  sub("Sub - " + foxJumpsOverLazyDog),
-  sup("Sup - " + foxJumpsOverLazyDog),
+  renderMathTypography("Sub", sub),
+  renderMathTypography("Sup", sup),
 ];
 
 const styledText = [
@@ -90,7 +104,7 @@ const styledText = [
   strong("Strong - " + foxJumpsOverLazyDog),
 ];
 
-const contentElement = div(undefined, [
+const contentElement = [
   h1("Typography"),
   p(loremIpsum),
   ...headings,
@@ -100,16 +114,6 @@ const contentElement = div(undefined, [
   ...styledText,
   ...computerCode,
   ...math,
-]);
+];
 
-const navbarElement = div(undefined, []);
-
-defineBuiltinElement({
-  tagName: "eofol-docs",
-  render: () => {
-    return container(
-      [appbar(), layout(navbarElement, contentElement)],
-      sx({ height: "100%" })
-    );
-  },
-});
+page(contentElement);

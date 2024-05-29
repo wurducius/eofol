@@ -23,6 +23,7 @@ import {
   unorderedListTag,
 } from "../../ui";
 import {
+  EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG,
   EOFOL_META_DESCRIPTION,
   EOFOL_NAME_PRETTY,
   GITHUB_EOFOL_LINK,
@@ -184,7 +185,7 @@ const featuresSection = () => {
 };
 
 defineBuiltinElement({
-  tagName: "eofol-docs",
+  tagName: EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG,
   render: () => {
     return container([
       landingSection(),

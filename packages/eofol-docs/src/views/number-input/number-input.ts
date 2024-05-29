@@ -1,11 +1,7 @@
-import "../base.css";
-import { defineBuiltinElement, sx } from "@eofol/eofol";
-import { container, div, h1, h2, numberInput, p } from "@eofol/eofol-simple";
-import { appbar, layout, loremIpsum, shortLoremIpsum } from "../../ui";
-import { EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG } from "../../data";
-import { capitalize, init, toKebab } from "../../util";
-
-init();
+import { div, numberInput, h2, p, h1 } from "@eofol/eofol-simple";
+import { sx } from "@eofol/eofol";
+import { shortLoremIpsum, loremIpsum, page } from "../../ui";
+import { capitalize, toInputName } from "../../util";
 
 /*
   inputMode?: InputMode;
@@ -19,15 +15,6 @@ init();
   spellcheck?: boolean;
   autocomplete?: boolean;
   */
-
-const COMPONENT = "number-input";
-
-const PROP_SCHEME = "scheme";
-const PROP_SIZE = "size";
-const PROP_PLACEHOLDER = "placeholder";
-const PROP_MIN = "min";
-const PROP_MAX = "max";
-const PROP_HIDE_ARROWS = "hide arrows";
 
 const COLOR_SCHEME_PRIMARY = "primary";
 const COLOR_SCHEME_SECONDARY = "secondary";
@@ -46,20 +33,21 @@ const SIZE_XL_NAME = "Extra large";
 const noop = () => {};
 const NUMBER_INPUT_VALUE = 42;
 
-const toInputName = (
-  componentName: string,
-  propName: string,
-  propVal?: string
-) =>
-  [
-    toKebab(componentName),
-    toKebab(propName),
-    propVal ? toKebab(propVal) : undefined,
-  ]
-    .filter(Boolean)
-    .join("-");
+const COMPONENT = "Number input";
+
+const PROP_SCHEME = "scheme";
+const PROP_SIZE = "size";
+const PROP_PLACEHOLDER = "placeholder";
+const PROP_MIN = "min";
+const PROP_MAX = "max";
+const PROP_HIDE_ARROWS = "hide arrows";
+
+const name = (propName: string, propVal?: string) => toInputName(COMPONENT);
 
 const defaultProps = { onChange: noop, value: NUMBER_INPUT_VALUE };
+
+const inputField = (element: Element) =>
+  div(sx({ width: "240px", margin: "32px auto 32px auto" }), element);
 
 // Partial<NumberInputProps>
 
@@ -67,56 +55,6 @@ const props = (propsObj: any) => ({
   ...defaultProps,
   ...propsObj,
 });
-
-const inputField = (element: Element) =>
-  div(sx({ width: "240px", margin: "32px auto 32px auto" }), element);
-
-const render = (propsObj: any) => inputField(numberInput(props(propsObj)));
-
-const scheme = [
-  h2(capitalize(PROP_SCHEME)),
-  p(shortLoremIpsum),
-  p(capitalize(COLOR_SCHEME_PRIMARY)),
-  render({
-    name: toInputName(COMPONENT, PROP_SCHEME, COLOR_SCHEME_PRIMARY),
-    scheme: COLOR_SCHEME_PRIMARY,
-  }),
-  p(capitalize(COLOR_SCHEME_SECONDARY)),
-  render({
-    name: toInputName(COMPONENT, PROP_SCHEME, COLOR_SCHEME_SECONDARY),
-    scheme: COLOR_SCHEME_SECONDARY,
-  }),
-  p(capitalize(COLOR_SCHEME_TERTIARY)),
-  render({
-    name: toInputName(COMPONENT, PROP_SCHEME, COLOR_SCHEME_TERTIARY),
-    scheme: COLOR_SCHEME_TERTIARY,
-  }),
-];
-
-const size = [
-  h2(capitalize(PROP_SIZE)),
-  p(shortLoremIpsum),
-  p(capitalize(SIZE_SM_NAME)),
-  render({
-    name: toInputName(COMPONENT, PROP_SIZE, SIZE_SM_NAME),
-    size: SIZE_SM,
-  }),
-  p(capitalize(SIZE_MD_NAME)),
-  render({
-    name: toInputName(COMPONENT, PROP_SIZE, SIZE_MD_NAME),
-    size: SIZE_MD,
-  }),
-  p(capitalize(SIZE_LG_NAME)),
-  render({
-    name: toInputName(COMPONENT, PROP_SIZE, SIZE_LG_NAME),
-    size: SIZE_LG,
-  }),
-  p(capitalize(SIZE_XL_NAME)),
-  render({
-    name: toInputName(COMPONENT, PROP_SIZE, SIZE_XL_NAME),
-    size: SIZE_XL,
-  }),
-];
 
 type PropValue = { value: any; title?: string };
 
@@ -158,11 +96,60 @@ const renderProp = (
   ...renderPropValues(propName, propValues, additionalProps),
 ];
 
+const render = (propsObj: any) => inputField(numberInput(props(propsObj)));
+
+// --------------------------
+
+const scheme = [
+  h2(capitalize(PROP_SCHEME)),
+  p(shortLoremIpsum),
+  p(capitalize(COLOR_SCHEME_PRIMARY)),
+  render({
+    name: name(PROP_SCHEME, COLOR_SCHEME_PRIMARY),
+    scheme: COLOR_SCHEME_PRIMARY,
+  }),
+  p(capitalize(COLOR_SCHEME_SECONDARY)),
+  render({
+    name: name(PROP_SCHEME, COLOR_SCHEME_SECONDARY),
+    scheme: COLOR_SCHEME_SECONDARY,
+  }),
+  p(capitalize(COLOR_SCHEME_TERTIARY)),
+  render({
+    name: name(PROP_SCHEME, COLOR_SCHEME_TERTIARY),
+    scheme: COLOR_SCHEME_TERTIARY,
+  }),
+];
+
+const size = [
+  h2(capitalize(PROP_SIZE)),
+  p(shortLoremIpsum),
+  p(capitalize(SIZE_SM_NAME)),
+  render({
+    name: name(PROP_SIZE, SIZE_SM_NAME),
+    size: SIZE_SM,
+  }),
+  p(capitalize(SIZE_MD_NAME)),
+  render({
+    name: name(PROP_SIZE, SIZE_MD_NAME),
+    size: SIZE_MD,
+  }),
+  p(capitalize(SIZE_LG_NAME)),
+  render({
+    name: name(PROP_SIZE, SIZE_LG_NAME),
+    size: SIZE_LG,
+  }),
+  p(capitalize(SIZE_XL_NAME)),
+  render({
+    name: name(PROP_SIZE, SIZE_XL_NAME),
+    size: SIZE_XL,
+  }),
+];
+
 const placeholder = [
   h2(capitalize(PROP_PLACEHOLDER)),
   p(shortLoremIpsum),
   render({
-    name: toInputName(COMPONENT, PROP_PLACEHOLDER, undefined),
+    name: name(PROP_PLACEHOLDER, undefined),
     placeholder: "Placeholder",
     value: undefined,
   }),
@@ -235,9 +222,7 @@ const hideArrows = [
   ),
 ];
 
-const navbarElement = div(undefined, []);
-
-const contentElement = div(undefined, [
+const contentElement = [
   h1(capitalize(COMPONENT)),
   p(loremIpsum),
   inputField(
@@ -254,14 +239,6 @@ const contentElement = div(undefined, [
   ...max,
   ...step,
   ...hideArrows,
-]);
+];
 
-defineBuiltinElement({
-  tagName: EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG,
-  render: () => {
-    return container(
-      [appbar(), layout(navbarElement, contentElement)],
-      sx({ height: "100%" })
-    );
-  },
-});
+page(contentElement);

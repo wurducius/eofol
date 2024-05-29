@@ -5,6 +5,7 @@ import { themeToggle } from "./theme-toggle";
 import {
   APPBAR_CONTENT_HEIGHT_PX,
   APPBAR_PADDING_PX,
+  EOFOL_DOCS_VERSION,
   EOFOL_META_DESCRIPTION,
 } from "../data";
 
@@ -35,7 +36,7 @@ export const appbar = () => {
           alignItems: "center",
         }),
         [
-          p("Version 0.2", sx({ marginRight: "24px" })),
+          p(`Version ${EOFOL_DOCS_VERSION}`, sx({ marginRight: "24px" })),
           iconMenu(),
           div(sx({ marginRight: "24px" })),
           themeToggle(),

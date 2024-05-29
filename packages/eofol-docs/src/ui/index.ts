@@ -8,6 +8,7 @@ export * from "./section-container";
 export * from "./content";
 export * from "./layout";
 export * from "./navbar";
+export * from "./page";
 export * from "./theme-toggle";
 
 export const loremIpsum =

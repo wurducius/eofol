@@ -1,14 +1,7 @@
-import "../base.css";
-import { defineBuiltinElement, sx } from "@eofol/eofol";
-import { container, div, h1, p } from "@eofol/eofol-simple";
-import { init } from "../../util";
-import { appbar, layout, loremIpsum } from "../../ui";
+import { h1, p } from "@eofol/eofol-simple";
+import { page, loremIpsum } from "../../ui";
 
-init();
-
-const navbarElement = div(undefined, []);
-
-const contentElement = div(undefined, [
+page([
   h1("Content"),
   p(loremIpsum),
   p(loremIpsum),
@@ -20,13 +13,3 @@ const contentElement = div(undefined, [
   p(loremIpsum),
   p(loremIpsum),
 ]);
-
-defineBuiltinElement({
-  tagName: "eofol-docs",
-  render: () => {
-    return container(
-      [appbar(), layout(navbarElement, contentElement)],
-      sx({ height: "100%" })
-    );
-  },
-});
