@@ -74,7 +74,9 @@ export type InputBaseNumericProps = {
   max?: number;
   step?: number;
   hideArrows?: boolean | "default";
-  // arrowStyle?: any;
+  arrowUpIcon?: string;
+  arrowDownIcon?: string;
+  arrowClassname?: string;
   inputMode?: InputMode;
   precision?: number;
   allowOutOfRange?: boolean;

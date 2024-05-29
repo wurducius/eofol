@@ -18,7 +18,6 @@ import {
   elevationContainer,
   footer,
   listItemTag,
-  loremIpsum,
   sectionContainer,
   unorderedListTag,
 } from "../../ui";
@@ -30,6 +29,7 @@ import {
   ROUTER_GETTING_STARTED,
   SHOWCASE_EOFOL_APP_LINK,
   SHOWCASE_SCALE_FIDDLE_LINK,
+  loremIpsum,
 } from "../../data";
 
 init();

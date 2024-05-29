@@ -3,7 +3,7 @@ import { defaultTheme } from "./default-theme";
 import { mergeDeep } from "../util/merge-deep";
 import { clearStyle, createStyleObj, createStyle } from "./create-style";
 import { processColor } from "./color/process-color";
-import { updateThemeStyles } from "./theme-styles";
+import { hideArrowsClassname, updateThemeStyles } from "./theme-styles";
 
 const createTheme = (styles: Partial<Theme>) => {
   const parsedStyles = processColor(styles);
@@ -28,6 +28,14 @@ const setBaseStyles = (theme: Theme) => {
   );
   createStyle(
     "@keyframes spinner-rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } "
+  );
+  createStyle(`.${hideArrowsClassname} { -moz-appearance: textfield; }`);
+  createStyle(
+    `.${hideArrowsClassname}::-webkit-outer-spin-button,
+  .${hideArrowsClassname}::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  } { -webkit-appearance: none; margin: 0; }`
   );
 };
 

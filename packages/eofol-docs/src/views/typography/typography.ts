@@ -21,15 +21,15 @@ import {
   strong,
   div,
 } from "@eofol/eofol-simple";
-import {
-  foxJumpsOverLazyDog,
-  loremIpsum,
-  mathLoremIpsum,
-  page,
-  shortLoremIpsum,
-} from "../../ui";
+import { page } from "../../ui";
 import { getTheme, sx } from "@eofol/eofol";
 import { EofolElementNode } from "@eofol/eofol-types";
+import {
+  foxJumpsOverLazyDog,
+  mathLoremIpsum,
+  shortLoremIpsum,
+  loremIpsum,
+} from "../../data";
 
 const theme = getTheme();
 

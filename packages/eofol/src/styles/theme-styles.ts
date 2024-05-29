@@ -3,6 +3,8 @@ import sx from "./sx";
 
 export const INPUT_INVALID = "input-invalid";
 
+export const hideArrowsClassname = "number-input-hide-arrows";
+
 const emptyScheme = {
   primary: "",
   secondary: "",

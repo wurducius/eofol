@@ -1,22 +1,20 @@
-import { NumberInputProps } from "@eofol/eofol-types";
+import { NumberInputProps, SIZE } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import {
   getTheme,
   sx,
   cx,
-  createStyle,
   addCx,
   removeCx,
   getThemeStyles,
 } from "@eofol/eofol";
 import div from "../../primitive/div";
 import { getInputSizeStyle } from "../../util/inputs";
+import img from "../img/img";
 
 const NUMBER_INPUT_SPINNER_DELAY_INTERVAL_MS = 300;
 
 const NUMBER_INPUT_SPINNER_ITERATION_INTERVAL_MS = 50;
-
-const hideArrowsClassname = "number-input-hide-arrows";
 
 const NUMBER_INPUT_DEFAULT_INPUT_MODE = "decimal";
 
@@ -49,13 +47,41 @@ const parseValue =
     }
   };
 
+const getCustomArrowSize = (size: SIZE) => {
+  if (size === "xl") {
+    return 26;
+  } else if (size === "sm") {
+    return 14;
+  } else if (size === "lg") {
+    return 22;
+  } else {
+    return 18;
+  }
+};
+
+const getCustomArrowFontSize = (size: SIZE) => {
+  if (size === "xl") {
+    return 14;
+  } else if (size === "sm") {
+    return 8;
+  } else if (size === "lg") {
+    return 12;
+  } else {
+    return 10;
+  }
+};
+
 const numberInput = (props: NumberInputProps) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
 
-  const showDefaultArrows = props.hideArrows === "default";
-  const showCustomArrows = !showDefaultArrows && !props.hideArrows;
-  // const arrowStyle = props.arrowStyle;
+  const showCustomArrows = !props.hideArrows;
+  const hideDefaultArrows = props.hideArrows !== "default";
+
+  const arrowUpIcon = props.arrowUpIcon;
+  const arrowDownIcon = props.arrowDownIcon;
+
+  const arrowClassname = props.arrowClassname;
 
   const allowOutOfRange = props.allowOutOfRange;
 
@@ -70,16 +96,6 @@ const numberInput = (props: NumberInputProps) => {
 
   const stringify = stringifyValue(precision, formatProp);
   const parse = parseValue(precision, parseProp);
-
-  // @TODO: hard hack, please refactor
-  createStyle(`.${hideArrowsClassname} { -moz-appearance: textfield; }`);
-  createStyle(
-    `.${hideArrowsClassname}::-webkit-outer-spin-button,
-  .${hideArrowsClassname}::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  } { -webkit-appearance: none; margin: 0; }`
-  );
 
   const schemeImpl = props.scheme ?? "secondary";
 
@@ -212,11 +228,17 @@ const numberInput = (props: NumberInputProps) => {
   const handleSpinStartUp = handleSpinStart(1);
   const handleSpinStartDown = handleSpinStart(-1);
 
-  const arrowCustomStyle = sx({
-    height: "14px",
-    fontSize: "10px",
-    fontWeight: 700,
-  });
+  const arrowSize = getCustomArrowSize(props.size);
+
+  const arrowCustomStyle = (size: SIZE) =>
+    sx({
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: `${getCustomArrowSize(size)}px`,
+      fontSize: `${getCustomArrowFontSize(size)}px`,
+      fontWeight: 700,
+    });
   const arrowCustomNotDisabledStyle = sx({
     cursor: "pointer",
     backgroundColor: theme.color.background.elevation,
@@ -245,13 +267,21 @@ const numberInput = (props: NumberInputProps) => {
   );
   const upArrow = div(
     [
-      arrowCustomStyle,
+      arrowCustomStyle(props.size),
       isValueMax ? numberInputSpinnerDisabled : arrowCustomNotDisabledStyle,
       arrowCustomUpStyle,
       !isValueMax && arrowCustomHoverStyle,
       !isValueMax && arrowCustomFocusStyle,
+      arrowClassname,
     ],
-    "+",
+    arrowUpIcon
+      ? img({
+          src: arrowUpIcon,
+          alt: "Increment",
+          height: `${arrowSize}px`,
+          width: `${arrowSize}px`,
+        })
+      : "+",
     undefined,
     {
       // @ts-ignore
@@ -266,13 +296,21 @@ const numberInput = (props: NumberInputProps) => {
   );
   const downArrow = div(
     [
-      arrowCustomStyle,
+      arrowCustomStyle(props.size),
       isValueMin ? numberInputSpinnerDisabled : arrowCustomNotDisabledStyle,
       arrowCustomDownStyle,
       !isValueMin && arrowCustomHoverStyle,
       !isValueMin && arrowCustomFocusStyle,
+      arrowClassname,
     ],
-    "-",
+    arrowDownIcon
+      ? img({
+          src: arrowDownIcon,
+          alt: "Decrement",
+          height: `${arrowSize}px`,
+          width: `${arrowSize}px`,
+        })
+      : "-",
     undefined,
     {
       // @ts-ignore
@@ -294,7 +332,7 @@ const numberInput = (props: NumberInputProps) => {
       right: "0px",
       margin: "8px 0 8px 0",
       border: "1px solid transparent",
-      height: "28px",
+      height: `${2 * getCustomArrowSize(props.size)}px`,
       zIndex: 1,
       width: "24px",
     }),
@@ -317,7 +355,7 @@ const numberInput = (props: NumberInputProps) => {
       inputBaseNotFocus,
       inputBaseInvalidFocus,
       inputBaseFocus,
-      !showDefaultArrows && hideArrowsClassname,
+      hideDefaultArrows && "number-input-hide-arrows",
       props.classname
     ),
     after: showCustomArrows && afterArrows,

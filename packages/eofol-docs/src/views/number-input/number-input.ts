@@ -1,7 +1,8 @@
 import { numberInput, h2, p, h1, h3 } from "@eofol/eofol-simple";
-import { shortLoremIpsum, loremIpsum, page, inputField } from "../../ui";
-import { capitalize, toInputName } from "../../util";
+import { capitalize, toCamel, toInputName } from "../../util";
 import { getTheme, sx } from "@eofol/eofol";
+import { shortLoremIpsum, loremIpsum } from "../../data";
+import { inputField, page } from "../../ui";
 
 /*
   inputMode?: InputMode;
@@ -31,16 +32,10 @@ const SIZE_LG_NAME = "Large";
 const SIZE_XL_NAME = "Extra large";
 
 const noop = () => {};
+
 const NUMBER_INPUT_VALUE = 42;
 
 const COMPONENT = "Number input";
-
-const PROP_SCHEME = "scheme";
-const PROP_SIZE = "size";
-const PROP_PLACEHOLDER = "placeholder";
-const PROP_MIN = "min";
-const PROP_MAX = "max";
-const PROP_HIDE_ARROWS = "hide arrows";
 
 const theme = getTheme();
 
@@ -48,9 +43,10 @@ const propTitleStyle = sx({ color: theme.color.secondary.base });
 
 const name = toInputName(COMPONENT);
 
-const defaultProps = { onChange: noop, value: NUMBER_INPUT_VALUE };
-
-// Partial<NumberInputProps>
+const defaultProps = {
+  onChange: noop,
+  value: NUMBER_INPUT_VALUE,
+};
 
 const props = (propsObj: any) => ({
   ...defaultProps,
@@ -63,11 +59,13 @@ const renderPropValueItem = (
   propName: string,
   propValue: PropValue,
   additionalProps?: (propName: string, value: string) => any
-) =>
-  render({
-    [propName.toLowerCase()]: propValue.value,
+) => {
+  console.log({ [toCamel(propName)]: propValue.value });
+  return render({
+    [toCamel(propName)]: propValue.value,
     ...(additionalProps ? additionalProps(propName, propValue.value) : {}),
   });
+};
 
 const renderPropValues = (
   propName: string,

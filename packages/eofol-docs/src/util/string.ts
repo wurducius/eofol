@@ -18,3 +18,12 @@ export const toInputName =
     ]
       .filter(Boolean)
       .join("-");
+
+export const toCamel = (str: string) =>
+  str.length > 0
+    ? str
+        .toLowerCase()
+        .split(" ")
+        .map((item, i) => (i > 0 ? capitalize(item) : item))
+        .join("")
+    : str;
