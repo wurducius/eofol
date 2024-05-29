@@ -6,6 +6,7 @@ export * from "./footer";
 export * from "./icon-menu";
 export * from "./section-container";
 export * from "./content";
+export * from "./inputs";
 export * from "./layout";
 export * from "./navbar";
 export * from "./page";

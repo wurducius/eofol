@@ -1,7 +1,7 @@
-import { div, numberInput, h2, p, h1 } from "@eofol/eofol-simple";
-import { sx } from "@eofol/eofol";
-import { shortLoremIpsum, loremIpsum, page } from "../../ui";
+import { numberInput, h2, p, h1, h3 } from "@eofol/eofol-simple";
+import { shortLoremIpsum, loremIpsum, page, inputField } from "../../ui";
 import { capitalize, toInputName } from "../../util";
+import { getTheme, sx } from "@eofol/eofol";
 
 /*
   inputMode?: InputMode;
@@ -42,12 +42,13 @@ const PROP_MIN = "min";
 const PROP_MAX = "max";
 const PROP_HIDE_ARROWS = "hide arrows";
 
-const name = (propName: string, propVal?: string) => toInputName(COMPONENT);
+const theme = getTheme();
+
+const propTitleStyle = sx({ color: theme.color.secondary.base });
+
+const name = toInputName(COMPONENT);
 
 const defaultProps = { onChange: noop, value: NUMBER_INPUT_VALUE };
-
-const inputField = (element: Element) =>
-  div(sx({ width: "240px", margin: "32px auto 32px auto" }), element);
 
 // Partial<NumberInputProps>
 
@@ -56,7 +57,17 @@ const props = (propsObj: any) => ({
   ...propsObj,
 });
 
-type PropValue = { value: any; title?: string };
+type PropValue = { value: any; title: string };
+
+const renderPropValueItem = (
+  propName: string,
+  propValue: PropValue,
+  additionalProps?: (propName: string, value: string) => any
+) =>
+  render({
+    [propName.toLowerCase()]: propValue.value,
+    ...(additionalProps ? additionalProps(propName, propValue.value) : {}),
+  });
 
 const renderPropValues = (
   propName: string,
@@ -66,22 +77,12 @@ const renderPropValues = (
   if (Array.isArray(propValues)) {
     return propValues
       .map((propValue) => [
-        p(capitalize(propValue.title ?? propValue.value)),
-        render({
-          [propName]: propValue.value,
-          ...(additionalProps
-            ? additionalProps(propName, propValue.value)
-            : {}),
-        }),
+        h3(capitalize(propValue.title ?? propValue.value)),
+        renderPropValueItem(propName, propValue, additionalProps),
       ])
       .flat();
   } else {
-    return [
-      render({
-        [propName]: propValues.value,
-        ...(additionalProps ? additionalProps(propName, propValues.value) : {}),
-      }),
-    ];
+    return [renderPropValueItem(propName, propValues, additionalProps)];
   }
 };
 
@@ -91,147 +92,76 @@ const renderProp = (
   propValues: PropValue[] | PropValue,
   additionalProps?: (propName: string, value: string) => any
 ) => [
-  h2(capitalize(propName)),
+  h2(capitalize(propName), propTitleStyle),
   p(description),
   ...renderPropValues(propName, propValues, additionalProps),
 ];
 
 const render = (propsObj: any) => inputField(numberInput(props(propsObj)));
 
+const renderGroup = (
+  propName: string,
+  description: string,
+  propData: any,
+  additionalProps?: any
+) =>
+  renderProp(propName, description, propData, (propName, value) => ({
+    name: name(propName, value),
+    ...additionalProps,
+  }));
+
 // --------------------------
 
-const scheme = [
-  h2(capitalize(PROP_SCHEME)),
-  p(shortLoremIpsum),
-  p(capitalize(COLOR_SCHEME_PRIMARY)),
-  render({
-    name: name(PROP_SCHEME, COLOR_SCHEME_PRIMARY),
-    scheme: COLOR_SCHEME_PRIMARY,
-  }),
-  p(capitalize(COLOR_SCHEME_SECONDARY)),
-  render({
-    name: name(PROP_SCHEME, COLOR_SCHEME_SECONDARY),
-    scheme: COLOR_SCHEME_SECONDARY,
-  }),
-  p(capitalize(COLOR_SCHEME_TERTIARY)),
-  render({
-    name: name(PROP_SCHEME, COLOR_SCHEME_TERTIARY),
-    scheme: COLOR_SCHEME_TERTIARY,
-  }),
+const schemeData = [
+  { title: "Primary", value: "primary" },
+  { title: "Secondary", value: "secondary" },
+  { title: "Tertiary", value: "tertiary" },
 ];
 
-const size = [
-  h2(capitalize(PROP_SIZE)),
-  p(shortLoremIpsum),
-  p(capitalize(SIZE_SM_NAME)),
-  render({
-    name: name(PROP_SIZE, SIZE_SM_NAME),
-    size: SIZE_SM,
-  }),
-  p(capitalize(SIZE_MD_NAME)),
-  render({
-    name: name(PROP_SIZE, SIZE_MD_NAME),
-    size: SIZE_MD,
-  }),
-  p(capitalize(SIZE_LG_NAME)),
-  render({
-    name: name(PROP_SIZE, SIZE_LG_NAME),
-    size: SIZE_LG,
-  }),
-  p(capitalize(SIZE_XL_NAME)),
-  render({
-    name: name(PROP_SIZE, SIZE_XL_NAME),
-    size: SIZE_XL,
-  }),
+const sizeData = [
+  { title: "Small", value: "sm" },
+  { title: "Middle", value: "md" },
+  { title: "Large", value: "lg" },
+  { title: "Extra large", value: "xl" },
 ];
 
-const placeholder = [
-  h2(capitalize(PROP_PLACEHOLDER)),
-  p(shortLoremIpsum),
-  render({
-    name: name(PROP_PLACEHOLDER, undefined),
-    placeholder: "Placeholder",
-    value: undefined,
-  }),
+const placeholderData = [{ title: "Placeholder", value: "Placeholder" }];
+
+const minData = [{ title: "Min", value: NUMBER_INPUT_VALUE }];
+
+const maxData = [{ title: "Max", value: NUMBER_INPUT_VALUE }];
+
+const stepData = [{ title: "Step", value: 10 }];
+
+const hideArrowsData = [
+  { title: "Custom", value: false },
+  { title: "Default", value: "default" },
+  { title: "Hidden", value: true },
 ];
 
-const min = [
-  h2("Min"),
-  inputField(
-    numberInput({
-      name: "number-input-min",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-      min: NUMBER_INPUT_VALUE,
-    })
-  ),
-];
+const scheme = renderGroup("Scheme", shortLoremIpsum, schemeData);
 
-const max = [
-  h2("Max"),
-  inputField(
-    numberInput({
-      name: "number-input-max",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-      max: NUMBER_INPUT_VALUE,
-    })
-  ),
-];
+const size = renderGroup("Size", shortLoremIpsum, sizeData);
 
-const step = [
-  h2("Step"),
-  inputField(
-    numberInput({
-      name: "number-input-step",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-      step: 10,
-    })
-  ),
-];
+const placeholder = renderGroup(
+  "Placeholder",
+  shortLoremIpsum,
+  placeholderData,
+  { value: undefined }
+);
 
-const hideArrows = [
-  h2("Hide arrows"),
-  p("Custom visible"),
-  inputField(
-    numberInput({
-      name: "number-input-hide-arrows-visible",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-      hideArrows: false,
-    })
-  ),
-  p("Default visible"),
-  inputField(
-    numberInput({
-      name: "number-input-hide-arrows-default",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-      hideArrows: "default",
-    })
-  ),
-  p("Hidden"),
-  inputField(
-    numberInput({
-      name: "number-input-hide-arrows-hidden",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-      hideArrows: true,
-    })
-  ),
-];
+const min = renderGroup("Min", shortLoremIpsum, minData);
+
+const max = renderGroup("Max", shortLoremIpsum, maxData);
+
+const step = renderGroup("Step", shortLoremIpsum, stepData);
+
+const hideArrows = renderGroup("Hide arrows", shortLoremIpsum, hideArrowsData);
 
 const contentElement = [
   h1(capitalize(COMPONENT)),
   p(loremIpsum),
-  inputField(
-    numberInput({
-      name: "number-input-base",
-      onChange: noop,
-      value: NUMBER_INPUT_VALUE,
-    })
-  ),
+  render({ name: name("base") }),
   ...scheme,
   ...size,
   ...placeholder,
