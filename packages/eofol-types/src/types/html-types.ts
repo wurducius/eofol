@@ -1,4 +1,4 @@
-import { SIZE } from "./props";
+import { SIZE, Schemable } from "./props";
 
 export type InputTypeAttribute =
   | "button"
@@ -67,7 +67,7 @@ export type InputCommonProps<T> = {
   invalid?: string | boolean;
 
   value: T | undefined;
-};
+} & Schemable;
 
 export type InputBaseNumericProps = {
   min?: number;

@@ -1,4 +1,4 @@
-import { NumberInputProps, Schemable } from "@eofol/eofol-types";
+import { NumberInputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import {
   getTheme,
@@ -49,7 +49,7 @@ const parseValue =
     }
   };
 
-const numberInput = (props: NumberInputProps & Schemable) => {
+const numberInput = (props: NumberInputProps) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
 

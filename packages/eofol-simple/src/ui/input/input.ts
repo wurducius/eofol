@@ -1,9 +1,9 @@
-import { InputProps, Schemable } from "@eofol/eofol-types";
+import { InputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
 import { cx, getThemeStyles } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
 
-export const input = (props: InputProps & Schemable) => {
+export const input = (props: InputProps) => {
   const themeStyles = getThemeStyles();
   const schemeImpl = props.scheme ?? "secondary";
 

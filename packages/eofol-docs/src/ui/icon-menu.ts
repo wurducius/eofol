@@ -2,7 +2,7 @@ import { a, div, img } from "@eofol/eofol-simple";
 import githubPath from "../assets/github.svg";
 import mailPath from "../assets/mail.svg";
 import linkedinPath from "../assets/linkedin.svg";
-import npmPath from "../assets/phi.svg";
+import npmPath from "../assets/npm.svg";
 import {
   GITHUB_EOFOL_LINK,
   LINKEDIN_LINK,
@@ -24,7 +24,7 @@ const hoverIconStyle = sx(
 );
 
 export const iconMenu = () => {
-  return div(undefined, [
+  return div(sx({ display: "flex", gap: "16px" }), [
     a({
       link: GITHUB_EOFOL_LINK,
       external: true,
