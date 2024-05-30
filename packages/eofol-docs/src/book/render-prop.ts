@@ -1,12 +1,21 @@
-import { h3, h2, p, div, h1 } from "@eofol/eofol-simple";
+import { h3, h2, p, div, h1, a } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
 import { toCamel, capitalize, toInputName } from "../util";
+import { listItemTag, unorderedListTag } from "../ui";
 
 const theme = getTheme();
 
-const propTitleStyle = sx({ color: theme.color.secondary.base });
+const propTitleStyle = sx({
+  color: theme.color.secondary.base,
+  scrollMarginTop: "60px",
+});
 
 const headerStyle = sx({ margin: "16px 0 16px 0" });
+
+const propListStyle = sx({
+  color: theme.color.secondary.base,
+  margin: "0 0 16px 0",
+});
 
 type PropValue = { value: any; title: string };
 
@@ -65,7 +74,7 @@ const renderProp = (
   defaultProps?: any,
   additionalProps?: (propName: string, value: string) => any
 ) => [
-  h2(capitalize(propName), propTitleStyle),
+  h2(capitalize(propName), propTitleStyle, { id: toCamel(propName) }),
   p(description),
   ...renderPropValues(
     propName,
@@ -153,6 +162,21 @@ export const renderPropsPage = (
     description,
     componentElement,
     defaultProps
+  ),
+  h2("Props"),
+  div(
+    sx({ display: "flex", justifyContent: "center" }),
+    unorderedListTag(
+      data.map((propItem) =>
+        listItemTag(
+          a({
+            children: propItem.name,
+            link: `#${toCamel(propItem.name)}`,
+          })
+        )
+      ),
+      propListStyle
+    )
   ),
   ...renderPropsView(componentName, componentElement, data, defaultProps),
 ];
