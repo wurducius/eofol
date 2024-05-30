@@ -1,10 +1,12 @@
-import { h3, h2, p } from "@eofol/eofol-simple";
+import { h3, h2, p, div, h1 } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
 import { toCamel, capitalize, toInputName } from "../util";
 
 const theme = getTheme();
 
 const propTitleStyle = sx({ color: theme.color.secondary.base });
+
+const headerStyle = sx({ margin: "16px 0 16px 0" });
 
 type PropValue = { value: any; title: string };
 
@@ -120,10 +122,37 @@ export const renderInputPropsView = (
     .map(renderInputGroup(componentName, componentElement, defaultProps))
     .flat();
 
-export const renderPropsView = (
+const renderPropsView = (
   componentName: string,
   componentElement: any,
   data: any[],
   defaultProps?: any
 ) =>
   data.map(renderGroup(componentName, componentElement, defaultProps)).flat();
+
+const renderPropsHeader = (
+  componentName: string,
+  description: string,
+  componentElement: any,
+  defaultProps?: any
+) => [
+  h1(capitalize(componentName)),
+  p(description),
+  div(headerStyle, componentElement(defaultProps)),
+];
+
+export const renderPropsPage = (
+  componentName: string,
+  description: string,
+  data: any[],
+  componentElement: any,
+  defaultProps?: any
+) => [
+  ...renderPropsHeader(
+    componentName,
+    description,
+    componentElement,
+    defaultProps
+  ),
+  ...renderPropsView(componentName, componentElement, data, defaultProps),
+];

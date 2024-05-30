@@ -1,8 +1,8 @@
-import { numberInput, p, h1 } from "@eofol/eofol-simple";
-import { capitalize, noop } from "../../util";
+import { numberInput } from "@eofol/eofol-simple";
+import { noop } from "../../util";
 import { shortLoremIpsum, loremIpsum } from "../../data";
 import { inputField, page } from "../../ui";
-import { renderInputPropsView } from "../../book";
+import { renderPropsPage } from "../../book";
 
 const NUMBER_INPUT_VALUE = 42;
 
@@ -67,18 +67,12 @@ const data = [
   },
 ];
 
-const props = renderInputPropsView(
-  componentName,
-  componentElement,
-  data,
-  defaultProps
+page(
+  renderPropsPage(
+    componentName,
+    loremIpsum,
+    data,
+    componentElement,
+    defaultProps
+  )
 );
-
-const contentElement = [
-  h1(capitalize(componentName)),
-  p(loremIpsum),
-  componentElement(defaultProps),
-  ...props,
-];
-
-page(contentElement);

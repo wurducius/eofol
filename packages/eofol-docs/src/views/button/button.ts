@@ -1,8 +1,8 @@
-import { p, h1, button } from "@eofol/eofol-simple";
-import { capitalize, noop } from "../../util";
+import { button } from "@eofol/eofol-simple";
+import { noop } from "../../util";
 import { shortLoremIpsum, loremIpsum } from "../../data";
 import { page } from "../../ui";
-import { renderPropsView } from "../../book";
+import { renderPropsPage } from "../../book";
 
 const componentName = "Button";
 
@@ -35,18 +35,12 @@ const data = [
   },
 ];
 
-const props = renderPropsView(
-  componentName,
-  componentElement,
-  data,
-  defaultProps
+page(
+  renderPropsPage(
+    componentName,
+    loremIpsum,
+    data,
+    componentElement,
+    defaultProps
+  )
 );
-
-const contentElement = [
-  h1(capitalize(componentName)),
-  p(loremIpsum),
-  componentElement(defaultProps),
-  ...props,
-];
-
-page(contentElement);
