@@ -9,6 +9,7 @@ export const ROUTER_INDEX = "/index.html";
 export const ROUTER_DOCS = "/docs.html";
 
 export const ROUTER_GETTING_STARTED = "/getting-started.html";
+export const ROUTER_CREATE_EOFOL_APP = "/create-eofol-app.html";
 export const ROUTER_COMPONENTS = "/components.html";
 export const ROUTER_CORE = "/core.html";
 export const ROUTER_STYLES = "/styles.html";
@@ -35,6 +36,7 @@ export interface RouterItem extends RouterItemFlat {
 
 export const ROUTER_NAVBAR: RouterItem[] = [
   { title: "Getting started", link: ROUTER_GETTING_STARTED },
+  { title: "Create eofol app", link: ROUTER_CREATE_EOFOL_APP },
   { title: "Eofol core", link: ROUTER_CORE },
   { title: "Eofol styles", link: ROUTER_STYLES },
   {

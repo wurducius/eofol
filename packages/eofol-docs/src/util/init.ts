@@ -1,13 +1,7 @@
-import {
-  setTheme,
-  registerServiceWorker,
-  loadLocalStorage,
-  saveLocalStorage,
-} from "@eofol/eofol";
-import { darkTheme, lightTheme } from "../styles";
-import { LOCAL_STORAGE_NAME } from "../data";
+import { registerServiceWorker } from "@eofol/eofol";
 
 export const init = () => {
+  /*
   const storage = loadLocalStorage(LOCAL_STORAGE_NAME);
 
   // @ts-ignore
@@ -24,6 +18,7 @@ export const init = () => {
     { theme: themeId === "dark" ? "dark" : "light" },
     LOCAL_STORAGE_NAME
   );
+*/
 
   // const theme = setTheme(initialTheme);
   // initStyles(theme);

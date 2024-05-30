@@ -5,7 +5,6 @@ export * from "./section-container";
 export * from "./content";
 export * from "./inputs";
 export * from "./layout";
-export * from "./list";
 export * from "./navbar";
 export * from "./page";
 export * from "./theme-toggle";

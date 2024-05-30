@@ -12,15 +12,11 @@ import {
   h2,
   linkButton,
   code,
+  listItemTag,
+  unorderedListTag,
 } from "@eofol/eofol-simple";
 import { init } from "../../util";
-import {
-  elevationContainer,
-  footer,
-  listItemTag,
-  sectionContainer,
-  unorderedListTag,
-} from "../../ui";
+import { elevationContainer, footer, sectionContainer } from "../../ui";
 import {
   EOFOL_DOCS_ROOT_CUSTOM_ELEMENT_TAG,
   EOFOL_META_DESCRIPTION,

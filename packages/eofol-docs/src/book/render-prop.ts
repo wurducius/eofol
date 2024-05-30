@@ -1,7 +1,15 @@
-import { h2, p, div, h1, a, flex } from "@eofol/eofol-simple";
+import {
+  h2,
+  p,
+  div,
+  h1,
+  a,
+  flex,
+  listItemTag,
+  unorderedListTag,
+} from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
 import { toCamel, capitalize, toInputName } from "../util";
-import { listItemTag, unorderedListTag } from "../ui";
 
 // @TODO theme
 const theme = getTheme();

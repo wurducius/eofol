@@ -73,6 +73,9 @@ export const inputBase = inputBaseX.inputBase;
 import listX from "./ui/list";
 export const orderedList = listX.orderedList;
 export const unorderedList = listX.unorderedList;
+export const orderedListTag = listX.orderedListTag;
+export const unorderedListTag = listX.unorderedListTag;
+export const listItemTag = listX.listItemTag;
 
 import modalX from "./ui/modal";
 export const modal = modalX.modal;
