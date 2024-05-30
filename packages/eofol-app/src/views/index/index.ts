@@ -1,9 +1,6 @@
-import "../../styles/eofol.css";
 import "./index.css";
-
 import imgPath from "./rainbow-mountains-peru.jpg";
 import svgPath from "./phi.svg";
-
 import {
   registerServiceWorker,
   defineAutonomousElement,
@@ -18,10 +15,15 @@ import {
   mergeStore,
   createSelector,
   cx,
+  setTheme,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
 import { notify, p, div, button, h2 } from "@eofol/eofol-simple";
 
+setTheme({
+  // @ts-ignore
+  color: { primary: { base: "#ff00ff" }, secondary: { base: "#0000ff" } },
+});
 createStore("global", { count: 0 });
 
 sy({ backgroundImage: `url(${imgPath})` }, "<body>");

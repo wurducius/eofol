@@ -70,7 +70,7 @@ export const lightTheme = mergeDeep(commonTheme, {
 
 const storage = loadLocalStorage(LOCAL_STORAGE_NAME);
 // @ts-ignore
-let themeState = storage.theme === "light" ? "light" : "dark";
+let themeState = storage?.theme === "light" ? "light" : "dark";
 
 export const getThemeState = () => themeState;
 

@@ -141,10 +141,8 @@ const lessDependenciesSection = () => {
 };
 
 const showcaseSection = () => {
-  const theme = getTheme();
-
   return sectionContainer([
-    h1("Built with eofol:"),
+    h1("Built with eofol"),
     p("Your project can look as good as these! Check them out, get inspired!"),
     div(sx({ marginTop: "32px", display: "flex", justifyContent: "center" }), [
       externalLinkButton({

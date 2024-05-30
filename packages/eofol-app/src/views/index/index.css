@@ -1,3 +1,17 @@
+html {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.9);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+}
+
 #eofol {
   color: magenta;
   font-size: 24px;
@@ -25,6 +39,7 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: 8px;
+  margin-top: 16px;
 }
 
 .eofol-button:hover {
@@ -46,4 +61,16 @@
 .no-gutter {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 16px;
+}
+
+body::-webkit-scrollbar-thumb {
+  height: 56px;
+  border-radius: 8px;
+  border: 4px solid transparent;
+  background-color: hsl(0, 0%, 67%);
+  background-clip: content-box;
 }

@@ -1,11 +1,13 @@
 import { a, div, p } from "@eofol/eofol-simple";
-import { getTheme, sx } from "@eofol/eofol";
+import { sx } from "@eofol/eofol";
 import {
   EOFOL_NAME_PRETTY,
   ROUTER_INDEX,
   ROUTER_NAVBAR,
   RouterItem,
 } from "../data";
+
+// @TODO theme
 
 type LinkState = "active" | "subtree" | "nonactive" | "base";
 
