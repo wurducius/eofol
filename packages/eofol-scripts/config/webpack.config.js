@@ -1,4 +1,21 @@
 const {
+  MODE,
+  PORT,
+  BROWSER,
+  HTTPS,
+  BASE_PATH,
+  TRANSLATIONS_ENABLED,
+  SERVICEWORKER_ENABLED,
+  BUILD_PATH,
+  VIEWS_PATH,
+  PUBLIC_PATH,
+  SRC_PATH,
+  GENERATE_SOURCEMAP,
+  ASSET_IMG_INLINE_SIZE_LIMIT,
+  ASSET_SVG_INLINE_SIZE_LIMIT,
+  ANALYZE_BUNDLE,
+} = require("./env");
+const {
   ASSETS_BUILD_PATH,
   ASSETS_INNER_PATH,
   ASSETS_JS_PATH,
@@ -8,11 +25,7 @@ const {
   ASSETS_FONT_PATH,
   ENTRYPOINT_ROOT_PATH,
 } = require("./paths");
-const {
-  PORT,
-  ASSET_SVG_INLINE_SIZE_LIMIT,
-  ASSET_IMG_INLINE_SIZE_LIMIT,
-} = require("./eofol");
+
 const { collectViews } = require("@eofol/eofol-dev-utils");
 
 const BundleAnalyzerPlugin =
@@ -26,9 +39,9 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const entry = collectViews(ENTRYPOINT_ROOT_PATH);
 
-const config = (mode, analyze) => {
-  const isDev = !analyze && mode === "development";
+const isDev = MODE === "development";
 
+const config = () => {
   return {
     mode: isDev ? "development" : "production",
     entry,
@@ -43,7 +56,7 @@ const config = (mode, analyze) => {
         */
     },
     plugins: [
-      analyze && new BundleAnalyzerPlugin(),
+      ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({ filename: ASSETS_CSS_PATH + "/[name].css" }),
       // new ChunksWebpackPlugin({ generateChunksManifest: false }),
     ].filter(Boolean),
@@ -107,7 +120,7 @@ const config = (mode, analyze) => {
       compress: true,
       hot: true,
     },
-    devtool: isDev && "source-map",
+    devtool: GENERATE_SOURCEMAP && "source-map",
     stats: "errors-only",
     resolve: {
       extensions: [".*", ".js", ".jsx", ".ts", ".tsx", ".css", ".json", ".svg"],

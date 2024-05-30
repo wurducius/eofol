@@ -7,10 +7,7 @@ const createConfig = require("../config/webpack.config");
 
 console.log(primary("Starting the development server..."));
 
-const args = process.argv.slice(2);
-const isAnalyze = args.includes("analyze");
-
-const config = createConfig("development", isAnalyze);
+const config = createConfig();
 const compiler = webpack(config);
 const devServerOptions = { ...config.devServer, open: true };
 
