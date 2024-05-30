@@ -35,5 +35,5 @@ initTranslation([
 ]);
 */
 
-  // registerServiceWorker();
+  registerServiceWorker();
 };

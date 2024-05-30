@@ -51,7 +51,7 @@ function getTranslation(language: string) {
   const target = languageCodeList.includes(language)
     ? language
     : defaultData.language;
-  const result = fetch(`translation/${target}.json`).then((res) => res.json());
+  const result = fetch(`/translation/${target}.json`).then((res) => res.json());
   return result;
 }
 

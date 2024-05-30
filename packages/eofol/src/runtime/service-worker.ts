@@ -1,6 +1,6 @@
-const registerServiceWorker = () => {
+const registerServiceWorker = (basePath?: string) => {
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register(`./service-worker.js`);
+    navigator.serviceWorker.register(`${basePath ?? ""}/service-worker.js`);
   }
 };
 

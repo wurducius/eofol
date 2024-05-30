@@ -1,4 +1,4 @@
-import { h3, h2, p, div, h1, a } from "@eofol/eofol-simple";
+import { h2, p, div, h1, a, flex } from "@eofol/eofol-simple";
 import { getTheme, sx } from "@eofol/eofol";
 import { toCamel, capitalize, toInputName } from "../util";
 import { listItemTag, unorderedListTag } from "../ui";
@@ -10,14 +10,28 @@ const propTitleStyle = sx({
   scrollMarginTop: "60px",
 });
 
-const headerStyle = sx({ margin: "16px 0 16px 0" });
+const headerStyle = sx({
+  margin: "16px 0 16px 0",
+  display: "flex",
+  justifyContent: "center",
+});
 
 const propListStyle = sx({
   color: theme.color.secondary.base,
   margin: "0 0 16px 0",
 });
 
-type PropValue = { value: any; title: string };
+const propRowStyle = sx({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "64px",
+  margin: "16px 0 16px 0",
+});
+
+const defaultPropRowStyle = sx({ margin: "16px 0 16px 0" });
+
+type PropValue = { value: any; title: string; additionalProps?: any };
 
 const renderPropValueItem = (
   propName: string,
@@ -30,6 +44,7 @@ const renderPropValueItem = (
     ...defaultProps,
     [toCamel(propName)]: propValue.value,
     ...(additionalProps ? additionalProps(propName, propValue.value) : {}),
+    ...propValue.additionalProps,
   });
 };
 
@@ -42,26 +57,36 @@ const renderPropValues = (
 ) => {
   if (Array.isArray(propValues)) {
     return propValues
-      .map((propValue) => [
-        h3(capitalize(propValue.title ?? propValue.value)),
+      .map((propValue) =>
+        div(propRowStyle, [
+          flex(
+            { grow: 1, justifyContent: "flex-end" },
+            p(capitalize(propValue.title ?? propValue.value))
+          ),
+          flex(
+            { grow: 1, justifyContent: "flex-start" },
+            renderPropValueItem(
+              propName,
+              propValue,
+              componentElement,
+              defaultProps,
+              additionalProps
+            )
+          ),
+        ])
+      )
+      .flat();
+  } else {
+    return [
+      flex({ justifyContent: "center" }, [
         renderPropValueItem(
           propName,
-          propValue,
+          propValues,
           componentElement,
           defaultProps,
           additionalProps
         ),
-      ])
-      .flat();
-  } else {
-    return [
-      renderPropValueItem(
-        propName,
-        propValues,
-        componentElement,
-        defaultProps,
-        additionalProps
-      ),
+      ]),
     ];
   }
 };
@@ -71,19 +96,24 @@ const renderProp = (
   description: string,
   propValues: PropValue[] | PropValue,
   componentElement: any,
+  defaultValue: any,
   defaultProps?: any,
   additionalProps?: (propName: string, value: string) => any
-) => [
-  h2(capitalize(propName), propTitleStyle, { id: toCamel(propName) }),
-  p(description),
-  ...renderPropValues(
-    propName,
-    propValues,
-    componentElement,
-    defaultProps,
-    additionalProps
-  ),
-];
+) =>
+  [
+    h2(capitalize(propName), propTitleStyle, { id: toCamel(propName) }),
+    p(description),
+
+    defaultValue &&
+      div(defaultPropRowStyle, p(`Default value: ${defaultValue}`)),
+    ...renderPropValues(
+      propName,
+      propValues,
+      componentElement,
+      defaultProps,
+      additionalProps
+    ).filter(Boolean),
+  ].filter(Boolean);
 
 const render = (componentElement: any) => (propsObj: any) =>
   componentElement(propsObj);
@@ -96,6 +126,7 @@ const renderGenericGroup =
       data.description,
       data.data,
       componentElement,
+      data.default,
       defaultProps,
       propMapping
     );
@@ -147,7 +178,31 @@ const renderPropsHeader = (
 ) => [
   h1(capitalize(componentName)),
   p(description),
-  div(headerStyle, componentElement(defaultProps)),
+  div(
+    headerStyle,
+    componentElement({
+      ...defaultProps,
+      name: toInputName(componentName)("base"),
+    })
+  ),
+];
+
+const renderPropsMenu = (data: any[]) => [
+  h2("Props"),
+  flex(
+    { justifyContent: "center" },
+    unorderedListTag(
+      data.map((propItem) =>
+        listItemTag(
+          a({
+            children: propItem.name,
+            link: `#${toCamel(propItem.name)}`,
+          })
+        )
+      ),
+      propListStyle
+    )
+  ),
 ];
 
 export const renderPropsPage = (
@@ -163,20 +218,23 @@ export const renderPropsPage = (
     componentElement,
     defaultProps
   ),
-  h2("Props"),
-  div(
-    sx({ display: "flex", justifyContent: "center" }),
-    unorderedListTag(
-      data.map((propItem) =>
-        listItemTag(
-          a({
-            children: propItem.name,
-            link: `#${toCamel(propItem.name)}`,
-          })
-        )
-      ),
-      propListStyle
-    )
-  ),
+  ...renderPropsMenu(data),
   ...renderPropsView(componentName, componentElement, data, defaultProps),
+];
+
+export const renderInputPropsPage = (
+  componentName: string,
+  description: string,
+  data: any[],
+  componentElement: any,
+  defaultProps?: any
+) => [
+  ...renderPropsHeader(
+    componentName,
+    description,
+    componentElement,
+    defaultProps
+  ),
+  ...renderPropsMenu(data),
+  ...renderInputPropsView(componentName, componentElement, data, defaultProps),
 ];
