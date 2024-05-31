@@ -2,6 +2,7 @@ module.exports = {
   MODE: "development",
   PORT: 3005,
   BROWSER: "default",
+  HOST: "localhost",
   HTTPS: false,
   BASE_PATH: "./",
   TRANSLATIONS_ENABLED: true,
