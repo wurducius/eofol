@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-scripts",
-  "version": "0.2.23",
+  "version": "0.2.24",
   "description": "Eofol build and development scripts",
   "files": [
     "bin",
@@ -16,7 +16,7 @@
     "@babel/plugin-transform-object-rest-spread": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
     "@babel/preset-typescript": "^7.24.6",
-    "@eofol/eofol-dev-utils": "0.2.23",
+    "@eofol/eofol-dev-utils": "0.2.24",
     "babel-loader": "^9.1.3",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",

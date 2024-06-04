@@ -1,6 +1,6 @@
 export const EOFOL_NAME_PRETTY = "Eoфol";
 export const EOFOL_NAME_SIMPLE = "Eofol";
-export const EOFOL_DOCS_VERSION = "0.2.23";
+export const EOFOL_DOCS_VERSION = "0.2.24";
 export const EOFOL_DATETIME_SIGNATURE = new Date(2024, 5, 30, 21, 16);
 export const EOFOL_DATETIME_BIRTHDAY = new Date(2022, 5, 1);
 export const LOCAL_STORAGE_NAME = "eofol-docs";
