@@ -1,7 +1,7 @@
 import { getTheme, sx } from "@eofol/eofol";
-import { div } from "../primitive/div";
+import { div } from "../../primitive/div";
 
-export const bubble = (title: string, open: boolean) => {
+const bubble = (title: string, open: boolean) => {
   const theme = getTheme();
 
   return div(
@@ -22,4 +22,4 @@ export const bubble = (title: string, open: boolean) => {
   );
 };
 
-export default { bubble };
+export default bubble;

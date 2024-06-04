@@ -1,6 +1,10 @@
+import { getBasePath } from "../config/env";
+
+const basePath = getBasePath();
+
 const registerServiceWorker = () => {
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register(`./service-worker.js`);
+    navigator.serviceWorker.register(`${basePath}service-worker.js`);
   }
 };
 

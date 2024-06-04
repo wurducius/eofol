@@ -10,6 +10,8 @@ export const getInputSizeStyle = (size: SIZE) => {
     return themeStyles.inputSizeLg;
   } else if (size === "xl") {
     return themeStyles.inputSizeXl;
+  } else if (size === "2xl") {
+    return themeStyles.inputSize2Xl;
   }
   return themeStyles.inputSizeMd;
 };

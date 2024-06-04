@@ -25,20 +25,54 @@ export const SIZE_SM = "sm";
 export const SIZE_MD = "md";
 export const SIZE_LG = "lg";
 export const SIZE_XL = "xl";
+export const SIZE_2XL = "2xl";
 
 export type SIZE =
   | typeof SIZE_SM
   | typeof SIZE_MD
   | typeof SIZE_LG
   | typeof SIZE_XL
+  | typeof SIZE_2XL
   | undefined;
 
 export type Sizable = { size?: SIZE };
 
 export type Schemable = { scheme?: ColorScheme };
 
-export type AProps = {
-  link: string;
-  external?: boolean;
-  download?: string;
+export type ListBaseProps<T> = {
+  spacing?: number;
+  data: T[];
+  render: (item: T, index?: number) => Element | Element[];
+  position?: ListPosition;
+  paddingInline?: string;
+};
+
+export type UnorderedListType =
+  | "circle"
+  | "square"
+  | "none"
+  | "disc"
+  | undefined;
+
+export type OrderedListType =
+  | "lowerRoman"
+  | "upperRoman"
+  | "lowerAlpha"
+  | "upperAlpha"
+  | "lowerGreek"
+  | "upperGreek"
+  | "lowerLatin"
+  | "upperLatin"
+  | "none"
+  | "decimal"
+  | undefined;
+
+export type ListPosition = "outside" | "inside" | undefined;
+
+export type UnorderedListProps<T> = ListBaseProps<T> & {
+  type?: UnorderedListType;
+};
+
+export type orderedListProps<T> = ListBaseProps<T> & {
+  type?: OrderedListType;
 };

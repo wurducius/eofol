@@ -1,4 +1,4 @@
-import { EofolClassnameSingle } from "@eofol/eofol-types";
+import { EofolClassname, EofolClassnameSingle } from "@eofol/eofol-types";
 
 export const ax = (
   initialAttributes: Record<string, string>,
@@ -13,6 +13,14 @@ export const ax = (
 
 export const cx = (...styles: EofolClassnameSingle[]) =>
   styles.filter(Boolean).join(" ");
+
+export const cxFlat = (styles: EofolClassname) => {
+  if (Array.isArray(styles)) {
+    return cx(...styles);
+  } else {
+    return styles;
+  }
+};
 
 export const addCx = (
   element: Element | null,
@@ -38,4 +46,4 @@ export const removeCx = (
   }
 };
 
-export default { ax, cx, addCx, removeCx };
+export default { ax, cx, cxFlat, addCx, removeCx };

@@ -1,0 +1,1 @@
+export const PADDING_INLINE_START_DEFAULT = "40px";

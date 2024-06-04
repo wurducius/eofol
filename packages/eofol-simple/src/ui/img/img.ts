@@ -1,7 +1,6 @@
 import { createElement, ax } from "@eofol/eofol";
-import { EComponent } from "../../types";
-// @ts-ignore
-import defaultFallback from "./default-fallback.png";
+import defaultFallback from "../../../assets/img/default-fallback.png";
+import { EComponent } from "@eofol/eofol-types";
 
 const img = ({
   src,

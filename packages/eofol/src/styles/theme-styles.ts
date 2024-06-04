@@ -1,8 +1,9 @@
 import { Theme } from "@eofol/eofol-types";
 import sx from "./sx";
-import { defaultTheme } from "./default-theme";
 
 export const INPUT_INVALID = "input-invalid";
+
+export const hideArrowsClassname = "number-input-hide-arrows";
 
 const emptyScheme = {
   primary: "",
@@ -28,6 +29,7 @@ let themeStyles = {
   inputSizeMd: "",
   inputSizeLg: "",
   inputSizeXl: "",
+  inputSize2Xl: "",
   checkboxSizeSm: "",
   checkboxSizeMd: "",
   checkboxSizeLg: "",
@@ -74,6 +76,9 @@ export const updateThemeStyles = (theme: Theme) => {
     }),
     inputSizeXl: sx({
       height: theme.size.xl,
+    }),
+    inputSize2Xl: sx({
+      height: theme.size["2xl"],
     }),
     inputBaseOutlineTransition: sx({
       transition: `outline 200ms linear`,
@@ -159,7 +164,7 @@ export const updateThemeStyles = (theme: Theme) => {
   };
 };
 
-updateThemeStyles(defaultTheme);
+// updateThemeStyles(defaultTheme);
 
 export const getThemeStyles = () => themeStyles;
 

@@ -1,4 +1,4 @@
-import { SIZE } from "./props";
+import { SIZE, Schemable } from "./props";
 
 export type InputTypeAttribute =
   | "button"
@@ -66,15 +66,17 @@ export type InputCommonProps<T> = {
   validation?: ((nextVal: T) => true | string)[];
   invalid?: string | boolean;
 
-  value: T;
-};
+  value: T | undefined;
+} & Schemable;
 
 export type InputBaseNumericProps = {
   min?: number;
   max?: number;
   step?: number;
   hideArrows?: boolean | "default";
-  // arrowStyle?: any;
+  arrowUpIcon?: string;
+  arrowDownIcon?: string;
+  arrowClassname?: string;
   inputMode?: InputMode;
   precision?: number;
   allowOutOfRange?: boolean;
@@ -98,3 +100,24 @@ export type InputBaseProps = InputCommonProps<string> &
 export type InputProps = InputCommonProps<string> & InputTypeProps;
 
 export type NumberInputProps = InputCommonProps<number> & InputBaseNumericProps;
+
+export interface EInput<T> {
+  onChange?: (nextValue: T) => void;
+  onBlur?: (nextValue: T) => void;
+  value?: T;
+  disabled?: boolean;
+  name: string;
+}
+
+export interface ESizable {
+  size?: SIZE;
+}
+
+export type ButtonVariant = "outline" | "solid" | "ghost" | undefined;
+
+export interface EButton {
+  onClick?: () => void;
+  onBlur?: () => void;
+  disabled?: boolean;
+  variant?: ButtonVariant;
+}

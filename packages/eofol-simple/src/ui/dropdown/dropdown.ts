@@ -8,6 +8,7 @@ import {
   sx,
 } from "@eofol/eofol";
 import button from "../button/button";
+import dropdownContent from "./dropdown-content";
 
 const openMenu = (id: string) => {
   const contentNew = document.getElementById(id);
@@ -78,38 +79,4 @@ const dropdown = ({
   );
 };
 
-const dropdownContent = (
-  id: string,
-  classname: string | undefined,
-  children: Element | Element[]
-) => {
-  const theme = getTheme();
-
-  return createElement(
-    "div",
-    [
-      sx({
-        display: "none",
-        position: "absolute",
-        zIndex: theme.zIndex.dropdown,
-      }),
-      cx(classname),
-    ],
-    createElement(
-      "div",
-      sx({
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        fontSize: "16px",
-        marginTop: "40px",
-      }),
-      children
-    ),
-    {
-      id,
-    }
-  );
-};
-
-export default { dropdown, dropdownContent };
+export default dropdown;

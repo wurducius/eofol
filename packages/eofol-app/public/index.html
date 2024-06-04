@@ -26,10 +26,19 @@
     />
     <title>Eofol app</title>
     <link rel="stylesheet" href="assets/css/index.css" />
+    <style>
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(./fonts/Roboto-Regular.ttf) format("truetype");
+      }
+    </style>
   </head>
   <body>
     <div id="eofol" class="container">
-      <h1>Eoфol app</h1>
+      <h1 class="no-gutter">Eoфol app</h1>
       <img
         id="eofol-svg"
         class="phi"
@@ -38,22 +47,16 @@
         alt="Greek letter Phi"
       />
       <div id="eofol-target"></div>
-      <div>
+      <div class="m-md">
         <eofol-custom-single id="eofol-custom-single" />
       </div>
-      <div is="eofol-builtin"></div>
-      <div>
+      <div is="eofol-builtin" class="m-md"></div>
+      <div class="m-md">
         <eofol-weather />
       </div>
-      <div is="eofol-primitive" customattribute="1"></div>
-      <div is="eofol-primitive" customattribute="0"></div>
-      <div is="eofol-tabs"></div>
-      <div is="eofol-collapse"></div>
-      <div>Accordion</div>
-      <div is="eofol-accordion"></div>
-      <div is="eofol-dashboard"></div>
-      <div is="eofol-selector-1"></div>
-      <div is="eofol-selector-2"></div>
+      <div is="eofol-selector-1" class="m-md"></div>
+      <div is="eofol-selector-2" class="m-sm"></div>
+      <div class="footer"></div>
     </div>
 
     <noscript> You need to enable JavaScript to run this app. </noscript>

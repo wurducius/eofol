@@ -1,11 +1,7 @@
-import "../../styles/eofol.css";
 import "./index.css";
-
 import imgPath from "./rainbow-mountains-peru.jpg";
 import svgPath from "./phi.svg";
-
 import {
-  createElement,
   registerServiceWorker,
   defineAutonomousElement,
   renderTarget,
@@ -18,16 +14,16 @@ import {
   defineBuiltinElement,
   mergeStore,
   createSelector,
+  cx,
+  setTheme,
 } from "@eofol/eofol";
 import { StateSetter, StateTypeImpl } from "@eofol/eofol-types";
-import {
-  defineTabs,
-  defineCollapse,
-  defineAccordion,
-  tooltip,
-  notify,
-} from "@eofol/eofol-simple";
+import { notify, p, div, button, h2 } from "@eofol/eofol-simple";
 
+setTheme({
+  // @ts-ignore
+  color: { primary: { base: "#ff00ff" }, secondary: { base: "#0000ff" } },
+});
 createStore("global", { count: 0 });
 
 sy({ backgroundImage: `url(${imgPath})` }, "<body>");
@@ -53,22 +49,26 @@ renderTarget<CountState>("eofol-target", {
     const s = state as CountState;
 
     return [
-      createElement(
-        "div",
-        [sx({ color: "blue" }), sx({ color: "red" }, ":hover")],
-        "Targeted element example"
+      h2(
+        "Targeted element example",
+        cx(sx({ color: "blue" }), sx({ color: "red" }, ":hover")),
+        undefined,
+        undefined,
+        true
       ),
-      createElement("div", undefined, `Click count: ${s.count}`),
-      createElement("button", "eofol-button", "Click!", undefined, {
-        // @ts-ignore
-        onclick: () => {
+      p(`Click count: ${s.count}`),
+      button({
+        classname: "eofol-button",
+        children: "Click!",
+        onClick: () => {
           // wrong setState typing
           setState && setState({ count: s.count + 1 });
         },
       }),
-      createElement("button", "eofol-button", "Reset", undefined, {
-        // @ts-ignore
-        onclick: () => {
+      button({
+        classname: "eofol-button",
+        children: "Reset",
+        onClick: () => {
           // wrong setState typing
           setState && setState({ count: 0 });
         },
@@ -92,20 +92,24 @@ defineAutonomousElement<CountState>({
     };
 
     return [
-      createElement(
-        "div",
-        sx({ color: "blue", marginTop: "8px" }, undefined, true),
-        "Custom autonomous element using global store example"
+      h2(
+        "Custom autonomous element using global store example",
+        sx({ color: "blue", marginTop: "8px" }),
+        undefined,
+        undefined,
+        true
       ),
-      createElement("div", undefined, `Click count: ${count}`),
-      createElement("div", "", [
-        createElement("button", "eofol-button", "Click!", undefined, {
-          // @ts-ignore
-          onclick: clickHandler,
+      p(`Click count: ${count}`),
+      div(undefined, [
+        button({
+          classname: "eofol-button",
+          children: "Click!",
+          onClick: clickHandler,
         }),
-        createElement("button", "eofol-button", "Reset", undefined, {
-          // @ts-ignore
-          onclick: resetHandler,
+        button({
+          classname: "eofol-button",
+          children: "Reset",
+          onClick: resetHandler,
         }),
       ]),
     ];
@@ -133,12 +137,14 @@ const getWeatherState = (state: WeatherState) => {
 defineAutonomousElement<WeatherState>({
   tagName: "eofol-weather",
   render: (state: StateTypeImpl<WeatherState>) => [
-    createElement(
-      "div",
-      sx({ color: "blue", marginTop: "8px" }, undefined, true),
-      "Effect example"
+    h2(
+      "Effect example",
+      sx({ color: "blue", marginTop: "8px" }),
+      undefined,
+      undefined,
+      true
     ),
-    createElement("div", undefined, getWeatherState(state as WeatherState)),
+    p(getWeatherState(state as WeatherState)),
   ],
   initialState: { temperature: undefined },
   effect: [
@@ -177,80 +183,33 @@ defineBuiltinElement<CountState>({
   tagName: "eofol-builtin",
   initialState: { count: 0 },
   render: (state, setState) => [
-    createElement(
-      "div",
-      sx({ color: "blue", marginTop: "8px" }, undefined, true),
-      "Custom built-in element example"
+    h2(
+      "Custom built-in element example",
+      sx({ color: "blue", marginTop: "8px" }),
+      undefined,
+      undefined,
+      true
     ),
     // @ts-ignore
-    createElement("div", undefined, `Click count: ${state.count}`),
-    createElement("div", "", [
-      createElement("button", "eofol-button", "Click!", undefined, {
-        // @ts-ignore
-        onclick: () => {
+    p(`Click count: ${state.count}`),
+    div(undefined, [
+      button({
+        classname: "eofol-button",
+        children: "Click!",
+        onClick: () => {
           // @ts-ignore
           setState({ count: state.count + 1 });
         },
       }),
-      createElement("button", "eofol-button", "Reset", undefined, {
-        // @ts-ignore
-        onclick: () => {
+      button({
+        classname: "eofol-button",
+        children: "Reset",
+        onClick: () => {
           // @ts-ignore
           setState({ count: 0 });
         },
       }),
     ]),
-  ],
-});
-
-registerServiceWorker();
-
-defineBuiltinElement({
-  tagName: "eofol-primitive",
-  classname: sx({ marginTop: "8px" }),
-  render: (state, setState, attributes) => {
-    // @ts-ignore
-    return attributes?.customattribute === "1"
-      ? "custom attribute present"
-      : "custom attribute not present";
-  },
-});
-
-defineTabs({
-  tagName: "eofol-tabs",
-  icon: svgPath,
-  data: [
-    {
-      title: "First",
-      render: () => createElement("div", undefined, "Content 1"),
-    },
-    {
-      title: "Second",
-      render: () => createElement("div", undefined, "Content 2"),
-    },
-    {
-      title: "Third",
-      render: () => createElement("div", undefined, "Content 3"),
-    },
-  ],
-});
-
-defineCollapse({
-  tagName: "eofol-collapse",
-  title: "Collapse",
-  render: () => "Collapse content",
-  iconOpen: svgPath,
-  iconClosed: svgPath,
-});
-
-defineAccordion({
-  tagName: "eofol-accordion",
-  iconOpen: svgPath,
-  iconClosed: svgPath,
-  data: [
-    { title: "First", render: () => "Content 1" },
-    { title: "Second", render: () => "Content 2" },
-    { title: "Third", render: () => "Content 3" },
   ],
 });
 
@@ -263,22 +222,14 @@ const derivedData = createSelector("selector-base", (state) => ({
 defineBuiltinElement({
   tagName: "eofol-selector-1",
   render: () => {
-    return tooltip(
-      "Uses eofol store projection",
-      createElement(
-        "button",
-        "eofol-button",
-        "Click to message projection",
-        {},
-        {
-          // @ts-ignore
-          onclick: () => {
-            mergeStore("selector-base", { data: "Projection updated" });
-            notify({ title: "Projection updated!", position: "top" });
-          },
-        }
-      )
-    );
+    return button({
+      classname: "eofol-button",
+      children: "Click to message projection",
+      onClick: () => {
+        mergeStore("selector-base", { data: "Projection updated" });
+        notify({ title: "Projection updated!", position: "top" });
+      },
+    });
   },
 });
 
@@ -287,6 +238,6 @@ defineBuiltinElement({
   subscribe: [derivedData.name],
   render: () => {
     const projectionState = derivedData.selector();
-    return createElement("p", undefined, projectionState.derivedData);
+    return p(projectionState.derivedData);
   },
 });

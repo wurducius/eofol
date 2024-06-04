@@ -77,4 +77,4 @@ const sliderInput = ({
   });
 };
 
-export default { sliderInput };
+export default sliderInput;

@@ -1,5 +1,8 @@
 import { Language } from "@eofol/eofol-types";
 import forceRerender from "../core/force-rerender";
+import { getTranslationsEnabled } from "../config/env";
+
+const translationsEnabled = getTranslationsEnabled();
 
 const TRANSLATION_LOCAL_STORAGE_NAME = "eofol-app-locale";
 
@@ -51,16 +54,18 @@ function getTranslation(language: string) {
   const target = languageCodeList.includes(language)
     ? language
     : defaultData.language;
-  const result = fetch(`translation/${target}.json`).then((res) => res.json());
+  const result = fetch(`/translation/${target}.json`).then((res) => res.json());
   return result;
 }
 
 // @ts-ignore
 let translation = undefined;
 
-getTranslation(language).then((val) => {
-  translation = val;
-});
+if (translationsEnabled) {
+  getTranslation(language).then((val) => {
+    translation = val;
+  });
+}
 
 export const t = (key: string, defaultValue: string) => {
   // @ts-ignore

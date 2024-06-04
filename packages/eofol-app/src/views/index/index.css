@@ -1,3 +1,17 @@
+html {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.9);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+}
+
 #eofol {
   color: magenta;
   font-size: 24px;
@@ -25,74 +39,38 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: 8px;
+  margin-top: 16px;
 }
 
 .eofol-button:hover {
   background-color: rgb(100, 161, 199);
 }
 
-.button-base {
-  font-weight: 500;
-  cursor: pointer;
-  width: fit-content;
+.m-md {
+  margin-top: 32px;
 }
 
-.button-sm {
-  height: 20px;
+.m-sm {
+  margin-top: 16px;
 }
 
-.button-md {
-  height: 32px;
+.footer {
+  height: 64px;
 }
 
-.button-lg {
-  height: 40px;
+.no-gutter {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.button-full {
-  width: 100%;
+body::-webkit-scrollbar {
+  width: 16px;
 }
 
-.button-disabled {
-  background-color: grey;
-}
-
-.checkbox-base {
-  font-weight: 500;
-}
-
-.checkbox-sm {
-  height: 20px;
-}
-
-.checkbox-md {
-  height: 32px;
-}
-
-.checkbox-lg {
-  height: 40px;
-}
-
-.checkbox-disabled {
-  background-color: grey;
-}
-
-.select-base {
-  border: 1px solid green;
-}
-
-.select-sm {
-  height: 20px;
-}
-
-.select-md {
-  height: 32px;
-}
-
-.select-lg {
-  height: 40px;
-}
-
-.select-disabled {
-  background-color: grey;
+body::-webkit-scrollbar-thumb {
+  height: 56px;
+  border-radius: 8px;
+  border: 4px solid transparent;
+  background-color: hsl(0, 0%, 67%);
+  background-clip: content-box;
 }

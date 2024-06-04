@@ -1,19 +1,46 @@
-import { createElement, ax, getThemeStyles, staticStyles } from "@eofol/eofol";
-import { EButton, EComponent } from "../../types";
+import {
+  createElement,
+  ax,
+  getThemeStyles,
+  staticStyles,
+  cxFlat,
+} from "@eofol/eofol";
 import { getTheme, sx } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
-import { ColorSchemePalette, Schemable, Sizable } from "@eofol/eofol-types";
+import {
+  ButtonVariant,
+  ColorSchemePalette,
+  EButton,
+  EComponent,
+  Schemable,
+  Sizable,
+} from "@eofol/eofol-types";
 import { getColorScheme } from "../../util/scheme";
 
 const getButtonStyle = (
   colorScheme: ColorSchemePalette,
+  variant?: ButtonVariant,
   isActive?: boolean
 ) => {
   const theme = getTheme();
 
+  if (variant === "solid") {
+    return {
+      backgroundColor: isActive
+        ? theme.color.background.base
+        : colorScheme.base,
+      color: isActive ? colorScheme.base : "black",
+      border: `1px solid ${colorScheme.base}`,
+    };
+  } else if (variant === "ghost") {
+    return {
+      backgroundColor: isActive ? colorScheme.base : "transparent",
+      color: isActive ? "black" : colorScheme.base,
+      border: `1px solid transparent`,
+    };
+  }
   return {
-    fontSize: theme.typography.text.fontSize,
-    backgroundColor: isActive ? colorScheme.base : "black",
+    backgroundColor: isActive ? colorScheme.base : theme.color.background.base,
     color: isActive ? "black" : colorScheme.base,
     border: `1px solid ${colorScheme.base}`,
   };
@@ -35,6 +62,7 @@ const button = ({
   children,
   scheme,
   active,
+  variant,
 }: {
   full?: boolean;
   active?: boolean;
@@ -49,7 +77,7 @@ const button = ({
   const baseStyle = themeStyles.buttonBase;
   const sizeStyle = getInputSizeStyle(size);
   const disabledStyle = themeStyles.inputDisabled;
-  const schemeStyle = sx(getButtonStyle(colorScheme, active));
+  const schemeStyle = sx(getButtonStyle(colorScheme, variant, active));
   const schemeHoverStyle = sx(
     getButtonHoverStyle(colorScheme),
     ":not(:disabled):hover"
@@ -64,7 +92,7 @@ const button = ({
       schemeHoverStyle,
       disabled && disabledStyle,
       full && staticStyles.full,
-      classname,
+      cxFlat(classname),
     ],
     children,
     ax({}, ["disabled", disabled])

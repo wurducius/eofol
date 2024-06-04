@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { spawn } = require("@eofol/eofol-dev-utils");
 const { primary, error } = require("@eofol/eofol-dev-utils");
-const { PORT } = require("../config/eofol");
+const { PORT } = require("../config/env");
 const { BUILD_PATH } = require("../config/paths");
 
 console.log(primary("Serving build folder..."));

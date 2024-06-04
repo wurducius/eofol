@@ -31,6 +31,7 @@ export const defaultTheme: Theme = {
     md: "32px",
     lg: "40px",
     xl: "48px",
+    "2xl": "64px",
     checkbox: {
       sm: "12px",
       md: "16px",

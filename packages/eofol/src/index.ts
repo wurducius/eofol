@@ -65,11 +65,24 @@ import fetchX from "./runtime/fetch";
 export const get = fetchX.get;
 export const post = fetchX.post;
 
-import localStorageX from "./runtime/local-storage";
+import localStorageX from "./runtime/storage/local-storage";
 export const loadLocalStorage = localStorageX.loadLocalStorage;
 export const saveLocalStorage = localStorageX.saveLocalStorage;
 export const deleteLocalStorage = localStorageX.deleteLocalStorage;
 export const clearLocalStorage = localStorageX.clearLocalStorage;
+
+import sessionStorageX from "./runtime/storage/session-storage";
+export const loadSessionStorage = sessionStorageX.loadSessionStorage;
+export const saveSessionStorage = sessionStorageX.saveSessionStorage;
+export const deleteSessionStorage = sessionStorageX.deleteSessionStorage;
+export const clearSessionStorage = sessionStorageX.clearSessionStorage;
+
+import getGeolocationX from "./runtime/geolocation";
+export const getGeolocation = getGeolocationX;
+
+import searchParamsX from "./runtime/search-params";
+export const getSearchParams = searchParamsX.getSearchParams;
+export const setSearchParams = searchParamsX.setSearchParams;
 
 import serviceWorker from "./runtime/service-worker";
 export const registerServiceWorker = serviceWorker;
@@ -86,6 +99,7 @@ export const initTranslation = translationX.initTranslation;
 import simpleUtils from "./util/simple";
 export const ax = simpleUtils.ax;
 export const cx = simpleUtils.cx;
+export const cxFlat = simpleUtils.cxFlat;
 export const addCx = simpleUtils.addCx;
 export const removeCx = simpleUtils.removeCx;
 
@@ -94,3 +108,7 @@ export const generateId = cryptoX.generateId;
 
 import mergeDeepX from "./util/merge-deep";
 export const mergeDeep = mergeDeepX.mergeDeep;
+
+import { init } from "./runtime/init";
+
+init();

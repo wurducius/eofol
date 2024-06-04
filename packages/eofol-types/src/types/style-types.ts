@@ -57,6 +57,7 @@ export type Theme = {
     md: CSSString;
     lg: CSSString;
     xl: CSSString;
+    "2xl": CSSString;
     checkbox: Record<string, CSSString>;
   };
   zIndex: Record<string, CSSValue>;

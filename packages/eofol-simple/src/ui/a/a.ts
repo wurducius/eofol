@@ -1,7 +1,7 @@
-import { sx, sy } from "@eofol/eofol";
-import { EComponent } from "../../types";
+import { cxFlat, sx, sy } from "@eofol/eofol";
 import aBase from "./aBase";
-import { AProps, Schemable } from "@eofol/eofol-types";
+import { EComponent } from "@eofol/eofol-types";
+import { AProps } from "@eofol/eofol-simple-types";
 import { getColorScheme } from "../../util/scheme";
 
 const baseStyle = sy(
@@ -13,7 +13,7 @@ const baseStyle = sy(
   "a-base"
 );
 
-const a = (props: AProps & EComponent & Schemable) => {
+const a = (props: AProps & EComponent) => {
   const colorScheme = getColorScheme(props.scheme, "secondary");
 
   const themedBaseStyle = sx({
@@ -28,8 +28,8 @@ const a = (props: AProps & EComponent & Schemable) => {
       baseStyle,
       themedBaseStyle,
       themedHoverStyle,
-      ...(props.classname ?? []),
-    ].filter(Boolean),
+      cxFlat(props.classname),
+    ],
   });
 };
 

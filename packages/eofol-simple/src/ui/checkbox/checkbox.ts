@@ -1,7 +1,14 @@
-import { createElement, ax, sx, getTheme, getThemeStyles } from "@eofol/eofol";
-import { EInput, ESizable, EComponent } from "../../types";
-import div from "../primitive/div";
+import {
+  createElement,
+  ax,
+  sx,
+  getTheme,
+  getThemeStyles,
+  cxFlat,
+} from "@eofol/eofol";
+import div from "../../primitive/div";
 import { getCheckboxSizeStyle } from "../../util/inputs";
+import { EComponent, EInput, Sizable } from "@eofol/eofol-types";
 
 const checkbox = ({
   onChange,
@@ -12,7 +19,7 @@ const checkbox = ({
   size,
   classname,
   children,
-}: EInput<boolean> & ESizable & EComponent) => {
+}: EInput<boolean> & Sizable & EComponent) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
 
@@ -26,7 +33,7 @@ const checkbox = ({
 
   const inputElement = createElement(
     "input",
-    [baseStyle, classname],
+    [baseStyle, cxFlat(classname)],
     children,
     ax(
       { name, id: name, type: "checkbox" },
