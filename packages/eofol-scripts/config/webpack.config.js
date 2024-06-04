@@ -1,14 +1,30 @@
+const webpack = require("webpack");
+require("dotenv").config();
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const ChunksWebpackPlugin = require("chunks-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const {
-  MODE,
   PORT,
-  BROWSER,
   HOST,
-  HTTPS,
-  ANALYZE_BUNDLE,
-  GENERATE_SOURCEMAP,
+  LOG_LEVEL,
   ASSET_IMG_INLINE_SIZE_LIMIT,
   ASSET_SVG_INLINE_SIZE_LIMIT,
 } = require("./env");
+const {
+  MODE,
+  BROWSER,
+  HTTPS,
+  SHOW_PROGRESS,
+  ANALYZE_BUNDLE,
+  GENERATE_SOURCEMAP,
+  MINIMIZE,
+  TERSER,
+  CSS_MINIMIZE,
+} = require("./env-impl");
 const {
   ASSETS_BUILD_PATH,
   ASSETS_INNER_PATH,
@@ -19,34 +35,20 @@ const {
   ASSETS_FONT_PATH,
   ENTRYPOINT_ROOT_PATH,
 } = require("./paths");
-const webpack = require("webpack");
-require("dotenv").config();
-
 const { collectViews } = require("@eofol/eofol-dev-utils");
-
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-// const ChunksWebpackPlugin = require("chunks-webpack-plugin");
-
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 
 const entry = collectViews(ENTRYPOINT_ROOT_PATH);
 
-const isDev = MODE === "development";
-
 const config = () => {
   return {
-    mode: isDev ? "development" : "production",
+    mode: MODE,
     entry,
     output: {
       filename: ASSETS_JS_PATH + "/[name].js",
       path: ASSETS_BUILD_PATH,
       publicPath: ASSETS_INNER_PATH,
       /*
-      chunkFilename: isDev
+      chunkFilename: IS_DEV
         ? ASSETS_JS_PATH + "/[name].chunk.js"
         : ASSETS_JS_PATH + "/[name].[contenthash:8].chunk.js",
         */
@@ -58,12 +60,14 @@ const config = () => {
       new webpack.DefinePlugin({
         "process.env": JSON.stringify(process.env),
       }),
+      SHOW_PROGRESS &&
+        new ProgressBarPlugin({ width: 80, total: 100, summary: false }),
     ].filter(Boolean),
     optimization: {
-      minimize: !isDev,
+      minimize: MINIMIZE,
       minimizer: [
-        !isDev && new TerserPlugin(),
-        !isDev && new CssMinimizerPlugin(),
+        TERSER && new TerserPlugin(),
+        CSS_MINIMIZE && new CssMinimizerPlugin(),
       ].filter(Boolean),
       //  splitChunks: {
       //    chunks: "all",
@@ -115,9 +119,12 @@ const config = () => {
       ],
     },
     devServer: {
-      port: PORT,
       compress: true,
       hot: true,
+      port: PORT,
+      open: BROWSER,
+      host: HOST,
+      https: HTTPS,
     },
     devtool: GENERATE_SOURCEMAP && "source-map",
     stats: "errors-only",
@@ -128,6 +135,9 @@ const config = () => {
         ".cjs": [".cjs", ".cts"],
         ".mjs": [".mjs", ".mts"],
       },
+    },
+    infrastructureLogging: {
+      level: LOG_LEVEL,
     },
   };
 };

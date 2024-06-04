@@ -1,9 +1,11 @@
 module.exports = {
   MODE: "development",
   PORT: 3005,
-  BROWSER: "default",
+  BROWSER: true,
   HOST: "localhost",
   HTTPS: false,
+  LOG_LEVEL: "warn",
+  SHOW_PROGRESS: true,
   BASE_PATH: "./",
   TRANSLATIONS_ENABLED: true,
   SERVICEWORKER_ENABLED: true,
