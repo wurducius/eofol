@@ -109,5 +109,6 @@ export const generateId = cryptoX.generateId;
 import mergeDeepX from "./util/merge-deep";
 export const mergeDeep = mergeDeepX.mergeDeep;
 
-import { defaultTheme } from "./styles/default-theme";
-setTheme(defaultTheme);
+import { init } from "./runtime/init";
+
+init();

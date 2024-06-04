@@ -17,8 +17,8 @@ module.exports = {
   ASSETS_IMG_PATH: "images",
   ASSETS_SVG_PATH: "icons",
   ASSETS_FONT_PATH: "fonts",
+  ANALYZE_BUNDLE: false,
   GENERATE_SOURCEMAP: true,
   ASSET_IMG_INLINE_SIZE_LIMIT: 8192,
   ASSET_SVG_INLINE_SIZE_LIMIT: 8192,
-  ANALYZE_BUNDLE: false,
 };

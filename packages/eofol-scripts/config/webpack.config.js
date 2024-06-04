@@ -4,13 +4,10 @@ const {
   BROWSER,
   HOST,
   HTTPS,
-  BASE_PATH,
-  TRANSLATIONS_ENABLED,
-  SERVICEWORKER_ENABLED,
+  ANALYZE_BUNDLE,
   GENERATE_SOURCEMAP,
   ASSET_IMG_INLINE_SIZE_LIMIT,
   ASSET_SVG_INLINE_SIZE_LIMIT,
-  ANALYZE_BUNDLE,
 } = require("./env");
 const {
   ASSETS_BUILD_PATH,
@@ -22,6 +19,8 @@ const {
   ASSETS_FONT_PATH,
   ENTRYPOINT_ROOT_PATH,
 } = require("./paths");
+const webpack = require("webpack");
+require("dotenv").config();
 
 const { collectViews } = require("@eofol/eofol-dev-utils");
 
@@ -56,6 +55,9 @@ const config = () => {
       ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({ filename: ASSETS_CSS_PATH + "/[name].css" }),
       // new ChunksWebpackPlugin({ generateChunksManifest: false }),
+      new webpack.DefinePlugin({
+        "process.env": JSON.stringify(process.env),
+      }),
     ].filter(Boolean),
     optimization: {
       minimize: !isDev,

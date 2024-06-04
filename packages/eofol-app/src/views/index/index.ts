@@ -241,5 +241,3 @@ defineBuiltinElement({
     return p(projectionState.derivedData);
   },
 });
-
-registerServiceWorker();
