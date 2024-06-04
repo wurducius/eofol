@@ -124,7 +124,7 @@ const config = () => {
       port: PORT,
       open: BROWSER,
       host: HOST,
-      https: HTTPS,
+      server: HTTPS,
     },
     devtool: GENERATE_SOURCEMAP && "source-map",
     stats: "errors-only",

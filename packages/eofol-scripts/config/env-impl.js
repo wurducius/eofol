@@ -12,6 +12,7 @@ const {
 const isDev = MODE === "development";
 
 const isHttps = HTTPS === "true" || HTTPS === true;
+const protocol = isHttps ? "https" : "http";
 
 const getBrowser = (property) => {
   if (property === "false" || property === false) {
@@ -30,12 +31,12 @@ const getBrowser = (property) => {
 module.exports = {
   MODE: isDev ? "development" : "production",
   BROWSER: getBrowser(BROWSER),
-  HTTPS: isHttps,
+  HTTPS: protocol,
   SHOW_PROGRESS: SHOW_PROGRESS === "true" || SHOW_PROGRESS === true,
   ANALYZE_BUNDLE: ANALYZE_BUNDLE === "true" || ANALYZE_BUNDLE === true,
   GENERATE_SOURCEMAP:
     GENERATE_SOURCEMAP === "true" || GENERATE_SOURCEMAP === true,
-  SERVE_URL: `${isHttps ? "https" : "http"}://${HOST}:${PORT}`,
+  SERVE_URL: `${protocol}://${HOST}:${PORT}`,
   MINIMIZE: !isDev,
   TERSER: !isDev,
   CSS_MINIMIZE: !isDev,

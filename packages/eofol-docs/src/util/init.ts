@@ -1,5 +1,3 @@
-import { registerServiceWorker } from "@eofol/eofol";
-
 export const init = () => {
   /*
   const storage = loadLocalStorage(LOCAL_STORAGE_NAME);
@@ -19,16 +17,13 @@ export const init = () => {
     LOCAL_STORAGE_NAME
   );
 */
-
   // const theme = setTheme(initialTheme);
   // initStyles(theme);
-
   /*
 initTranslation([
   { title: "English", id: "en" },
   { title: "Čeština", id: "cs" },
 ]);
 */
-
-  registerServiceWorker();
+  // registerServiceWorker();
 };
