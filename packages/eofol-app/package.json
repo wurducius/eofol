@@ -18,6 +18,15 @@
     "csstype": "3.1.3",
     "typescript": "5.4.5"
   },
+  "files": [
+    "public",
+    "src",
+    ".babelrc",
+    ".env",
+    "eofol-app.d.ts",
+    "README.md",
+    "tsconfig.json"
+  ],
   "author": "wurducius@gmail.com",
   "license": "MIT",
   "bugs": "https://github.com/wurducius/eofol/issues",
