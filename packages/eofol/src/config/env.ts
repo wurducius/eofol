@@ -1,6 +1,7 @@
 const ENV = process.env;
 
-const envBoolean = (property: string | undefined) => property !== "false";
+const envBoolean = (property: string | boolean | undefined) =>
+  property !== "false" && property !== false;
 
 export const getTranslationsEnabled = () =>
   envBoolean(ENV.TRANSLATIONS_ENABLED);
