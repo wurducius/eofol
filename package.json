@@ -1,6 +1,6 @@
 {
   "name": "eofol",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "All-inclusive blazingly fast reactive web framework with zero configuration, batteries included!",
   "workspaces": [
     "packages/*"
@@ -17,7 +17,7 @@
   "bugs": "https://github.com/wurducius/eofol/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wurducius/eofol.git",
+    "url": "git+https://github.com/wurducius/eofol.git",
     "directory": "packages/eofol"
   },
   "author": "wurducius@gmail.com"

@@ -13,15 +13,17 @@ console.log(
 const config = createConfig();
 const server = new WebpackDevServer(config.devServer, webpack(config));
 
-["SIGINT", "SIGTERM"].forEach(function (sig) {
-  process.on(sig, function () {
-    devServer.close();
-    process.exit();
-  });
-});
+const stopServer = async () => {
+  await server.stop();
+  process.exit();
+};
 
 const runServer = async () => {
   await server.start();
 };
+
+["SIGINT", "SIGTERM"].forEach(function (sig) {
+  process.on(sig, stopServer);
+});
 
 runServer();

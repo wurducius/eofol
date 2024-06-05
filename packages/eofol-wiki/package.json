@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-wiki",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "Static wiki-like documentation website generator based on Markdown",
   "files": [
     "bin"
@@ -16,7 +16,7 @@
   "bugs": "https://github.com/wurducius/eofol/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wurducius/eofol.git",
+    "url": "git+https://github.com/wurducius/eofol.git",
     "directory": "packages/eofol-wiki"
   }
 }
