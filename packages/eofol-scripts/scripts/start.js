@@ -7,7 +7,7 @@ const createConfig = require("../config/webpack.config");
 
 console.log(primary("Starting the development server..."));
 console.log(
-  primary(`Serving eofol app at in ${MODE} mode at `) + success(SERVE_URL)
+  primary(`Serving eofol app in ${MODE} mode at `) + success(SERVE_URL)
 );
 
 const config = createConfig();
