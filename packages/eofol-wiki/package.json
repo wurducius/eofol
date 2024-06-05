@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-wiki",
-  "version": "0.2.24",
+  "version": "0.2.25",
   "description": "Static wiki-like documentation website generator based on Markdown",
   "files": [
     "bin"
