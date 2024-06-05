@@ -36,6 +36,7 @@ let themeStyles = {
   checkboxSizeXl: "",
   inputDisabled: "",
   buttonBase: "",
+  tooltipContent: "",
 };
 
 export const updateThemeStyles = (theme: Theme) => {
@@ -160,6 +161,11 @@ export const updateThemeStyles = (theme: Theme) => {
       fontSize: theme.typography.text.fontSize,
       fontWeight: 500,
       fontFamily: "inherit",
+    }),
+    tooltipContent: sx({
+      display: "none",
+      position: "absolute",
+      zIndex: theme.zIndex.tooltip,
     }),
   };
 };
