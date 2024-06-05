@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-types",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "Typescript types for eofol",
   "types": "index.d.ts",
   "files": [

@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-app",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "Create a reactive app from template with zero configuration!",
   "scripts": {
     "start": "eofol-scripts start",
@@ -9,12 +9,12 @@
     "serve": "eofol-scripts serve"
   },
   "dependencies": {
-    "@eofol/eofol": "0.2.25",
-    "@eofol/eofol-simple": "0.2.25"
+    "@eofol/eofol": "0.2.26",
+    "@eofol/eofol-simple": "0.2.26"
   },
   "devDependencies": {
-    "@eofol/eofol-scripts": "0.2.25",
-    "@eofol/eofol-types": "0.2.25",
+    "@eofol/eofol-scripts": "0.2.26",
+    "@eofol/eofol-types": "0.2.26",
     "csstype": "3.1.3",
     "typescript": "5.4.5"
   },

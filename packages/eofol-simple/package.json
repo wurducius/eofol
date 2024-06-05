@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-simple",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "Simple UI library for eofol wrapping HTML elements",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -9,11 +9,11 @@
   ],
   "types": "dist/index.d.js",
   "dependencies": {
-    "@eofol/eofol": "0.2.25"
+    "@eofol/eofol": "0.2.26"
   },
   "devDependencies": {
-    "@eofol/eofol-types": "0.2.25",
-    "@eofol/eofol-simple-types": "0.2.25",
+    "@eofol/eofol-types": "0.2.26",
+    "@eofol/eofol-simple-types": "0.2.26",
     "typescript": "5.4.5"
   },
   "author": "wurducius@gmail.com",

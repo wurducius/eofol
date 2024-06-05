@@ -1,6 +1,6 @@
 {
   "name": "@eofol/eofol-dev-utils",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "Eofol development utils used for eofol-scripts",
   "files": [
     "index.js",
