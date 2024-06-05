@@ -2,7 +2,7 @@ module.exports = {
   MODE: "development",
   PORT: 3005,
   BROWSER: true,
-  HOST: "localhost",
+  HOST: "0.0.0.0",
   HTTPS: false,
   LOG_LEVEL: "warn",
   SHOW_PROGRESS: true,
