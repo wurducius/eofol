@@ -20,7 +20,7 @@
   "bugs": "https://github.com/wurducius/eofol/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wurducius/eofol.git",
+    "url": "git+https://github.com/wurducius/eofol.git",
     "directory": "packages/eofol"
   }
 }
