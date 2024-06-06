@@ -1,6 +1,6 @@
 import { InputProps } from "@eofol/eofol-types";
 import { inputBase } from "../input-base/input-base";
-import { cx, getThemeStyles } from "@eofol/eofol";
+import { cx, cxFlat, getThemeStyles } from "@eofol/eofol";
 import { getInputSizeStyle } from "../../util/inputs";
 
 export const input = (props: InputProps) => {
@@ -30,7 +30,7 @@ export const input = (props: InputProps) => {
       errorFocusStyle,
       borderStyle,
       errorBorderStyle,
-      props.classname
+      cxFlat(props.classname)
     ),
   });
 };

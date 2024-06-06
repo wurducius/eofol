@@ -1,7 +1,9 @@
+import { Handler } from "@eofol/eofol-types";
+
 const debounce = (function () {
   let timers: Record<string, NodeJS.Timeout> = {};
 
-  return function (callback: () => void, delay: number, id: string) {
+  return function (callback: Handler, delay: number, id: string) {
     delay = delay || 500;
     id = id || "duplicated event";
 

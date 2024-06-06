@@ -7,6 +7,7 @@ import {
   addCx,
   removeCx,
   getThemeStyles,
+  cxFlat,
 } from "@eofol/eofol";
 import div from "../../primitive/div";
 import { getInputSizeStyle } from "../../util/inputs";
@@ -356,7 +357,7 @@ const numberInput = (props: NumberInputProps) => {
       inputBaseInvalidFocus,
       inputBaseFocus,
       hideDefaultArrows && "number-input-hide-arrows",
-      props.classname
+      cxFlat(props.classname)
     ),
     after: showCustomArrows && afterArrows,
     value: props.value ? stringify(props.value) : undefined,

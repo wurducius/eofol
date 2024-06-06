@@ -1,4 +1,4 @@
-import { EofolElementNode } from "@eofol/eofol-types";
+import { EofolElementNode, Handler } from "@eofol/eofol-types";
 import { createElement, cx, getTheme, sx } from "@eofol/eofol";
 import { button } from "../..";
 
@@ -7,8 +7,8 @@ const modal = (
   title: string,
   children: EofolElementNode,
   open: boolean,
-  onClose: () => void,
-  onConfirm: () => void,
+  onClose: Handler,
+  onConfirm: Handler,
   controls?: undefined | Element,
   classname?: string | undefined
 ) => {

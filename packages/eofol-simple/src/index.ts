@@ -47,6 +47,7 @@ export const bubble = bubbleX.bubble;
 
 import buttonX from "./ui/button";
 export const button = buttonX.button;
+export const iconButton = buttonX.iconButton;
 
 import checkboxX from "./ui/checkbox";
 export const checkbox = checkboxX.checkbox;
@@ -57,9 +58,6 @@ export const divider = dividerX.divider;
 import dropdownX from "./ui/dropdown";
 export const dropdown = dropdownX.dropdown;
 export const dropdownContent = dropdownX.dropdownContent;
-
-import iconButtonX from "./ui/icon-button";
-export const iconButton = iconButtonX.iconButton;
 
 import imgX from "./ui/img";
 export const img = imgX.img;

@@ -4,6 +4,7 @@ import {
   ax,
   createElement,
   cx,
+  cxFlat,
   getTheme,
   removeCx,
   staticStyles,
@@ -83,7 +84,7 @@ export const inputBase = ({
         width:
           type === "text" || type === "number" ? "calc(100% - 22px)" : "100%",
       }),
-      classname
+      cxFlat(classname)
     ),
     undefined,
     ax(

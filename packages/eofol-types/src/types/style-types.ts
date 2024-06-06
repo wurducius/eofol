@@ -66,5 +66,3 @@ export type Theme = {
   config: ConfigTheme;
   component: ComponentTheme;
 };
-
-export type ColorScheme = "primary" | "secondary" | "tertiary" | undefined;

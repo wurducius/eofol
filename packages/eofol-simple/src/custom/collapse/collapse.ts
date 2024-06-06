@@ -1,22 +1,11 @@
 import { createElement, sx, defineBuiltinElement } from "@eofol/eofol";
+import { DefineCollapseProps, RenderCollapseProps } from "@eofol/eofol-types";
 
 const DEFAULT_ICON_OPEN = "";
 const DEFAULT_ICON_CLOSED = "";
 
 export const renderCollapse =
-  ({
-    title,
-    render,
-    onClick,
-    iconOpen,
-    iconClosed,
-  }: {
-    title: string;
-    render: undefined | (() => Element | string);
-    onClick?: () => void;
-    iconOpen?: string;
-    iconClosed?: string;
-  }) =>
+  ({ title, render, onClick, iconOpen, iconClosed }: RenderCollapseProps) =>
   (state: any, setState: any) =>
     createElement("div", undefined, [
       createElement(
@@ -74,15 +63,7 @@ const defineCollapse = ({
   onClick,
   iconOpen,
   iconClosed,
-}: {
-  tagName: string;
-  title: string;
-  render: undefined | (() => Element | string);
-  open?: boolean;
-  onClick?: () => void;
-  iconOpen?: string;
-  iconClosed?: string;
-}) =>
+}: DefineCollapseProps) =>
   defineBuiltinElement({
     tagName,
     initialState: { open },

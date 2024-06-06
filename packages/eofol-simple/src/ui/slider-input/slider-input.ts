@@ -1,8 +1,13 @@
-import { getTheme, sx, cx } from "@eofol/eofol";
+import { getTheme, sx, cx, cxFlat } from "@eofol/eofol";
 import { inputBase } from "../input-base/input-base";
 import { getInputSizeStyle } from "../../util/inputs";
-import { SIZE, Schemable } from "@eofol/eofol-types";
+import {
+  EComponentWithoutChildren,
+  InputHandlers,
+  Namable,
+} from "@eofol/eofol-types";
 import { getColorScheme } from "../../util/scheme";
+import { Disablable, Sizable, Schemable } from "@eofol/eofol-types";
 
 const sliderInput = ({
   value,
@@ -21,19 +26,16 @@ const sliderInput = ({
   size,
 }: {
   value: string;
-  name: string;
-  onChange: (nextVal: number) => void;
-  onInput?: (nextVal: number) => void;
-  onBlur?: (nextVal: number) => void;
-  onFocus?: (nextVal: number) => void;
   min?: number;
   max?: number;
   step?: number;
-  disabled?: boolean;
   readonly?: boolean;
-  classname?: string;
-  size?: SIZE;
-} & Schemable) => {
+} & InputHandlers<number> &
+  Namable &
+  Disablable &
+  Sizable &
+  Schemable &
+  EComponentWithoutChildren) => {
   const theme = getTheme();
 
   const accentColorScheme = getColorScheme(scheme, "secondary");
@@ -72,7 +74,7 @@ const sliderInput = ({
         cursor: "pointer",
       }),
       sx({ accentColor: accentColorScheme.dark }, ":hover"),
-      classname
+      cxFlat(classname)
     ),
   });
 };

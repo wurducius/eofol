@@ -10,8 +10,15 @@ import {
   ax,
   INPUT_INVALID,
   staticStyles,
+  cxFlat,
 } from "@eofol/eofol";
-import { Schemable } from "@eofol/eofol-types";
+import {
+  Disablable,
+  EComponentWithoutChildren,
+  InputHandlers,
+  Namable,
+  Schemable,
+} from "@eofol/eofol-types";
 
 const textAreaBaseClass = sy(
   {
@@ -63,20 +70,22 @@ export const textarea = ({
   disabled,
   scheme,
 }: {
-  name: string;
   value?: string;
-  onChange: (nextVal: string) => void;
-  onBlur?: (nextVal: string) => void;
-  classname?: string;
   resize?: Resize;
   readonly?: boolean;
-  disabled?: boolean;
-} & Schemable) => {
+} & InputHandlers<string> &
+  Disablable &
+  Schemable &
+  Namable &
+  EComponentWithoutChildren) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
   const schemeImpl = scheme ?? "secondary";
+  const flatClassname = cxFlat(classname);
 
-  const isInvalid = classname?.split(" ").includes(INPUT_INVALID);
+  const isInvalid = (!flatClassname ? "" : flatClassname)
+    .split(" ")
+    .includes(INPUT_INVALID);
 
   const validBorderStyle = themeStyles.inputBorder[schemeImpl];
   const invalidBorderStyle = themeStyles.inputErrorBorderFlat;
@@ -120,7 +129,7 @@ export const textarea = ({
       getResizeClass(resize),
       textAreaBaseClass,
       sx({ outline: "none" }, ":focus"),
-      classname
+      flatClassname
     ),
     value,
     ax(

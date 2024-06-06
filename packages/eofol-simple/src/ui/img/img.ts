@@ -1,6 +1,6 @@
 import { createElement, ax } from "@eofol/eofol";
 import defaultFallback from "../../assets/img/default-fallback.png";
-import { EComponent } from "@eofol/eofol-types";
+import { EComponent, ImageAlt } from "@eofol/eofol-types";
 
 const img = ({
   src,
@@ -12,11 +12,11 @@ const img = ({
   children,
 }: {
   src: string;
-  alt: string;
   fallback?: string;
   height?: number | string;
   width?: number | string;
-} & EComponent) =>
+} & ImageAlt &
+  EComponent) =>
   createElement(
     "img",
     classname,

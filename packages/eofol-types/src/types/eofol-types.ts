@@ -1,7 +1,7 @@
-import { MultiOptional } from "./common-types";
+import { Handler, MultiOptional, Procedure } from "./common-types";
 import { EofolElementNode } from "./element-types";
 
-export type StateSetter<StateType> = (newState: StateType) => void;
+export type StateSetter<StateType> = Procedure<StateType>;
 
 // @TODO typing how the hell do we type {}?
 export type StateTypeImpl<StateType> = StateType | undefined | {};
@@ -15,7 +15,7 @@ export type StatefulArg<StateType, T> = (
 
 export interface StatefulElement<StateType> {
   state: StateTypeImpl<StateType>;
-  renderUpdate: () => void;
+  renderUpdate: Handler;
 }
 
 export type EffectType<T> = MultiOptional<

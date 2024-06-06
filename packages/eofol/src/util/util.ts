@@ -1,7 +1,7 @@
-import type { MultiOptional } from "@eofol/eofol-types";
+import type { MultiOptional, Procedure } from "@eofol/eofol-types";
 
 export function arrayCombinator<T>(
-  handler: (value: T) => void,
+  handler: Procedure<T>,
   data: MultiOptional<T>
 ) {
   if (data) {
