@@ -48,6 +48,10 @@ export type IconButtonProps = ButtonBaseProps & {
 } & Titlable &
   ImageAlt;
 
+// -------------- CHECKBOX --------------
+
+export type CheckboxProps = EInput<boolean> & Sizable & EComponent;
+
 // -------------- LIST --------------
 
 export type ListBaseProps<T> = {

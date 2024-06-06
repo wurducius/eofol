@@ -1,6 +1,5 @@
 import { createElement, ax } from "@eofol/eofol";
 import { AProps } from "@eofol/eofol-simple-types";
-import { EComponent } from "@eofol/eofol-types";
 
 export const aBase = ({
   link,
@@ -8,7 +7,7 @@ export const aBase = ({
   download,
   classname,
   children,
-}: AProps & EComponent) => {
+}: AProps) => {
   return createElement(
     "a",
     classname,

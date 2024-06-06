@@ -1,7 +1,10 @@
-import { Schemable } from "@eofol/eofol-types";
+import { EComponent, Schemable, Sizable } from "@eofol/eofol-types";
 
 export type AProps = {
   link: string;
   external?: boolean;
   download?: string;
-} & Schemable;
+} & Schemable &
+  EComponent;
+
+export type LinkButtonProps = AProps & Schemable & Sizable;

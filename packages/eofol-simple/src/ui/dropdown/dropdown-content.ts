@@ -1,9 +1,10 @@
 import { getTheme, createElement, sx, cx } from "@eofol/eofol";
+import { EofolElementNode } from "@eofol/eofol-types";
 
 const dropdownContent = (
   id: string,
   classname: string | undefined,
-  children: Element | Element[]
+  children: EofolElementNode
 ) => {
   const theme = getTheme();
 

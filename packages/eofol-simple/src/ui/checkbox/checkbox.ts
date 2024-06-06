@@ -5,10 +5,32 @@ import {
   getTheme,
   getThemeStyles,
   cxFlat,
+  sy,
 } from "@eofol/eofol";
 import div from "../../primitive/div";
 import { getCheckboxSizeStyle } from "../../util/inputs";
-import { EComponent, EInput, Sizable } from "@eofol/eofol-types";
+import { CheckboxProps } from "@eofol/eofol-types";
+
+const baseStyle = sy(
+  {
+    height: 0,
+    width: 0,
+    position: "relative",
+    margin: "0 0 0 0",
+  },
+  "checkbox-base"
+);
+
+const wrapperStyle = sy(
+  {
+    position: "relative",
+    display: "flex",
+    height: "32px",
+    width: "32px",
+    margin: "8px 4px 8px 4px",
+  },
+  "checkbox-wrapper"
+);
 
 const checkbox = ({
   onChange,
@@ -19,16 +41,10 @@ const checkbox = ({
   size,
   classname,
   children,
-}: EInput<boolean> & Sizable & EComponent) => {
+}: CheckboxProps) => {
   const theme = getTheme();
   const themeStyles = getThemeStyles();
 
-  const baseStyle = sx({
-    height: 0,
-    width: 0,
-    position: "relative",
-    margin: "0 0 0 0",
-  });
   const disabledStyle = themeStyles.inputDisabled;
 
   const inputElement = createElement(
@@ -96,16 +112,7 @@ const checkbox = ({
     }
   );
 
-  const wrapperElement = div(
-    sx({
-      position: "relative",
-      display: "flex",
-      height: "32px",
-      width: "32px",
-      margin: "8px 4px 8px 4px",
-    }),
-    [inputElement, frontElement]
-  );
+  const wrapperElement = div(wrapperStyle, [inputElement, frontElement]);
 
   return wrapperElement;
 };

@@ -2,6 +2,7 @@ import {
   addCx,
   createElement,
   cx,
+  cxFlat,
   getTheme,
   removeCx,
   staticStyles,
@@ -9,6 +10,7 @@ import {
 } from "@eofol/eofol";
 import button from "../button/button";
 import dropdownContent from "./dropdown-content";
+import { EComponent, Titlable } from "@eofol/eofol-types";
 
 const openMenu = (id: string) => {
   const contentNew = document.getElementById(id);
@@ -33,12 +35,10 @@ const dropdown = ({
   contentClassname,
 }: {
   id: string;
-  title: string;
-  children: Element | Element[];
-  classname?: string | undefined;
   buttonClassname?: string | undefined;
   contentClassname?: string | undefined;
-}) => {
+} & Titlable &
+  EComponent) => {
   const theme = getTheme();
 
   const getButtonHoverStyle = (isSecondary: boolean) => ({
@@ -61,7 +61,7 @@ const dropdown = ({
 
   return createElement(
     "div",
-    cx(sx({ display: "flex", cursor: "pointer" }), classname),
+    cx(sx({ display: "flex", cursor: "pointer" }), cxFlat(classname)),
     [buttonElement, dropdownContent(id, contentClassname, children)],
     undefined,
     {
